@@ -1,0 +1,93 @@
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FlewsePropLoaded>true</FlewsePropLoaded>
+    <IntermediateOutputPath >$(SolutionDir)Intermediate\$(AssemblyName).csproj\$(Configuration)_$(Platform)\</IntermediateOutputPath >
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(SolutionDir)Bin\$(Configuration)_x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;x86</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(SolutionDir)Bin\$(Configuration)_x86\</OutputPath>
+    <DefineConstants>TRACE;x86</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>$(SolutionDir)Bin\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;x64</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>$(SolutionDir)Bin\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;x64</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>$(SolutionDir)Bin\$(Configuration)_AnyCPU\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>$(SolutionDir)Bin\$(Configuration)_AnyCPU\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- This gets rid of MSB3270 which warns about mixing AnyCPU with x86 or x64 -->
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- Not ready for this level of commitment yet
+    <SignAssembly>true</SignAssembly>
+    -->
+    <LangVersion>latest</LangVersion>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)PropertySheets\FlewseKeyFile.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+  <!-- This causes problems with Assembly Name
+    <TargetName Condition="'$(OutputType)'=='WinExe'">$(AssemblyName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(OutputType)'=='Debug|Library'">$(AssemblyName)_$(Platform)d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(OutputType)'=='Release|Library'">$(AssemblyName)_$(Platform)r</TargetName>
+  -->
+  </PropertyGroup>
+  <PropertyGroup>
+    <SDK40ToolsPath Condition=" '$(PlatformTarget)' == 'x64'">$(SDK40ToolsPath)$(PlatformTarget)\</SDK40ToolsPath>
+  </PropertyGroup>
+    <!-- Override this target -->
+  <Target Name="ValidateMSBuildToolsVersion" Condition="'$(MSBuildToolsVersion)' == '2.0' OR
+                      '$(MSBuildToolsVersion)' == '3.5' OR
+                      '$(MSBuildToolsVersion)' == '4.0' OR
+                      '$(MSBuildToolsVersion)' == '12.0' OR
+                      '$(MSBuildToolsVersion)' == '14.0'" />
+</Project>
+
