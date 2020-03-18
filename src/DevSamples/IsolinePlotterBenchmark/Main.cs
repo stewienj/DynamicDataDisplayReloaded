@@ -75,6 +75,15 @@ public class BenchmarkDataSource : IDataSource2D<double>
 		get { return height; }
 	}
 
+    protected void OnChanged()
+    {
+        var handler = Changed;
+        if (handler != null)
+        {
+            handler(this, new EventArgs());
+        }
+    }
+
 	public event EventHandler Changed;
 
 	#region IDataSource2D<double> Members

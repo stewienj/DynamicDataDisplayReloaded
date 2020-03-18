@@ -32,9 +32,6 @@ namespace LineChartLegendBinding
 		{
 			var ds = new Point[] { new Point(0, 0), new Point(1, 1) }.AsDataSource();
 			graph = plotter.AddLineGraph(ds);
-
-			// hiding new unfinished legend
-			plotter.NewLegend.Visibility = Visibility.Collapsed;
 		}
 
 		private void colorSelector_SelectedValueChanged(object sender, EventArgs e)

@@ -56,7 +56,9 @@ namespace ForestDisplaySample
 
 		private void LoadForest()
 		{
-			var lines = File.ReadAllLines(@"..\..\Data.csv");
+      var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+			var lines = File.ReadAllLines(System.IO.Path.Combine(directory,"Data.csv"));
 
 			string[] ids = new[] { "Abie.bals", "Acer.rubr", "Acer.sacc", "Betu.papy", "Popu.gran", "Popu.trem", "Quer.rubr", "Tili.amer" };
 

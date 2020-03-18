@@ -40,10 +40,11 @@ namespace DeepZoomSample
             //}
             //settings.Schemas.Add(schema);
 
-            string imgPath = Environment.CommandLine.Replace(@"C:\Development\SS\DynamicDataDisplay\Main\src\DevSamples\DeepZoomSample\bin\Debug\DeepZoomSample.vshost.exe", "")
-                .Trim('"').Trim(' ');
+            string path = Environment.CommandLine.Trim("\" \\".ToArray());
+            var directory = System.IO.Path.GetDirectoryName(path);
 
-            viewer.ImagePath = imgPath;
+
+            viewer.ImagePath = System.IO.Path.Combine(directory, "DeepZoomSchema.xsd"); ;
         }
 
         private void SchemaValidationCallback(object sender, ValidationEventArgs e) { }

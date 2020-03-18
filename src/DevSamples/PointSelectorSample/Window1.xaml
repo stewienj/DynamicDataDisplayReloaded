@@ -52,13 +52,13 @@
 				<Button Content="Clear points" Name="ClearPointsBtn" Click="ClearPointsBtn_Click"/>
 			</d3:ChartPlotter>
 
-			<wpf:DataGrid Grid.Column="1" HorizontalAlignment="Right"
+			<DataGrid Grid.Column="1" HorizontalAlignment="Right"
 				ItemsSource="{Binding Path=Points, ElementName=selector}" AutoGenerateColumns="False">
-				<wpf:DataGrid.Columns>
-					<wpf:DataGridTextColumn Header="X" Binding="{Binding X}"/>
-					<wpf:DataGridTextColumn Header="Y" Binding="{Binding Y}"/>
-				</wpf:DataGrid.Columns>
-			</wpf:DataGrid>
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="X" Binding="{Binding X}"/>
+					<DataGridTextColumn Header="Y" Binding="{Binding Y}"/>
+				</DataGrid.Columns>
+			</DataGrid>
 		</Grid>
 	</DockPanel>
 </Window>

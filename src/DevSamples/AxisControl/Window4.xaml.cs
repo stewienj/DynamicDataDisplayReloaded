@@ -67,7 +67,7 @@ namespace AxisControlSample
 			{
 				return i.Tick.ToString("MMMM yyyy", new CultureInfo("es-es"));
 
-				return null;
+				//return null;
 			});
 
 			//plotter.Viewport.Restrictions.Add(new PhysicalProportionsRestriction { ProportionRatio = 1 });

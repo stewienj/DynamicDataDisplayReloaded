@@ -35,7 +35,7 @@ namespace ETopoHeightMapSample
 
             plotter.BeginLongOperation();
 
-            Task task = Task.Create((unused) =>
+            Task task = Task.Run(() =>
             {
                 var dataSource = ReliefReader.ReadDataSource();
 

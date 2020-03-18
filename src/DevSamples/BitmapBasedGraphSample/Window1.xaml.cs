@@ -29,19 +29,44 @@ namespace BitmapBasedGraphSample
 
     public class BitmapBasedSampleGraph : BitmapBasedGraph
     {
+        private System.Threading.Timer timer;
+
+        public BitmapBasedSampleGraph()
+        {
+            timer = new Timer(TimerCallback, null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(1000));
+        }
+
+        private void TimerCallback(object state)
+        {
+      Dispatcher.Invoke(() => this.UpdateVisualization());
+        }
+
         protected override BitmapSource RenderFrame(DataRect dataRect, Rect output)
         {
             Grid grid = new Grid();
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
             grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+
             TextBlock lt = new TextBlock
             {
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Text = String.Format("({0},{1})", dataRect.XMin, dataRect.YMax)
+              VerticalAlignment = VerticalAlignment.Top,
+              HorizontalAlignment = HorizontalAlignment.Left,
+              Text = String.Format("({0},{1})", dataRect.XMin, dataRect.YMax)
             };
             grid.Children.Add(lt);
             Grid.SetRow(lt, 0);
+
+            TextBlock time = new TextBlock
+            {
+              VerticalAlignment = VerticalAlignment.Center,
+              HorizontalAlignment = HorizontalAlignment.Center,
+              Text = String.Format("({0})", DateTime.Now.TimeOfDay)
+            };
+            grid.Children.Add(time);
+            Grid.SetRow(time, 1);
+
+
             TextBlock rb = new TextBlock
             {
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -49,7 +74,7 @@ namespace BitmapBasedGraphSample
                 Text = String.Format("({0},{1})", dataRect.XMax, dataRect.YMin)
             };
             grid.Children.Add(rb);
-            Grid.SetRow(rb, 1);
+            Grid.SetRow(rb, 2);
             Border border = new Border();
             border.BorderThickness = new Thickness(3);
             border.BorderBrush = Brushes.Blue;
