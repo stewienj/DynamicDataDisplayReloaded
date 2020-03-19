@@ -68,7 +68,6 @@ namespace Microsoft.Research.DynamicDataDisplay.Controls
 			Children.Remove(DefaultContextMenu);
 			Children.Remove(MouseNavigation);
 			Children.Remove(Legend);
-			Children.Remove(NewLegend);
 
 			leftHighlight = new RectangleHighlight { Fill = highlightFill, Stroke = Brushes.DarkGray, Name = "Left_Highlight" };
 			Children.Add(leftHighlight);
@@ -177,7 +176,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Controls
 		}
 
 		private Range<double> domain = new Range<double>(0, 1);
-		protected Range<double> Domain
+		protected new Range<double> Domain
 		{
 			get { return domain; }
 			set

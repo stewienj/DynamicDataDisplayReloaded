@@ -1,19 +1,17 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Filters;
-using System.Reflection;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	public class Coastline : ViewportElement2D
+  public class Coastline : ViewportElement2D
 	{
 		private readonly string delimiter = "nan nan";
 
@@ -87,6 +85,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			}
 
 			Init();
+
+      Viewport2D.SetContentBounds(this, new DataRect(-180, -90, 360, 180));
 		}
 
 		public Coastline(string path)

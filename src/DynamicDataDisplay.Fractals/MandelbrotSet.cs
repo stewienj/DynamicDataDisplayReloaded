@@ -60,9 +60,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Fractals
 
 				return Palette.GetColor(t).ToArgb();
 
-				return Color.FromArgb(255, (byte)(255 * t), (byte)(255 * (1 - t)), (byte)(255 * (t))).ToArgb();
+				//return Color.FromArgb(255, (byte)(255 * t), (byte)(255 * (1 - t)), (byte)(255 * (t))).ToArgb();
 
-				return Color.FromArgb(255, (byte)(255 * Math.Sqrt(1 - t)), 0, (byte)Math.Sqrt(t)).ToArgb();
+				//return Color.FromArgb(255, (byte)(255 * Math.Sqrt(1 - t)), 0, (byte)Math.Sqrt(t)).ToArgb();
 
 
 				//return Color.FromArgb(255, (byte)(255 * Math.Sqrt(1 - t)), 0, (byte)Math.Sqrt(t)).ToArgb();
