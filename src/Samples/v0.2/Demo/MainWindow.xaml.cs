@@ -34,7 +34,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Demo
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			// Prepare data in arrays
-			const int N = 100;
+			const int N = 1000;
 			double[] x = new double[N];
 			double[] y = new double[N];
 
@@ -54,7 +54,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Demo
 			xDataSource.SetXMapping(X => X);
 
 
-			CompositeDataSource compositeDataSource = new CompositeDataSource(xDataSource, yDataSource);
+            CompositeDataSource compositeDataSource = new CompositeDataSource(xDataSource, yDataSource);
 
 			Matrix m = Matrix.Identity;
 			m.RotateAt(45, 10, 10);
@@ -72,11 +72,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Demo
 			plotter.Viewport.Restrictions.Add(new PhysicalProportionsRestriction { ProportionRatio = 1 });
 
 
-			// adding graph to plotter
-			plotter.AddLineGraph(compositeDataSource,
-				new Pen(Brushes.Goldenrod, 3),
-				new SampleMarker(),
-				new PenDescription("Cosine"));
+            // adding graph to plotter
+            plotter.AddLineGraph(compositeDataSource,
+                new Pen(Brushes.Goldenrod, 3),
+                new SampleMarker(),
+                new PenDescription("Cosine"));
 
 			//plotter.Viewport.FitToViewRestrictions.Add(new FollowDataWidthRestriction { Width = 1 });
 
