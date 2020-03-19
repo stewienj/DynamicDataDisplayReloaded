@@ -21,7 +21,7 @@ namespace DynamicDataDisplay.Markers.MarkerGenerators
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var stroke = (Brush) converter.Convert(value, targetType, parameter, culture);
+			var stroke = (Brush)converter.Convert(value, targetType, parameter, culture);
 
 			var solidBrush = stroke as SolidColorBrush;
 			if (solidBrush != null)

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using DynamicDataDisplay.Markers;
 using Microsoft.Research.DynamicDataDisplay.Markers;
-using System.Windows.Data;
-using DynamicDataDisplay.Markers;
 using Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
+using System;
+using System.Collections.Generic;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 {
@@ -52,9 +48,10 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 			CurrentItemsPanel.Children.Add(renderingCanvas);
 		}
 
-		protected override void CreateAndAddMarker(object dataItem, int actualChildIndex)
+		protected override int CreateAndAddMarker(object dataItem, int actualChildIndex)
 		{
 			data.Add(dataItem);
+			return 1;
 		}
 	}
 }

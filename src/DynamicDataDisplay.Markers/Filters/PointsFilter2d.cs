@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DynamicDataDisplay.Markers.DataSources;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using DynamicDataDisplay.Markers.DataSources;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters

@@ -1,10 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Collections;
-using System.Collections.Specialized;
 
 namespace DynamicDataDisplay.Markers.DataSources
 {
@@ -23,7 +21,7 @@ namespace DynamicDataDisplay.Markers.DataSources
 		public IEnumerable<Point> Collection
 		{
 			get { return collection; }
-		} 
+		}
 
 		protected override IEnumerable GetDataCore()
 		{

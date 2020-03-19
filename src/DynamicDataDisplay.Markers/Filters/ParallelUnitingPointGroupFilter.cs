@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Threading.Collections;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace DynamicDataDisplay.Markers.Filters
 {
@@ -28,7 +24,7 @@ namespace DynamicDataDisplay.Markers.Filters
 				{
 					var pointInScreen = point.DataToScreen(transform);
 
-					double minDistance = Double.PositiveInfinity;
+					double minDistance = double.PositiveInfinity;
 
 					foreach (var root in rootPoints)
 					{

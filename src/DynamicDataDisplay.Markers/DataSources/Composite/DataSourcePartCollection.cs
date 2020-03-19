@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-using Microsoft.Research.DynamicDataDisplay;
 
 namespace DynamicDataDisplay.Markers.DataSources
 {
@@ -31,7 +28,7 @@ namespace DynamicDataDisplay.Markers.DataSources
 
 		public void ReplacePart(string name, DataSourcePart newDataPart)
 		{
-			if (String.IsNullOrEmpty(name))
+			if (string.IsNullOrEmpty(name))
 				throw new ArgumentException("Part's name should not be null or empty string.", "name");
 
 			var index = parts.FindIndex(part => part.PropertyName == name);
@@ -42,7 +39,7 @@ namespace DynamicDataDisplay.Markers.DataSources
 			}
 			else
 			{
-				throw new ArgumentException(String.Format("Cannot find part with name \"{0}\"", name), "name");
+				throw new ArgumentException(string.Format("Cannot find part with name \"{0}\"", name), "name");
 			}
 		}
 

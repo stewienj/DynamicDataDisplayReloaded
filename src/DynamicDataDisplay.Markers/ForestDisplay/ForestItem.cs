@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace DynamicDataDisplay.Markers.ForestDisplay

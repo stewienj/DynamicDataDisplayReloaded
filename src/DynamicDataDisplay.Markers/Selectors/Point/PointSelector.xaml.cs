@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DynamicDataDisplay.Markers;
+using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+using Microsoft.Research.DynamicDataDisplay.Markers.Strings;
+using Microsoft.Research.DynamicDataDisplay.Navigation;
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -7,10 +11,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using DynamicDataDisplay.Markers;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
-using Microsoft.Research.DynamicDataDisplay.Markers.Strings;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 {
@@ -210,7 +210,6 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 					return new NoneModeHandler();
 				default:
 					throw new ArgumentException("Mode");
-					break;
 			}
 		}
 
@@ -320,8 +319,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 					return true;
 				}
 				// these are exceptions thrown by Point.Parse
-				catch (FormatException exc) { }
-				catch (InvalidOperationException exc) { }
+				catch (FormatException) { }
+				catch (InvalidOperationException) { }
 			}
 			return false;
 		}

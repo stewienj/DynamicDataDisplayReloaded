@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DynamicDataDisplay.Markers.DataSources;
 using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Windows;
-using DynamicDataDisplay.Markers.DataSources;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
 {

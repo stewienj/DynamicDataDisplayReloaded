@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
 using System.Windows;
-using System.Windows.Data;
 
 namespace DynamicDataDisplay.Markers
 {
@@ -29,7 +24,7 @@ namespace DynamicDataDisplay.Markers
 			generator.LocationPath = LocationPath;
 			generator.DirectionPath = DirectionPath;
 			generator.EndInit();
-	
+
 			base.EndInit();
 		}
 	}

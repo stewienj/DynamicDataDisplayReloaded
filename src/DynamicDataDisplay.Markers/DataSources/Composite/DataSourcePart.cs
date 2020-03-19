@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DynamicDataDisplay.Markers.DataSources
 {
@@ -12,14 +10,14 @@ namespace DynamicDataDisplay.Markers.DataSources
 		{
 			if (collection == null)
 				throw new ArgumentNullException("collection");
-			if (String.IsNullOrEmpty(propertyName))
+			if (string.IsNullOrEmpty(propertyName))
 				throw new ArgumentNullException("propertyName");
 
 			this.collection = collection;
 			this.propertyName = propertyName;
 
 			Type[] types = IEnumerableHelper.GetGenericInterfaceArgumentTypes(collection, typeof(IEnumerable<>));
-			propertyType = (types != null && types.Length == 1) ? types[0] : typeof(Object);
+			propertyType = (types != null && types.Length == 1) ? types[0] : typeof(object);
 		}
 
 		private readonly string propertyName;
@@ -38,6 +36,6 @@ namespace DynamicDataDisplay.Markers.DataSources
 		public Type PropertyType
 		{
 			get { return propertyType; }
-		} 
+		}
 	}
 }

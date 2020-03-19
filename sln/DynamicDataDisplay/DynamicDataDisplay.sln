@@ -136,8 +136,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Fractals
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractalSample", "..\..\src\DevSamples\FractalSample\FractalSample.csproj", "{5398E3D2-9C96-4093-85A0-799D4B0BEFE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Markers.Design", "..\..\src\DynamicDataDisplay.Markers.Design\DynamicDataDisplay.Markers.Design.csproj", "{1F7C9B33-DB38-45B7-9899-2B0B4C725CB7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditableShapes", "..\..\src\Samples\v0.4\EditableShapes\EditableShapes.csproj", "{1C7A3B51-4777-4321-936C-EF9597B44647}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointSetOnMap", "..\..\src\Samples\v0.4\PointsOnMapSampleApp\PointSetOnMap.csproj", "{E838A833-5096-4849-8375-3AC8545389A4}"
@@ -418,10 +416,6 @@ Global
 		{5398E3D2-9C96-4093-85A0-799D4B0BEFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5398E3D2-9C96-4093-85A0-799D4B0BEFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5398E3D2-9C96-4093-85A0-799D4B0BEFE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F7C9B33-DB38-45B7-9899-2B0B4C725CB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F7C9B33-DB38-45B7-9899-2B0B4C725CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F7C9B33-DB38-45B7-9899-2B0B4C725CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F7C9B33-DB38-45B7-9899-2B0B4C725CB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C7A3B51-4777-4321-936C-EF9597B44647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C7A3B51-4777-4321-936C-EF9597B44647}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C7A3B51-4777-4321-936C-EF9597B44647}.Release|Any CPU.ActiveCfg = Release|Any CPU

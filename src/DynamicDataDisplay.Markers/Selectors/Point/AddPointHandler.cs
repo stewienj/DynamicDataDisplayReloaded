@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
-using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
-using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 {

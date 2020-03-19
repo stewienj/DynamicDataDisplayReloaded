@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
-using System.Windows;
 using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
 
 namespace DynamicDataDisplay.Markers
 {
@@ -17,7 +14,7 @@ namespace DynamicDataDisplay.Markers
 			if (values.Length != 2)
 				return DependencyProperty.UnsetValue;
 
-			var tooltip = String.Format("{0} - {1}", values);
+			var tooltip = string.Format("{0} - {1}", values);
 			return tooltip;
 		}
 

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
@@ -14,7 +12,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
 
 			using (var enumerator = points.GetEnumerator())
 			{
-				double currentX = Double.NegativeInfinity;
+				double currentX = double.NegativeInfinity;
 
 				double minX = 0, maxX = 0, minY = 0, maxY = 0;
 
@@ -54,7 +52,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
 
 							Point leftY = top.X < bottom.X ? top : bottom;
 							Point rightY = top.X > bottom.X ? top : bottom;
-							
+
 							if (top != bottom)
 							{
 								yield return leftY;

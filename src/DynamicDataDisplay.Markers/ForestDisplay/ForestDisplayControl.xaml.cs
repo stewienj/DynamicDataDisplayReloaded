@@ -1,14 +1,12 @@
-﻿using System;
+﻿using DynamicDataDisplay.Markers.ForestDisplay;
+using DynamicDataDisplay.Markers.MarkerGenerators;
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using DynamicDataDisplay.Markers.ForestDisplay;
-using DynamicDataDisplay.Markers.MarkerGenerators;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay;
 
 namespace DynamicDataDisplay.Markers
 {
@@ -66,15 +64,15 @@ namespace DynamicDataDisplay.Markers
 
 			foreach (var item in dict)
 			{
-				var geometry = (Geometry) forestDisplayGenerator.Resources[item.Value.ViewID];
+				var geometry = (Geometry)forestDisplayGenerator.Resources[item.Value.ViewID];
 				var crown = new Path
-				            	{
-				            		Width = 15,
-				            		Height = 15,
-				            		Data = geometry,
-				            		Stretch = Stretch.Fill,
-				            		Fill = (Brush) forestConverter.Convert(item.Key, typeof (Brush), null, null)
-				            	};
+				{
+					Width = 15,
+					Height = 15,
+					Data = geometry,
+					Stretch = Stretch.Fill,
+					Fill = (Brush)forestConverter.Convert(item.Key, typeof(Brush), null, null)
+				};
 				//plotter.NewLegend.AddLegendItem(markerChart, new NewLegendItem {Description = item.Key, VisualContent = crown});
 			}
 		}

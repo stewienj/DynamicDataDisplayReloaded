@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
 using System.Collections;
+using System.Linq;
 using System.Windows;
 
 namespace DynamicDataDisplay.Markers.DataSources
@@ -22,7 +19,7 @@ namespace DynamicDataDisplay.Markers.DataSources
 		public Point[] Collection
 		{
 			get { return collection; }
-		} 
+		}
 
 		protected override IEnumerable GetDataCore()
 		{

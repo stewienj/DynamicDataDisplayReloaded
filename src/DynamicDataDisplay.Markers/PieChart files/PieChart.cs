@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+using System;
 using System.Windows;
-using System.Windows.Data;
-using System.ComponentModel;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay;
-using d3 = Microsoft.Research.DynamicDataDisplay;
-using System.Collections.Specialized;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using DynamicDataDisplay.Markers.DataSources;
 
 namespace DynamicDataDisplay.Markers
 {
@@ -79,7 +70,7 @@ namespace DynamicDataDisplay.Markers
 
 		public void AddPieItem(string caption, double value)
 		{
-			if (String.IsNullOrEmpty(caption))
+			if (string.IsNullOrEmpty(caption))
 				throw new ArgumentNullException("caption");
 
 			Items.Add(new PieChartItem { Caption = caption, Angle = value });
@@ -87,7 +78,7 @@ namespace DynamicDataDisplay.Markers
 
 		public void AddPieItem(string caption, double value, Brush fill)
 		{
-			if (String.IsNullOrEmpty(caption))
+			if (string.IsNullOrEmpty(caption))
 				throw new ArgumentNullException("caption");
 
 			Items.Add(new PieChartItem { Caption = caption, Angle = value, Background = fill });

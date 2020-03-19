@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 {
-	[Obsolete("Unready")]
 	public class MultipleSelectHandler : PointSelectorModeHandler
 	{
 		private PointSelector selector;
@@ -66,7 +62,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 				var positionInScreen = position.ViewportToScreen(transform);
 
 				if (!marker.IsMeasureValid)
-					marker.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
+					marker.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
 
 				InkCanvas.SetLeft(markerCopy, positionInScreen.X - marker.Width / 2);
 				InkCanvas.SetTop(markerCopy, positionInScreen.Y - marker.Height / 2);

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DynamicDataDisplay.Markers.ForestDisplay;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
-using DynamicDataDisplay.Markers.ForestDisplay;
 
 namespace DynamicDataDisplay.Markers.MarkerGenerators
 {
@@ -32,20 +32,20 @@ namespace DynamicDataDisplay.Markers.MarkerGenerators
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var name = (string) value;
+			var name = (string)value;
 
 			TreeSpeciesInfo info;
 
-			if (targetType == typeof (Brush))
+			if (targetType == typeof(Brush))
 			{
 				if (mappings.TryGetValue(name, out info))
 				{
 					return info.Brush;
 				}
 			}
-			else if (targetType == typeof (Geometry))
+			else if (targetType == typeof(Geometry))
 			{
-				var resourceHost = (FrameworkElement) parameter;
+				var resourceHost = (FrameworkElement)parameter;
 				if (mappings.TryGetValue(name, out info))
 				{
 					return resourceHost.Resources[info.ViewID];

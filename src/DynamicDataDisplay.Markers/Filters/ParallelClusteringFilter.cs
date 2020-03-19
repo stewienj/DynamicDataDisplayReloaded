@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
-using System.Threading;
 
 namespace DynamicDataDisplay.Markers.Filters
 {
@@ -63,7 +62,7 @@ namespace DynamicDataDisplay.Markers.Filters
 
 				foreach (var point in part)
 				{
-					double minDistance = Double.PositiveInfinity;
+					double minDistance = double.PositiveInfinity;
 					var pointOnScreen = point.DataToScreen(transform);
 
 					foreach (var root in result)

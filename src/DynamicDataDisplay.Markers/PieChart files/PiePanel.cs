@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Controls;
+using System;
 using System.Collections.Specialized;
-using System.Diagnostics;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace DynamicDataDisplay.Markers
 {

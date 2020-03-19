@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections.ObjectModel;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
 
 namespace DynamicDataDisplay.Markers.DataSources.DataSourceFactories
 {
@@ -27,7 +23,7 @@ namespace DynamicDataDisplay.Markers.DataSources.DataSourceFactories
 		public ObservableCollection<DataSourceFactory> Factories
 		{
 			get { return factories; }
-		} 
+		}
 
 		public void RegisterFactory(DataSourceFactory factory)
 		{

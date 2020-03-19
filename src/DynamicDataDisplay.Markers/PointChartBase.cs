@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using System.ComponentModel;
-using System.Windows;
-using System.Collections.Specialized;
+﻿using DynamicDataDisplay.Markers.DataSources;
 using DynamicDataDisplay.Markers.DataSources.DataSourceFactories;
-using DynamicDataDisplay.Markers.DataSources;
-using System.Windows.Media;
-using System.Windows.Data;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Filters = Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
 using Microsoft.Research.DynamicDataDisplay.Common;
-using DynamicDataDisplay.Markers;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
 {
@@ -50,7 +45,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
 				if (currentItemsPanel == null)
 					throw new ArgumentNullException("ItemsPanel");
 
-				this.Content = viewportItemsPanel.HostingCanvas;
+				Content = viewportItemsPanel.HostingCanvas;
 
 				if (plotter != null)
 				{
@@ -60,14 +55,26 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
 
 			else
 			{
-				this.Content = currentItemsPanel;
+				Content = currentItemsPanel;
 			}
 		}
 
 		private void viewportItemsPanel_ContentBoundsChanged(object sender, EventArgs e)
 		{
 			var contentBounds = Viewport2D.GetContentBounds(currentItemsPanel);
-			Viewport2D.SetContentBounds(this, contentBounds);
+
+			var plottedItems = CurrentItemsPanel.Children.OfType<UIElement>()
+			  .Where(x => x.Visibility == Visibility.Visible)
+			  .Where(item => !double.IsNaN(ViewportPanel.GetX(item)) || !double.IsNaN(ViewportPanel.GetY(item)));
+
+			if (plottedItems.Any())
+			{
+				Viewport2D.SetContentBounds(this, contentBounds);
+			}
+			else
+			{
+				Viewport2D.SetContentBounds(this, DataRect.Empty);
+			}
 		}
 
 		private BoundsUnionMode boundsUnionMode;
@@ -340,7 +347,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
 
 			string path = (string)value;
 
-			if (!String.IsNullOrEmpty(path))
+			if (!string.IsNullOrEmpty(path))
 				return value;
 
 			if (chart.dependentValueBinding != null)
@@ -382,7 +389,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
 
 			string path = (string)value;
 
-			if (!String.IsNullOrEmpty(path))
+			if (!string.IsNullOrEmpty(path))
 				return value;
 
 			if (chart.independentValueBinding != null)

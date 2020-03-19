@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DynamicDataDisplay.Markers.DataSources.DataSourceFactories
+﻿namespace DynamicDataDisplay.Markers.DataSources.DataSourceFactories
 {
 	public sealed class DataSourceDataSourceFactory : DataSourceFactory
 	{

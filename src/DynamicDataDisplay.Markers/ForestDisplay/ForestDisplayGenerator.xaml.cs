@@ -1,11 +1,11 @@
-﻿using System.Windows;
+﻿using DynamicDataDisplay.Markers.MarkerGenerators;
+using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Converters;
+using Microsoft.Research.DynamicDataDisplay.MarkupExtensions;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Shapes;
-using DynamicDataDisplay.Markers.MarkerGenerators;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.MarkupExtensions;
-using Microsoft.Research.DynamicDataDisplay.Converters;
-using System.Windows.Controls;
 
 namespace DynamicDataDisplay.Markers
 {

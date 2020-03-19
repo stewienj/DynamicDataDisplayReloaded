@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
 
 namespace Microsoft.Research.DynamicDataDisplay.Markers
 {

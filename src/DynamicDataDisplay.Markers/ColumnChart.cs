@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using DynamicDataDisplay.Markers;
-using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 {
@@ -47,7 +42,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 
 			marker.SetValue(ViewportPanel.YProperty, 0.0);
 
-			if (!String.IsNullOrEmpty(DependentValuePath))
+			if (!string.IsNullOrEmpty(DependentValuePath))
 			{
 				viewportHeightBinding = new Binding(DependentValuePath);
 			}

@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
 using System.Windows;
 using System.Windows.Markup;
-using System.ComponentModel;
-using DynamicDataDisplay.Markers.MarkerGenerators;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
-using System.Windows.Shapes;
-using System.Diagnostics;
 
 namespace DynamicDataDisplay.Markers
 {

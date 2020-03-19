@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Markup;
-using DynamicDataDisplay.Markers;
+﻿using DynamicDataDisplay.Markers;
 using DynamicDataDisplay.Markers.DataSources;
 using DynamicDataDisplay.Markers.DataSources.ValueConverters;
 using DynamicDataDisplay.Markers.DataSources.ValueConvertersFactories;
+using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
 using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
 using Microsoft.Research.DynamicDataDisplay.Common;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
 using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
@@ -27,6 +24,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 		{
 			propertyMappings[IndependentValuePathProperty] = ViewportPanel.XProperty;
 			propertyMappings[DependentValuePathProperty] = ViewportPanel.YProperty;
+			BoundsUnionMode = BoundsUnionMode.Bounds;
 		}
 
 		public override void OnPlotterAttached(Plotter plotter)
@@ -161,10 +159,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 
 			foreach (var dataItem in dataSource.GetData())
 			{
-				CreateAndAddMarker(dataItem, lastIndex);
-				lastIndex++;
+				lastIndex += CreateAndAddMarker(dataItem, lastIndex);
 
-				if (showMarkersConsequently && lastIndex % 100 == 0)
+				if (showMarkersConsequently && lastIndex % 1000 == 0)
 				{
 					// make dispatcher execute all operations in its queue;
 					// so that markers will appear on the screen step-by-step,
@@ -172,8 +169,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 					Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
 				}
 			}
-			if (panel != null)
-				panel.EndBatchAdd();
+
 
 			int len = CurrentItemsPanel.Children.Count;
 			if (lastIndex < len)
@@ -185,34 +181,37 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 				}
 			}
 
+			if (panel != null)
+				panel.EndBatchAdd();
+
 			LongOperationsIndicator.EndLongOperation(this);
 		}
 
-		protected virtual void CreateAndAddMarker(object dataItem, int actualChildIndex)
+		protected virtual int CreateAndAddMarker(object dataItem, int actualChildIndex)
 		{
 			FrameworkElement marker = null;
+			marker = markerGenerator.CreateMarker(dataItem);
+
+			SetIndex(marker, actualChildIndex);
+
+			if (MarkerStyle != null)
+			{
+				marker.Style = MarkerStyle;
+			}
+
+			AddCommonBindings(marker);
+			AddNamedBindings(marker);
+
 			if (actualChildIndex >= CurrentItemsPanel.Children.Count)
 			{
-				marker = markerGenerator.CreateMarker(dataItem);
-
-				SetIndex(marker, actualChildIndex);
-
-				if (MarkerStyle != null)
-				{
-					marker.Style = MarkerStyle;
-				}
-
-				AddCommonBindings(marker);
-				AddNamedBindings(marker);
-
 				CurrentItemsPanel.Children.Add(marker);
 			}
 			else
 			{
-				marker = (FrameworkElement)CurrentItemsPanel.Children[actualChildIndex];
-				marker.Visibility = Visibility.Visible;
-				marker.DataContext = dataItem;
+				CurrentItemsPanel.Children.Insert(actualChildIndex, marker);
 			}
+
+			return 1;
 		}
 
 		#region MarkerStyle property
@@ -344,7 +343,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 		{
 			string mappingString = (string)GetValue(sourceProperty);
 
-			if (String.IsNullOrEmpty(mappingString))
+			if (string.IsNullOrEmpty(mappingString))
 				return;
 
 			PropertyDescriptor propDescriptor = CreatePropertyDescriptor(mappingString);
@@ -395,7 +394,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 
 			if (propDescriptor == null)
 			{
-				throw new InvalidOperationException(String.Format("Cannot find property \"{0}\" on ItemsSource.", mappingString));
+				throw new InvalidOperationException(string.Format("Cannot find property \"{0}\" on ItemsSource.", mappingString));
 			}
 			return propDescriptor;
 		}

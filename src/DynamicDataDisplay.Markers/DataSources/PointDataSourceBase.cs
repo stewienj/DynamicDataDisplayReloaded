@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Collections.Specialized;
-using System.Collections;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace DynamicDataDisplay.Markers.DataSources
@@ -75,7 +72,7 @@ namespace DynamicDataDisplay.Markers.DataSources
 			else
 			{
 #if !RELEASEXBAP
-				Task task = Task.Create((unused) =>
+				Task task = Task.Factory.StartNew(() =>
 				{
 					// todo probably get rid of those tries and catches
 					try
@@ -96,7 +93,7 @@ namespace DynamicDataDisplay.Markers.DataSources
 						Debug.WriteLine("Exception in DataPrepaired event handler: " + exc.Message);
 					}
 				}).WithExceptionThrowingInDispatcher(Dispatcher);
-#else 
+#else
 				data = GetDataCore();
 #endif
 			}
@@ -104,7 +101,6 @@ namespace DynamicDataDisplay.Markers.DataSources
 
 		public event EventHandler DataPrepaired;
 
-		[Obsolete("Incomplete")]
 		public abstract IEnumerable GetData(int startingIndex);
 
 		protected abstract IEnumerable GetDataCore();

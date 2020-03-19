@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 
 namespace DynamicDataDisplay.Markers.DataSources.DataSourceFactories
 {

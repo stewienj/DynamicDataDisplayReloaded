@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using System.Windows.Data;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using DynamicDataDisplay.Markers.DataSources.ValueConverters;
+using System.Windows.Data;
 
 namespace DynamicDataDisplay.Markers
 {
@@ -37,7 +32,7 @@ namespace DynamicDataDisplay.Markers
 				SetBinding(NewLegend.DescriptionProperty, chart.DependentValueBinding);
 			}
 
-			bool setTooltipBinding = !String.IsNullOrEmpty(chart.IndependentValuePath) && !String.IsNullOrEmpty(chart.DependentValuePath);
+			bool setTooltipBinding = !string.IsNullOrEmpty(chart.IndependentValuePath) && !string.IsNullOrEmpty(chart.DependentValuePath);
 			if (setTooltipBinding)
 			{
 				MultiBinding tooltipBinding = new MultiBinding { Converter = new PieLegendItemTooltipConverter() };

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Markers.Strings;
 using System.Windows.Input;
-using Microsoft.Research.DynamicDataDisplay.Markers.Strings;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 {
@@ -25,6 +21,6 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 		public static RoutedUICommand AddPoint
 		{
 			get { return addPoint; }
-		} 
+		}
 	}
 }

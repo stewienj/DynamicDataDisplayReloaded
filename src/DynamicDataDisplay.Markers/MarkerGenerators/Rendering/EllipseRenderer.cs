@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering
 {

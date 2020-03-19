@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.Specialized;
-using System.Collections;
+﻿using System.Collections.Specialized;
 using System.Windows;
-using System.Windows.Data;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 {
@@ -89,8 +83,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 				int index = e.NewStartingIndex;
 				foreach (var dataItem in e.NewItems)
 				{
-					owner.CreateAndAddMarker(dataItem, index);
-					index++;
+					index += owner.CreateAndAddMarker(dataItem, index);
 				}
 
 				owner.lastIndex = index;

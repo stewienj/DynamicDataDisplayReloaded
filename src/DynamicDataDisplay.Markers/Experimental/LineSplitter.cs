@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Collections;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
 {
 	public sealed class LineSplitter
 	{
-		private readonly double xMissingValue = Double.NegativeInfinity;
-		private readonly double yMissingValue = Double.NegativeInfinity;
+		private readonly double xMissingValue = double.NegativeInfinity;
+		private readonly double yMissingValue = double.NegativeInfinity;
 
 		public IEnumerable<LinePart> Split(IEnumerable<Point> points)
 		{

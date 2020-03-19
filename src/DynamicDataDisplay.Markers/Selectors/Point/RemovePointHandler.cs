@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+using System;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
-using System.Reflection;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
 {
