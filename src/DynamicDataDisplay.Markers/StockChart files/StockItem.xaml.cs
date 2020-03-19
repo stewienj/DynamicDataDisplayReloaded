@@ -134,9 +134,12 @@ namespace DynamicDataDisplay.Markers
 
 			if (high - low == 0.0) return;
 
-			topRow.Height = new GridLength((high - max) / (high - low), GridUnitType.Star);
-			centralRow.Height = new GridLength((max - min) / (high - low), GridUnitType.Star);
-			bottomRow.Height = new GridLength((min - low) / (high - low), GridUnitType.Star);
+			if (topRow != null)
+				topRow.Height = new GridLength((high - max) / (high - low), GridUnitType.Star);
+			if (centralRow != null)
+				centralRow.Height = new GridLength((max - min) / (high - low), GridUnitType.Star);
+			if (bottomRow != null)
+				bottomRow.Height = new GridLength((min - low) / (high - low), GridUnitType.Star);
 		}
 	}
 }

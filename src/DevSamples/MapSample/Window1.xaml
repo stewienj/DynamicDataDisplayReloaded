@@ -43,7 +43,7 @@
                 </d3:Map.FileTileServer>
             </d3:Map>
 
-            <d3:CursorCoordinateGraph LineStroke="Blue" Name="rightCursor" AutoHide="False"/>
+            <d3:CursorCoordinateGraph VerticalLineStroke="Blue" HorizontalLineStroke="Blue" Name="rightCursor" AutoHide="False"/>
         </d3:ChartPlotter>
     </Grid>
 </Window>

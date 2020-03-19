@@ -52,7 +52,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
 		int[] reds = new int[256];
 		int[] greens = new int[256];
 		int[] blues = new int[256];
-		byte[] pixels;
+
 		private void ProcessImage(BitmapImage bmp)
 		{
 			byte[] pixels = new byte[bmp.PixelWidth * bmp.PixelHeight * 4];
