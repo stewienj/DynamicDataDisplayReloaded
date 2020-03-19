@@ -71,7 +71,7 @@
     <SignAssembly>true</SignAssembly>
     -->
     <LangVersion>latest</LangVersion>
-    <AssemblyOriginatorKeyFile>$(SolutionDir)PropertySheets\FlewseKeyFile.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)PropertySheets\DynamicDataDisplay.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
   <!-- This causes problems with Assembly Name
