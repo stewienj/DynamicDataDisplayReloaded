@@ -74,17 +74,17 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 				bmp.Freeze();
 				Dispatcher.BeginInvoke((Action)(() =>
 		  {
-				  try
-				  {
-					  ReportSuccess(memStream, bmp, id);
-				  }
-				  catch (Exception)
-				  {
-					  ReportFailure(id);
-					  MapsTraceSource.Instance.ServerInformationTraceSource.TraceInformation("MapServer {0}: Exception when processing image data from source.", ServerName);
-				  }
+			  try
+			  {
+				  ReportSuccess(memStream, bmp, id);
+			  }
+			  catch (Exception)
+			  {
+				  ReportFailure(id);
+				  MapsTraceSource.Instance.ServerInformationTraceSource.TraceInformation("MapServer {0}: Exception when processing image data from source.", ServerName);
+			  }
 
-			  }));
+		  }));
 			});
 		}
 

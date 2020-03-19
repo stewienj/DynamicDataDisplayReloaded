@@ -5,76 +5,76 @@ using System.Windows.Media.Imaging;
 
 public class ETopoHeightMapGraph : BitmapBasedGraph
 {
-    private ReliefPalette palette = new ReliefPalette();
+	private ReliefPalette palette = new ReliefPalette();
 
-    public ETopoHeightMapGraph()
-    {
-    }
+	public ETopoHeightMapGraph()
+	{
+	}
 
-    protected override BitmapSource RenderFrame(DataRect dataRect, Rect output, RenderRequest renderRequest)
-    {
-        double left = 0;
-        double lonMin = dataRect.XMin;
-        double scale = output.Width / dataRect.Width;
-        if (lonMin < -180)
-        {
-            left = (-180 - dataRect.XMin) * scale;
-            lonMin = -180;
-        }
+	protected override BitmapSource RenderFrame(DataRect dataRect, Rect output, RenderRequest renderRequest)
+	{
+		double left = 0;
+		double lonMin = dataRect.XMin;
+		double scale = output.Width / dataRect.Width;
+		if (lonMin < -180)
+		{
+			left = (-180 - dataRect.XMin) * scale;
+			lonMin = -180;
+		}
 
-        double width = output.Width - left;
-        double lonMax = dataRect.XMax;
-        if (lonMax > 180)
-        {
-            width -= (dataRect.XMax - 180) * scale;
-            lonMax = 180;
-        }
+		double width = output.Width - left;
+		double lonMax = dataRect.XMax;
+		if (lonMax > 180)
+		{
+			width -= (dataRect.XMax - 180) * scale;
+			lonMax = 180;
+		}
 
-        if (lonMin == lonMax)
-        {
-            return null;
-        }
+		if (lonMin == lonMax)
+		{
+			return null;
+		}
 
-        scale = output.Height / dataRect.Height;
-        double top = 0;
-        double latMax = dataRect.YMax;
-        if (latMax > 90)
-        {
-            top = (dataRect.YMax - 90) * scale;
-            latMax = 90;
-        }
+		scale = output.Height / dataRect.Height;
+		double top = 0;
+		double latMax = dataRect.YMax;
+		if (latMax > 90)
+		{
+			top = (dataRect.YMax - 90) * scale;
+			latMax = 90;
+		}
 
-        double height = output.Height - top;
-        double latMin = dataRect.YMin;
-        if (latMin < -90)
-        {
-            height -= (-90 - dataRect.YMin) * scale;
-            latMin = -90;
-        }
+		double height = output.Height - top;
+		double latMin = dataRect.YMin;
+		if (latMin < -90)
+		{
+			height -= (-90 - dataRect.YMin) * scale;
+			latMin = -90;
+		}
 
-        short min, max;
-        short[,] elev = ReliefReader.ReadElevationMap(latMin, latMax, (int)height,
-            lonMin, lonMax, (int)width, out min, out max);
+		short min, max;
+		short[,] elev = ReliefReader.ReadElevationMap(latMin, latMax, (int)height,
+			lonMin, lonMax, (int)width, out min, out max);
 
-        int pixelWidth = (int)output.Width;
-        int pixelHeight = (int)output.Height;
-        uint[] pixels = new uint[pixelWidth * pixelHeight];
-        int i0 = (int)left;
-        int j0 = (int)top;
-        for (int i = 0; i < (int)width; i++)
-            for (int j = 0; j < (int)height; j++)
-            {
-                Color color = ReliefPalette.GetColor(elev[j, i]);
-                pixels[i + i0 + (j + j0) * pixelWidth] = 0x7F << 24 |
-                    (((uint)color.R) << 16) |
-                    (((uint)color.G) << 8) |
-                    color.B;
-            }
+		int pixelWidth = (int)output.Width;
+		int pixelHeight = (int)output.Height;
+		uint[] pixels = new uint[pixelWidth * pixelHeight];
+		int i0 = (int)left;
+		int j0 = (int)top;
+		for (int i = 0; i < (int)width; i++)
+			for (int j = 0; j < (int)height; j++)
+			{
+				Color color = ReliefPalette.GetColor(elev[j, i]);
+				pixels[i + i0 + (j + j0) * pixelWidth] = 0x7F << 24 |
+					(((uint)color.R) << 16) |
+					(((uint)color.G) << 8) |
+					color.B;
+			}
 
-        var result = BitmapFrame.Create(pixelWidth, pixelHeight, 96, 96, PixelFormats.Bgra32, null, pixels, 4 * pixelWidth);
-        return result;
+		var result = BitmapFrame.Create(pixelWidth, pixelHeight, 96, 96, PixelFormats.Bgra32, null, pixels, 4 * pixelWidth);
+		return result;
 
-        /*        Grid grid = new Grid();
+		/*        Grid grid = new Grid();
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
                 TextBlock lt = new TextBlock
@@ -113,11 +113,11 @@ public class ETopoHeightMapGraph : BitmapBasedGraph
                 Thread.Sleep(1000);
 
                 return rtb;*/
-    }
+	}
 
 
-    protected override UIElement GetTooltipForPoint(Point point, DataRect visible, Rect output)
-    {
-        return null;
-    }
+	protected override UIElement GetTooltipForPoint(Point point, DataRect visible, Rect output)
+	{
+		return null;
+	}
 }

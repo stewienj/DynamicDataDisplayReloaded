@@ -8,7 +8,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 	{
 		private Action _action;
 		private TimeSpan _timeBetweenInvokations;
-		private Task _actionTask = Task.Factory.StartNew(() => { });
+		private Task _actionTask = Task.CompletedTask;
 		private int _actionsQueued = 0;
 
 		public ThrottledAction(Action action, TimeSpan timeBetweenInvokations)
@@ -22,6 +22,10 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 
 		}
 
+		public void Join()
+		{
+			_actionTask.Wait();
+		}
 		/// <summary>
 		/// Invokes the action on another thread at the appropriate time in the future
 		/// </summary>
@@ -35,13 +39,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 		/// </summary>
 		public void InvokeAction(Action action)
 		{
+			_action = action;
 			if (_actionsQueued < 1)
 			{
 				Interlocked.Increment(ref _actionsQueued);
 				_actionTask = _actionTask.ContinueWith((t) =>
 				{
 					Interlocked.Decrement(ref _actionsQueued);
-					action();
+					_action();
 					using (var manualResetEvent = new ManualResetEvent(false))
 					{
 						manualResetEvent.WaitOne(_timeBetweenInvokations);
