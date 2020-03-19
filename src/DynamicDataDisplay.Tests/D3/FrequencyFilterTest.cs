@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Filters;
 
 namespace DynamicDataDisplay.Tests.D3
 {

@@ -22,7 +22,7 @@
                 <d3:VEHybridMixedServer/>
             </d3:MercatorShaderMap>-->
 
-            <d3:CursorCoordinateGraph LineStroke="Blue" Name="leftCursor" AutoHide="False"/>
+            <d3:CursorCoordinateGraph VerticalLineStroke="Blue" HorizontalLineStroke="Blue" Name="leftCursor" AutoHide="False"/>
         </d3:ChartPlotter>
 
         <d3:ChartPlotter Name="rightPlotter" Grid.Column="1">

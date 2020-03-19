@@ -14,7 +14,7 @@ public class ETopoHeightMapGraph : BitmapBasedGraph
     {
     }
 
-    protected override BitmapSource RenderFrame(DataRect dataRect, Rect output)
+    protected override BitmapSource RenderFrame(DataRect dataRect, Rect output, RenderRequest renderRequest)
     {
         double left = 0;
         double lonMin = dataRect.XMin;
