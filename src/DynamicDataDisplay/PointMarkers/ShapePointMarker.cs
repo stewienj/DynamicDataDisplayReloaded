@@ -3,11 +3,13 @@ using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
 {
-    /// <summary>Abstract class that extends PointMarker and contains
-    /// marker property as Pen, Brush and Size</summary>
-	public abstract class ShapePointMarker : PointMarker {
+	/// <summary>Abstract class that extends PointMarker and contains
+	/// marker property as Pen, Brush and Size</summary>
+	public abstract class ShapePointMarker : PointMarker
+	{
 		/// <summary>Size of marker in points</summary>
-		public double Size {
+		public double Size
+		{
 			get { return (double)GetValue(SizeProperty); }
 			set { SetValue(SizeProperty, value); }
 		}
@@ -21,7 +23,8 @@ namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
 
 
 		/// <summary>Pen to outline marker</summary>
-		public Pen Pen {
+		public Pen Pen
+		{
 			get { return (Pen)GetValue(PenProperty); }
 			set { SetValue(PenProperty, value); }
 		}
@@ -34,7 +37,8 @@ namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
 			  new FrameworkPropertyMetadata(null));
 
 
-		public Brush Fill {
+		public Brush Fill
+		{
 			get { return (Brush)GetValue(FillProperty); }
 			set { SetValue(FillProperty, value); }
 		}

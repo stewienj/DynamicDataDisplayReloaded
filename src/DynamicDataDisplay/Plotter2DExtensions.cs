@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
-using System.Windows.Media;
 using Microsoft.Research.DynamicDataDisplay.PointMarkers;
-using Microsoft.Research.DynamicDataDisplay.Filters;
+using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -16,6 +13,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 	/// </summary>
 	public static class Plotter2DExtensions
 	{
+
 		#region Line graphs
 
 		/// <summary>Adds one dimensional graph with random color of line.</summary>

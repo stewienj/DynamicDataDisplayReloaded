@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+﻿namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Defines the position of axis inside ChartPlotter.

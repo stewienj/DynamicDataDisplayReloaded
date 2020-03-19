@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
@@ -11,7 +7,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 	{
 		public PlotterChangedEventArgs(Plotter prevPlotter, Plotter currPlotter, RoutedEvent routedEvent) : base(routedEvent)
 		{
-			if (prevPlotter == null && currPlotter == null) {
+			if (prevPlotter == null && currPlotter == null)
+			{
 				throw new ArgumentException("Both Plotters cannot be null.");
 			}
 

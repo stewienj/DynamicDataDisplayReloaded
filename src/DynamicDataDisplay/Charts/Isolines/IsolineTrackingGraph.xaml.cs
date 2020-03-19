@@ -1,19 +1,12 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -212,12 +205,12 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 			double x = pt.X;
 			double y = pt.Y;
-			Vector A = grid[i, j + 1].ToVector();					// @TODO: in common case add a sorting of points:
-			Vector B = grid[i + 1, j + 1].ToVector();				//   maxA ___K___ B
-			Vector C = grid[i + 1, j].ToVector();					//      |         |
-			Vector D = grid[i, j].ToVector();						//      M    P    N
-			double a = data[i, j + 1];						//		|         |
-			double b = data[i + 1, j + 1];					//		В ___L____Сmin
+			Vector A = grid[i, j + 1].ToVector();                   // @TODO: in common case add a sorting of points:
+			Vector B = grid[i + 1, j + 1].ToVector();               //   maxA ___K___ B
+			Vector C = grid[i + 1, j].ToVector();                   //      |         |
+			Vector D = grid[i, j].ToVector();                       //      M    P    N
+			double a = data[i, j + 1];                      //		|         |
+			double b = data[i + 1, j + 1];                  //		В ___L____Сmin
 			double c = data[i + 1, j];
 			double d = data[i, j];
 
@@ -234,7 +227,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 				l = Interpolate(D, C, d, c, L = new Vector(x, GetY(D, C, x)));
 
 			foundVal = Interpolate(L, K, l, k, new Vector(x, y));
-			return !Double.IsNaN(foundVal);
+			return !double.IsNaN(foundVal);
 		}
 
 		private double Interpolate(Vector v0, Vector v1, double u0, double u1, Vector a)

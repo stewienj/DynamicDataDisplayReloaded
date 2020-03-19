@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
-	internal sealed class WeakReference<T>
+	public sealed class WeakReference<T>
 	{
 		private readonly WeakReference reference;
 

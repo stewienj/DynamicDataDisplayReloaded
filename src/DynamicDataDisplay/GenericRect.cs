@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay
@@ -103,7 +100,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// </returns>
 		public override string ToString()
 		{
-			return String.Format("({0},{1}) - ({2},{3})", xMin, yMin, xMax, yMax);
+			return string.Format("({0},{1}) - ({2},{3})", xMin, yMin, xMax, yMax);
 		}
 
 		#endregion

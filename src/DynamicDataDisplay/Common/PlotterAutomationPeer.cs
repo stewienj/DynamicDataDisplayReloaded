@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Automation.Peers;
+﻿using System.Windows.Automation.Peers;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {

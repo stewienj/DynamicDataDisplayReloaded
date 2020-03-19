@@ -6,6 +6,12 @@ namespace Microsoft.Research.DynamicDataDisplay
 	// all commands on first usage of this class - 
 	// create each command on first access directly to it.
 
+	// To add new commands, create a stub here like the other commands
+	// Then add the command implementation in d3\Charts\Navigation\KeyboardNavigation.cs 
+	// (again use other commands as an example).  Also setup the command bindings
+	// in the KeyboardNavigation.InitCommands() to link the RoutedUICommand defined here
+	// to the implementation details in KeyboardNavigation
+
 	/// <summary>Common chart plotter commands</summary>
 	public static class ChartCommands
 	{
@@ -27,7 +33,8 @@ namespace Microsoft.Research.DynamicDataDisplay
 			return new RoutedUICommand(name, name, typeof(ChartCommands), gestures);
 		}
 
-		private static RoutedUICommand CreateCommand(string name, MouseAction mouseAction) {
+		private static RoutedUICommand CreateCommand(string name, MouseAction mouseAction)
+		{
 			return new RoutedUICommand(name, name, typeof(ChartCommands), new InputGestureCollection { new MouseGesture(mouseAction) });
 		}
 
@@ -55,7 +62,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		public static RoutedUICommand ZoomInToMouse
 		{
 			get { return ChartCommands.zoomInToMouse; }
-		} 
+		}
 
 		private static readonly RoutedUICommand zoomWithParam = CreateCommand("ZoomWithParam");
 		/// <summary>
@@ -85,6 +92,33 @@ namespace Microsoft.Research.DynamicDataDisplay
 		public static RoutedUICommand ZoomOut
 		{
 			get { return zoomOut; }
+		}
+
+		private static readonly RoutedUICommand lockZoomX = CreateCommand("LockZoomX");
+		public static RoutedUICommand LockZoomX
+		{
+			get
+			{
+				return lockZoomX;
+			}
+		}
+
+		private static readonly RoutedUICommand lockZoomY = CreateCommand("LockZoomY");
+		public static RoutedUICommand LockZoomY
+		{
+			get
+			{
+				return lockZoomY;
+			}
+		}
+
+		private static readonly RoutedUICommand editScreenshotParameters = CreateCommand("EditScreenshotParameters");
+		public static RoutedUICommand EditScreenshotParameters
+		{
+			get
+			{
+				return editScreenshotParameters;
+			}
 		}
 
 		private static readonly RoutedUICommand fitToView = CreateCommand("FitToView", Key.Home);
@@ -146,6 +180,17 @@ namespace Microsoft.Research.DynamicDataDisplay
 		{
 			get { return ChartCommands.saveScreenshot; }
 		}
+
+		private static readonly RoutedUICommand highResScreenshot = CreateCommand("HighResScreenshot");
+		/// <summary>
+		/// Gets the value that represents the save screenshot command.
+		/// </summary>
+		/// <value></value>
+		public static RoutedUICommand HighResScreenshot
+		{
+			get { return ChartCommands.highResScreenshot; }
+		}
+
 
 		private static readonly RoutedUICommand copyScreenshot = CreateCommand("CopyScreenshot", Key.F11);
 		/// <summary>

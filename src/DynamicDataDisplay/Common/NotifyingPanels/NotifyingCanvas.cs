@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
-	internal sealed class NotifyingCanvas : Canvas, INotifyingPanel
+	public sealed class NotifyingCanvas : Canvas, INotifyingPanel
 	{
 		#region INotifyingPanel Members
 

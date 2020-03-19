@@ -1,24 +1,22 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Windows.Markup;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Windows.Input;
 using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
 using Microsoft.Research.DynamicDataDisplay.Navigation;
-using System.Windows.Data;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using System.Windows.Automation.Peers;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Markup;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -33,6 +31,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 	[TemplatePart(Name = "PART_TopPanel", Type = typeof(StackPanel))]
 	[TemplatePart(Name = "PART_MainCanvas", Type = typeof(Canvas))]
 	[TemplatePart(Name = "PART_CentralGrid", Type = typeof(Grid))]
+	[TemplatePart(Name = "PART_CentralGridColumn", Type = typeof(ColumnDefinition))]
 	[TemplatePart(Name = "PART_MainGrid", Type = typeof(Grid))]
 	[TemplatePart(Name = "PART_ContentsGrid", Type = typeof(Grid))]
 	[TemplatePart(Name = "PART_ParallelCanvas", Type = typeof(Canvas))]
@@ -42,6 +41,27 @@ namespace Microsoft.Research.DynamicDataDisplay
 		protected PlotterLoadMode LoadMode
 		{
 			get { return loadMode; }
+		}
+
+		private bool _exportMode = false;
+		public bool ExportMode
+		{
+			get { return _exportMode; }
+			set
+			{
+				if (_exportMode != value)
+				{
+					_exportMode = value;
+					foreach (var c in Children)
+					{
+						if (c is UIElement el)
+						{
+							el.InvalidateVisual();
+						}
+					}
+					InvalidateVisual();
+				}
+			}
 		}
 
 		protected Plotter() : this(PlotterLoadMode.Normal) { }
@@ -142,11 +162,10 @@ namespace Microsoft.Research.DynamicDataDisplay
 		private void Plotter_Loaded(object sender, RoutedEventArgs e)
 		{
 			ExecuteWaitingChildrenAdditions();
-
 			OnLoaded();
 		}
 
-		protected internal void ExecuteWaitingChildrenAdditions()
+		protected void ExecuteWaitingChildrenAdditions()
 		{
 			foreach (var action in waitingForExecute)
 			{
@@ -158,8 +177,13 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		protected virtual void OnLoaded()
 		{
-			// this is done to enable keyboard shortcuts
-			Focus();
+			// Focus is required to enable keyboard shortcuts.
+			// Push it to the next Dispatcher pass as grabbing 
+			// focus from other controls in the middle of setup
+			// causes issues.
+
+			Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
+			Task.Run(() => dispatcher.Invoke(() => Focus()));
 
 			//foreach (var plotterElement in elementsWaitingForBeingAttached)
 			//{
@@ -227,6 +251,10 @@ namespace Microsoft.Research.DynamicDataDisplay
 			var centralGrid = GetPart<Grid>("PART_CentralGrid");
 			MigrateChildren(this.centralGrid, centralGrid);
 			this.centralGrid = centralGrid;
+
+			centralGridColumn = GetPart<ColumnDefinition>("PART_CentralGridColumn");
+			leftAxisColumn = GetPart<ColumnDefinition>("PART_LeftAxisColumn");
+			rightAxisColumn = GetPart<ColumnDefinition>("PART_RightAxisColumn");
 
 			var mainGrid = GetPart<Grid>("PART_MainGrid");
 			MigrateChildren(this.mainGrid, mainGrid);
@@ -425,7 +453,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			}
 		}
 
-		internal virtual IEnumerable<Panel> GetAllPanels()
+		public virtual IEnumerable<Panel> GetAllPanels()
 		{
 			yield return headerPanel;
 			yield return footerPanel;
@@ -506,7 +534,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		private readonly Stack<IPlotterElement> addingElements = new Stack<IPlotterElement>();
 
 		bool performChildChecks = true;
-		internal bool PerformChildChecks
+		public bool PerformChildChecks
 		{
 			get { return performChildChecks; }
 			set { performChildChecks = value; }
@@ -619,7 +647,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 					if (addedVisualElements.ContainsKey(child) && addedVisualElements[child].Count > 0)
 					{
-						throw new InvalidOperationException(String.Format(Strings.Exceptions.PlotterElementDidnotCleanedAfterItself, child.ToString()));
+						throw new InvalidOperationException(string.Format(Strings.Exceptions.PlotterElementDidnotCleanedAfterItself, child.ToString()));
 					}
 				}
 				finally
@@ -708,6 +736,19 @@ namespace Microsoft.Research.DynamicDataDisplay
 			protected set { centralGrid = value; }
 		}
 
+		private ColumnDefinition centralGridColumn;
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public ColumnDefinition CentralGridColumn => centralGridColumn;
+
+		private ColumnDefinition leftAxisColumn;
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public ColumnDefinition LeftAxisColumn => leftAxisColumn;
+
+		private ColumnDefinition rightAxisColumn;
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public ColumnDefinition RightAxisColumn => rightAxisColumn;
+
+
 		private Panel mainGrid;
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Panel MainGrid
@@ -720,33 +761,23 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		#region Screenshots & copy to clipboard
 
-		public BitmapSource CreateScreenshot()
+		public async Task<BitmapSource> CreateScreenshot()
 		{
-
-			UIElement parent = (UIElement)Parent;
-
-			Rect renderBounds = new Rect(RenderSize);
-
-			Point p1 = renderBounds.TopLeft;
-			Point p2 = renderBounds.BottomRight;
-
-			if (parent != null)
-			{
-				p1 = TranslatePoint(p1, parent);
-				p2 = TranslatePoint(p2, parent);
-			}
-
-			Int32Rect rect = new Rect(p1, p2).ToInt32Rect();
-
-			return ScreenshotHelper.CreateScreenshot(this, rect);
+			ScreenshotHelper.Parameters parameters = (this is Plotter2D) ? ((Plotter2D)this).Viewport.ScreenshotParameters : new ScreenshotHelper.Parameters();
+			// turn off hit testing so any cursor graphics are removed
+			IsHitTestVisible = false;
+			var bitmap = await ScreenshotHelper.CreateScreenshot(this, parameters);
+			IsHitTestVisible = true;
+			return bitmap;
 		}
 
 
 		/// <summary>Saves screenshot to file.</summary>
 		/// <param name="filePath">File path.</param>
-		public void SaveScreenshot(string filePath)
+		public async Task SaveScreenshot(string filePath)
 		{
-			ScreenshotHelper.SaveBitmapToFile(CreateScreenshot(), filePath);
+			ScreenshotHelper.Parameters parameters = (this is Plotter2D) ? ((Plotter2D)this).Viewport.ScreenshotParameters : new ScreenshotHelper.Parameters();
+			ScreenshotHelper.SaveBitmapToFile(await CreateScreenshot(), filePath, parameters.Dpi);
 		}
 
 		/// <summary>
@@ -754,16 +785,16 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// </summary>
 		/// <param name="stream">The stream.</param>
 		/// <param name="fileExtension">The file type extension.</param>
-		public void SaveScreenshotToStream(Stream stream, string fileExtension)
+		public async void SaveScreenshotToStream(Stream stream, string fileExtension, int dpi)
 		{
-			ScreenshotHelper.SaveBitmapToStream(CreateScreenshot(), stream, fileExtension);
+			ScreenshotHelper.SaveBitmapToStream(await CreateScreenshot(), stream, fileExtension, dpi);
 		}
 
 		/// <summary>Copies the screenshot to clipboard.</summary>
-		public void CopyScreenshotToClipboard()
+		public async void CopyScreenshotToClipboard()
 		{
 			Clipboard.Clear();
-			Clipboard.SetImage(CreateScreenshot());
+			Clipboard.SetImage(await CreateScreenshot());
 		}
 
 		#endregion
@@ -822,6 +853,14 @@ namespace Microsoft.Research.DynamicDataDisplay
 			RemoveUserElements(Children);
 		}
 
+		public void RemoveUserElements<T>()
+		{
+			var elementsToRemove = Children.Where(x => x is T).ToList();
+			foreach (var element in elementsToRemove)
+			{
+				Children.Remove(element);
+			}
+		}
 		#endregion
 
 		#region IsDefaultAxis

@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal static class RoundingHelper
+	public static class RoundingHelper
 	{
-		internal static int GetDifferenceLog(double min, double max)
+		public static int GetDifferenceLog(double min, double max)
 		{
 			return (int)Math.Round(Math.Log10(Math.Abs(max - min)));
 		}
 
-		internal static double Round(double number, int rem)
+		public static double Round(double number, int rem)
 		{
 			if (rem <= 0)
 			{
@@ -28,14 +25,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			}
 		}
 
-		internal static double Round(double value, Range<double> range)
+		public static double Round(double value, Range<double> range)
 		{
 			int log = GetDifferenceLog(range.Min, range.Max);
 
 			return Round(value, log);
 		}
 
-		internal static RoundingInfo CreateRoundedRange(double min, double max)
+		public static RoundingInfo CreateRoundedRange(double min, double max)
 		{
 			double delta = max - min;
 
@@ -58,7 +55,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 	}
 
 	[DebuggerDisplay("{Min} - {Max}, Log = {Log}")]
-	internal sealed class RoundingInfo
+	public sealed class RoundingInfo
 	{
 		public double Min { get; set; }
 		public double Max { get; set; }

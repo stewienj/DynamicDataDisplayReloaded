@@ -1,7 +1,4 @@
 ﻿using System.Data;
-using System.Linq;
-using System.Windows;
-using System.Collections.Generic;
 
 namespace Microsoft.Research.DynamicDataDisplay.DataSources
 {
@@ -9,7 +6,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DataSources
 	public class TableDataSource : EnumerableDataSource<DataRow>
 	{
 		public TableDataSource(DataTable table)
-			: base(table.Rows)
+		  : base(table.Rows)
 		{
 			// Subscribe to DataTable events
 			table.TableNewRow += NewRowInsertedHandler;

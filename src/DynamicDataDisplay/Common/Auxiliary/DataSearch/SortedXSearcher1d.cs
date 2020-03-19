@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
 {
-	internal class SortedXSearcher1d
+	public class SortedXSearcher1d
 	{
 		private readonly IList<Point> collection;
 		public SortedXSearcher1d(IList<Point> collection)

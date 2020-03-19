@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows;
 using System.Windows.Data;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
@@ -14,7 +10,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 		public TemplateableDraggablePoint()
 		{
 			marker.SetBinding(Control.TemplateProperty, new Binding { Source = this, Path = new PropertyPath("MarkerTemplate") });
-			Content = marker;	
+			Content = marker;
 		}
 
 		public ControlTemplate MarkerTemplate

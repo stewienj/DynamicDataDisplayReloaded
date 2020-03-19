@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
+﻿namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
 {
-	internal struct SearchResult1d
+	public struct SearchResult1d
 	{
 		public static SearchResult1d Empty
 		{
@@ -24,7 +19,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
 			if (IsEmpty)
 				return "Empty";
 
-			return String.Format("Index = {0}", Index);
+			return string.Format("Index = {0}", Index);
 		}
 	}
 }

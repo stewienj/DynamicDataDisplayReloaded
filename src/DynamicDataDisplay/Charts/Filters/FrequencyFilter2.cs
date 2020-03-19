@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Filters
+namespace Microsoft.Research.DynamicDataDisplay.Charts.Filters
 {
 	public class FrequencyFilter2 : PointsFilterBase
 	{
@@ -21,7 +18,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Filters
 
 			using (var enumerator = points.GetEnumerator())
 			{
-				double currentX = Double.NegativeInfinity;
+				double currentX = double.NegativeInfinity;
 
 				double minX = 0, maxX = 0, minY = 0, maxY = 0;
 

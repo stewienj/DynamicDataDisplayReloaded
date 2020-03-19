@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
@@ -9,7 +7,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 	public sealed class PlotterEventHelper
 	{
 		private RoutedEvent @event;
-		internal PlotterEventHelper(RoutedEvent @event)
+		public PlotterEventHelper(RoutedEvent @event)
 		{
 			this.@event = @event;
 		}
@@ -27,7 +25,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 			handlers.Add(target, handler);
 		}
 
-		internal void Notify(FrameworkElement target, PlotterChangedEventArgs args)
+		public void Notify(FrameworkElement target, PlotterChangedEventArgs args)
 		{
 			if (args.RoutedEvent == @event && handlers.ContainsKey(target))
 			{

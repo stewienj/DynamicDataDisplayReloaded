@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -48,9 +44,9 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return verticalAxis.ConvertFromDouble; }
 		}
 
-		internal GenericChartPlotter(ChartPlotter plotter) : this(plotter, plotter.MainHorizontalAxis as AxisBase<THorizontal>, plotter.MainVerticalAxis as AxisBase<TVertical>) { }
+		public GenericChartPlotter(ChartPlotter plotter) : this(plotter, plotter.MainHorizontalAxis as AxisBase<THorizontal>, plotter.MainVerticalAxis as AxisBase<TVertical>) { }
 
-		internal GenericChartPlotter(ChartPlotter plotter, AxisBase<THorizontal> horizontalAxis, AxisBase<TVertical> verticalAxis)
+		public GenericChartPlotter(ChartPlotter plotter, AxisBase<THorizontal> horizontalAxis, AxisBase<TVertical> verticalAxis)
 		{
 			if (horizontalAxis == null)
 				throw new ArgumentNullException(Strings.Exceptions.PlotterMainHorizontalAxisShouldNotBeNull);

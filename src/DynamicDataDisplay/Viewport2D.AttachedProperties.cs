@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Windows.Threading;
-using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -87,7 +81,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 				Plotter2D plotter2d = element.Plotter as Plotter2D;
 				if (plotter2d != null)
 				{
-                    plotter2d.Viewport.UpdateContentBoundsHosts();
+					plotter2d.Viewport.UpdateContentBoundsHosts();
 				}
 			}
 		}
@@ -170,5 +164,28 @@ namespace Microsoft.Research.DynamicDataDisplay
 		  new FrameworkPropertyMetadata(false));
 
 		#endregion // end of UseDeferredPanning attached property
+
+		public bool LockZoomX
+		{
+			get;
+			set;
+		}
+
+		public bool LockZoomY
+		{
+			get;
+			set;
+		}
+
+		public ScreenshotHelper.Parameters ScreenshotParameters
+		{
+			get { return (ScreenshotHelper.Parameters)GetValue(ScreenshotParametersProperty); }
+			set { SetValue(ScreenshotParametersProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for ScreenshotParameters.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ScreenshotParametersProperty =
+			DependencyProperty.Register("ScreenshotParameters", typeof(ScreenshotHelper.Parameters), typeof(Viewport2D), new PropertyMetadata(new ScreenshotHelper.Parameters()));
+
 	}
 }

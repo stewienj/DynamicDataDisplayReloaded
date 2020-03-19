@@ -1,19 +1,12 @@
 ﻿#define old
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
-using System.Windows.Threading;
-using System.Diagnostics;
-using System.Windows.Markup;
-using System.Collections.ObjectModel;
 using Microsoft.Research.DynamicDataDisplay.Common;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Windows.Data;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -102,10 +95,19 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 		private void OnPositionChanged(DependencyPropertyChangedEventArgs e)
 		{
-			PositionChanged.Raise(this, new PositionChangedEventArgs { Position = (Point)e.NewValue, PreviousPosition = (Point)e.OldValue });
+			if (e.NewValue != null)
+			{
+				PositionChanged.Raise(this, new PositionChangedEventArgs { Position = (Point)e.NewValue, PreviousPosition = (Point)e.OldValue });
+			}
 
-			ViewportPanel.SetX(this, Position.X);
-			ViewportPanel.SetY(this, Position.Y);
+			if (plotter?.Viewport?.Transform?.DataTransform != null)
+			{
+				// Bit of a WTF, for some reason I have to apply the transform twice
+				Point dataPoint = Position.DataToViewport(plotter.Viewport.Transform);
+
+				ViewportPanel.SetX(this, dataPoint.X);
+				ViewportPanel.SetY(this, dataPoint.Y);
+			}
 		}
 
 		#region IPlotterElement Members
@@ -118,7 +120,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			if (Parent == null)
 			{
 				hostPanel = new ViewportHostPanel();
-                Viewport2D.SetIsContentBoundsHost(hostPanel, false);
+				Viewport2D.SetIsContentBoundsHost(hostPanel, false);
 				hostPanel.Children.Add(this);
 
 				plotter.Dispatcher.BeginInvoke(() =>
@@ -150,6 +152,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 			Plotter2D plotter2d = (Plotter2D)plotter;
 			this.plotter = plotter2d;
+			OnPositionChanged(new DependencyPropertyChangedEventArgs());
 		}
 
 		public void OnPlotterDetaching(Plotter plotter)

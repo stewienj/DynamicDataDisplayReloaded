@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using System.Globalization;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -43,9 +37,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal static class DateTimeArrayExtensions
+	public static class DateTimeArrayExtensions
 	{
-		internal static int GetIndex(this DateTime[] array, DateTime value)
+		public static int GetIndex(this DateTime[] array, DateTime value)
 		{
 			for (int i = 0; i < array.Length - 1; i++)
 			{
@@ -57,7 +51,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class MinorDateTimeProvider : MinorTimeProviderBase<DateTime>
+	public sealed class MinorDateTimeProvider : MinorTimeProviderBase<DateTime>
 	{
 		public MinorDateTimeProvider(ITicksProvider<DateTime> owner) : base(owner) { }
 
@@ -67,7 +61,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class YearDateTimeProvider : DatePeriodTicksProvider
+	public sealed class YearDateTimeProvider : DatePeriodTicksProvider
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -107,7 +101,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class MonthDateTimeProvider : DatePeriodTicksProvider
+	public sealed class MonthDateTimeProvider : DatePeriodTicksProvider
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -140,7 +134,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class DayDateTimeProvider : DatePeriodTicksProvider
+	public sealed class DayDateTimeProvider : DatePeriodTicksProvider
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -173,7 +167,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class HourDateTimeProvider : DatePeriodTicksProvider
+	public sealed class HourDateTimeProvider : DatePeriodTicksProvider
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -206,7 +200,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class MinuteDateTimeProvider : DatePeriodTicksProvider
+	public sealed class MinuteDateTimeProvider : DatePeriodTicksProvider
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -239,7 +233,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class SecondDateTimeProvider : DatePeriodTicksProvider
+	public sealed class SecondDateTimeProvider : DatePeriodTicksProvider
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -272,7 +266,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class MillisecondDateTimeProvider : DatePeriodTicksProvider
+	public sealed class MillisecondDateTimeProvider : DatePeriodTicksProvider
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{

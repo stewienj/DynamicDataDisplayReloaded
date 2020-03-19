@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
 	/// <summary>
-	/// Represents a horizontal axis with values of <see cref="Double"/> type.
+	/// Represents a horizontal axis with values of <see cref="double"/> type.
 	/// Can be placed only from bottom or top side of plotter.
 	/// By default is placed from the bottom side.
 	/// </summary>

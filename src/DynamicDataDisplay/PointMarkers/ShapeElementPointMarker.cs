@@ -1,14 +1,15 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
 {
-    /// <summary>Abstract class that extends ElementPointMarker and contains
-    /// marker property as Pen, Brush and Size</summary>
-	public abstract class ShapeElementPointMarker : ElementPointMarker {
+	/// <summary>Abstract class that extends ElementPointMarker and contains
+	/// marker property as Pen, Brush and Size</summary>
+	public abstract class ShapeElementPointMarker : ElementPointMarker
+	{
 		/// <summary>Size of marker in points</summary>
-		public double Size {
+		public double Size
+		{
 			get { return (double)GetValue(SizeProperty); }
 			set { SetValue(SizeProperty, value); }
 		}
@@ -20,22 +21,23 @@ namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
 			  typeof(ShapeElementPointMarker),
 			  new FrameworkPropertyMetadata(5.0));
 
-        /// <summary>Tooltip to show when cursor on over</summary>
-        public string ToolTipText
-        {
-            get { return (string)GetValue(ToolTipTextProperty); }
-            set { SetValue(ToolTipTextProperty, value); }
-        }
+		/// <summary>Tooltip to show when cursor on over</summary>
+		public string ToolTipText
+		{
+			get { return (string)GetValue(ToolTipTextProperty); }
+			set { SetValue(ToolTipTextProperty, value); }
+		}
 
-        public static readonly DependencyProperty ToolTipTextProperty =
-            DependencyProperty.Register(
-              "ToolTipText",
-              typeof(string),
-              typeof(ShapeElementPointMarker),
-              new FrameworkPropertyMetadata(String.Empty));
+		public static readonly DependencyProperty ToolTipTextProperty =
+			DependencyProperty.Register(
+			  "ToolTipText",
+			  typeof(string),
+			  typeof(ShapeElementPointMarker),
+			  new FrameworkPropertyMetadata(string.Empty));
 
 		/// <summary>Pen to outline marker</summary>
-		public Pen Pen {
+		public Pen Pen
+		{
 			get { return (Pen)GetValue(PenProperty); }
 			set { SetValue(PenProperty, value); }
 		}
@@ -48,7 +50,8 @@ namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
 			  new FrameworkPropertyMetadata(null));
 
 
-		public Brush Brush {
+		public Brush Brush
+		{
 			get { return (Brush)GetValue(BrushProperty); }
 			set { SetValue(BrushProperty, value); }
 		}

@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 {
@@ -25,15 +15,53 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 	/// </summary>
 	public partial class CursorCoordinateGraph : ContentGraph
 	{
+		private CursorCoordinateGraph _linkedHorizontalSource = null;
+		private CursorCoordinateGraph _linkedVerticalSource = null;
+		private Vector blockShift = new Vector(3, 3);
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CursorCoordinateGraph"/> class.
 		/// </summary>
 		public CursorCoordinateGraph()
 		{
+			SnapsToDevicePixels = true;
 			InitializeComponent();
+			HorizontalLineStroke = Resources["HorizontalDashedBrush"] as VisualBrush;
+			VerticalLineStroke = Resources["VerticalDashedBrush"] as VisualBrush;
+			LineStrokeDashArray = null;
 		}
 
-		Vector blockShift = new Vector(3, 3);
+		/// <summary>
+		/// Gets if the mouse is over the control, returns null if we were
+		/// unable to get the mouse status.
+		/// </summary>
+		/// <remarks>
+		/// For some reason MouseLeave was not being fired all the time, IsMouseOver is always true,
+		/// and IsMouseDirectlyOver is always false. So I had to do this instead:
+		/// </remarks>
+		public bool? IsMouseOverControl
+		{
+			get
+			{
+				Win32Stuff.POINT p = new Win32Stuff.POINT();
+				// Returns nonzero if successful or zero otherwise
+				if (Win32Stuff.GetCursorPos(out p))
+				{
+					var parentWindow = Window.GetWindow(this);
+					var hWnd = new System.Windows.Interop.WindowInteropHelper(parentWindow).Handle;
+					if (Win32Stuff.ScreenToClient(hWnd, ref p))
+					{
+						var mousePos = parentWindow.TranslatePoint(new Point(p.x, p.y), this);
+						Rect output = Plotter2D.Viewport.Output;
+						return output.Contains(mousePos);
+					}
+				}
+				return null;
+			}
+		}
+
+		private bool IsMouseOverLinked =>
+		  _linkedHorizontalSource?.IsMouseOverControl == true ||
+		  _linkedVerticalSource?.IsMouseOverControl == true;
 
 		#region Plotter
 
@@ -45,8 +73,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 			parent.MouseEnter += Parent_MouseEnter;
 			parent.MouseLeave += Parent_MouseLeave;
 
-			UpdateVisibility();
 			UpdateUIRepresentation();
+			SetVisibility(Visibility.Hidden);
 		}
 
 		protected override void OnPlotterDetaching()
@@ -68,21 +96,73 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 		public bool AutoHide
 		{
 			get { return autoHide; }
-			set { autoHide = value; }
+			set
+			{
+				autoHide = value;
+				if (!value)
+				{
+					SetVisibility(Visibility.Visible);
+				}
+				else
+				{
+					if (IsMouseOverControl == false)
+					{
+						SetVisibility(Visibility.Hidden);
+					}
+				}
+			}
 		}
+
+
+		protected void SetVisibility(Visibility visibility)
+		{
+			switch (visibility)
+			{
+				case Visibility.Collapsed:
+				case Visibility.Hidden:
+					horizLine.Visibility = horizGrid.Visibility = Visibility.Hidden;
+					vertLine.Visibility = vertGrid.Visibility = Visibility.Hidden;
+					break;
+				case Visibility.Visible:
+					horizLine.Visibility = horizGrid.Visibility = GetHorizontalVisibility();
+					vertLine.Visibility = vertGrid.Visibility = GetVerticalVisibility();
+					break;
+			}
+			VisibilityChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		public event EventHandler VisibilityChanged;
 
 		private void Parent_MouseEnter(object sender, MouseEventArgs e)
 		{
 			if (autoHide)
 			{
-				UpdateVisibility();
+				SetVisibility(Visibility.Visible);
 			}
+		}
+
+		private void UpdateVisibility(object sender, EventArgs e)
+		{
+			UpdateVisibility();
 		}
 
 		private void UpdateVisibility()
 		{
-			horizLine.Visibility = vertGrid.Visibility = GetHorizontalVisibility();
-			vertLine.Visibility = horizGrid.Visibility = GetVerticalVisibility();
+			if (!autoHide)
+			{
+				SetVisibility(Visibility.Visible);
+			}
+			else
+			{
+				if (IsMouseOverControl == false && IsMouseOverLinked == false)
+				{
+					SetVisibility(Visibility.Hidden);
+				}
+				else
+				{
+					SetVisibility(Visibility.Visible);
+				}
+			}
 		}
 
 		private Visibility GetHorizontalVisibility()
@@ -99,10 +179,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 		{
 			if (autoHide)
 			{
-				horizLine.Visibility = Visibility.Hidden;
-				vertLine.Visibility = Visibility.Hidden;
-				horizGrid.Visibility = Visibility.Hidden;
-				vertGrid.Visibility = Visibility.Hidden;
+				SetVisibility(Visibility.Hidden);
 			}
 		}
 
@@ -248,13 +325,39 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 			}
 		}
 
-		private void UpdateUIRepresentation()
+		protected void UpdateUIRepresentation(object sender, EventArgs args)
 		{
-			Point position = followMouse ? Mouse.GetPosition(this) : Position;
-			UpdateUIRepresentation(position);
+			UpdateUIRepresentation();
 		}
 
-		private void UpdateUIRepresentation(Point mousePos)
+		protected void UpdateUIRepresentation()
+		{
+			if (Plotter2D != null && Plotter2D.IsHitTestVisible)
+			{
+				var source = Mouse.PrimaryDevice.ActiveSource;
+				if (source != null && !source.IsDisposed)
+				{
+					var transform = Plotter2D.Viewport.Transform;
+					Point position = followMouse ? Mouse.GetPosition(this) : Position;
+					//Point mousePosInData = position.ScreenToData(transform);
+					UpdateUIRepresentation(position, transform);
+				}
+			}
+			else
+			{
+				SetVisibility(Visibility.Hidden);
+			}
+		}
+
+
+
+		protected virtual void UpdateUIRepresentation(Point mousePos, CoordinateTransform transform)
+		{
+			Point mousePosInData = mousePos.ScreenToData(transform);
+			UpdateUIRepresentation(mousePosInData, mousePosInData);
+		}
+
+		protected void UpdateUIRepresentation(Point mousePosInData, Point cursorPosInData)
 		{
 			if (Plotter2D == null) return;
 
@@ -262,27 +365,24 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 			DataRect visible = Plotter2D.Viewport.Visible;
 			Rect output = Plotter2D.Viewport.Output;
 
-			if (!output.Contains(mousePos))
-			{
-				if (autoHide)
-				{
-					horizGrid.Visibility = horizLine.Visibility = vertGrid.Visibility = vertLine.Visibility = Visibility.Hidden;
-				}
-				return;
-			}
+			Point mousePos = cursorPosInData.DataToScreen(transform);
 
 			if (!followMouse)
 			{
 				mousePos = mousePos.DataToScreen(transform);
 			}
 
+			// Ensure coordinates are valid
+			if (!(mousePos.X.IsFinite() && mousePos.Y.IsFinite()))
+				return;
+
 			horizLine.X1 = output.Left;
 			horizLine.X2 = output.Right;
-			horizLine.Y1 = mousePos.Y;
-			horizLine.Y2 = mousePos.Y;
+			horizLine.Y1 = Math.Floor(mousePos.Y) + 0.5;
+			horizLine.Y2 = Math.Floor(mousePos.Y) + 0.5;
 
-			vertLine.X1 = mousePos.X;
-			vertLine.X2 = mousePos.X;
+			vertLine.X1 = Math.Floor(mousePos.X) + 0.5;
+			vertLine.X2 = Math.Floor(mousePos.X) + 0.5;
 			vertLine.Y1 = output.Top;
 			vertLine.Y2 = output.Bottom;
 
@@ -292,13 +392,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 				vertLine.StrokeDashOffset = (output.Bottom - mousePos.Y) / 2;
 			}
 
-			Point mousePosInData = mousePos.ScreenToData(transform);
-
 			string text = null;
 
 			if (showVerticalLine)
 			{
-				double xValue = mousePosInData.X;
+				double xValue = cursorPosInData.X;
 				if (xTextMapping != null)
 					text = xTextMapping(xValue);
 
@@ -306,9 +404,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 				if (text == null)
 					text = GetRoundedValue(visible.XMin, visible.XMax, xValue);
 
-				if (!String.IsNullOrEmpty(customXFormat))
-					text = String.Format(customXFormat, text);
+				if (!string.IsNullOrEmpty(customXFormat))
+					text = string.Format(customXFormat, text);
 				horizTextBlock.Text = text;
+				// Set opacitiy not visiblity to avoid conflicting with the visibility settings
+				horizGrid.Opacity = string.IsNullOrWhiteSpace(text) ? 0 : 1.0;
 			}
 
 			double width = horizGrid.ActualWidth;
@@ -321,7 +421,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 
 			if (showHorizontalLine)
 			{
-				double yValue = mousePosInData.Y;
+				double yValue = cursorPosInData.Y;
 				text = null;
 				if (yTextMapping != null)
 					text = yTextMapping(yValue);
@@ -329,9 +429,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 				if (text == null)
 					text = GetRoundedValue(visible.YMin, visible.YMax, yValue);
 
-				if (!String.IsNullOrEmpty(customYFormat))
-					text = String.Format(customYFormat, text);
+				if (!string.IsNullOrEmpty(customYFormat))
+					text = string.Format(customYFormat, text);
 				vertTextBlock.Text = text;
+				// Set opacitiy not visiblity to avoid conflicting with the visibility settings
+				vertGrid.Opacity = string.IsNullOrWhiteSpace(text) ? 0 : 1.0;
 			}
 
 			// by default vertGrid is positioned on the top of line.
@@ -361,16 +463,19 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 		/// Identifies Position dependency property.
 		/// </summary>
 		public static readonly DependencyProperty PositionProperty = DependencyProperty.Register(
-			"Position",
-			typeof(Point),
-			typeof(CursorCoordinateGraph),
-			new UIPropertyMetadata(new Point(), OnPositionChanged));
+		  "Position",
+		  typeof(Point),
+		  typeof(CursorCoordinateGraph),
+		  new UIPropertyMetadata(new Point(), OnPositionChanged));
 
 		private static void OnPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			CursorCoordinateGraph graph = (CursorCoordinateGraph)d;
-			graph.UpdateUIRepresentation((Point)e.NewValue);
+			graph.UpdateUIRepresentation();
+			graph.PositionChanged?.Invoke(graph, EventArgs.Empty);
 		}
+
+		public event EventHandler PositionChanged;
 
 		private string GetRoundedValue(double min, double max, double value)
 		{
@@ -418,21 +523,38 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 
 		#endregion
 
-		#region LineStroke property
+		#region HorizontalLineStroke property
 
-		public Brush LineStroke
+		public Brush HorizontalLineStroke
 		{
-			get { return (Brush)GetValue(LineStrokeProperty); }
-			set { SetValue(LineStrokeProperty, value); }
+			get { return (Brush)GetValue(HorizontalLineStrokeProperty); }
+			set { SetValue(HorizontalLineStrokeProperty, value); }
 		}
 
-		public static readonly DependencyProperty LineStrokeProperty = DependencyProperty.Register(
-		  "LineStroke",
+		public static readonly DependencyProperty HorizontalLineStrokeProperty = DependencyProperty.Register(
+		  "HorizontalLineStroke",
 		  typeof(Brush),
 		  typeof(CursorCoordinateGraph),
-		  new PropertyMetadata(new SolidColorBrush(Color.FromArgb(170, 86, 86, 86))));
+		  new PropertyMetadata(new SolidColorBrush(Color.FromArgb(130, 0, 0, 0))));
 
 		#endregion
+
+		#region VerticalLineStroke property
+
+		public Brush VerticalLineStroke
+		{
+			get { return (Brush)GetValue(VerticalLineStrokeProperty); }
+			set { SetValue(VerticalLineStrokeProperty, value); }
+		}
+
+		public static readonly DependencyProperty VerticalLineStrokeProperty = DependencyProperty.Register(
+		  "VerticalLineStroke",
+		  typeof(Brush),
+		  typeof(CursorCoordinateGraph),
+		  new PropertyMetadata(new SolidColorBrush(Color.FromArgb(130, 0, 0, 0))));
+
+		#endregion
+
 
 		#region LineStrokeThickness property
 
@@ -446,7 +568,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 		  "LineStrokeThickness",
 		  typeof(double),
 		  typeof(CursorCoordinateGraph),
-		  new PropertyMetadata(2.0));
+		  new PropertyMetadata(1.0));
 
 		#endregion
 
@@ -463,8 +585,78 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 		  "LineStrokeDashArray",
 		  typeof(DoubleCollection),
 		  typeof(CursorCoordinateGraph),
-		  new FrameworkPropertyMetadata(DoubleCollectionHelper.Create(3, 3)));
+		  new FrameworkPropertyMetadata(DoubleCollectionHelper.Create(4, 2)));
 
 		#endregion
+
+
+		private void LinkToSource(CursorCoordinateGraph source, Orientation orientation)
+		{
+			switch (orientation)
+			{
+				case Orientation.Horizontal:
+					if (_linkedHorizontalSource != null)
+					{
+						_linkedHorizontalSource.VisibilityChanged -= UpdateVisibility;
+						_linkedHorizontalSource.PositionChanged -= UpdateUIRepresentation;
+					}
+					_linkedHorizontalSource = source;
+					if (_linkedHorizontalSource != null)
+					{
+						_linkedHorizontalSource.VisibilityChanged += UpdateVisibility;
+						_linkedHorizontalSource.PositionChanged += UpdateUIRepresentation;
+					}
+					break;
+				case Orientation.Vertical:
+					if (_linkedVerticalSource != null)
+					{
+						_linkedVerticalSource.VisibilityChanged -= UpdateVisibility;
+						_linkedVerticalSource.PositionChanged -= UpdateUIRepresentation;
+					}
+					_linkedVerticalSource = source;
+					if (_linkedVerticalSource != null)
+					{
+						_linkedVerticalSource.VisibilityChanged += UpdateVisibility;
+						_linkedVerticalSource.PositionChanged += UpdateUIRepresentation;
+					}
+					break;
+			}
+		}
+
+
+		public CursorCoordinateGraph LinkVerticalSource
+		{
+			get { return (CursorCoordinateGraph)GetValue(LinkXSourceProperty); }
+			set { SetValue(LinkXSourceProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for LinkXSource.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty LinkXSourceProperty =
+			DependencyProperty.Register("LinkVerticalSource", typeof(CursorCoordinateGraph), typeof(CursorCoordinateGraph), new PropertyMetadata(null, (d, e) =>
+			 {
+				if (d is CursorCoordinateGraph control)
+				{
+					control.LinkToSource(e.NewValue as CursorCoordinateGraph, Orientation.Vertical);
+				}
+			}));
+
+
+		public CursorCoordinateGraph LinkHorizontalSource
+		{
+			get { return (CursorCoordinateGraph)GetValue(LinkYSourceProperty); }
+			set { SetValue(LinkYSourceProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for LinkXSource.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty LinkYSourceProperty =
+			DependencyProperty.Register("LinkHorizontalSource", typeof(CursorCoordinateGraph), typeof(CursorCoordinateGraph), new PropertyMetadata(null, (d, e) =>
+			{
+				if (d is CursorCoordinateGraph control)
+				{
+					control.LinkToSource(e.NewValue as CursorCoordinateGraph, Orientation.Horizontal);
+				}
+			}));
+
+
 	}
 }

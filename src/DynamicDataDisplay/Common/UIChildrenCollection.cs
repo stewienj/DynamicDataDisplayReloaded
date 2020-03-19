@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Collections;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
 	/// <summary>
 	/// Collection of UI children of <see cref="IndependentArrangePanel"/>.
 	/// </summary>
-	internal sealed class UIChildrenCollection : UIElementCollection
+	public sealed class UIChildrenCollection : UIElementCollection
 	{
 		IndividualArrangePanel hostPanel;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UIChildrenCollection"/> class.
 		/// </summary>
-		internal UIChildrenCollection(UIElement visualParent, FrameworkElement logicalParent)
+		public UIChildrenCollection(UIElement visualParent, FrameworkElement logicalParent)
 			: base(visualParent, logicalParent)
 		{
 			hostPanel = (IndividualArrangePanel)visualParent;

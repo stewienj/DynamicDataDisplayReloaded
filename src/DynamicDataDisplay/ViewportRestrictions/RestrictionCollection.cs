@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
 using System;
 using System.Collections.Specialized;
 
@@ -17,7 +13,7 @@ namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
 	public sealed class RestrictionCollection : D3Collection<ViewportRestriction>
 	{
 		private readonly Viewport2D viewport;
-		internal RestrictionCollection(Viewport2D viewport)
+		public RestrictionCollection(Viewport2D viewport)
 		{
 			if (viewport == null)
 				throw new ArgumentNullException("viewport");
@@ -56,7 +52,7 @@ namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
 			item.Changed -= OnItemChanged;
 		}
 
-		internal DataRect Apply(DataRect oldVisible, DataRect newVisible, Viewport2D viewport)
+		public DataRect Apply(DataRect oldVisible, DataRect newVisible, Viewport2D viewport)
 		{
 			DataRect res = newVisible;
 			foreach (var restriction in this)

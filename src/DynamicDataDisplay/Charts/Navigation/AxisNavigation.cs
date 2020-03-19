@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Diagnostics;
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 {
@@ -187,7 +184,26 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 				zoomSpeed = 1 / zoomSpeed;
 			}
 
-			DataRect visible = activePlotter.Viewport.Visible.Zoom(zoomTo, zoomSpeed);
+			DataRect visible;
+
+			if (activePlotter.Viewport.LockZoomX && activePlotter.Viewport.LockZoomY)
+			{
+				e.Handled = true;
+				return;
+			}
+			else if (activePlotter.Viewport.LockZoomX)
+			{
+				visible = activePlotter.Viewport.Visible.ZoomY(zoomTo, zoomSpeed);
+			}
+			else if (activePlotter.Viewport.LockZoomY)
+			{
+				visible = activePlotter.Viewport.Visible.ZoomX(zoomTo, zoomSpeed);
+			}
+			else
+			{
+				visible = activePlotter.Viewport.Visible.Zoom(zoomTo, zoomSpeed);
+			}
+
 			DataRect oldVisible = activePlotter.Viewport.Visible;
 			if (Placement.IsBottomOrTop())
 			{
@@ -382,7 +398,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 
 				hostPanel.MouseRightButtonDown -= OnMouseRightButtonDown;
 				hostPanel.MouseRightButtonUp -= OnMouseRightButtonUp;
-				
+
 				hostPanel.LostFocus -= OnLostFocus;
 			}
 			listeningPanel = null;

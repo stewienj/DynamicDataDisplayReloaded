@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
-using System.Windows.Input;
-using System.Diagnostics;
 using System.Windows;
-using System.Windows.Media.Animation;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation

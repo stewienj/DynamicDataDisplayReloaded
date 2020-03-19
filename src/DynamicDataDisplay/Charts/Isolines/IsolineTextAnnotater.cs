@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using System.Collections.ObjectModel;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 {
@@ -38,32 +32,34 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 				double way = 0;
 
 				var forwardSegments = line.GetSegments();
-				var forwardEnumerator = forwardSegments.GetEnumerator();
-				forwardEnumerator.MoveNext();
-
-				foreach (var segment in line.GetSegments())
+				using (var forwardEnumerator = forwardSegments.GetEnumerator())
 				{
-					bool hasForwardSegment = forwardEnumerator.MoveNext();
+					forwardEnumerator.MoveNext();
 
-					double length = segment.GetLength();
-					way += length;
-					if (way > wayBeforeText)
+					foreach (var segment in line.GetSegments())
 					{
-						way = 0;
+						bool hasForwardSegment = forwardEnumerator.MoveNext();
 
-						var rotation = (segment.Max - segment.Min).ToAngle();
-						if (hasForwardSegment)
+						double length = segment.GetLength();
+						way += length;
+						if (way > wayBeforeText)
 						{
-							var forwardSegment = forwardEnumerator.Current;
-							rotation = (rotation + (forwardSegment.Max - forwardSegment.Min).ToAngle()) / 2;
+							way = 0;
+
+							var rotation = (segment.Max - segment.Min).ToAngle();
+							if (hasForwardSegment)
+							{
+								var forwardSegment = forwardEnumerator.Current;
+								rotation = (rotation + (forwardSegment.Max - forwardSegment.Min).ToAngle()) / 2;
+							}
+
+							res.Add(new IsolineTextLabel
+							{
+								Value = line.RealValue,
+								Position = segment.Max,
+								Rotation = rotation
+							});
 						}
-
-						res.Add(new IsolineTextLabel
-						{
-							Value = line.RealValue,
-							Position = segment.Max,
-							Rotation = rotation
-						});
 					}
 				}
 			}

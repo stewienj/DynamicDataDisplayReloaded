@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 {
@@ -59,7 +56,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 			{
 				observableCollection.CollectionChanged -= OnCollectionChanged;
 			}
-		} 
+		}
 
 		#endregion
 

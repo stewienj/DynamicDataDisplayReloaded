@@ -9,7 +9,7 @@
 	<RotateTransform Angle="-90" x:Key="additionalLabelsTransformLeft"/>
 
 	<ControlTemplate x:Key="axisControlTemplateBottom">
-		<Grid Style="{StaticResource gridStyle}" Name="PART_ContentsGrid">
+		<Grid Style="{StaticResource gridStyle}" Name="PART_ContentsGrid" VerticalAlignment="Top">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -23,7 +23,7 @@
 	</ControlTemplate>
 
 	<ControlTemplate x:Key="axisControlTemplateTop">
-		<Grid Background="{TemplateBinding Background}" Style="{StaticResource gridStyle}" Name="PART_ContentsGrid">
+		<Grid Background="{TemplateBinding Background}" Style="{StaticResource gridStyle}" Name="PART_ContentsGrid" VerticalAlignment="Bottom">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -41,7 +41,7 @@
 	</ControlTemplate>
 
 	<ControlTemplate x:Key="axisControlTemplateLeft">
-		<Grid Background="{TemplateBinding Background}" Style="{StaticResource gridStyle}" Name="PART_ContentsGrid">
+		<Grid Background="{TemplateBinding Background}" Style="{StaticResource gridStyle}" Name="PART_ContentsGrid" HorizontalAlignment="Right">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
@@ -60,7 +60,7 @@
 	</ControlTemplate>
 
 	<ControlTemplate x:Key="axisControlTemplateRight">
-		<Grid Background="{TemplateBinding Background}" Style="{StaticResource gridStyle}" Name="PART_ContentsGrid">
+		<Grid Background="{TemplateBinding Background}" Style="{StaticResource gridStyle}" Name="PART_ContentsGrid" HorizontalAlignment="Left">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>

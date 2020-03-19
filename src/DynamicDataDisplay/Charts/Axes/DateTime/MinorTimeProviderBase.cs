@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal abstract class MinorTimeProviderBase<T> : ITicksProvider<T>
+	public abstract class MinorTimeProviderBase<T> : ITicksProvider<T>
 	{
 		public event EventHandler Changed;
 		protected void RaiseChanged()
@@ -24,7 +23,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 
 		private T[] majorTicks = new T[] { };
-		internal void SetTicks(T[] ticks)
+		public void SetTicks(T[] ticks)
 		{
 			this.majorTicks = ticks;
 		}

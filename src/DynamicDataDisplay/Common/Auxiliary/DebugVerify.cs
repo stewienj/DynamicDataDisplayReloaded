@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 {
-	internal static class DebugVerify
+	public static class DebugVerify
 	{
 		[Conditional("DEBUG")]
 		[DebuggerStepThrough]
@@ -23,7 +20,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 		[DebuggerStepThrough]
 		public static void IsNotNaN(double d)
 		{
-			DebugVerify.Is(!Double.IsNaN(d));
+			DebugVerify.Is(!double.IsNaN(d));
 		}
 
 		[Conditional("DEBUG")]
@@ -46,7 +43,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 		[DebuggerStepThrough]
 		public static void IsFinite(double d)
 		{
-			DebugVerify.Is(!Double.IsInfinity(d) && !(Double.IsNaN(d)));
+			DebugVerify.Is(!double.IsInfinity(d) && !(double.IsNaN(d)));
 		}
 
 		[Conditional("DEBUG")]

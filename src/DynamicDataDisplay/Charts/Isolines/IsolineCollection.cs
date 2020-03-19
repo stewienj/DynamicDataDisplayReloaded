@@ -1,9 +1,6 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Collections;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 {
@@ -99,19 +96,19 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 	/// </summary>
 	public sealed class IsolineCollection : IEnumerable<LevelLine>
 	{
-        private double min;
-        public double Min
-        {
-            get { return min; }
-            set { min = value; }
-        }
+		private double min;
+		public double Min
+		{
+			get { return min; }
+			set { min = value; }
+		}
 
-        private double max;
-        public double Max
-        {
-            get { return max; }
-            set { max = value; }
-        }
+		private double max;
+		public double Max
+		{
+			get { return max; }
+			set { max = value; }
+		}
 
 		private readonly List<LevelLine> lines = new List<LevelLine>();
 		/// <summary>
@@ -123,17 +120,17 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 			get { return lines; }
 		}
 
-		internal void StartLine(Point p, double value01, double realValue)
+		public void StartLine(Point p, double value01, double realValue)
 		{
-            LevelLine segment = new LevelLine { StartPoint = p, Value01 = value01, RealValue = realValue };
-            if (lines.Count == 0 || lines[lines.Count - 1].OtherPoints.Count > 0)
-                lines.Add(segment);
-            else
-                lines[lines.Count - 1] = segment;
-            
+			LevelLine segment = new LevelLine { StartPoint = p, Value01 = value01, RealValue = realValue };
+			if (lines.Count == 0 || lines[lines.Count - 1].OtherPoints.Count > 0)
+				lines.Add(segment);
+			else
+				lines[lines.Count - 1] = segment;
+
 		}
 
-		internal void AddPoint(Point p)
+		public void AddPoint(Point p)
 		{
 			lines[lines.Count - 1].OtherPoints.Add(p);
 		}

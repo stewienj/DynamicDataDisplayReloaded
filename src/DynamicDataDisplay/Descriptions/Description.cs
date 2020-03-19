@@ -61,7 +61,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return viewportElement; }
 		}
 
-		internal void Attach(UIElement element)
+		public void Attach(UIElement element)
 		{
 			this.viewportElement = element;
 			AttachCore(element);
@@ -69,7 +69,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		protected virtual void AttachCore(UIElement element) { }
 
-		internal void Detach()
+		public void Detach()
 		{
 			viewportElement = null;
 		}

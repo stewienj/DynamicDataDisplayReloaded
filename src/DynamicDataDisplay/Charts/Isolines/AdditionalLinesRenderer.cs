@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Media;
 using System.Windows;
 using System.Windows.Data;
-using System.Diagnostics;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 {

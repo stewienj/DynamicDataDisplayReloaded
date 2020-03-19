@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 {
-	internal static class ObservableCollectionHelper
+	public static class ObservableCollectionHelper
 	{
 		public static void ApplyChanges<T>(this ObservableCollection<T> collection, NotifyCollectionChangedEventArgs args)
 		{

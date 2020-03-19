@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 {
 	/// <summary>
 	/// Edge identifier - indicates which side of cell isoline crosses.
 	/// </summary>
-	internal enum Edge
+	public enum Edge
 	{
 		// todo check if everything is ok with None.
 		None = 0,
@@ -31,7 +28,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 	}
 
 	[Flags]
-	internal enum CellBitmask
+	public enum CellBitmask
 	{
 		None = 0,
 		LeftTop = 1,
@@ -40,15 +37,15 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 		RightTop = 2
 	}
 
-	internal static class IsolineExtensions
+	public static class IsolineExtensions
 	{
-		internal static bool IsDiagonal(this CellBitmask bitmask)
+		public static bool IsDiagonal(this CellBitmask bitmask)
 		{
 			return bitmask == (CellBitmask.RightBottom | CellBitmask.LeftTop) ||
 				bitmask == (CellBitmask.LeftBottom | CellBitmask.RightTop);
 		}
 
-		internal static bool IsAppropriate(this SubCell sub, Edge edge)
+		public static bool IsAppropriate(this SubCell sub, Edge edge)
 		{
 			switch (sub)
 			{

@@ -1,6 +1,5 @@
-﻿using System.Windows;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

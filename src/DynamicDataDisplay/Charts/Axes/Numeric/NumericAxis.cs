@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
 	/// <summary>
-	/// Represents a numeric axis with values of <see cref="System.Double"/> type.
+	/// Represents a numeric axis with values of <see cref="double"/> type.
 	/// </summary>
 	public class NumericAxis : AxisBase<double>
 	{

@@ -9,14 +9,13 @@
 			<Setter Property="Visibility" Value="Hidden"/>
 		</Style>
 	</ContentControl.Style>
-    <Canvas>
-        <Grid Name="grid" Canvas.Top="{Binding Path=LegendTop, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type l:Legend}}}" 
+  <Canvas>
+    <Grid Name="grid" Canvas.Top="{Binding Path=LegendTop, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type l:Legend}}}" 
               Canvas.Bottom="{Binding Path=LegendBottom, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type l:Legend}}}"
               Canvas.Left="{Binding Path=LegendLeft, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type l:Legend}}}"
-              Canvas.Right="{Binding Path=LegendRight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type l:Legend}}}"
-              >
-            <Rectangle Name="shadowRect" RadiusX="5" RadiusY="5" Stroke="Black" StrokeThickness="1" Fill="White"/>
-            <StackPanel x:Name="stackPanel" Margin="3"/>
-        </Grid>
-    </Canvas>
+              Canvas.Right="{Binding Path=LegendRight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type l:Legend}}}">
+      <Rectangle Name="shadowRect" RadiusX="5" RadiusY="5" Stroke="#FF000000" StrokeThickness="1" Fill="#BBFFFFFF"/>
+      <WrapPanel Orientation="Vertical" x:Name="stackPanel" Margin="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+    </Grid>
+  </Canvas>
 </ContentControl>

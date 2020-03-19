@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
+﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
 {
-	internal sealed class NumericConversion
+	public sealed class NumericConversion
 	{
 		private readonly double min;
 		private readonly double length;

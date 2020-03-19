@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Filters;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
 using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Windows;
 
@@ -35,7 +33,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			item.Changed -= OnItemChanged;
 		}
 
-		internal List<Point> Filter(List<Point> points, Rect screenRect)
+		public List<Point> Filter(List<Point> points, Rect screenRect)
 		{
 			foreach (var filter in Items)
 			{

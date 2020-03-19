@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
@@ -12,7 +9,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 	{
 		private Dictionary<IPlotterElement, UIElement> cache = new Dictionary<IPlotterElement, UIElement>();
 
-		internal Dictionary<IPlotterElement, UIElement> Cache
+		public Dictionary<IPlotterElement, UIElement> Cache
 		{
 			get { return cache; }
 		}

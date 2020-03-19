@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay
@@ -28,8 +25,8 @@ namespace Microsoft.Research.DynamicDataDisplay
 			double x = pt.X;
 			double y = pt.Y;
 
-			x = x < 0 ? Double.MinValue : Math.Log10(x);
-			y = y < 0 ? Double.MinValue : Math.Log10(y);
+			x = x < 0 ? double.MinValue : Math.Log10(x);
+			y = y < 0 ? double.MinValue : Math.Log10(y);
 
 			return new Point(x, y);
 		}

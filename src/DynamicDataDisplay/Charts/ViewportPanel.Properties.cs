@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
-using System.ComponentModel;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -50,7 +46,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		  "X",
 		  typeof(double),
 		  typeof(ViewportPanel),
-		  new FrameworkPropertyMetadata(Double.NaN, OnLayoutPropertyChanged));
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
 
 		#endregion
 
@@ -71,7 +67,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		  "Y",
 		  typeof(double),
 		  typeof(ViewportPanel),
-		  new FrameworkPropertyMetadata(Double.NaN, OnLayoutPropertyChanged));
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
 
 		#endregion
 
@@ -92,7 +88,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		  "ViewportWidth",
 		  typeof(double),
 		  typeof(ViewportPanel),
-		  new FrameworkPropertyMetadata(Double.NaN, OnLayoutPropertyChanged));
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
 
 		#endregion
 
@@ -113,7 +109,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		  "ViewportHeight",
 		  typeof(double),
 		  typeof(ViewportPanel),
-		  new FrameworkPropertyMetadata(Double.NaN, OnLayoutPropertyChanged));
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
 
 		#endregion
 
@@ -134,7 +130,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		  "ScreenOffsetX",
 		  typeof(double),
 		  typeof(ViewportPanel),
-		  new FrameworkPropertyMetadata(Double.NaN, OnLayoutPropertyChanged));
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
 
 		#endregion
 
@@ -155,7 +151,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		  "ScreenOffsetY",
 		  typeof(double),
 		  typeof(ViewportPanel),
-		  new FrameworkPropertyMetadata(Double.NaN, OnLayoutPropertyChanged));
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
 
 		#endregion
 
@@ -258,7 +254,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		  "MinScreenWidth",
 		  typeof(double),
 		  typeof(ViewportPanel),
-		  new FrameworkPropertyMetadata(Double.NaN, OnLayoutPropertyChanged));
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
 
 		#endregion // end of MinScreenWidth
 

@@ -4,17 +4,20 @@ using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Navigation
 {
-    /// <summary>Helper class to draw semitransparent rectangle over the
-    /// selection area</summary>
-	public sealed class RectangleSelectionAdorner : Adorner {
+	/// <summary>Helper class to draw semitransparent rectangle over the
+	/// selection area</summary>
+	public sealed class RectangleSelectionAdorner : Adorner
+	{
 
 		private Rect? border = null;
-		public Rect? Border {
+		public Rect? Border
+		{
 			get { return border; }
 			set { border = value; }
 		}
 
-		public Brush Fill {
+		public Brush Fill
+		{
 			get { return (Brush)GetValue(FillProperty); }
 			set { SetValue(FillProperty, value); }
 		}
@@ -29,18 +32,22 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 				  FrameworkPropertyMetadataOptions.AffectsRender));
 
 		private Pen pen;
-		public Pen Pen {
+		public Pen Pen
+		{
 			get { return pen; }
 			set { pen = value; }
 		}
 
 		public RectangleSelectionAdorner(UIElement element)
-			: base(element) {
+			: base(element)
+		{
 			pen = new Pen(Brushes.Black, 1.0);
 		}
 
-		protected override void OnRender(DrawingContext dc) {
-			if (border.HasValue) {
+		protected override void OnRender(DrawingContext dc)
+		{
+			if (border.HasValue)
+			{
 				dc.DrawRectangle(Fill, pen, border.Value);
 			}
 		}

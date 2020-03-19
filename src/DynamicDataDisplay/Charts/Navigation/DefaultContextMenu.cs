@@ -1,19 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Windows;
-using System.Windows.Shapes;
-using System.Windows.Media;
-using System.Windows.Input;
-using System.Linq;
-using System.Diagnostics;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections;
 using System.ComponentModel;
-using System.Windows.Data;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Research.DynamicDataDisplay.Navigation
 {
@@ -47,6 +44,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 			return icon;
 		}
 
+
+		public bool DisableDefaultContextMenuItems = false;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DefaultContextMenu"/> class.
 		/// </summary>
@@ -55,55 +55,95 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 		protected ContextMenu PopulateContextMenu(Plotter target)
 		{
 			ContextMenu menu = new ContextMenu();
-			MenuItem fitToViewMenuItem = new MenuItem
+			if (!DisableDefaultContextMenuItems)
 			{
-				Header = Strings.UIResources.ContextMenuFitToView,
-				ToolTip = Strings.UIResources.ContextMenuFitToViewTooltip,
-				Icon = new Image { Source = fitToViewIcon },
-				Command = ChartCommands.FitToView,
-				CommandTarget = target
-			};
+				MenuItem fitToViewMenuItem = new MenuItem
+				{
+					Header = Strings.UIResources.ContextMenuFitToView,
+					ToolTip = Strings.UIResources.ContextMenuFitToViewTooltip,
+					Icon = new Image { Source = fitToViewIcon },
+					Command = ChartCommands.FitToView,
+					CommandTarget = target
+				};
 
-			MenuItem savePictureMenuItem = new MenuItem
+				MenuItem lockZoomX = new MenuItem
+				{
+					Header = "Lock Zoom X Axis",
+					ToolTip = "Locks the zoom level of the X axis when zoomin",
+					Command = ChartCommands.LockZoomX,
+					IsCheckable = true,
+					CommandTarget = target
+				};
+				lockZoomX.SetBinding(MenuItem.CommandParameterProperty, new Microsoft.Research.DynamicDataDisplay.MarkupExtensions.SelfBinding("IsChecked"));
+
+				MenuItem lockZoomY = new MenuItem
+				{
+					Header = "Lock Zoom Y Axis",
+					ToolTip = "Locks the zoom level of the Y axis when zoomin",
+					Command = ChartCommands.LockZoomY,
+					IsCheckable = true,
+					CommandTarget = target
+				};
+				lockZoomY.SetBinding(MenuItem.CommandParameterProperty, new Microsoft.Research.DynamicDataDisplay.MarkupExtensions.SelfBinding("IsChecked"));
+
+				MenuItem editScreenshotParameters = new MenuItem
+				{
+					Header = "Screenshot Parameters",
+					ToolTip = "Edit screenshot parameters like width, height and dpi",
+					Command = ChartCommands.EditScreenshotParameters,
+					CommandTarget = target
+				};
+
+				MenuItem savePictureMenuItem = new MenuItem
+				{
+					Header = Strings.UIResources.ContextMenuSaveScreenshot,
+					ToolTip = Strings.UIResources.ContextMenuSaveScreenshotTooltip,
+					Icon = new Image { Source = saveScreenshotIcon },
+					Command = ChartCommands.SaveScreenshot,
+					CommandTarget = target
+				};
+
+				MenuItem copyPictureMenuItem = new MenuItem
+				{
+					Header = Strings.UIResources.ContextMenuCopyScreenshot,
+					ToolTip = Strings.UIResources.ContextMenuCopyScreenshotTooltip,
+					Icon = new Image { Source = copyScreenshotIcon },
+					Command = ChartCommands.CopyScreenshot,
+					CommandTarget = target
+				};
+
+				MenuItem quickHelpMenuItem = new MenuItem
+				{
+					Header = Strings.UIResources.ContextMenuQuickHelp,
+					ToolTip = Strings.UIResources.ContextMenuQuickHelpTooltip,
+					Command = ChartCommands.ShowHelp,
+					Icon = new Image { Source = helpIcon },
+					CommandTarget = target
+				};
+
+				MenuItem reportFeedback = new MenuItem
+				{
+					Header = Strings.UIResources.ContextMenuReportFeedback,
+					ToolTip = Strings.UIResources.ContextMenuReportFeedbackTooltip,
+					Icon = (Image)plotter.Resources["SendFeedbackIcon"]
+				};
+				reportFeedback.Click += reportFeedback_Click;
+
+				staticMenuItems.Add(fitToViewMenuItem);
+				staticMenuItems.Add(lockZoomX);
+				staticMenuItems.Add(lockZoomY);
+				staticMenuItems.Add(editScreenshotParameters);
+				staticMenuItems.Add(copyPictureMenuItem);
+				staticMenuItems.Add(savePictureMenuItem);
+				staticMenuItems.Add(quickHelpMenuItem);
+				//staticMenuItems.Add(reportFeedback);
+			}
+
+			foreach (Control menuItem in staticMenuItems)
 			{
-				Header = Strings.UIResources.ContextMenuSaveScreenshot,
-				ToolTip = Strings.UIResources.ContextMenuSaveScreenshotTooltip,
-				Icon = new Image { Source = saveScreenshotIcon },
-				Command = ChartCommands.SaveScreenshot,
-				CommandTarget = target
-			};
-
-			MenuItem copyPictureMenuItem = new MenuItem
-			{
-				Header = Strings.UIResources.ContextMenuCopyScreenshot,
-				ToolTip = Strings.UIResources.ContextMenuCopyScreenshotTooltip,
-				Icon = new Image { Source = copyScreenshotIcon },
-				Command = ChartCommands.CopyScreenshot,
-				CommandTarget = target
-			};
-
-			MenuItem quickHelpMenuItem = new MenuItem
-			{
-				Header = Strings.UIResources.ContextMenuQuickHelp,
-				ToolTip = Strings.UIResources.ContextMenuQuickHelpTooltip,
-				Command = ChartCommands.ShowHelp,
-				Icon = new Image { Source = helpIcon },
-				CommandTarget = target
-			};
-
-			MenuItem reportFeedback = new MenuItem
-			{
-				Header = Strings.UIResources.ContextMenuReportFeedback,
-				ToolTip = Strings.UIResources.ContextMenuReportFeedbackTooltip,
-				Icon = (Image)plotter.Resources["SendFeedbackIcon"]
-			};
-			reportFeedback.Click += reportFeedback_Click;
-
-			staticMenuItems.Add(fitToViewMenuItem);
-			staticMenuItems.Add(copyPictureMenuItem);
-			staticMenuItems.Add(savePictureMenuItem);
-			staticMenuItems.Add(quickHelpMenuItem);
-			staticMenuItems.Add(reportFeedback);
+				menuItem.HorizontalContentAlignment = HorizontalAlignment.Left;
+				menuItem.VerticalContentAlignment = VerticalAlignment.Center;
+			}
 
 			menu.ItemsSource = staticMenuItems;
 
@@ -122,6 +162,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 			}
 		}
 
+
+		private readonly Separator dynamicItemSeparator = new Separator();
 		private readonly ObservableCollection<object> staticMenuItems = new ObservableCollection<object>();
 
 		// hidden because default menu items' command target is plotter, and serializing this will
@@ -206,7 +248,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 		private void plotter_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
 		{
 			Point position = e.GetPosition(plotter);
-			if (mousePos == position)
+			// Give the user a bit of wiggle room rather then testing for the exact same position as mouse down
+			if ((mousePos - position).Length < 3.0)
 			{
 				hitResults.Clear();
 				VisualTreeHelper.HitTest(plotter, null, CollectAllVisuals_Callback, new PointHitTestParameters(position));
@@ -215,6 +258,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 				{
 					staticMenuItems.Remove(item);
 				}
+				staticMenuItems.Remove(dynamicItemSeparator);
+
 				dynamicMenuItems.Clear();
 				var dynamicItems = (hitResults.Where(r =>
 				{
@@ -251,6 +296,10 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 					//}
 				}
 
+				if (dynamicItems.Count > 0)
+				{
+					staticMenuItems.Add(dynamicItemSeparator);
+				}
 				staticMenuItems.AddMany(dynamicMenuItems);
 
 				plotter.Focus();
@@ -327,5 +376,5 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 	/// <summary>
 	/// Represents a collection of additional menu items in ChartPlotter's context menu.
 	/// </summary>
-	public sealed class ObjectCollection : ObservableCollection<Object> { }
+	public sealed class ObjectCollection : ObservableCollection<object> { }
 }

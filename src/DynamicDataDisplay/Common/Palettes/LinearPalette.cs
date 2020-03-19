@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
 {
@@ -60,6 +58,16 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
 		}
 
 		private readonly List<LinearPaletteColorStep> steps = new List<LinearPaletteColorStep>();
+
+		protected void OnChanged()
+		{
+			var handler = Changed;
+			if (handler != null)
+			{
+				handler(this, new EventArgs());
+			}
+		}
+
 
 		#region IPalette Members
 

@@ -32,6 +32,25 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// </summary>
 		/// <value>The data domain of this dataTransform.</value>
 		public virtual DataRect DataDomain { get { return defaultDomain; } }
+
+		public DataRect ViewportToData(DataRect dr)
+		{
+			Point min = ViewportToData(dr.XMinYMin);
+			Point max = ViewportToData(dr.XMaxYMax);
+
+			return new DataRect(min, max);
+		}
+
+		public DataRect DataToViewport(DataRect dr)
+		{
+			Point min = DataToViewport(dr.XMinYMin);
+			Point max = DataToViewport(dr.XMaxYMax);
+
+			return new DataRect(min, max);
+		}
+
+		public virtual double MaxLatitude => double.PositiveInfinity;
+
 	}
 
 	/// <summary>
@@ -86,7 +105,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			double y = pt.Y;
 
 			if (y < 0)
-				y = Double.MinValue;
+				y = double.MinValue;
 			else
 				y = Math.Log10(y);
 
@@ -134,7 +153,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			double x = pt.X;
 
 			if (x < 0)
-				x = Double.MinValue;
+				x = double.MinValue;
 			else
 				x = Math.Log10(x);
 
@@ -197,20 +216,14 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// Gets the scale.
 		/// </summary>
 		/// <value>The scale.</value>
-		public double Scale
-		{
-			get { return scale; }
-		}
+		public double Scale => scale;
 
-		private double maxLatitude = 85;
+		private double maxLatitude = 85.0511287798;
 		/// <summary>
 		/// Gets the maximal latitude.
 		/// </summary>
 		/// <value>The max latitude.</value>
-		public double MaxLatitude
-		{
-			get { return maxLatitude; }
-		}
+		public override double MaxLatitude => maxLatitude;
 
 		/// <summary>
 		/// Transforms the point in data coordinates to viewport coordinates.
@@ -245,6 +258,30 @@ namespace Microsoft.Research.DynamicDataDisplay
 			return new Point(pt.X, y);
 		}
 	}
+
+	public sealed class AspectRatioTransform : DataTransform
+	{
+		public double XtoYScale { get; set; }
+
+		public AspectRatioTransform()
+		{
+			XtoYScale = 2.0;
+		}
+
+		public override Point DataToViewport(Point pt)
+		{
+			pt.Y /= XtoYScale;
+			return pt;
+		}
+
+		public override Point ViewportToData(Point pt)
+		{
+			pt.Y *= XtoYScale;
+			return pt;
+		}
+	}
+
+
 
 	/// <summary>
 	/// Represents transform from polar coordinate system to rectangular coordinate system.

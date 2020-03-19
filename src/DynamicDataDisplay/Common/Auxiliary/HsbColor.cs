@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Windows.Media;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -222,11 +222,11 @@ namespace Microsoft.Research.DynamicDataDisplay
 		}
 
 		/// <summary>
-		/// Determines whether the specified <see cref="System.Object"/> is equal to this instance.
+		/// Determines whether the specified <see cref="object"/> is equal to this instance.
 		/// </summary>
-		/// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+		/// <param name="obj">The <see cref="object"/> to compare with this instance.</param>
 		/// <returns>
-		/// 	<c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+		/// 	<c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
 		public override bool Equals(object obj)
 		{

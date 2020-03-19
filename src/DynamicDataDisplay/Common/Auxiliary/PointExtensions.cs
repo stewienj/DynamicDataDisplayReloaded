@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using System;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

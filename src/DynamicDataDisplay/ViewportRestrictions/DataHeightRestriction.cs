@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
 {
@@ -30,7 +26,7 @@ namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
 
 			foreach (var chart in viewport.ContentBoundsHosts)
 			{
-                var plotterElement = chart as IPlotterElement;
+				var plotterElement = chart as IPlotterElement;
 				var visual = viewport.Plotter.VisualBindings[plotterElement];
 				var points = (ReadOnlyCollection<Point>)PointsGraphBase.GetVisiblePoints(visual);
 				if (points != null)

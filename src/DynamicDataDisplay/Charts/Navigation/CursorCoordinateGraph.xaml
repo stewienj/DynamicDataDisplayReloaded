@@ -4,8 +4,8 @@
 		xmlns:d3nav="clr-namespace:Microsoft.Research.DynamicDataDisplay.Charts.Navigation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		IsHitTestVisible="False" Panel.ZIndex="1">
-	
-	<d3:ContentGraph.Resources>
+
+  <d3:ContentGraph.Resources>
 		<Style x:Key="outerBorderStyle" TargetType="{x:Type Rectangle}" >
 			<Setter Property="RadiusX" Value="10"/>
 			<Setter Property="RadiusY" Value="10"/>
@@ -24,10 +24,10 @@
 			<Setter Property="Margin" Value="2,1,2,1"/>
 		</Style>
 		
-		<Style x:Key="lineStyle" TargetType="{x:Type Line}">
+		<Style x:Key="horizLineStyle" TargetType="{x:Type Line}">
 			<Setter Property="Stroke" Value="{Binding 
 				RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type d3nav:CursorCoordinateGraph}},
-				Path=LineStroke}"/>
+				Path=HorizontalLineStroke}"/>
 			<Setter Property="StrokeThickness" Value="{Binding 
 				RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type d3nav:CursorCoordinateGraph}},
 				Path=LineStrokeThickness}"/>
@@ -36,11 +36,54 @@
 				Path=LineStrokeDashArray}"/>
 			<Setter Property="IsHitTestVisible" Value="False"/>
 		</Style>
-	</d3:ContentGraph.Resources>
 
-	<Canvas Name="content" Cursor="None" Background="Transparent" IsHitTestVisible="False">
-		<Line Name="horizLine" Style="{StaticResource lineStyle}"/>
-		<Line Name="vertLine" Style="{StaticResource lineStyle}"/>
+    <Style x:Key="vertLineStyle" TargetType="{x:Type Line}">
+      <Setter Property="Stroke" Value="{Binding 
+				RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type d3nav:CursorCoordinateGraph}},
+				Path=VerticalLineStroke}"/>
+      <Setter Property="StrokeThickness" Value="{Binding 
+				RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type d3nav:CursorCoordinateGraph}},
+				Path=LineStrokeThickness}"/>
+      <Setter Property="StrokeDashArray" Value="{Binding 
+				RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type d3nav:CursorCoordinateGraph}},
+				Path=LineStrokeDashArray}"/>
+      <Setter Property="IsHitTestVisible" Value="False"/>
+    </Style>
+    <!-- Create a black and white dash for the chart cursor lines -->
+
+    <!-- Create the Horizontal Dash pattern -->
+    <VisualBrush 
+      x:Key="HorizontalDashedBrush" 
+      TileMode="Tile" Viewport="0,0,8,8" 
+      ViewportUnits="Absolute" Viewbox="0,0,8,8"    
+      ViewboxUnits="Absolute">
+      <VisualBrush.Visual>
+        <Canvas>
+          <Line Stroke="#40000000" X1="2" Y1="0" X2="2" Y2="8" StrokeThickness="4"/>
+          <Line Stroke="#80FFFFFF" X1="6" Y1="0" X2="6" Y2="8" StrokeThickness="4"/>
+        </Canvas>
+      </VisualBrush.Visual>
+    </VisualBrush>
+
+    <!-- Create the Vertical Dash pattern -->
+    <VisualBrush 
+      x:Key="VerticalDashedBrush" 
+      TileMode="Tile" Viewport="0,0,8,8" 
+      ViewportUnits="Absolute" Viewbox="0,0,8,8"    
+      ViewboxUnits="Absolute">
+      <VisualBrush.Visual>
+        <Canvas>
+          <Line Stroke="#40000000" X1="0" Y1="2" X2="8" Y2="2" StrokeThickness="4"/>
+          <Line Stroke="#80FFFFFF" X1="0" Y1="6" X2="8" Y2="6" StrokeThickness="4"/>
+        </Canvas>
+      </VisualBrush.Visual>
+    </VisualBrush>
+      
+  </d3:ContentGraph.Resources>
+
+  <Canvas Name="content" Cursor="None" Background="Transparent" IsHitTestVisible="False">
+		<Line Name="horizLine" Style="{StaticResource horizLineStyle}"/>
+		<Line Name="vertLine" Style="{StaticResource vertLineStyle}"/>
 
 		<Grid Name="horizGrid" Canvas.Bottom="5">
 			<Rectangle Style="{StaticResource outerBorderStyle}"/>

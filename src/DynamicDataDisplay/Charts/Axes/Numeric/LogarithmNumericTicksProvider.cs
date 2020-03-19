@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Markup;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
 {
@@ -26,7 +22,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
 		/// </summary>
 		/// <param name="logarithmBase">The logarithm base.</param>
 		public LogarithmNumericTicksProvider(double logarithmBase)
-			: this()
+				: this()
 		{
 			LogarithmBase = logarithmBase;
 		}
@@ -67,7 +63,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
 
 			double logLength = LogByBase(range.GetLength());
 
-			ticks = CreateTicks(range);
+			// JCS TODO Create a range that hold the number of tick counts. The range created is always
+			// powers of logBase,could pad it out
+			ticks = CreateTicks(range);//.Concat(new double[] { 0.02, 0.04, 0.06, 0.08, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 }).OrderBy(x => x).ToArray();
 
 			int log = RoundingHelper.GetDifferenceLog(range.Min, range.Max);
 			TicksInfo<double> result = new TicksInfo<double> { Ticks = ticks, TickSizes = ArrayExtensions.CreateArray(ticks.Length, 1.0), Info = log };
@@ -83,7 +81,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
 			double maxUp = Math.Ceiling(max);
 
 			int intStart = (int)Math.Floor(minDown);
-			int count = (int)(maxUp - minDown + 1);
+			int count = (int)(Math.Min(256, maxUp - minDown + 1));
 
 			var ticks = new double[count];
 			for (int i = 0; i < count; i++)

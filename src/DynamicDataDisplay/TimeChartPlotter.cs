@@ -1,10 +1,5 @@
-﻿using System;
-using Microsoft.Research.DynamicDataDisplay;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using System.Windows.Controls;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 
 
 namespace Microsoft.Research.DynamicDataDisplay
@@ -22,16 +17,17 @@ namespace Microsoft.Research.DynamicDataDisplay
 				throw new ArgumentNullException("fromDouble");
 			if (toDouble == null)
 				throw new ArgumentNullException("toDouble");
-	
+
 
 			HorizontalDateTimeAxis axis = (HorizontalDateTimeAxis)MainHorizontalAxis;
 			axis.ConvertFromDouble = fromDouble;
 			axis.ConvertToDouble = toDouble;
 		}
 
-		public void SetHorizontalAxisMapping(double min, DateTime minDate, double max, DateTime maxDate) {
+		public void SetHorizontalAxisMapping(double min, DateTime minDate, double max, DateTime maxDate)
+		{
 			HorizontalDateTimeAxis axis = (HorizontalDateTimeAxis)MainHorizontalAxis;
-			
+
 			axis.SetConversion(min, minDate, max, maxDate);
 		}
 	}

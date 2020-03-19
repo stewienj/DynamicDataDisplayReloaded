@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
-	internal sealed class Viewport2dDeferredPanningProxy : Viewport2D
+	public sealed class Viewport2dDeferredPanningProxy : Viewport2D
 	{
 		private Viewport2D viewport;
-		internal Viewport2dDeferredPanningProxy(Viewport2D viewport)
+		public Viewport2dDeferredPanningProxy(Viewport2D viewport)
 			: base(viewport.HostElement, viewport.Plotter2D)
 		{
 			viewport.PropertyChanged += viewport_PropertyChanged;

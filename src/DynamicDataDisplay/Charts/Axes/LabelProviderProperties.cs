@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 {
-	internal class LabelProviderProperties : DependencyObject
+	public class LabelProviderProperties : DependencyObject
 	{
 		public static bool GetExponentialIsCommonLabel(DependencyObject obj)
 		{

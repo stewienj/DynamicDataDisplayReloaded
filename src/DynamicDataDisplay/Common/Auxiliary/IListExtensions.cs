@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -22,6 +21,15 @@ namespace Microsoft.Research.DynamicDataDisplay
 				collection.Add(child);
 			}
 		}
+
+		public static void RemoveMany<T>(this IList<T> collection, IEnumerable<T> removingItems)
+		{
+			foreach (var item in removingItems)
+			{
+				collection.Remove(item);
+			}
+		}
+
 
 		public static void RemoveAll<T>(this IList<T> collection, Type type)
 		{

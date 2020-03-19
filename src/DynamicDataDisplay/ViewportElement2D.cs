@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -17,7 +13,9 @@ namespace Microsoft.Research.DynamicDataDisplay
 	/// of ViewportElement2D is Viewport2D attached property</summary>
 	public abstract class ViewportElement2D : PlotterElement, INotifyPropertyChanged
 	{
-		protected ViewportElement2D() { }
+		protected ViewportElement2D()
+		{
+		}
 
 		protected virtual Panel GetHostPanel(Plotter plotter)
 		{
@@ -70,7 +68,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return plotter2D; }
 		}
 
-		public int ZIndex
+		public virtual int ZIndex
 		{
 			get { return Panel.GetZIndex(this); }
 			set { Panel.SetZIndex(this, value); }
@@ -84,7 +82,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return viewport; }
 		}
 
-		#endregion
+		#endregion Viewport
 
 		#region Description
 
@@ -133,22 +131,22 @@ namespace Microsoft.Research.DynamicDataDisplay
 			return GetType().Name + ": " + Description.Brief;
 		}
 
-		#endregion
+		#endregion Description
 
 		private Vector offset = new Vector();
-		protected internal Vector Offset
+		protected Vector Offset
 		{
 			get { return offset; }
 			set { offset = value; }
 		}
 
-        //bool SizeEqual(Size s1, Size s2, double eps)
-        //{
-        //    double width = Math.Min(s1.Width, s2.Width);
-        //    double height = Math.Min(s1.Height, s2.Height);
-        //    return Math.Abs(s1.Width - s2.Width) < width * eps &&
-        //           Math.Abs(s1.Height - s2.Height) < height * eps;
-        //}
+		//bool SizeEqual(Size s1, Size s2, double eps)
+		//{
+		//    double width = Math.Min(s1.Width, s2.Width);
+		//    double height = Math.Min(s1.Height, s2.Height);
+		//    return Math.Abs(s1.Width - s2.Width) < width * eps &&
+		//           Math.Abs(s1.Height - s2.Height) < height * eps;
+		//}
 
 		protected virtual void OnVisibleChanged(DataRect newRect, DataRect oldRect)
 		{
@@ -202,7 +200,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 				false
 				));
 
-		#endregion
+		#endregion IsLevel
 
 		#region Rendering & caching options
 
@@ -223,7 +221,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		private bool manualClip;
 		/// <summary>
-		/// Gets or sets a value indicating whether descendant graph class 
+		/// Gets or sets a value indicating whether descendant graph class
 		/// relies on autotic clipping by Viewport.Output or
 		/// does its own clipping.
 		/// </summary>
@@ -246,7 +244,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		private RenderTo renderTarget = RenderTo.Screen;
 		/// <summary>
-		/// Gets or sets a value indicating whether descendant graph class 
+		/// Gets or sets a value indicating whether descendant graph class
 		/// uses cached rendering of its content to image, or not.
 		/// </summary>
 		public RenderTo RenderTarget
@@ -262,7 +260,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			Empty
 		}
 
-		#endregion
+		#endregion Rendering & caching options
 
 		private RenderState CreateRenderState(DataRect renderVisible, RenderTo renderingType)
 		{
@@ -285,6 +283,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		private bool updateCalled;
 		private bool beforeFirstUpdate = true;
+
 		protected void Update()
 		{
 			if (Viewport == null) return;
@@ -299,7 +298,9 @@ namespace Microsoft.Research.DynamicDataDisplay
 			beforeFirstUpdate = false;
 		}
 
-		protected virtual void UpdateCore() { }
+		protected virtual void UpdateCore()
+		{
+		}
 
 		protected void TranslateVisual()
 		{
@@ -394,10 +395,11 @@ namespace Microsoft.Research.DynamicDataDisplay
 			RaisePropertyChanged("Thumbnail");
 		}
 
-		#endregion
+		#endregion Thumbnail
 
 		private bool shouldReRender = true;
 		private DrawingGroup graphContents;
+
 		protected sealed override void OnRender(DrawingContext drawingContext)
 		{
 			if (Viewport == null) return;
@@ -464,14 +466,13 @@ namespace Microsoft.Research.DynamicDataDisplay
 			shouldReRender = true;
 		}
 
-
 		protected abstract void OnRenderCore(DrawingContext dc, RenderState state);
 
 		#region INotifyPropertyChanged Members
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		protected void RaisePropertyChanged(string propertyName)
+		protected void RaisePropertyChanged([CallerMemberName] string propertyName = "")
 		{
 			if (PropertyChanged != null)
 			{
@@ -479,6 +480,6 @@ namespace Microsoft.Research.DynamicDataDisplay
 			}
 		}
 
-		#endregion
+		#endregion INotifyPropertyChanged Members
 	}
 }

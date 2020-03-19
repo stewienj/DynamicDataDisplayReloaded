@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
-using System.Windows.Media;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 {

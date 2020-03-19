@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+﻿namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a restriction, which limits the maximal size of <see cref="Viewport"/>'s Visible property.

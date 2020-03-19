@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using Microsoft.Research.DynamicDataDisplay.Navigation;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -38,11 +38,17 @@ namespace Microsoft.Research.DynamicDataDisplay
 			set { newLegend.Style = value; }
 		}
 
+		public Style OldLegendStyle
+		{
+			get { return legend.Style; }
+			set { legend.Style = value; }
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ChartPlotter"/> class.
 		/// </summary>
 		public ChartPlotter()
-			: base()
+		  : base()
 		{
 			horizontalAxis.TicksChanged += OnHorizontalAxisTicksChanged;
 			verticalAxis.TicksChanged += OnVerticalAxisTicksChanged;
@@ -57,21 +63,20 @@ namespace Microsoft.Research.DynamicDataDisplay
 			verticalAxisNavigation = new AxisNavigation { Placement = AxisPlacement.Left };
 
 			Children.AddMany(
-				horizontalAxis,
-				verticalAxis,
-				axisGrid,
-				mouseNavigation,
-				keyboardNavigation,
-				defaultContextMenu,
-				horizontalAxisNavigation,
-				legend,
-				verticalAxisNavigation,
-				new LongOperationsIndicator(),
-				newLegend
-				);
+			  horizontalAxis,
+			  verticalAxis,
+			  axisGrid,
+			  mouseNavigation,
+			  keyboardNavigation,
+			  defaultContextMenu,
+			  horizontalAxisNavigation,
+			  legend,
+			  verticalAxisNavigation,
+			  new LongOperationsIndicator()//,	newLegend
+			  );
 
 #if DEBUG
-			Children.Add(new DebugMenu());
+      Children.Add(new DebugMenu());
 #endif
 
 			SetAllChildrenAsDefault();
@@ -213,7 +218,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 			if (axis != null)
 			{
-				axisGrid.HorizontalTicks = axis.ScreenTicks;
+				axisGrid.HorizontalTicks = axis.MajorScreenTicks;
 				axisGrid.MinorHorizontalTicks = axis.MinorScreenTicks;
 			}
 			else
@@ -237,7 +242,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 			if (axis != null)
 			{
-				axisGrid.VerticalTicks = axis.ScreenTicks;
+				axisGrid.VerticalTicks = axis.MajorScreenTicks;
 				axisGrid.MinorVerticalTicks = axis.MinorScreenTicks;
 			}
 			else
@@ -267,6 +272,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 				if (updatingAxis)
 					return;
 
+
 				if (value == null && verticalAxis != null)
 				{
 					if (!keepOldAxis)
@@ -289,13 +295,18 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 					updatingAxis = true;
 
+					List<IPlotterElement> children = null;
 					if (verticalAxis != null)
 					{
 						verticalAxis.TicksChanged -= OnVerticalAxisTicksChanged;
 						SetIsDefaultAxis(verticalAxis, false);
 						if (!keepOldAxis)
 						{
-							Children.Remove(verticalAxis);
+							// Had a problem with Z order not being maintained. This is a work around. TODO come up with better work around.
+							children = new List<IPlotterElement>(Children);
+							Children.Clear();
+							int zIndex = children.IndexOf(verticalAxis);
+							children[zIndex] = value;
 						}
 					}
 					SetIsDefaultAxis(value, true);
@@ -303,7 +314,12 @@ namespace Microsoft.Research.DynamicDataDisplay
 					verticalAxis = value;
 					verticalAxis.TicksChanged += OnVerticalAxisTicksChanged;
 
-					if (!Children.Contains(value))
+
+					if (children != null)
+					{
+						Children.AddMany(children);
+					}
+					else
 					{
 						Children.Add(value);
 					}
@@ -385,13 +401,19 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 					updatingAxis = true;
 
+					List<IPlotterElement> children = null;
 					if (horizontalAxis != null)
 					{
 						horizontalAxis.TicksChanged -= OnHorizontalAxisTicksChanged;
 						SetIsDefaultAxis(horizontalAxis, false);
 						if (!keepOldAxis)
 						{
-							Children.Remove(horizontalAxis);
+							// Had a problem with Z order not being maintained. This is a work around. TODO come up with better work around.
+							children = new List<IPlotterElement>(Children);
+							Children.Clear();
+							int zIndex = children.IndexOf(horizontalAxis);
+							children[zIndex] = value;
+
 						}
 					}
 					SetIsDefaultAxis(value, true);
@@ -399,7 +421,11 @@ namespace Microsoft.Research.DynamicDataDisplay
 					horizontalAxis = value;
 					horizontalAxis.TicksChanged += OnHorizontalAxisTicksChanged;
 
-					if (!Children.Contains(value))
+					if (children != null)
+					{
+						Children.AddMany(children);
+					}
+					else
 					{
 						Children.Add(value);
 					}
@@ -484,8 +510,14 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// <value>The legend visibility.</value>
 		public Visibility LegendVisibility
 		{
-			get { return legend.Visibility; }
-			set { legend.Visibility = value; }
+			get => legend.Visibility;
+			set => legend.Visibility = value;
+		}
+
+		public bool AutoShowAndHideLegend
+		{
+			get => legend.AutoShowAndHide;
+			set => legend.AutoShowAndHide = value;
 		}
 
 		public bool NewLegendVisible

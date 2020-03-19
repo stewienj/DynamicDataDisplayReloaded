@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Effects;
-using System;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -22,8 +21,37 @@ namespace Microsoft.Research.DynamicDataDisplay
 			InitializeComponent();
 
 #if !RELEASEXBAP
-			shadowRect.Effect = new DropShadowEffect { Direction = 300, ShadowDepth = 3, Opacity = 0.4 };
+			//			shadowRect.Effect = new DropShadowEffect { Direction = 300, ShadowDepth = 3, Opacity = 0.4 };
 #endif
+			this.SizeChanged += Legend_SizeChanged;
+		}
+
+		private void Legend_SizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			if (this.ActualHeight > 0 && this.ActualWidth > 0)
+			{
+				double gridMaxHeight = this.ActualHeight;
+				if (LegendBottom.IsNotNaN())
+				{
+					gridMaxHeight -= LegendBottom;
+				}
+				if (LegendTop.IsNotNaN())
+				{
+					gridMaxHeight -= LegendTop;
+				}
+				grid.MaxHeight = Math.Max(0, gridMaxHeight);
+
+				double gridMaxWidth = this.ActualWidth;
+				if (LegendLeft.IsNotNaN())
+				{
+					gridMaxWidth -= LegendLeft;
+				}
+				if (LegendRight.IsNotNaN())
+				{
+					gridMaxWidth -= LegendRight;
+				}
+				grid.MaxWidth = Math.Max(0, gridMaxWidth);
+			}
 		}
 
 		#region Position properties
@@ -38,7 +66,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		  "LegendLeft",
 		  typeof(double),
 		  typeof(Legend),
-		  new FrameworkPropertyMetadata(Double.NaN));
+		  new FrameworkPropertyMetadata(double.NaN));
 
 		public double LegendRight
 		{
@@ -50,7 +78,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		  "LegendRight",
 		  typeof(double),
 		  typeof(Legend),
-		  new FrameworkPropertyMetadata(10.0));
+		  new FrameworkPropertyMetadata(5.0));
 
 		public double LegendBottom
 		{
@@ -62,7 +90,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		  "LegendBottom",
 		  typeof(double),
 		  typeof(Legend),
-		  new FrameworkPropertyMetadata(Double.NaN));
+		  new FrameworkPropertyMetadata(double.NaN));
 
 		public double LegendTop
 		{
@@ -74,7 +102,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		  "LegendTop",
 		  typeof(double),
 		  typeof(Legend),
-		  new FrameworkPropertyMetadata(10.0));
+		  new FrameworkPropertyMetadata(5.0));
 
 		#endregion
 
@@ -213,11 +241,14 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		private void UpdateVisibility()
 		{
-			if (stackPanel.Children.Count > 0 && ReadLocalValue(VisibilityProperty) == DependencyProperty.UnsetValue && autoShowAndHide == true)
+			// Had an issue where the panel wouldn't reappear after all children were cleared
+			//if(stackPanel.Children.Count > 0 && ReadLocalValue(VisibilityProperty) == DependencyProperty.UnsetValue && autoShowAndHide == true) {
+			if (stackPanel.Children.Count > 0 && autoShowAndHide == true)
 			{
 				Visibility = Visibility.Visible;
+				//} else if(stackPanel.Children.Count == 0 && ReadLocalValue(VisibilityProperty) != DependencyProperty.UnsetValue && autoShowAndHide == true) {
 			}
-			else if (stackPanel.Children.Count == 0 && ReadLocalValue(VisibilityProperty) != DependencyProperty.UnsetValue && autoShowAndHide == true)
+			else if (stackPanel.Children.Count == 0 && autoShowAndHide == true)
 			{
 				Visibility = Visibility.Hidden;
 			}

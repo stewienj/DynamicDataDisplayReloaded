@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using System.Windows.Data;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay

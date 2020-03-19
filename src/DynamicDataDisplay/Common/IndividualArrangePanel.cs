@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections;
 using System.Windows;
-using System.Windows.Media;
-using System.Collections.Specialized;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
@@ -38,17 +32,17 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 			return children;
 		}
 
-		internal bool InBatchAdd
+		public bool InBatchAdd
 		{
 			get { return children.IsAddingMany; }
 		}
 
-		internal virtual void BeginBatchAdd()
+		public virtual void BeginBatchAdd()
 		{
 			children.IsAddingMany = true;
 		}
 
-		internal virtual void EndBatchAdd()
+		public virtual void EndBatchAdd()
 		{
 			children.IsAddingMany = false;
 		}
@@ -102,7 +96,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 
 		#endregion
 
-		internal Vector InternalVisualOffset
+		public Vector InternalVisualOffset
 		{
 			get { return VisualOffset; }
 			set { VisualOffset = value; }

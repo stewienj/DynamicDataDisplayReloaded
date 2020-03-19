@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Research.DynamicDataDisplay.Common;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

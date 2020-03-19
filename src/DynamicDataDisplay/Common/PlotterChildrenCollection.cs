@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-using System.Windows.Markup;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using System.Windows;
-using System.Windows.Controls.Primitives;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Markup;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
@@ -20,7 +16,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PlotterChildrenCollection"/> class.
 		/// </summary>
-		internal PlotterChildrenCollection(Plotter plotter)
+		public PlotterChildrenCollection(Plotter plotter)
 		{
 			if (plotter == null)
 				throw new ArgumentNullException("plotter");
@@ -102,7 +98,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 				return 0;
 			}
 
-			throw new ArgumentException(String.Format("Children of type '{0}' are not supported.", value.GetType()));
+			throw new ArgumentException(string.Format("Children of type '{0}' are not supported.", value.GetType()));
 		}
 
 		void IList.Clear()

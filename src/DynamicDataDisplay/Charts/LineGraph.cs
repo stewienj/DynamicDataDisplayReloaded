@@ -1,19 +1,14 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Charts.Legend_items;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Legend_items;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.Filters;
 using System.Windows.Shapes;
-
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -53,10 +48,18 @@ namespace Microsoft.Research.DynamicDataDisplay
 			Legend.SetVisibleInLegend(this, true);
 			ManualTranslate = true;
 
-			filters.CollectionChanged += filters_CollectionChanged;
+			filters.CollectionChanged += Filters_CollectionChanged;
+			IsEnabledChanged += (s, e) =>
+			{
+				if (!IsEnabled)
+				{
+					filteredPoints = null;
+					Viewport2D.SetContentBounds(this, DataRect.Empty);
+				}
+			};
 		}
 
-		private void filters_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void Filters_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			filteredPoints = null;
 			Update();
@@ -67,7 +70,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// </summary>
 		/// <param name="pointSource">The point source.</param>
 		public LineGraph(IPointDataSource pointSource)
-			: this()
+		  : this()
 		{
 			DataSource = pointSource;
 		}
@@ -108,7 +111,31 @@ namespace Microsoft.Research.DynamicDataDisplay
 						LinePen = pen;
 					}
 
-					RaisePropertyChanged("Stroke");
+					RaisePropertyChanged();
+				}
+			}
+		}
+
+		public bool IsDashed
+		{
+			get { return LinePen.DashStyle == DashStyles.Dash; }
+			set
+			{
+				if ((LinePen.DashStyle == DashStyles.Dash) != value)
+				{
+					if (!LinePen.IsSealed)
+					{
+						LinePen.DashStyle = value ? DashStyles.Dash : DashStyles.Solid;
+						InvalidateVisual();
+					}
+					else
+					{
+						Pen pen = LinePen.Clone();
+						pen.DashStyle = value ? DashStyles.Dash : DashStyles.Solid;
+						LinePen = pen;
+					}
+
+					RaisePropertyChanged();
 				}
 			}
 		}
@@ -135,7 +162,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 						LinePen = pen;
 					}
 
-					RaisePropertyChanged("StrokeThickness");
+					RaisePropertyChanged();
 				}
 			}
 		}
@@ -152,22 +179,22 @@ namespace Microsoft.Research.DynamicDataDisplay
 		}
 
 		public static readonly DependencyProperty LinePenProperty =
-			DependencyProperty.Register(
-			"LinePen",
-			typeof(Pen),
-			typeof(LineGraph),
-			new FrameworkPropertyMetadata(
-				new Pen(Brushes.Blue, 1),
-				FrameworkPropertyMetadataOptions.AffectsRender
-				),
-			OnValidatePen);
+		  DependencyProperty.Register(
+		  "LinePen",
+		  typeof(Pen),
+		  typeof(LineGraph),
+		  new FrameworkPropertyMetadata(
+			new Pen(Brushes.Blue, 1),
+			FrameworkPropertyMetadataOptions.AffectsRender
+			),
+		  OnValidatePen);
 
 		private static bool OnValidatePen(object value)
 		{
 			return value != null;
 		}
 
-		#endregion
+		#endregion Pen
 
 		protected override void OnOutputChanged(Rect newRect, Rect oldRect)
 		{
@@ -208,6 +235,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		{
 			if (DataSource == null) return;
 			if (Plotter == null) return;
+			if (!IsEnabled) return;
 
 			Rect output = Viewport.Output;
 			var transform = GetTransform();
@@ -225,11 +253,12 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 				// Analysis and filtering of unnecessary points
 				filteredPoints = new FakePointList(FilterPoints(transformedPoints),
-					output.Left, output.Right);
+				  output.Left, output.Right);
 
 				if (ProvideVisiblePoints)
 				{
-					List<Point> viewportPointsList = new List<Point>(transformedPoints.Count);
+					List<Point> viewportPointsList = null;
+					viewportPointsList = new List<Point>(transformedPoints.Count);
 					if (transform.DataTransform is IdentityTransform)
 					{
 						viewportPointsList.AddRange(points);
@@ -239,10 +268,8 @@ namespace Microsoft.Research.DynamicDataDisplay
 						var viewportPoints = points.DataToViewport(transform.DataTransform);
 						viewportPointsList.AddRange(viewportPoints);
 					}
-
 					SetVisiblePoints(this, new ReadOnlyCollection<Point>(viewportPointsList));
 				}
-
 				Offset = new Vector();
 			}
 			else
@@ -257,14 +284,15 @@ namespace Microsoft.Research.DynamicDataDisplay
 			}
 		}
 
-		StreamGeometry streamGeometry = new StreamGeometry();
+		protected StreamGeometry streamGeometry = new StreamGeometry();
+
 		protected override void OnRenderCore(DrawingContext dc, RenderState state)
 		{
 			if (DataSource == null) return;
+			if (!IsEnabled) return;
 
 			if (filteredPoints.HasPoints)
 			{
-
 				using (StreamGeometryContext context = streamGeometry.Open())
 				{
 					context.BeginFigure(filteredPoints.StartPoint, false, false);
@@ -284,13 +312,6 @@ namespace Microsoft.Research.DynamicDataDisplay
 				{
 					dc.Pop();
 				}
-
-#if __DEBUG
-				FormattedText text = new FormattedText(filteredPoints.Count.ToString(),
-					CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-					new Typeface("Arial"), 12, Brushes.Black);
-				dc.DrawText(text, Viewport.Output.GetCenter());
-#endif
 			}
 		}
 
@@ -320,7 +341,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			}
 		}
 
-		private List<Point> FilterPoints(List<Point> points)
+		protected List<Point> FilterPoints(List<Point> points)
 		{
 			if (!filteringEnabled)
 				return points;
@@ -329,5 +350,43 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 			return filteredPoints;
 		}
+
+		public IEnumerable<Point> PointsSource
+		{
+			get { return (IEnumerable<Point>)GetValue(PointsSourceProperty); }
+			set { SetValue(PointsSourceProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for PointsSoource.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty PointsSourceProperty =
+			DependencyProperty.Register("PointsSource", typeof(IEnumerable<Point>), typeof(LineGraph), new PropertyMetadata(null, (d, e) =>
+			{
+				if (d is LineGraph lineGraph)
+				{
+					lineGraph.DataSource =
+				  (e.NewValue is IEnumerable<Point> points) ?
+				  new RawDataSource(points.ToArray()) :
+				  null;
+				}
+			}));
+
+		public string DescriptionText
+		{
+			get { return (string)GetValue(DescriptionTextProperty); }
+			set { SetValue(DescriptionTextProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for DescriptionText.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty DescriptionTextProperty =
+			DependencyProperty.Register("DescriptionText", typeof(string), typeof(LineGraph), new PropertyMetadata(null, (d, e) =>
+			{
+				if (d is LineGraph lineGraph)
+				{
+					lineGraph.Description =
+				  (e.NewValue is string text) ?
+				  new PenDescription(text) :
+				  null;
+				}
+			}));
 	}
 }

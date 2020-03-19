@@ -1,10 +1,9 @@
-﻿using System;
-using System.Windows;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -116,16 +115,30 @@ namespace Microsoft.Research.DynamicDataDisplay
 		private DataTransform dataTransform = null;
 		public DataTransform DataTransform
 		{
-			get { return dataTransform; }
-			set
-			{
-				if (dataTransform != value)
-				{
-					dataTransform = value;
-					Update();
-				}
-			}
+			get { return (DataTransform)GetValue(DataTransformProperty); }
+			set { SetValue(DataTransformProperty, value); }
 		}
+
+		public static readonly DependencyProperty DataTransformProperty =
+		  DependencyProperty.Register(
+			"DataTransform",
+			typeof(DataTransform),
+			typeof(PointsGraphBase),
+			new FrameworkPropertyMetadata
+			{
+				AffectsRender = true,
+				DefaultValue = null,
+				PropertyChangedCallback = (d, e) =>
+			{
+				  if (d is PointsGraphBase control)
+				  {
+				  // need to store this in a field so it can be accessed off the GUI thread
+				  control.dataTransform = e.NewValue as DataTransform;
+					  control.Update();
+				  }
+			  }
+			}
+		  );
 
 		protected CoordinateTransform GetTransform()
 		{
@@ -193,7 +206,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		#endregion
 
-		protected IEnumerable<Point> GetPoints()
+		public IEnumerable<Point> GetPoints()
 		{
 			return DataSource.GetPoints(GetContext());
 		}

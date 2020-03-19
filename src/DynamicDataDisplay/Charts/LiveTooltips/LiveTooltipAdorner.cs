@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Documents;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Input;
-using System.Windows.Media.Effects;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Shapes;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -16,20 +10,33 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 	{
 		private Canvas canvas = new Canvas { IsHitTestVisible = false };
 		private readonly VisualCollection visualChildren;
+		private readonly bool FollowMouseCursor;
+		private readonly Point ToolTipOffset;
 		public LiveToolTipAdorner(UIElement adornedElement, LiveToolTip tooltip)
 			: base(adornedElement)
 		{
 			visualChildren = new VisualCollection(this);
+			FollowMouseCursor = LiveToolTipService.GetFollowMouseCursor(adornedElement);
+			ToolTipOffset = new Point(LiveToolTipService.GetToolTipOffsetX(adornedElement), LiveToolTipService.GetToolTipOffsetY(adornedElement));
 
 			adornedElement.MouseLeave += adornedElement_MouseLeave;
 			adornedElement.MouseEnter += adornedElement_MouseEnter;
-			adornedElement.PreviewMouseMove += adornedElement_MouseMove;
+			if (FollowMouseCursor)
+			{
+				adornedElement.PreviewMouseMove += adornedElement_MouseMove;
+			}
 			//FrameworkElement frAdornedElement = (FrameworkElement)adornedElement;
 			//frAdornedElement.SizeChanged += frAdornedElement_SizeChanged;
 
 			this.liveTooltip = tooltip;
 
 			tooltip.Visibility = Visibility.Hidden;
+
+			var parentCanvas = liveTooltip.Parent as Canvas;
+			if (parentCanvas != null)
+			{
+				parentCanvas.Children.Remove(liveTooltip);
+			}
 
 			canvas.Children.Add(liveTooltip);
 			AddLogicalChild(canvas);
@@ -59,9 +66,10 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		void adornedElement_MouseEnter(object sender, MouseEventArgs e)
 		{
 			liveTooltip.Visibility = Visibility.Visible;
+			InvalidateMeasure();
 		}
 
-		Point mousePosition;
+		Point mousePosition = new Point(0, 0);
 		private void adornedElement_MouseMove(object sender, MouseEventArgs e)
 		{
 			liveTooltip.Visibility = Visibility.Visible;
@@ -73,8 +81,19 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		{
 			Size tooltipSize = liveTooltip.DesiredSize;
 
-			Point location = mousePosition;
-			location.Offset(-tooltipSize.Width / 2, -tooltipSize.Height - 1);
+			Point location;
+			if (FollowMouseCursor)
+			{
+				location = mousePosition;
+				location.Offset(ToolTipOffset.X, ToolTipOffset.Y);
+				location.Offset(-tooltipSize.Width / 2, -tooltipSize.Height - 1);
+			}
+			else
+			{
+				Size adornerSize = AdornedElement.DesiredSize;
+				location = ToolTipOffset;
+				location.Offset((adornerSize.Width / 2) - (tooltipSize.Width / 2), -tooltipSize.Height - 1);
+			}
 
 			liveTooltip.Arrange(new Rect(location, tooltipSize));
 		}

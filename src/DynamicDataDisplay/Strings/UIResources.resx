@@ -176,7 +176,7 @@
     <value>Copy screenshot of charts to clipboard</value>
   </data>
   <data name="ContextMenuFitToView" xml:space="preserve">
-    <value>Fit to view</value>
+    <value>Fit To View</value>
   </data>
   <data name="ContextMenuFitToViewTooltip" xml:space="preserve">
     <value>Make visible area fit to display entire contents</value>

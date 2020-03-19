@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using System.Windows.Markup;
-using System.Globalization;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
 using System.ComponentModel;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -69,6 +66,13 @@ namespace Microsoft.Research.DynamicDataDisplay
 				width = size.Width;
 				height = size.Height;
 			}
+		}
+
+		public static DataRect Transform(DataRect sourceRect, Transform transform)
+		{
+			var min = transform.Transform(sourceRect.XMinYMin);
+			var max = transform.Transform(sourceRect.XMaxYMax);
+			return new DataRect(min, max);
 		}
 
 		/// <summary>
@@ -171,14 +175,22 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 			DataRect res = new DataRect();
 
-			double x = Math.Max(this.XMin, rect.XMin);
-			double y = Math.Max(this.YMin, rect.YMin);
-			res.width = Math.Max((double)(Math.Min(this.XMax, rect.XMax) - x), 0.0);
-			res.height = Math.Max((double)(Math.Min(this.YMax, rect.YMax) - y), 0.0);
+			double x = Math.Max(XMin, rect.XMin);
+			double y = Math.Max(YMin, rect.YMin);
+			res.width = Math.Max((double)(Math.Min(XMax, rect.XMax) - x), 0.0);
+			res.height = Math.Max((double)(Math.Min(YMax, rect.YMax) - y), 0.0);
 			res.xMin = x;
 			res.yMin = y;
 
 			this = res;
+		}
+
+		public DataRect Shifted(double shiftX, double shiftY)
+		{
+			if (Width < 0 || Height < 0)
+				return DataRect.Empty;
+
+			return new DataRect(XMin + shiftX, YMin + shiftY, Width, Height);
 		}
 
 		public bool IntersectsWith(DataRect rect)
@@ -186,7 +198,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			if (IsEmpty || rect.IsEmpty)
 				return false;
 
-			return ((((rect.XMin <= this.XMax) && (rect.XMax >= this.XMin)) && (rect.YMax >= this.YMin)) && (rect.YMin <= this.YMax));
+			return ((((rect.XMin <= XMax) && (rect.XMax >= XMin)) && (rect.YMax >= YMin)) && (rect.YMin <= YMax));
 		}
 
 		private double xMin;
@@ -212,7 +224,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return yMin; }
 			set
 			{
-				if (this.IsEmpty)
+				if (IsEmpty)
 					throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
 
 				yMin = value;
@@ -228,9 +240,16 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get
 			{
 				if (IsEmpty)
-					return Double.PositiveInfinity;
+					return double.PositiveInfinity;
 
 				return yMin + height;
+			}
+			set
+			{
+				if (IsEmpty)
+					throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
+
+				yMin = value - height;
 			}
 		}
 
@@ -243,7 +262,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return xMin; }
 			set
 			{
-				if (this.IsEmpty)
+				if (IsEmpty)
 					throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
 
 				xMin = value;
@@ -259,9 +278,16 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get
 			{
 				if (IsEmpty)
-					return Double.PositiveInfinity;
+					return double.PositiveInfinity;
 
 				return xMin + width;
+			}
+			set
+			{
+				if (IsEmpty)
+					throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
+
+				xMin = value - width;
 			}
 		}
 
@@ -290,6 +316,16 @@ namespace Microsoft.Research.DynamicDataDisplay
 		public Point XMinYMin
 		{
 			get { return new Point(xMin, yMin); }
+		}
+
+		public Point XMaxYMin
+		{
+			get { return new Point(XMax, yMin); }
+		}
+
+		public Point XMinYMax
+		{
+			get { return new Point(xMin, YMax); }
 		}
 
 		/// <summary>
@@ -327,7 +363,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return width; }
 			set
 			{
-				if (this.IsEmpty)
+				if (IsEmpty)
 					throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
 				if (value < 0)
 					throw new ArgumentOutOfRangeException(Strings.Exceptions.DataRectSizeCannotBeNegative);
@@ -341,7 +377,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return height; }
 			set
 			{
-				if (this.IsEmpty)
+				if (IsEmpty)
 					throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
 				if (value < 0)
 					throw new ArgumentOutOfRangeException(Strings.Exceptions.DataRectSizeCannotBeNegative);
@@ -349,6 +385,44 @@ namespace Microsoft.Research.DynamicDataDisplay
 				height = value;
 			}
 		}
+
+		public double CenterX
+		{
+			get
+			{
+				return xMin + width * 0.5;
+			}
+			set
+			{
+				xMin = value - width * 0.5;
+			}
+		}
+
+		public double CenterY
+		{
+			get
+			{
+				return yMin + height * 0.5;
+			}
+			set
+			{
+				yMin = value - height * 0.5;
+			}
+		}
+
+		public Point CenterPoint
+		{
+			get
+			{
+				return new Point(CenterX, CenterY);
+			}
+			set
+			{
+				CenterX = value.X;
+				CenterY = value.Y;
+			}
+		}
+
 
 		private static readonly DataRect emptyRect = CreateEmptyRect();
 
@@ -360,14 +434,14 @@ namespace Microsoft.Research.DynamicDataDisplay
 		private static DataRect CreateEmptyRect()
 		{
 			DataRect rect = new DataRect();
-			rect.xMin = Double.PositiveInfinity;
-			rect.yMin = Double.PositiveInfinity;
-			rect.width = Double.NegativeInfinity;
-			rect.height = Double.NegativeInfinity;
+			rect.xMin = double.PositiveInfinity;
+			rect.yMin = double.PositiveInfinity;
+			rect.width = double.NegativeInfinity;
+			rect.height = double.NegativeInfinity;
 			return rect;
 		}
 
-		private static readonly DataRect infinite = new DataRect(Double.MinValue / 2, Double.MinValue / 2, Double.MaxValue, Double.MaxValue);
+		private static readonly DataRect infinite = new DataRect(double.MinValue / 2, double.MinValue / 2, double.MaxValue, double.MaxValue);
 		public static DataRect Infinite
 		{
 			get { return infinite; }
@@ -407,9 +481,9 @@ namespace Microsoft.Research.DynamicDataDisplay
 				return 0;
 
 			return xMin.GetHashCode() ^
-					width.GetHashCode() ^
-					yMin.GetHashCode() ^
-					height.GetHashCode();
+				width.GetHashCode() ^
+				yMin.GetHashCode() ^
+				height.GetHashCode();
 		}
 
 		/// <summary>
@@ -423,7 +497,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			if (IsEmpty)
 				return "Empty";
 
-			return String.Format("({0};{1}) -> {2}*{3}", xMin, yMin, width, height);
+			return string.Format("({0};{1}) -> {2}*{3}", xMin, yMin, width, height);
 		}
 
 		/// <summary>
@@ -453,9 +527,9 @@ namespace Microsoft.Research.DynamicDataDisplay
 			double width = Math.Min(rect1.Width, rect2.Width);
 			double height = Math.Min(rect1.Height, rect2.Height);
 			return Math.Abs(rect1.XMin - rect2.XMin) < width * eps &&
-				   Math.Abs(rect1.XMax - rect2.XMax) < width * eps &&
-				   Math.Abs(rect1.YMin - rect2.YMin) < height * eps &&
-				   Math.Abs(rect1.YMax - rect2.YMax) < height * eps;
+				 Math.Abs(rect1.XMax - rect2.XMax) < width * eps &&
+				 Math.Abs(rect1.YMin - rect2.YMin) < height * eps &&
+				 Math.Abs(rect1.YMax - rect2.YMax) < height * eps;
 		}
 
 		#endregion
@@ -471,13 +545,13 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// </returns>
 		public bool Equals(DataRect other)
 		{
-			if (this.IsEmpty)
+			if (IsEmpty)
 				return other.IsEmpty;
 
 			return xMin == other.xMin &&
-					width == other.width &&
-					yMin == other.yMin &&
-					height == other.height;
+				width == other.width &&
+				yMin == other.yMin &&
+				height == other.height;
 		}
 
 		#endregion
@@ -492,13 +566,13 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// </returns>
 		public bool Contains(double x, double y)
 		{
-			if (this.IsEmpty)
+			if (IsEmpty)
 				return false;
 
 			return x >= xMin &&
-				x <= XMax &&
-				y >= yMin &&
-				y <= YMax;
+			  x <= XMax &&
+			  y >= yMin &&
+			  y <= YMax;
 		}
 
 		public bool Contains(Point point)
@@ -508,32 +582,32 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		public bool Contains(DataRect rect)
 		{
-			if (this.IsEmpty || rect.IsEmpty)
+			if (IsEmpty || rect.IsEmpty)
 				return false;
 
 			return
-				this.xMin <= rect.xMin &&
-				this.yMin <= rect.yMin &&
-				this.XMax >= rect.XMax &&
-				this.YMax >= rect.YMax;
+			  xMin <= rect.xMin &&
+			  yMin <= rect.yMin &&
+			  XMax >= rect.XMax &&
+			  YMax >= rect.YMax;
 		}
 
 		public void Offset(Vector offsetVector)
 		{
-			if (this.IsEmpty)
+			if (IsEmpty)
 				throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
 
-			this.xMin += offsetVector.X;
-			this.yMin += offsetVector.Y;
+			xMin += offsetVector.X;
+			yMin += offsetVector.Y;
 		}
 
 		public void Offset(double offsetX, double offsetY)
 		{
-			if (this.IsEmpty)
+			if (IsEmpty)
 				throw new InvalidOperationException(Strings.Exceptions.CannotModifyEmptyDataRect);
 
-			this.xMin += offsetX;
-			this.yMin += offsetY;
+			xMin += offsetX;
+			yMin += offsetY;
 		}
 
 		public static DataRect Offset(DataRect rect, double offsetX, double offsetY)
@@ -542,7 +616,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			return rect;
 		}
 
-		internal void UnionFinite(DataRect rect)
+		public void UnionFinite(DataRect rect)
 		{
 			if (!rect.IsEmpty)
 			{
@@ -571,34 +645,34 @@ namespace Microsoft.Research.DynamicDataDisplay
 				double minX = Math.Min(xMin, rect.xMin);
 				double minY = Math.Min(yMin, rect.yMin);
 
-				if (rect.width == Double.PositiveInfinity || this.width == Double.PositiveInfinity)
+				if (rect.width == double.PositiveInfinity || width == double.PositiveInfinity)
 				{
-					this.width = Double.PositiveInfinity;
+					width = double.PositiveInfinity;
 				}
 				else
 				{
 					double maxX = Math.Max(XMax, rect.XMax);
-					this.width = Math.Max(maxX - minX, 0.0);
+					width = Math.Max(maxX - minX, 0.0);
 				}
 
-				if (rect.height == Double.PositiveInfinity || this.height == Double.PositiveInfinity)
+				if (rect.height == double.PositiveInfinity || height == double.PositiveInfinity)
 				{
-					this.height = Double.PositiveInfinity;
+					height = double.PositiveInfinity;
 				}
 				else
 				{
 					double maxY = Math.Max(YMax, rect.YMax);
-					this.height = Math.Max(maxY - minY, 0.0);
+					height = Math.Max(maxY - minY, 0.0);
 				}
 
-				this.xMin = minX;
-				this.yMin = minY;
+				xMin = minX;
+				yMin = minY;
 			}
 		}
 
 		public void Union(Point point)
 		{
-			this.Union(new DataRect(point, point));
+			Union(new DataRect(point, point));
 		}
 
 		public static DataRect Union(DataRect rect, Point point)
@@ -615,13 +689,13 @@ namespace Microsoft.Research.DynamicDataDisplay
 			return rect1;
 		}
 
-		internal string ConvertToString(string format, IFormatProvider provider)
+		public string ConvertToString(string format, IFormatProvider provider)
 		{
 			if (IsEmpty)
 				return "Empty";
 
 			char listSeparator = TokenizerHelper.GetNumericListSeparator(provider);
-			return String.Format(provider, "{1:" + format + "}{0}{2:" + format + "}{0}{3:" + format + "}{0}{4:" + format + "}", listSeparator, xMin, yMin, width, height);
+			return string.Format(provider, "{1:" + format + "}{0}{2:" + format + "}{0}{3:" + format + "}{0}{4:" + format + "}", listSeparator, xMin, yMin, width, height);
 		}
 
 		/// <summary>
@@ -653,22 +727,22 @@ namespace Microsoft.Research.DynamicDataDisplay
 				if (values.Length == 4)
 				{
 					rect = new DataRect(
-						Convert.ToDouble(values[0], cultureInfo),
-						Convert.ToDouble(values[1], cultureInfo),
-						Convert.ToDouble(values[2], cultureInfo),
-						Convert.ToDouble(values[3], cultureInfo)
-						);
+					  Convert.ToDouble(values[0], cultureInfo),
+					  Convert.ToDouble(values[1], cultureInfo),
+					  Convert.ToDouble(values[2], cultureInfo),
+					  Convert.ToDouble(values[3], cultureInfo)
+					  );
 				}
 				else
 				{
 					// format XMin, YMin - XMax, YMax
-					values = source.Split(new Char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+					values = source.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 					rect = DataRect.Create(
-						Convert.ToDouble(values[0], cultureInfo),
-						Convert.ToDouble(values[1], cultureInfo),
-						Convert.ToDouble(values[2], cultureInfo),
-						Convert.ToDouble(values[3], cultureInfo)
-						);
+					  Convert.ToDouble(values[0], cultureInfo),
+					  Convert.ToDouble(values[1], cultureInfo),
+					  Convert.ToDouble(values[2], cultureInfo),
+					  Convert.ToDouble(values[3], cultureInfo)
+					  );
 				}
 			}
 

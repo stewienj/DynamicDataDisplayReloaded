@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using Microsoft.Research.DynamicDataDisplay.Common.DataSearch;
-using System.Windows;
-using System.Collections;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.Collections.Generic;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.GenericLocational
 {

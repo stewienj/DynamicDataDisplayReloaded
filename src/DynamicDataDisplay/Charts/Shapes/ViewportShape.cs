@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -31,8 +28,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 				return;
 
 			UpdateUIRepresentationCore();
+
 		}
 		protected virtual void UpdateUIRepresentationCore() { }
+
+		public Geometry ShapeGeometry => DefiningGeometry;
 
 		#region IPlotterElement Members
 

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -16,7 +14,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 	/// </summary>
 	public sealed class IsolineGraph : IsolineRenderer
 	{
-        private static Brush labelBackground = new SolidColorBrush(Color.FromArgb(130, 255, 255, 255));
+		private static Brush labelBackground = new SolidColorBrush(Color.FromArgb(130, 255, 255, 255));
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="IsolineGraph"/> class.
@@ -52,7 +50,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			}
 		}
 
-        private List<FrameworkElement> textBlocks = new List<FrameworkElement>();
+		private List<FrameworkElement> textBlocks = new List<FrameworkElement>();
 		private List<Path> linePaths = new List<Path>();
 		protected override void CreateUIRepresentation()
 		{
@@ -114,42 +112,42 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			if (135 < angle && angle < 225)
 				angle -= 180;
 
-            string tooltip = textLabel.Value.ToString("F"); //String.Format("{0} at ({1}, {2})", textLabel.Text, textLabel.Position.X, textLabel.Position.Y);
-            Grid grid = new Grid
-            {
-                RenderTransform = new RotateTransform(angle),
-                Tag = textLabel,
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                ToolTip = tooltip
-            };
+			string tooltip = textLabel.Value.ToString("F"); //String.Format("{0} at ({1}, {2})", textLabel.Text, textLabel.Position.X, textLabel.Position.Y);
+			Grid grid = new Grid
+			{
+				RenderTransform = new RotateTransform(angle),
+				Tag = textLabel,
+				RenderTransformOrigin = new Point(0.5, 0.5),
+				ToolTip = tooltip
+			};
 
-            TextBlock res = new TextBlock
-            {
-                Text = textLabel.Value.ToString("F"),
-                Margin = new Thickness(3,1,3,1)
-            };
+			TextBlock res = new TextBlock
+			{
+				Text = textLabel.Value.ToString("F"),
+				Margin = new Thickness(3, 1, 3, 1)
+			};
 
-            //res.Measure(SizeHelper.CreateInfiniteSize());
+			//res.Measure(SizeHelper.CreateInfiniteSize());
 
-            Rectangle rect = new Rectangle
-            {
-                Stroke = Brushes.Gray,
-                Fill = labelBackground,
-                RadiusX = 8,
-                RadiusY = 8
-            };
+			Rectangle rect = new Rectangle
+			{
+				Stroke = Brushes.Gray,
+				Fill = labelBackground,
+				RadiusX = 8,
+				RadiusY = 8
+			};
 
-            grid.Children.Add(rect);
-            grid.Children.Add(res);
+			grid.Children.Add(rect);
+			grid.Children.Add(res);
 
 			grid.Measure(SizeHelper.CreateInfiniteSize());
 
-            Size textSize = grid.DesiredSize;
+			Size textSize = grid.DesiredSize;
 			Point position = new Point(screenPos.X - textSize.Width / 2, screenPos.Y - textSize.Height / 2);
 
-            Canvas.SetLeft(grid, position.X);
-            Canvas.SetTop(grid, position.Y);
-            return grid;
+			Canvas.SetLeft(grid, position.X);
+			Canvas.SetTop(grid, position.Y);
+			return grid;
 		}
 
 		private Geometry CreateGeometry(LevelLine lineData)

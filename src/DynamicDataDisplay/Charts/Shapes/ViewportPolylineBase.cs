@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Media;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 {
@@ -36,13 +34,37 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 
 		protected static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			ViewportPolylineBase polyline = (ViewportPolylineBase)d;
-
-			PointCollection currentPoints = (PointCollection)e.NewValue;
-
-			polyline.UpdateUIRepresentation();
+			if (d is ViewportPolylineBase polyline)
+			{
+				polyline.UpdateUIRepresentation();
+			}
 		}
 
+
+		public IEnumerable<Point> PointsSource
+		{
+			get { return (IEnumerable<Point>)GetValue(PointsSourceProperty); }
+			set { SetValue(PointsSourceProperty, value); }
+		}
+
+		/// <summary>
+		/// Identifies the Points dependency property.
+		/// </summary>
+		public static readonly DependencyProperty PointsSourceProperty = DependencyProperty.Register(
+		  "PointsSource",
+		  typeof(IEnumerable<Point>),
+		  typeof(ViewportPolylineBase),
+		  new FrameworkPropertyMetadata(Enumerable.Empty<Point>(), OnPointsSourcePropertyChanged));
+
+		protected static void OnPointsSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			if (d is ViewportPolylineBase polyline)
+			{
+				var points = new PointCollection(e.NewValue as IEnumerable<Point> ?? Enumerable.Empty<Point>());
+				points.Freeze();
+				polyline.Points = points;
+			}
+		}
 		/// <summary>
 		/// Gets or sets the fill rule of polygon or polyline.
 		/// </summary>

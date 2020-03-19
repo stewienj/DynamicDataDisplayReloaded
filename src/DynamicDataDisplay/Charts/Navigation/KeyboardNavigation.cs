@@ -1,14 +1,17 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
 using Microsoft.Win32;
 using System;
-using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
 using System.Collections.Generic;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Microsoft.Research.DynamicDataDisplay.Navigation
 {
+	// See d3\Charts\Navigation\ChartCommands.cs for a quick description of
+	// how to create new commands.
+
 	/// <summary>Provides keyboard navigation around viewport of ChartPlotter.</summary>
 	public class KeyboardNavigation : IPlotterElement
 	{
@@ -78,6 +81,25 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 				FitToViewCanExecute);
 			AddBinding(fitToViewCommandBinding);
 
+			var editScreenshotParameters = new CommandBinding(
+			  ChartCommands.EditScreenshotParameters,
+			  EditScreenshotParameters,
+			  EditScreenshotParametersCanExecute);
+			AddBinding(editScreenshotParameters);
+
+			var lockZoomXCommandBinding = new CommandBinding(
+			  ChartCommands.LockZoomX,
+			  LockZoomXToggle,
+			  LockZoomXToggleCanExecute);
+			AddBinding(lockZoomXCommandBinding);
+
+			var lockZoomYCommandBinding = new CommandBinding(
+			  ChartCommands.LockZoomY,
+			  LockZoomYToggle,
+			  LockZoomYToggleCanExecute);
+			AddBinding(lockZoomYCommandBinding);
+
+
 			var ScrollLeftCommandBinding = new CommandBinding(
 					ChartCommands.ScrollLeft,
 					ScrollLeftExecute,
@@ -108,10 +130,16 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 				SaveScreenshotCanExecute);
 			AddBinding(SaveScreenshotCommandBinding);
 
+			var HighResScreenshotCommandBinding = new CommandBinding(
+				ChartCommands.HighResScreenshot,
+				HighResScreenshotExecute,
+				HighResScreenshotCanExecute);
+			AddBinding(HighResScreenshotCommandBinding);
+
 			var CopyScreenshotCommandBinding = new CommandBinding(
-				ChartCommands.CopyScreenshot,
-				CopyScreenshotExecute,
-				CopyScreenshotCanExecute);
+					  ChartCommands.CopyScreenshot,
+					  CopyScreenshotExecute,
+					  CopyScreenshotCanExecute);
 			AddBinding(CopyScreenshotCommandBinding);
 
 			var ShowHelpCommandBinding = new CommandBinding(
@@ -220,7 +248,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 
 		#endregion
 
-		#region Fit to view
+		#region Fit To View
 
 		private void FitToViewExecute(object target, ExecutedRoutedEventArgs e)
 		{
@@ -230,6 +258,62 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 		}
 
 		private void FitToViewCanExecute(object target, CanExecuteRoutedEventArgs e)
+		{
+			// todo add a check if viewport is already fitted to view.
+			e.CanExecute = true;
+		}
+
+		#endregion
+
+		#region Screenshot Parameters
+
+		private void EditScreenshotParameters(object target, ExecutedRoutedEventArgs e)
+		{
+			var dialog = new ScreenshotParametersDialog();
+			dialog.ScreenshotParameters = (Viewport as Viewport2D).ScreenshotParameters;
+			dialog.ShowDialog();
+			e.Handled = true;
+		}
+
+		private void EditScreenshotParametersCanExecute(object target, CanExecuteRoutedEventArgs e)
+		{
+			// todo add a check if viewport is already fitted to view.
+			e.CanExecute = true;
+		}
+
+		#endregion
+
+		#region Lock Zoom Axis
+
+		private void LockZoomXToggle(object target, ExecutedRoutedEventArgs e)
+		{
+			// todo сделать нормально.
+			bool? lockX = e.Parameter as bool?;
+			if (lockX.HasValue)
+			{
+				(Viewport as Viewport2D).LockZoomX = lockX.Value;
+				e.Handled = true;
+			}
+		}
+
+		private void LockZoomXToggleCanExecute(object target, CanExecuteRoutedEventArgs e)
+		{
+			// todo add a check if viewport is already fitted to view.
+			e.CanExecute = true;
+		}
+
+		private void LockZoomYToggle(object target, ExecutedRoutedEventArgs e)
+		{
+			// todo сделать нормально.
+			bool? lockY = e.Parameter as bool?;
+			if (lockY.HasValue)
+			{
+				(Viewport as Viewport2D).LockZoomY = lockY.Value;
+				e.Handled = true;
+			}
+		}
+
+		private void LockZoomYToggleCanExecute(object target, CanExecuteRoutedEventArgs e)
 		{
 			// todo add a check if viewport is already fitted to view.
 			e.CanExecute = true;
@@ -318,7 +402,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 
 		#region SaveScreenshot
 
-		private void SaveScreenshotExecute(object target, ExecutedRoutedEventArgs e)
+		private async void SaveScreenshotExecute(object target, ExecutedRoutedEventArgs e)
 		{
 			SaveFileDialog dlg = new SaveFileDialog();
 			dlg.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp|GIF (*.gif)|*.gif";
@@ -327,12 +411,35 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 			if (dlg.ShowDialog().GetValueOrDefault(false))
 			{
 				string filePath = dlg.FileName;
-				plotter2D.SaveScreenshot(filePath);
+				await plotter2D.SaveScreenshot(filePath);
 				e.Handled = true;
 			}
 		}
 
 		private void SaveScreenshotCanExecute(object target, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
+
+		#endregion
+
+		#region HighResScreenshot
+
+		private async void HighResScreenshotExecute(object target, ExecutedRoutedEventArgs e)
+		{
+			SaveFileDialog dlg = new SaveFileDialog();
+			dlg.Filter = "PNG (*.png)|*.png|JPEG (*.jpg)|*.jpg|BMP (*.bmp)|*.bmp|GIF (*.gif)|*.gif";
+			dlg.FilterIndex = 1;
+			dlg.AddExtension = true;
+			if (dlg.ShowDialog().GetValueOrDefault(false))
+			{
+				var bmp = await plotter2D.ExportHighResScreenshot(10000, 4000, 96);
+				ScreenshotHelper.SaveBitmapToFile(bmp, dlg.FileName);
+				e.Handled = true;
+			}
+		}
+
+		private void HighResScreenshotCanExecute(object target, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = true;
 		}

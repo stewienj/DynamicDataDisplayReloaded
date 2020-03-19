@@ -76,7 +76,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DataSources
 			return new EnumerablePointEnumerator<T>(this);
 		}
 
-		internal void FillPoint(T elem, ref Point point)
+		public void FillPoint(T elem, ref Point point)
 		{
 			if (xyMapping != null)
 			{
@@ -95,7 +95,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DataSources
 			}
 		}
 
-		internal void ApplyMappings(DependencyObject target, T elem)
+		public void ApplyMappings(DependencyObject target, T elem)
 		{
 			if (target != null)
 			{

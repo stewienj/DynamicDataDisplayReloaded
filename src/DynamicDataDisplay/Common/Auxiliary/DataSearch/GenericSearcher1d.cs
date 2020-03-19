@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
 {
-	internal sealed class GenericSearcher1d<TCollection, TMember> where TMember : IComparable<TMember>
+	public sealed class GenericSearcher1d<TCollection, TMember> where TMember : IComparable<TMember>
 	{
 		private readonly Func<TCollection, TMember> selector;
 		private readonly IList<TCollection> collection;

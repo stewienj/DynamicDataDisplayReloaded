@@ -2,10 +2,6 @@
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Diagnostics;
 
 
 namespace Microsoft.Research.DynamicDataDisplay.Navigation
@@ -136,6 +132,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 		private const double wheelZoomSpeed = 1.2;
 		private bool shouldKeepRatioWhileZooming;
 
+		private Point lastMousePoint;
+		public Point LastMousePoint => lastMousePoint;
+
 		private bool isZooming = false;
 		protected bool IsZooming
 		{
@@ -242,6 +241,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 
 		private void OnMouseMove(object sender, MouseEventArgs e)
 		{
+			lastMousePoint = e.GetPosition(this);
+
 			if (!isPanning && !isZooming) return;
 
 			// dragging
@@ -252,7 +253,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 					CaptureMouse();
 				}
 
-				Point endPoint = e.GetPosition(this).ScreenToViewport(Viewport.Transform);
+				Point endPoint = lastMousePoint.ScreenToViewport(Viewport.Transform);
 
 				Point loc = Viewport.Visible.Location;
 				Vector shift = panningStartPointInViewport - endPoint;
@@ -274,7 +275,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 			// zooming
 			else if (isZooming && e.LeftButton == MouseButtonState.Pressed)
 			{
-				Point zoomEndPoint = e.GetPosition(this);
+				Point zoomEndPoint = lastMousePoint;
 				UpdateZoomRect(zoomEndPoint);
 
 				e.Handled = true;
@@ -400,7 +401,24 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 			{
 				zoomSpeed = 1 / zoomSpeed;
 			}
-			Viewport.Visible = Viewport.Visible.Zoom(zoomTo, zoomSpeed);
+
+			if (Viewport.LockZoomX && Viewport.LockZoomY)
+			{
+				return;
+			}
+			else if (Viewport.LockZoomX)
+			{
+				Viewport.Visible = Viewport.Visible.ZoomY(zoomTo, zoomSpeed);
+			}
+			else if (Viewport.LockZoomY)
+			{
+				Viewport.Visible = Viewport.Visible.ZoomX(zoomTo, zoomSpeed);
+			}
+			else
+			{
+				Viewport.Visible = Viewport.Visible.Zoom(zoomTo, zoomSpeed);
+			}
+
 		}
 	}
 }

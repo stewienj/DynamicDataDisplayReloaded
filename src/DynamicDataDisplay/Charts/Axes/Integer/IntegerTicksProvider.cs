@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 {
@@ -35,7 +34,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 			}
 		}
 
-		private int maxStep = Int32.MaxValue;
+		private int maxStep = int.MaxValue;
 		/// <summary>
 		/// Gets or sets the maximal step between ticks.
 		/// </summary>

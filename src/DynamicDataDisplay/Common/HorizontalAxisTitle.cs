@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -66,7 +65,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			set
 			{
 				if (!value.IsBottomOrTop())
-					throw new ArgumentException(String.Format("HorizontalAxisTitle only supports Top and Bottom values of AxisPlacement, you passed '{0}'", value), "Placement");
+					throw new ArgumentException(string.Format("HorizontalAxisTitle only supports Top and Bottom values of AxisPlacement, you passed '{0}'", value), "Placement");
 
 				if (placement != value)
 				{

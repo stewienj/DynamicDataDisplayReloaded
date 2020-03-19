@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
 	public static class PlotterEvents
 	{
-		internal static void Notify(FrameworkElement target, PlotterChangedEventArgs args)
+		public static void Notify(FrameworkElement target, PlotterChangedEventArgs args)
 		{
 			plotterAttachedEvent.Notify(target, args);
 			plotterChangedEvent.Notify(target, args);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -14,11 +13,11 @@ namespace Microsoft.Research.DynamicDataDisplay
 		{
 			DataRect bounds = DataRect.Empty;
 
-			double xMin = Double.PositiveInfinity;
-			double xMax = Double.NegativeInfinity;
+			double xMin = double.PositiveInfinity;
+			double xMax = double.NegativeInfinity;
 
-			double yMin = Double.PositiveInfinity;
-			double yMax = Double.NegativeInfinity;
+			double yMin = double.PositiveInfinity;
+			double yMax = double.NegativeInfinity;
 
 			foreach (Point p in viewportPoints)
 			{
@@ -30,7 +29,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			}
 
 			// were some points in collection
-			if (!Double.IsInfinity(xMin))
+			if (!double.IsInfinity(xMin))
 			{
 				bounds = DataRect.Create(xMin, yMin, xMax, yMax);
 			}

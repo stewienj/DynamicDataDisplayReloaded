@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Reflection;
 using System.Windows.Media.Imaging;
-using System.Reflection;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+using System;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {

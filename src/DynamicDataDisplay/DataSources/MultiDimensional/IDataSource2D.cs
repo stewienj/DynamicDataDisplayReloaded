@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace Microsoft.Research.DynamicDataDisplay.DataSources
 {

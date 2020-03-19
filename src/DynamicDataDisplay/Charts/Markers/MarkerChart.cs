@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
-using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 {
@@ -269,7 +265,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 			base.OnPlotterAttached(plotter);
 
 			this.plotter = (Plotter2D)plotter;
-			((IPlotterElement)itemsPanel).OnPlotterAttached(plotter);
+			itemsPanel.SetValue(Plotter.PlotterProperty, plotter);
 		}
 
 		protected override void OnPlotterDetaching(Plotter plotter)

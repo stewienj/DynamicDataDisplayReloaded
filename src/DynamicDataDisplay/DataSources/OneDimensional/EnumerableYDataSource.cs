@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Microsoft.Research.DynamicDataDisplay.DataSources
 {
-	internal sealed class EnumerableYDataSource<T> : EnumerableDataSource<T>
+	public sealed class EnumerableYDataSource<T> : EnumerableDataSource<T>
 	{
 		public EnumerableYDataSource(IEnumerable<T> data) : base(data) { }
 	}

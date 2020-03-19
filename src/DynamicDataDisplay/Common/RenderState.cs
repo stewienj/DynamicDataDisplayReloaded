@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -45,7 +44,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			get { return visible; }
 		}
 
-		internal RenderState(DataRect renderVisible, DataRect visible, Rect output, RenderTo renderingType)
+		public RenderState(DataRect renderVisible, DataRect visible, Rect output, RenderTo renderingType)
 		{
 			this.renderVisible = renderVisible;
 			this.visible = visible;

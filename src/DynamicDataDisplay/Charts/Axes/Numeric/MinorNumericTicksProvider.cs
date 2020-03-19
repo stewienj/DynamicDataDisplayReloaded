@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -10,7 +8,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 	{
 		private readonly ITicksProvider<double> parent;
 		private Range<double>[] ranges;
-		internal void SetRanges(IEnumerable<Range<double>> ranges)
+		public void SetRanges(IEnumerable<Range<double>> ranges)
 		{
 			this.ranges = ranges.ToArray();
 		}
@@ -29,7 +27,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			}
 		}
 
-		internal MinorNumericTicksProvider(ITicksProvider<double> parent)
+		public MinorNumericTicksProvider(ITicksProvider<double> parent)
 		{
 			this.parent = parent;
 			Coeffs = new double[] { 0.3, 0.3, 0.3, 0.3, 0.6, 0.3, 0.3, 0.3, 0.3 };

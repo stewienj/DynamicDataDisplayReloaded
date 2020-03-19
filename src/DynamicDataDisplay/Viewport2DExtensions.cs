@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

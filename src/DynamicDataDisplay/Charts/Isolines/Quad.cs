@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
@@ -7,7 +6,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 	/// <summary>
 	/// Represents quadrangle; its points are arranged by round in one direction.
 	/// </summary>
-	internal sealed class Quad
+	public sealed class Quad
 	{
 		private readonly Point v00;
 		public Point V00

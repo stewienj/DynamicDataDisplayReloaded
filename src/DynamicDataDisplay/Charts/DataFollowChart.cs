@@ -1,16 +1,12 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.DataSearch;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Shapes;
-using System.Windows.Media;
-using System.Windows.Input;
-using Microsoft.Research.DynamicDataDisplay.Common.DataSearch;
-using System.Diagnostics;
-using System.Windows.Markup;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -174,7 +170,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 			if (source == null || (source != null && source.VisiblePoints == null))
 			{
-				SetValue(MarkerPositionPropertyKey, new Point(Double.NaN, Double.NaN));
+				SetValue(MarkerPositionPropertyKey, new Point(double.NaN, double.NaN));
 				marker.Visibility = Visibility.Hidden;
 				return;
 			}
@@ -209,7 +205,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 				}
 				else
 				{
-					SetValue(MarkerPositionPropertyKey, new Point(Double.NaN, Double.NaN));
+					SetValue(MarkerPositionPropertyKey, new Point(double.NaN, double.NaN));
 					marker.Visibility = Visibility.Hidden;
 				}
 			}

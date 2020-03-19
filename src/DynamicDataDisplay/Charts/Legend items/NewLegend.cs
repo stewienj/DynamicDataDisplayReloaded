@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Shapes;
-using System.Windows.Media.Effects;
-using System.Collections.Specialized;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Collections;
-using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Charts.Legend_items;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Media.Effects;
+using System.Windows.Shapes;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {

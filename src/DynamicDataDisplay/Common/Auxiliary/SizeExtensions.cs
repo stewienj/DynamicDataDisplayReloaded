@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 {
-	internal static class SizeExtensions
+	public static class SizeExtensions
 	{
 		private const double sizeRatio = 1e-7;
 		public static bool EqualsApproximately(this Size size1, Size size2)

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
 using System.ComponentModel;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 {
@@ -15,23 +11,23 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 	/// <typeparam name="T">Type of ticks</typeparam>
 	public sealed class LabelTickInfo<T>
 	{
-		internal LabelTickInfo() { }
+		public LabelTickInfo() { }
 
 		/// <summary>
 		/// Gets or sets the tick.
 		/// </summary>
 		/// <value>The tick.</value>
-		public T Tick { get; internal set; }
+		public T Tick { get; set; }
 		/// <summary>
 		/// Gets or sets additional info about ticks range.
 		/// </summary>
 		/// <value>The info.</value>
-		public object Info { get; internal set; }
+		public object Info { get; set; }
 		/// <summary>
 		/// Gets or sets the index of tick in ticks array.
 		/// </summary>
 		/// <value>The index.</value>
-		public int Index { get; internal set; }
+		public int Index { get; set; }
 	}
 
 	/// <summary>
@@ -164,7 +160,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 			}
 			if (LabelStringFormat != null)
 			{
-				text = String.Format(LabelStringFormat, text);
+				text = string.Format(LabelStringFormat, text);
 			}
 
 			return text;
@@ -194,7 +190,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 		}
 
 		private readonly ResourcePool<UIElement> pool = new ResourcePool<UIElement>();
-		internal void ReleaseLabel(UIElement label)
+		public void ReleaseLabel(UIElement label)
 		{
 			if (ReleaseCore(label))
 			{

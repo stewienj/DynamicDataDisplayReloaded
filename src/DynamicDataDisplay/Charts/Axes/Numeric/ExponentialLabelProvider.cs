@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+using System;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Globalization;
-using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -55,7 +52,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 					string exponenta = substrs[1];
 					exponenta = exponenta.TrimStart('+');
 					Span span = new Span();
-					span.Inlines.Add(String.Format(CultureInfo.CurrentCulture, "{0}·10", mantissa));
+					span.Inlines.Add(string.Format(CultureInfo.CurrentCulture, "{0}·10", mantissa));
 					Span exponentaSpan = new Span(new Run(exponenta));
 					exponentaSpan.BaselineAlignment = BaselineAlignment.Superscript;
 					exponentaSpan.FontSize = 8;
@@ -79,6 +76,43 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 				ApplyCustomView(tickInfo, label);
 			}
+
+			// need to make the number of digits after the decimal point all the same
+			// so fill in between the "." and the "E" with zeros to make all the same
+			var labelsWithDecimal = res.Cast<TextBlock>().Select(tb => tb.Text).Where(t => t.Contains(".")).ToArray();
+			if (labelsWithDecimal.Length > 0)
+			{
+				int decimalPlaces = 0;
+				foreach (var labelWithDecimal in labelsWithDecimal)
+				{
+					if (labelsWithDecimal.Contains("E"))
+					{
+						decimalPlaces = Math.Max(decimalPlaces, labelWithDecimal.IndexOf("E") - labelWithDecimal.IndexOf(".") - 1);
+					}
+					else
+					{
+						decimalPlaces = Math.Max(decimalPlaces, labelWithDecimal.Length - labelWithDecimal.IndexOf(".") - 1);
+					}
+				}
+
+				foreach (TextBlock tb in res)
+				{
+					string text = tb.Text;
+					int insertionPoint = text.Contains("E") ? text.IndexOf("E") : text.Length;
+					if (!text.Contains("."))
+					{
+						text = text.Insert(insertionPoint, ".");
+						insertionPoint++;
+					}
+					int currentPlaces = insertionPoint - text.IndexOf(".") - 1;
+					for (int i = currentPlaces; i < decimalPlaces; ++i)
+					{
+						text = text.Insert(insertionPoint, "0");
+					}
+					tb.Text = text;
+				}
+			}
+
 
 			return res;
 		}

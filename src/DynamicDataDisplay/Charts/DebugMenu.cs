@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -34,7 +31,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 		public MenuItem TryFindMenuItem(string itemName)
 		{
-			return menu.Items.OfType<MenuItem>().Where(item => item.Header == itemName).FirstOrDefault();
+			return menu.Items.OfType<MenuItem>().Where(item => (item.Header as string) == itemName).FirstOrDefault();
 		}
 
 		#region IPlotterElement Members

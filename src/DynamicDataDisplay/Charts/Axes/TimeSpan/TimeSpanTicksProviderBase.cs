@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal abstract class TimeSpanTicksProviderBase : TimePeriodTicksProvider<TimeSpan>
+	public abstract class TimeSpanTicksProviderBase : TimePeriodTicksProvider<TimeSpan>
 	{
 		protected sealed override bool Continue(TimeSpan current, TimeSpan end)
 		{
@@ -143,7 +140,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class DayTimeSpanProvider : TimeSpanTicksProviderBase
+	public sealed class DayTimeSpanProvider : TimeSpanTicksProviderBase
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -164,7 +161,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		{
 			double days = start.TotalDays;
 			double newDays = ((int)(days / step)) * step;
-			if (newDays > days) { 
+			if (newDays > days)
+			{
 				newDays -= step;
 			}
 			return TimeSpan.FromDays(newDays);
@@ -177,7 +175,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class HourTimeSpanProvider : TimeSpanTicksProviderBase
+	public sealed class HourTimeSpanProvider : TimeSpanTicksProviderBase
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -212,7 +210,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class MinuteTimeSpanProvider : TimeSpanTicksProviderBase
+	public sealed class MinuteTimeSpanProvider : TimeSpanTicksProviderBase
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -247,7 +245,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class SecondTimeSpanProvider : TimeSpanTicksProviderBase
+	public sealed class SecondTimeSpanProvider : TimeSpanTicksProviderBase
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -268,7 +266,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		{
 			double seconds = start.TotalSeconds;
 			double newSeconds = ((int)(seconds / step)) * step;
-			if (newSeconds > seconds) {
+			if (newSeconds > seconds)
+			{
 				newSeconds -= step;
 			}
 
@@ -282,7 +281,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal sealed class MillisecondTimeSpanProvider : TimeSpanTicksProviderBase
+	public sealed class MillisecondTimeSpanProvider : TimeSpanTicksProviderBase
 	{
 		protected override DifferenceIn GetDifferenceCore()
 		{
@@ -303,7 +302,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		{
 			double millis = start.TotalMilliseconds;
 			double newMillis = ((int)(millis / step)) * step;
-			if (newMillis > millis) {
+			if (newMillis > millis)
+			{
 				newMillis -= step;
 			}
 

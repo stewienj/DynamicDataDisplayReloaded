@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+using System;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal sealed class LegendTopButtonToIsEnabledConverter : GenericValueConverter<double>
+	public sealed class LegendTopButtonToIsEnabledConverter : GenericValueConverter<double>
 	{
 		public override object ConvertCore(double value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{

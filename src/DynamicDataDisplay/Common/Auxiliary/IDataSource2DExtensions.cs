@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
-using System.Windows;
+using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 {
@@ -46,8 +43,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 			Verify.IsTrueWithMessage(width > 0, Strings.Exceptions.ArrayWidthShouldBePositive);
 			Verify.IsTrueWithMessage(height > 0, Strings.Exceptions.ArrayHeightShouldBePositive);
 
-			double min = Double.MaxValue;
-			double max = Double.MinValue;
+			double min = double.MaxValue;
+			double max = double.MinValue;
 			for (int x = 0; x < width; x++)
 			{
 				for (int y = 0; y < height; y++)
@@ -82,8 +79,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 			if (dataSource == null)
 				throw new ArgumentNullException("dataSource");
 
-			double min = Double.PositiveInfinity;
-			double max = Double.NegativeInfinity;
+			double min = double.PositiveInfinity;
+			double max = double.NegativeInfinity;
 			int width = dataSource.Width;
 			int height = dataSource.Height;
 			var grid = dataSource.Grid;

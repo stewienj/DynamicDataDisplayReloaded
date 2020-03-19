@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Media;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

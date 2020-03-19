@@ -1,8 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Microsoft.Research.DynamicDataDisplay.PointMarkers;
-using Microsoft.Research.DynamicDataDisplay.Common;
+using System.Windows;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

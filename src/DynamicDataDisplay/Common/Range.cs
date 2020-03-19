@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Diagnostics;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
 using System.ComponentModel;
-using Microsoft.Research.DynamicDataDisplay.Common;
+using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -59,27 +55,27 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			get { return max; }
 		}
 
-        static  float floatEps = (float)1e-10;
-        static  double doubleEps = 1e-10;
+		//static  float floatEps = (float)1e-10;
+		//static  double doubleEps = 1e-10;
 
 
 		public static bool operator ==(Range<T> first, Range<T> second)
 		{
 			return (first.min.Equals(second.min) && first.max.Equals(second.max) ||
-                first.IsEmpty && second.IsEmpty);
+				first.IsEmpty && second.IsEmpty);
 		}
 
 		public static bool operator !=(Range<T> first, Range<T> second)
 		{
-            return !(first == second);
+			return !(first == second);
 		}
 
-        public static bool EqualEps(Range<double> first, Range<double> second,double eps)
-        {
-            double delta = Math.Min(first.GetLength(), second.GetLength());
-            return Math.Abs(first.Min - second.Min) < eps * delta &&
-                Math.Abs(first.Max - second.Max) < eps * delta;
-        }
+		public static bool EqualEps(Range<double> first, Range<double> second, double eps)
+		{
+			double delta = Math.Min(first.GetLength(), second.GetLength());
+			return Math.Abs(first.Min - second.Min) < eps * delta &&
+				Math.Abs(first.Max - second.Max) < eps * delta;
+		}
 
 		/// <summary>
 		/// Indicates whether this instance and a specified object are equal.
@@ -118,7 +114,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		/// </returns>
 		public override string ToString()
 		{
-			return String.Format("{0} — {1}", min, max);
+			return string.Format("{0} — {1}", min, max);
 		}
 
 		/// <summary>
@@ -127,12 +123,13 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		/// <value><c>true</c> if this instance is empty; otherwise, <c>false</c>.</value>
 		public bool IsEmpty
 		{
-			get {
-                if (typeof(T) is IComparable)
-                    return ((IComparable)min).CompareTo(max) >= 0;
-                else
-                    return min.Equals(max);
-            }
+			get
+			{
+				if (typeof(T) is IComparable)
+					return ((IComparable)min).CompareTo(max) >= 0;
+				else
+					return min.Equals(max);
+			}
 		}
 
 		/// <summary>

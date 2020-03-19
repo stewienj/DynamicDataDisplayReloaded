@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 using System.ComponentModel;
 using System.Globalization;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using System.Linq;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
@@ -30,22 +28,22 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 			string source = value as string;
 			if (source != null)
 			{
-				var parts = source.Split('-');
+				var parts = source.Split("-—".ToArray());
 				var minStr = parts[0];
 				var maxStr = parts[1];
 
 				int minInt32 = 0;
 				double minDouble = 0;
 				DateTime minDateTime = DateTime.Now;
-				if (Int32.TryParse(minStr, NumberStyles.Integer, culture, out minInt32))
+				if (int.TryParse(minStr, NumberStyles.Integer, culture, out minInt32))
 				{
-					int maxInt32 = Int32.Parse(maxStr, NumberStyles.Integer, culture);
+					int maxInt32 = int.Parse(maxStr, NumberStyles.Integer, culture);
 
 					return new Range<int>(minInt32, maxInt32);
 				}
-				else if (Double.TryParse(minStr, NumberStyles.Float, culture, out minDouble))
+				else if (double.TryParse(minStr, NumberStyles.Float, culture, out minDouble))
 				{
-					double maxDouble = Double.Parse(maxStr, NumberStyles.Float, culture);
+					double maxDouble = double.Parse(maxStr, NumberStyles.Float, culture);
 					return new Range<double>(minDouble, maxDouble);
 				}
 				else if (DateTime.TryParse(minStr, culture, DateTimeStyles.None, out minDateTime))

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal sealed class MinorTimeSpanTicksProvider : MinorTimeProviderBase<TimeSpan>
+	public sealed class MinorTimeSpanTicksProvider : MinorTimeProviderBase<TimeSpan>
 	{
 		public MinorTimeSpanTicksProvider(ITicksProvider<TimeSpan> owner) : base(owner) { }
 

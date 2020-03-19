@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.DataSources
 {

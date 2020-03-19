@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
@@ -11,7 +7,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 	/// <summary>
 	/// Isoline's grid cell
 	/// </summary>
-	internal interface ICell
+	public interface ICell
 	{
 		Vector LeftTop { get; }
 		Vector LeftBottom { get; }
@@ -19,7 +15,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 		Vector RightBottom { get; }
 	}
 
-	internal sealed class IrregularCell : ICell
+	public sealed class IrregularCell : ICell
 	{
 		public IrregularCell(Vector leftBottom, Vector rightBottom, Vector rightTop, Vector leftTop)
 		{
@@ -107,7 +103,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 		}
 	}
 
-	internal enum SubCell
+	public enum SubCell
 	{
 		LeftBottom = 0,
 		LeftTop = 1,
@@ -115,16 +111,16 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 		RightTop = 3
 	}
 
-	internal class ValuesInCell
+	public class ValuesInCell
 	{
-        double min = Double.MaxValue, max = Double.MinValue;
+		double min = double.MaxValue, max = double.MinValue;
 
-        /// <summary>Initializes values in four corners of cell</summary>
-        /// <param name="leftBottom"></param>
-        /// <param name="rightBottom"></param>
-        /// <param name="rightTop"></param>
-        /// <param name="leftTop"></param>
-        /// <remarks>Some or all values can be NaN. That means that value is not specified (misssing)</remarks>
+		/// <summary>Initializes values in four corners of cell</summary>
+		/// <param name="leftBottom"></param>
+		/// <param name="rightBottom"></param>
+		/// <param name="rightTop"></param>
+		/// <param name="leftTop"></param>
+		/// <remarks>Some or all values can be NaN. That means that value is not specified (misssing)</remarks>
 		public ValuesInCell(double leftBottom, double rightBottom, double rightTop, double leftTop)
 		{
 			this.leftTop = leftTop;
@@ -132,143 +128,143 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 			this.rightTop = rightTop;
 			this.rightBottom = rightBottom;
 
-            // Find max and min values (with respect to possible NaN values)
-            if (!Double.IsNaN(leftTop))
-            {
-                if (min > leftTop)
-                    min = leftTop;
-                if (max < leftTop)
-                    max = leftTop;
-            }
+			// Find max and min values (with respect to possible NaN values)
+			if (!double.IsNaN(leftTop))
+			{
+				if (min > leftTop)
+					min = leftTop;
+				if (max < leftTop)
+					max = leftTop;
+			}
 
-            if (!Double.IsNaN(leftBottom))
-            {
-                if (min > leftBottom)
-                    min = leftBottom;
-                if (max < leftBottom)
-                    max = leftBottom;
-            }
+			if (!double.IsNaN(leftBottom))
+			{
+				if (min > leftBottom)
+					min = leftBottom;
+				if (max < leftBottom)
+					max = leftBottom;
+			}
 
-            if (!Double.IsNaN(rightTop))
-            {
-                if (min > rightTop)
-                    min = rightTop;
-                if (max < rightTop)
-                    max = rightTop;
-            }
+			if (!double.IsNaN(rightTop))
+			{
+				if (min > rightTop)
+					min = rightTop;
+				if (max < rightTop)
+					max = rightTop;
+			}
 
-            if (!Double.IsNaN(rightBottom))
-            {
-                if (min > rightBottom)
-                    min = rightBottom;
-                if (max < rightBottom)
-                    max = rightBottom;
-            }
+			if (!double.IsNaN(rightBottom))
+			{
+				if (min > rightBottom)
+					min = rightBottom;
+				if (max < rightBottom)
+					max = rightBottom;
+			}
 
-            left = (leftTop + leftBottom) / 2;
-            bottom = (leftBottom + rightBottom) / 2;
-            right = (rightTop + rightBottom) / 2;
-            top = (rightTop + leftTop) / 2;
+			left = (leftTop + leftBottom) / 2;
+			bottom = (leftBottom + rightBottom) / 2;
+			right = (rightTop + rightBottom) / 2;
+			top = (rightTop + leftTop) / 2;
 		}
 
-        public ValuesInCell(double leftBottom, double rightBottom, double rightTop, double leftTop, double missingValue)
+		public ValuesInCell(double leftBottom, double rightBottom, double rightTop, double leftTop, double missingValue)
 		{
 			DebugVerify.IsNotNaN(leftBottom);
 			DebugVerify.IsNotNaN(rightBottom);
 			DebugVerify.IsNotNaN(rightTop);
 			DebugVerify.IsNotNaN(leftTop);
-           
-            // Copy values and find min and max with respect to possible missing values
-            if (leftTop != missingValue)
-            {
-                this.leftTop = leftTop;
-                if (min > leftTop)
-                    min = leftTop;
-                if (max < leftTop)
-                    max = leftTop;
-            }
-            else
-                this.leftTop = Double.NaN;
 
-            if (leftBottom != missingValue)
-            {
-                this.leftBottom = leftBottom;
-                if (min > leftBottom)
-                    min = leftBottom;
-                if (max < leftBottom)
-                    max = leftBottom;
-            }
-            else
-                this.leftBottom = Double.NaN;
+			// Copy values and find min and max with respect to possible missing values
+			if (leftTop != missingValue)
+			{
+				this.leftTop = leftTop;
+				if (min > leftTop)
+					min = leftTop;
+				if (max < leftTop)
+					max = leftTop;
+			}
+			else
+				this.leftTop = double.NaN;
 
-            if (rightTop != missingValue)
-            {
-                this.rightTop = rightTop;
-                if (min > rightTop)
-                    min = rightTop;
-                if (max < rightTop)
-                    max = rightTop;
-            }
-            else
-                this.rightTop = Double.NaN;
+			if (leftBottom != missingValue)
+			{
+				this.leftBottom = leftBottom;
+				if (min > leftBottom)
+					min = leftBottom;
+				if (max < leftBottom)
+					max = leftBottom;
+			}
+			else
+				this.leftBottom = double.NaN;
 
-            if (rightBottom != missingValue)
-            {
-                this.rightBottom = rightBottom;
-                if (min > rightBottom)
-                    min = rightBottom;
-                if (max < rightBottom)
-                    max = rightBottom;
-            }
-            else
-                this.rightBottom = Double.NaN;
+			if (rightTop != missingValue)
+			{
+				this.rightTop = rightTop;
+				if (min > rightTop)
+					min = rightTop;
+				if (max < rightTop)
+					max = rightTop;
+			}
+			else
+				this.rightTop = double.NaN;
 
-            left = (this.leftTop + this.leftBottom) / 2;
-            bottom = (this.leftBottom + this.rightBottom) / 2;
-            right = (this.rightTop + this.rightBottom) / 2;
-            top = (this.rightTop + this.leftTop) / 2;
+			if (rightBottom != missingValue)
+			{
+				this.rightBottom = rightBottom;
+				if (min > rightBottom)
+					min = rightBottom;
+				if (max < rightBottom)
+					max = rightBottom;
+			}
+			else
+				this.rightBottom = double.NaN;
+
+			left = (this.leftTop + this.leftBottom) / 2;
+			bottom = (this.leftBottom + this.rightBottom) / 2;
+			right = (this.rightTop + this.rightBottom) / 2;
+			top = (this.rightTop + this.leftTop) / 2;
 
 
-/*            
-            if (leftTop != missingValue && )
-            {
-                if (leftBottom != missingValue)
-                    left = (leftTop + leftBottom) / 2;
-                else
-                    left = Double.NaN;
+			/*            
+						if (leftTop != missingValue && )
+						{
+							if (leftBottom != missingValue)
+								left = (leftTop + leftBottom) / 2;
+							else
+								left = Double.NaN;
 
-                if (rightTop != missingValue)
-                    top = (leftTop + rightTop) / 2;
-                else
-                    top = Double.NaN;
-            }
+							if (rightTop != missingValue)
+								top = (leftTop + rightTop) / 2;
+							else
+								top = Double.NaN;
+						}
 
-            if (rightBottom != missingValue)
-            {
-                if (leftBottom != missingValue)
-                    bottom = (leftBottom + rightBottom) / 2;
-                else
-                    bottom = Double.NaN;
+						if (rightBottom != missingValue)
+						{
+							if (leftBottom != missingValue)
+								bottom = (leftBottom + rightBottom) / 2;
+							else
+								bottom = Double.NaN;
 
-                if (rightTop != missingValue)
-                    right = (rightTop + rightBottom) / 2;
-                else
-                    right = Double.NaN;
-            }*/
+							if (rightTop != missingValue)
+								right = (rightTop + rightBottom) / 2;
+							else
+								right = Double.NaN;
+						}*/
 		}
 
 
-		/*internal bool ValueBelongTo(double value)
+		/*public bool ValueBelongTo(double value)
 		{
 			IEnumerable<double> values = new double[] { leftTop, leftBottom, rightTop, rightBottom };
 
 			return !(values.All(v => v > value) || values.All(v => v < value));
 		}*/
 
-        internal bool ValueBelongTo(double value)
-        {
-            return (min <= value && value <= max);
-        }
+		public bool ValueBelongTo(double value)
+		{
+			return (min <= value && value <= max);
+		}
 
 		#region Edges
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -384,13 +380,13 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
 		public CellBitmask GetCellValue(double value)
 		{
 			CellBitmask n = CellBitmask.None;
-			if (!Double.IsNaN(leftTop) && leftTop > value)
+			if (!double.IsNaN(leftTop) && leftTop > value)
 				n |= CellBitmask.LeftTop;
-			if (!Double.IsNaN(leftBottom) && leftBottom > value)
+			if (!double.IsNaN(leftBottom) && leftBottom > value)
 				n |= CellBitmask.LeftBottom;
-			if (!Double.IsNaN(rightBottom) && rightBottom > value)
+			if (!double.IsNaN(rightBottom) && rightBottom > value)
 				n |= CellBitmask.RightBottom;
-			if (!Double.IsNaN(rightTop) && rightTop > value)
+			if (!double.IsNaN(rightTop) && rightTop > value)
 				n |= CellBitmask.RightTop;
 
 			return n;

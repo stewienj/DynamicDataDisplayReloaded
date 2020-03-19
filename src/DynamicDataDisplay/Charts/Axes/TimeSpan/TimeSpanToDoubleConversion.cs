@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal sealed class TimeSpanToDoubleConversion
+	public sealed class TimeSpanToDoubleConversion
 	{
 		public TimeSpanToDoubleConversion(TimeSpan minSpan, TimeSpan maxSpan)
 			: this(0, minSpan, 1, maxSpan)
@@ -24,7 +21,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		private long ticksMin;
 		private long ticksLength;
 
-		internal TimeSpan FromDouble(double d)
+		public TimeSpan FromDouble(double d)
 		{
 			double ratio = (d - min) / length;
 			long ticks = (long)(ticksMin + ticksLength * ratio);
@@ -34,7 +31,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			return new TimeSpan(ticks);
 		}
 
-		internal double ToDouble(TimeSpan span)
+		public double ToDouble(TimeSpan span)
 		{
 			double ratio = (span.Ticks - ticksMin) / (double)ticksLength;
 			return min + ratio * length;

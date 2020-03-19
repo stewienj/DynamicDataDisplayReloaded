@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -15,7 +11,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 	[DebuggerDisplay("{Value} @ {Tick}")]
 	public struct MinorTickInfo<T>
 	{
-		internal MinorTickInfo(double value, T tick)
+		public MinorTickInfo(double value, T tick)
 		{
 			this.value = value;
 			this.tick = tick;
@@ -29,10 +25,34 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 		public override string ToString()
 		{
-			return String.Format("{0} @ {1}", value, tick);
+			return string.Format("{0} @ {1}", value, tick);
 		}
 	}
 
+	/// <summary>
+	/// Contains information about one minor tick - its value (relative size) and its tick.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	[DebuggerDisplay("{Value} @ {Tick}")]
+	public struct MajorTickInfo<T>
+	{
+		public MajorTickInfo(double value, T tick)
+		{
+			this.value = value;
+			this.tick = tick;
+		}
+
+		private readonly double value;
+		private readonly T tick;
+
+		public double Value { get { return value; } }
+		public T Tick { get { return tick; } }
+
+		public override string ToString()
+		{
+			return string.Format("{0} @ {1}", value, tick);
+		}
+	}
 	/// <summary>
 	/// Contains data for all generated ticks.
 	/// Used by TicksLabelProvider.
@@ -57,7 +77,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		object Info { get; }
 	}
 
-	internal class TicksInfo<T> : ITicksInfo<T>
+	public class TicksInfo<T> : ITicksInfo<T>
 	{
 		private T[] ticks = { };
 		/// <summary>
@@ -67,7 +87,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		public T[] Ticks
 		{
 			get { return ticks; }
-			internal set { ticks = value; }
+			set { ticks = value; }
 		}
 
 		private double[] tickSizes = { };
@@ -84,7 +104,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 				return tickSizes;
 			}
-			internal set { tickSizes = value; }
+			set { tickSizes = value; }
 		}
 
 		private object info = null;
@@ -95,7 +115,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		public object Info
 		{
 			get { return info; }
-			internal set { info = value; }
+			set { info = value; }
 		}
 
 		private static readonly TicksInfo<T> empty = new TicksInfo<T> { info = null, ticks = new T[0], tickSizes = new double[0] };

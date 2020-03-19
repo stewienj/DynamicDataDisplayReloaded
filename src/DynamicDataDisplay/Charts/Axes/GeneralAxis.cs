@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 {
@@ -92,7 +89,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
 		/// </summary>
 		/// <value>The screen ticks.</value>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public abstract double[] ScreenTicks { get; }
+		public abstract MajorTickInfo<double>[] MajorScreenTicks { get; }
 
 		/// <summary>
 		/// Gets the screen coordinates of minor ticks.

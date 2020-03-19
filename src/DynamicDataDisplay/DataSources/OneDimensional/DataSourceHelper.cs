@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
 using System.Collections.Generic;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace Microsoft.Research.DynamicDataDisplay.DataSources
 {
@@ -15,7 +14,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DataSources
 		public static IEnumerable<Point> GetPoints(IPointDataSource dataSource, DependencyObject context)
 		{
 			if (dataSource == null)
-				throw new ArgumentNullException("dataSource");
+				yield break;
 
 			if (context == null)
 				context = new DataSource2dContext();

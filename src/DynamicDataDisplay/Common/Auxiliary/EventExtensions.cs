@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using System.ComponentModel;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
 using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -42,9 +40,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			}
 		}
 
-		[DebuggerStepThrough]
-		[DebuggerHidden]
-		public static void Raise(this PropertyChangedEventHandler @event, object sender, string propertyName)
+		public static void Raise(this PropertyChangedEventHandler @event, object sender, [CallerMemberName] string propertyName = "")
 		{
 			if (@event != null)
 			{

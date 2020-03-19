@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls.Primitives;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 using System.Windows.Controls;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Common;
+using System.Windows.Controls.Primitives;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

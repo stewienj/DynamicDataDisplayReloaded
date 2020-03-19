@@ -1,6 +1,5 @@
-﻿using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -54,7 +53,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			return new DataRect(rect);
 		}
 
-		internal static bool IsNaN(this Rect rect)
+		public static bool IsNaN(this Rect rect)
 		{
 			return !rect.IsEmpty && (
 				rect.X.IsNaN() ||

@@ -5,7 +5,7 @@
 			>
 	<l:LegendItem.ContentTemplate>
 		<DataTemplate>
-			<StackPanel Orientation="Horizontal" Margin="0,1,0,1"
+			<StackPanel Orientation="Horizontal" Margin="0,0,0,0"
 						ToolTip="{Binding Full}">
 
                 <Line X1="3" X2="20" Y1="10" Y2="5" 

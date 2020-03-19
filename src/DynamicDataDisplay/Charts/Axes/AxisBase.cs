@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Data;
-using System.Diagnostics;
-using System.ComponentModel;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
@@ -88,9 +82,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		/// <value>The screen ticks.</value>
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public override double[] ScreenTicks
+		public override MajorTickInfo<double>[] MajorScreenTicks
 		{
-			get { return axisControl.ScreenTicks; }
+			get { return axisControl.MajorScreenTicks; }
 		}
 
 		/// <summary>
@@ -253,7 +247,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 			Range<T> range = CreateRangeFromRect(dataRect);
 
-			using (axisControl.OpenUpdateRegion(false))	// todo was forceUpdate
+			using (axisControl.OpenUpdateRegion(false)) // todo was forceUpdate
 			{
 				axisControl.Range = range;
 				axisControl.Transform = viewport.Transform;

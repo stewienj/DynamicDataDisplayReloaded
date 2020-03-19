@@ -1,4 +1,4 @@
-﻿<Window x:Class="Microsoft.Research.DynamicDataDisplay.Charts.Navigation.AboutWindow" x:ClassModifier="internal"
+﻿<Window x:Class="Microsoft.Research.DynamicDataDisplay.Charts.Navigation.AboutWindow" x:ClassModifier="public"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:Microsoft.Research.DynamicDataDisplay"

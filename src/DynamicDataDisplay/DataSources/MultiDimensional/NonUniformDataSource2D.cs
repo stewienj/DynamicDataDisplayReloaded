@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional
@@ -23,6 +20,15 @@ namespace Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional
 			BuildGrid();
 
 			this.data = data;
+		}
+
+		protected void OnChanged()
+		{
+			var handler = Changed;
+			if (handler != null)
+			{
+				handler(this, new EventArgs());
+			}
 		}
 
 		private void BuildGrid()

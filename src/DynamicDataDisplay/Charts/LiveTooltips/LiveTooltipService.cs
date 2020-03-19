@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Documents;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Data;
-using System.ComponentModel;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
 	public static class LiveToolTipService
 	{
 
-		# region Properties
+		#region Properties
 
 		public static object GetToolTip(DependencyObject obj)
 		{
@@ -98,6 +92,63 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 		#endregion // end of IsPropertyProxy property
 
+
+		#region FollowMouseCursor
+
+		public static bool GetFollowMouseCursor(DependencyObject obj)
+		{
+			return (bool)obj.GetValue(FollowMouseCursorProperty);
+		}
+
+		public static void SetFollowMouseCursor(DependencyObject obj, bool value)
+		{
+			obj.SetValue(FollowMouseCursorProperty, value);
+		}
+
+		// Using a DependencyProperty as the backing store for FollowMouseCursor.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty FollowMouseCursorProperty =
+			DependencyProperty.RegisterAttached("FollowMouseCursor", typeof(bool), typeof(LiveToolTipService), new PropertyMetadata(true));
+
+
+		#endregion
+
+
+		#region ToolTipOffset X / Y
+
+		public static int GetToolTipOffsetX(DependencyObject obj)
+		{
+			return (int)obj.GetValue(ToolTipOffsetXProperty);
+		}
+
+		public static void SetToolTipOffsetX(DependencyObject obj, int value)
+		{
+			obj.SetValue(ToolTipOffsetXProperty, value);
+		}
+
+		// Using a DependencyProperty as the backing store for ToolTipOffsetX.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ToolTipOffsetXProperty =
+			DependencyProperty.RegisterAttached("ToolTipOffsetX", typeof(int), typeof(LiveToolTipService), new PropertyMetadata(0));
+
+
+
+		public static int GetToolTipOffsetY(DependencyObject obj)
+		{
+			return (int)obj.GetValue(ToolTipOffsetYProperty);
+		}
+
+		public static void SetToolTipOffsetY(DependencyObject obj, int value)
+		{
+			obj.SetValue(ToolTipOffsetYProperty, value);
+		}
+
+		// Using a DependencyProperty as the backing store for ToolTipOffsetY.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ToolTipOffsetYProperty =
+			DependencyProperty.RegisterAttached("ToolTipOffsetY", typeof(int), typeof(LiveToolTipService), new PropertyMetadata(0));
+
+
+		#endregion
+
+
 		#endregion
 
 		private static void OnToolTipChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -138,6 +189,27 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			if (tooltip != null)
 			{
 				SetLiveToolTip(source, tooltip);
+				if (!source.IsVisible)
+				{
+					source.IsVisibleChanged += source_Visible;
+				}
+				else if (!source.IsLoaded)
+				{
+					source.Loaded += source_Loaded;
+				}
+				else
+				{
+					AddTooltip(source);
+				}
+			}
+		}
+
+		private static void source_Visible(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			var source = sender as FrameworkElement;
+			if (source != null)
+			{
+				source.IsVisibleChanged -= source_Visible;
 				if (!source.IsLoaded)
 				{
 					source.Loaded += source_Loaded;
@@ -153,8 +225,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		{
 			AdornerLayer layer = AdornerLayer.GetAdornerLayer(source);
 
-			LiveToolTipAdorner adorner = new LiveToolTipAdorner(source, tooltip);
-			layer.Add(adorner);
+			if (layer != null)
+			{
+				LiveToolTipAdorner adorner = new LiveToolTipAdorner(source, tooltip);
+				layer.Add(adorner);
+			}
 		}
 
 		private static void source_Loaded(object sender, RoutedEventArgs e)

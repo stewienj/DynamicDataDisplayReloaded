@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Windows;
 using System.Resources;
+using System.Runtime.InteropServices;
+using System.Security;
+using System.Windows;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -37,3 +38,5 @@ using System.Resources;
 [assembly: SatelliteContractVersion("0.3.2.0")]
 [assembly: AssemblyFileVersionAttribute("0.3.4703.0")]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
+// Allow calling of Native Win32 methods
+[assembly: SecurityRules(SecurityRuleSet.Level1)]

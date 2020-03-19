@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
 
-namespace Microsoft.Research.DynamicDataDisplay.Filters
+namespace Microsoft.Research.DynamicDataDisplay.Charts.Filters
 {
 	[Obsolete("Works incorrectly", true)]
 	public sealed class InclinationFilter : PointsFilterBase

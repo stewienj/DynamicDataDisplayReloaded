@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 {
-	internal static class Verify
+	public static class Verify
 	{
 		[DebuggerStepThrough]
 		public static void IsTrue(this bool condition)
@@ -52,13 +49,13 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
 		[DebuggerStepThrough]
 		public static void AssertIsNotNaN(this double d)
 		{
-			Verify.IsTrue(!Double.IsNaN(d));
+			Verify.IsTrue(!double.IsNaN(d));
 		}
 
 		[DebuggerStepThrough]
 		public static void AssertIsFinite(this double d)
 		{
-			Verify.IsTrue(!Double.IsInfinity(d) && !(Double.IsNaN(d)));
+			Verify.IsTrue(!double.IsInfinity(d) && !(double.IsNaN(d)));
 		}
 	}
 }

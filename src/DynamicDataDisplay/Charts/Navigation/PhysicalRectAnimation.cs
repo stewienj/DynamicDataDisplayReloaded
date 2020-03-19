@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media.Animation;
 using System.Windows;
 using System.Windows.Input;
-using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 {
-	internal sealed class PhysicalRectAnimation
+	public sealed class PhysicalRectAnimation
 	{
 		Vector position = new Vector();
 		Vector velocity = new Vector();
@@ -51,14 +42,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 			get { return springCoeff; }
 			set { springCoeff = value; }
 		}
-		
+
 		double liquidFrictionCoeff = 1;
 		public double LiquidFrictionCoeff
 		{
 			get { return liquidFrictionCoeff; }
 			set { liquidFrictionCoeff = value; }
 		}
-		
+
 		double liquidFrictionQuadraticCoeff = 10;
 		public double LiquidFrictionQuadraticCoeff
 		{

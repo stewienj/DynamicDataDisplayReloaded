@@ -71,6 +71,8 @@
     <Compile Include="Charts\Axes\TimeSpan\TimeSpanLabelProvider.cs" />
     <Compile Include="Charts\Axes\TimeSpan\TimeSpanTicksProvider.cs" />
     <Compile Include="Charts\BitmapBasedGraph.cs" />
+    <Compile Include="Charts\CanvasGraph.cs" />
+    <Compile Include="Charts\DataContextGroup.cs" />
     <Compile Include="Charts\DataFollowChart.cs" />
     <Compile Include="Charts\DataSource2dContext.cs" />
     <Compile Include="Charts\DebugMenu.cs" />
@@ -87,9 +89,13 @@
     <Compile Include="Charts\Legend items\NewLegendItem.cs" />
     <Compile Include="Charts\Legend items\LegendBottomButtonIsEnabledConverter.cs" />
     <Compile Include="Charts\Legend items\LegendTopButtonToIsEnabledConverter.cs" />
+    <Compile Include="Charts\ListViewGraph.xaml.cs">
+      <DependentUpon>ListViewGraph.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Charts\LiveToolTips\LiveToolTip.cs" />
     <Compile Include="Charts\LiveToolTips\LiveToolTipAdorner.cs" />
     <Compile Include="Charts\LiveToolTips\LiveToolTipService.cs" />
+    <Compile Include="Charts\MultipleLineSourceHost.cs" />
     <Compile Include="Charts\NaiveColorMap.cs" />
     <Compile Include="Charts\Navigation\AxisNavigation.cs" />
     <Compile Include="Charts\Markers\BarChart.cs" />
@@ -98,6 +104,11 @@
     <Compile Include="Charts\Markers\MarkerChart.cs" />
     <Compile Include="Charts\Markers\OldMarkerGenerator.cs" />
     <Compile Include="Charts\Markers\TemplateMarkerGenerator2.cs" />
+    <Compile Include="Charts\Navigation\CursorFollowXGraph.cs" />
+    <Compile Include="Charts\Navigation\CursorFollowYGraph.cs" />
+    <Compile Include="Charts\Navigation\CursorNearestPlotGraph.xaml.cs">
+      <DependentUpon>CursorNearestPlotGraph.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Charts\Navigation\HorizontalScrollBar.cs" />
     <Compile Include="Charts\Navigation\IPlotterContextMenuSource.cs" />
     <Compile Include="Charts\Navigation\LongOperationsIndicator.cs" />
@@ -144,6 +155,7 @@
     <Compile Include="Charts\PopupTip.cs" />
     <Compile Include="Charts\Shapes\Arrow.cs" />
     <Compile Include="Charts\BackgroundRenderer.cs" />
+    <Compile Include="Charts\Shapes\EllipseShape.cs" />
     <Compile Include="Charts\Shapes\DraggablePoint.xaml.cs">
       <DependentUpon>DraggablePoint.xaml</DependentUpon>
     </Compile>
@@ -177,6 +189,7 @@
     <Compile Include="Charts\Shapes\ViewportPolygon.cs" />
     <Compile Include="Charts\Shapes\ViewportPolyline.cs" />
     <Compile Include="Charts\Shapes\ViewportPolylineBase.cs" />
+    <Compile Include="Charts\Shapes\ViewportShapeClone.cs" />
     <Compile Include="Charts\ViewportHostPanel.cs" />
     <Compile Include="Charts\ViewportPanel.cs" />
     <Compile Include="Charts\ViewportPanel.Properties.cs" />
@@ -184,9 +197,17 @@
     <Compile Include="Common\Auxiliary\BindingHelper.cs" />
     <Compile Include="Common\Auxiliary\ColorExtensions.cs" />
     <Compile Include="Common\Auxiliary\DataSearch\GenericSearcher1d.cs" />
+    <Compile Include="Common\Auxiliary\DataSearch\NearestPointSearch2D.cs" />
+    <Compile Include="Common\Auxiliary\DataSearch\NearestPointSearchArgs.cs" />
+    <Compile Include="Common\Auxiliary\DataSearch\NearestPointSearchInterpolatedPerpendicular.cs" />
+    <Compile Include="Common\Auxiliary\DataSearch\NearestPointSearchYInterpolatedX.cs" />
+    <Compile Include="Common\Auxiliary\DataSearch\NearestPointSearchXInterpolatedY.cs" />
+    <Compile Include="Common\Auxiliary\DataSearch\NearestPointSearchInterpolatedArgs.cs" />
+    <Compile Include="Common\Auxiliary\DataSearch\PositionAndCheckDistance.cs" />
     <Compile Include="Common\Auxiliary\DataSearch\SearchResult1d.cs" />
     <Compile Include="Common\Auxiliary\DataSearch\SortedXSearcher1d.cs" />
     <Compile Include="Common\Auxiliary\DependencyObjectExtensions.cs" />
+    <Compile Include="Common\Auxiliary\Extensions.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\XbapConditionalExpression.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\TemplateBinding.cs" />
     <Compile Include="Common\Auxiliary\MenuItemExtensions.cs" />
@@ -194,6 +215,13 @@
     <Compile Include="Common\Auxiliary\PlotterChildrenCollectionExtensions.cs" />
     <Compile Include="Common\Auxiliary\RandomExtensions.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\SelfBinding.cs" />
+    <Compile Include="Common\Auxiliary\RelayCommand.cs" />
+    <Compile Include="Common\Auxiliary\ScreenshotParametersControl.xaml.cs">
+      <DependentUpon>ScreenshotParametersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Auxiliary\ScreenshotParametersDialog.xaml.cs">
+      <DependentUpon>ScreenshotParametersDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\Auxiliary\SizeExtensions.cs" />
     <Compile Include="Common\Auxiliary\StreamExtensions.cs" />
     <Compile Include="Common\Auxiliary\StringExtensions.cs" />
@@ -203,6 +231,7 @@
     <Compile Include="Common\Auxiliary\IEnumerableExtensions.cs" />
     <Compile Include="Common\Auxiliary\ResourcePoolExtensions.cs" />
     <Compile Include="Common\Auxiliary\TaskExtensions.cs" />
+    <Compile Include="Common\Auxiliary\ThrottledAction.cs" />
     <Compile Include="Common\Auxiliary\TriangleMath.cs" />
     <Compile Include="Common\Auxiliary\ValueStore.cs" />
     <Compile Include="Common\Auxiliary\ValueStoreConverter.cs" />
@@ -229,9 +258,11 @@
     <Compile Include="Common\UndoSystem\CollectionAddAction.cs" />
     <Compile Include="Common\UndoSystem\CollectionRemoveAction.cs" />
     <Compile Include="Common\UndoSystem\LambdaUndoAction.cs" />
+    <Compile Include="Common\UpdateThrottle.cs" />
     <Compile Include="Common\ValueChangedEventArgs.cs" />
     <Compile Include="Common\WeakReference.cs" />
     <Compile Include="Common\WidthSpring.cs" />
+    <Compile Include="Common\Win32.cs" />
     <Compile Include="Converters\BackgroundToForegroundConverter.cs" />
     <Compile Include="Converters\BrushHSBConverter.cs" />
     <Compile Include="Converters\FourValuesMultiConverter.cs" />
@@ -372,6 +403,7 @@
     <Compile Include="Transforms\CoordinateTransform.cs" />
     <Compile Include="Transforms\DataDomains.cs" />
     <Compile Include="Transforms\DataTransforms.cs" />
+    <Compile Include="Transforms\ImageTransforms.cs" />
     <Compile Include="Transforms\Log10Transform.cs" />
     <Compile Include="Transforms\SwapTransform.cs" />
     <Compile Include="Viewport2D.cs" />
@@ -423,11 +455,15 @@
     <Compile Include="ViewportElement2D.cs" />
     <Compile Include="ViewportRestrictions\DateTimeHorizontalAxisRestriction.cs" />
     <Compile Include="ViewportRestrictions\DateTimeVerticalAxisRestriction.cs" />
+    <Compile Include="ViewportRestrictions\FollowVerticalAxisRestriction.cs" />
+    <Compile Include="ViewportRestrictions\FollowHorizontalAxisRestriction.cs" />
     <Compile Include="ViewportRestrictions\InjectionDelegateRestriction.cs" />
     <Compile Include="ViewportRestrictions\DomainRestriction.cs" />
     <Compile Include="ViewportRestrictions\DataHeightRestriction.cs" />
     <Compile Include="ViewportRestrictions\FollowWidthRestriction.cs" />
     <Compile Include="ViewportRestrictions\ISupportAttachToViewport.cs" />
+    <Compile Include="ViewportRestrictions\MaximalDataRectRestriction.cs" />
+    <Compile Include="ViewportRestrictions\MaximalRectRestriction.cs" />
     <Compile Include="ViewportRestrictions\MaximalSizeRestriction.cs" />
     <Compile Include="ViewportRestrictions\MinimalSizeRestriction.cs" />
     <Compile Include="ViewportRestrictions\PhysicalProportionsRestriction.cs" />
@@ -463,9 +499,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Charts\ListViewGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Charts\Navigation\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Charts\Navigation\CursorNearestPlotGraph.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Charts\Navigation\LongOperationsIndicatorResources.xaml">
       <SubType>Designer</SubType>
@@ -484,6 +528,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Charts\Shapes\RangeHighlightStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Auxiliary\ScreenshotParametersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\Auxiliary\ScreenshotParametersDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -553,6 +605,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Toolbox\ChartPlotter.Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

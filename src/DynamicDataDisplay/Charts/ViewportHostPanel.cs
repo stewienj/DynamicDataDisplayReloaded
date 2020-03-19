@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Windows.Threading;
+using System.Windows.Media;
 using d3 = Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -53,7 +48,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		TranslateTransform translateTransform = new TranslateTransform();
 
 		private Canvas hostingCanvas = new Canvas();
-		internal Canvas HostingCanvas
+		public Canvas HostingCanvas
 		{
 			get { return hostingCanvas; }
 		}
@@ -159,14 +154,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 
 		private DataRect overallViewportBounds = DataRect.Empty;
-		internal DataRect OverallViewportBounds
+		public DataRect OverallViewportBounds
 		{
 			get { return overallViewportBounds; }
 			set { overallViewportBounds = value; }
 		}
 
 		private BoundsUnionMode boundsUnionMode;
-		internal BoundsUnionMode BoundsUnionMode
+		public BoundsUnionMode BoundsUnionMode
 		{
 			get { return boundsUnionMode; }
 			set { boundsUnionMode = value; }
@@ -213,22 +208,22 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 
 		int invalidatePositionCalls = 0;
-		internal override void BeginBatchAdd()
+		public override void BeginBatchAdd()
 		{
 			base.BeginBatchAdd();
 			invalidatePositionCalls = 0;
 		}
 
-		internal override void EndBatchAdd()
+		public override void EndBatchAdd()
 		{
 			base.EndBatchAdd();
 
 			if (plotter == null) return;
 
+			overallViewportBounds = DataRect.Empty;
 			if (Children.Count > 0 && invalidatePositionCalls == 0)
 			{
 				var transform = plotter.Viewport.Transform.WithScreenOffset(-translateTransform.X, -translateTransform.Y);
-				overallViewportBounds = DataRect.Empty;
 				foreach (FrameworkElement child in Children)
 				{
 					if (child != null)

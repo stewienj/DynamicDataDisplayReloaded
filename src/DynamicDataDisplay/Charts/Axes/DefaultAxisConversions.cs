@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -102,7 +99,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		public static Func<int, double> IntToDouble
 		{
 			get { return DefaultAxisConversions.intToDouble; }
-		} 
+		}
 
 		#endregion
 	}

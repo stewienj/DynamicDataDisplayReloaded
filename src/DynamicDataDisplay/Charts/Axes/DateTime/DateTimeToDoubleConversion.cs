@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal sealed class DateTimeToDoubleConversion
+	public sealed class DateTimeToDoubleConversion
 	{
 		public DateTimeToDoubleConversion(double min, DateTime minDate, double max, DateTime maxDate)
 		{
@@ -20,7 +17,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		private long ticksMin;
 		private long ticksLength;
 
-		internal DateTime FromDouble(double d)
+		public DateTime FromDouble(double d)
 		{
 			double ratio = (d - min) / length;
 			long tick = (long)(ticksMin + ticksLength * ratio);
@@ -30,7 +27,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			return new DateTime(tick);
 		}
 
-		internal double ToDouble(DateTime dt)
+		public double ToDouble(DateTime dt)
 		{
 			double ratio = (dt.Ticks - ticksMin) / (double)ticksLength;
 			return min + ratio * length;

@@ -1,33 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
 using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
 	[DebuggerDisplay("Count = {Count}")]
-	internal sealed class ResourcePool<T>
+	public sealed class ResourcePool<T>
 	{
-		private readonly List<T> pool = new List<T>();
+		private readonly Stack<T> pool = new Stack<T>();
 
 		public T Get()
 		{
-			T item;
-
 			if (pool.Count < 1)
 			{
-				item = default(T);
+				return default(T);
 			}
 			else
 			{
-				int index = pool.Count - 1;
-				item = pool[index];
-				pool.RemoveAt(index);
+				return pool.Pop();
 			}
-
-			return item;
 		}
 
 		public void Put(T item)
@@ -35,12 +26,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 			if (item == null)
 				throw new ArgumentNullException("item");
 
-#if DEBUG
-			if (pool.IndexOf(item) != -1)
-				Debugger.Break();
-#endif
-
-			pool.Add(item);
+			pool.Push(item);
 		}
 
 		public int Count

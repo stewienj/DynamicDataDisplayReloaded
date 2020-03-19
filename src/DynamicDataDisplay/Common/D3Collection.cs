@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
@@ -62,7 +58,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 		}
 
 		#endregion // end of Overrides
-		
+
 		/// <summary>
 		/// Called before item added to collection. Enables to perform validation.
 		/// </summary>

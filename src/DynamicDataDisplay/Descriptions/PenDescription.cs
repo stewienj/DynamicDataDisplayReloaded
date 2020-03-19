@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -17,6 +17,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		/// </summary>
 		/// <param name="description">Custom description.</param>
 		public PenDescription(string description) : base(description) { }
+
 
 		protected override LegendItem CreateLegendItemCore()
 		{

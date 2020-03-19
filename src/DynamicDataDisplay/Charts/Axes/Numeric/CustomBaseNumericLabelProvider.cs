@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
 {
@@ -19,7 +14,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
 			get { return customBase; }
 			set
 			{
-				if (Double.IsNaN(value))
+				if (double.IsNaN(value))
 					throw new ArgumentException(Strings.Exceptions.CustomBaseTicksProviderBaseIsNaN);
 				if (value <= 0)
 					throw new ArgumentOutOfRangeException(Strings.Exceptions.CustomBaseTicksProviderBaseIsTooSmall);

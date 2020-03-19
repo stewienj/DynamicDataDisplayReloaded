@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
@@ -18,7 +13,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			{
 				if (value == null)
 					throw new ArgumentNullException("value");
-	
+
 				type = value;
 			}
 		}

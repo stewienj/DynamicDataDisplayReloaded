@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
-using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
-using System.Windows.Input;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
@@ -28,33 +21,35 @@ namespace Microsoft.Research.DynamicDataDisplay
 			BackgroundRenderer.UsesBackgroundRenderingProperty.OverrideMetadata(thisType, new FrameworkPropertyMetadata(true));
 		}
 
-		private int nextRequestId = 0;
+		private int _nextRequestId = 0;
 
 		/// <summary>Latest complete request</summary>
-		private RenderRequest completedRequest = null;
+		private RenderRequest _completedRequest = null;
 
 		/// <summary>Currently running request</summary>
-		private RenderRequest activeRequest = null;
+		private RenderRequest _activeRequest = null;
 
 		/// <summary>Result of latest complete request</summary>
-		private BitmapSource completedBitmap = null;
+		private BitmapSource _completedBitmap = null;
 
 		/// <summary>Pending render request</summary>
-		private RenderRequest pendingRequest = null;
+		private RenderRequest _pendingRequest = null;
 
 		/// <summary>Single apartment thread used for background rendering</summary>
 		/// <remarks>STA is required for creating WPF components in this thread</remarks>
-		private Thread renderThread = null;
+		private Thread _renderThread = null;
 
-		private AutoResetEvent renderRequested = new AutoResetEvent(false);
+		private AutoResetEvent _renderRequested = new AutoResetEvent(false);
 
-		private ManualResetEvent shutdownRequested = new ManualResetEvent(false);
+		private ManualResetEvent _shutdownRequested = new ManualResetEvent(false);
 
 		/// <summary>True means that current bitmap is invalidated and is to be re-rendered.</summary>
-		private bool bitmapInvalidated = true;
+		private bool _bitmapInvalidated = true;
 
 		/// <summary>Shows tooltips.</summary>
-		private PopupTip popup;
+		private PopupTip _popup;
+
+		private bool _shutdownStarted = false;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MarkerPointsGraph"/> class.
@@ -62,6 +57,11 @@ namespace Microsoft.Research.DynamicDataDisplay
 		public BitmapBasedGraph()
 		{
 			ManualTranslate = true;
+			Dispatcher.ShutdownStarted += (s, e) =>
+			{
+				_shutdownStarted = true;
+				_activeRequest?.Cancel();
+			};
 		}
 
 		protected virtual UIElement GetTooltipForPoint(Point point, DataRect visible, Rect output)
@@ -71,8 +71,8 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		protected PopupTip GetPopupTipWindow()
 		{
-			if (popup != null)
-				return popup;
+			if (_popup != null)
+				return _popup;
 
 			foreach (var item in Plotter.Children)
 			{
@@ -80,15 +80,15 @@ namespace Microsoft.Research.DynamicDataDisplay
 				{
 					ViewportUIContainer container = (ViewportUIContainer)item;
 					if (container.Content is PopupTip)
-						return popup = (PopupTip)container.Content;
+						return _popup = (PopupTip)container.Content;
 				}
 			}
 
-			popup = new PopupTip();
-			popup.Placement = PlacementMode.Relative;
-			popup.PlacementTarget = this;
-			Plotter.Children.Add(popup);
-			return popup;
+			_popup = new PopupTip();
+			_popup.Placement = PlacementMode.Relative;
+			_popup.PlacementTarget = this;
+			Plotter.Children.Add(_popup);
+			return _popup;
 		}
 
 		protected override void OnMouseMove(System.Windows.Input.MouseEventArgs e)
@@ -99,12 +99,12 @@ namespace Microsoft.Research.DynamicDataDisplay
 			if (popup.IsOpen)
 				popup.Hide();
 
-			if (bitmapInvalidated) return;
+			if (_bitmapInvalidated) return;
 
 			Point p = e.GetPosition(this);
 			Point dp = p.ScreenToData(Plotter2D.Transform);
 
-			var tooltip = GetTooltipForPoint(p, completedRequest.Visible, completedRequest.Output);
+			var tooltip = GetTooltipForPoint(p, _completedRequest.Visible, _completedRequest.Output);
 			if (tooltip == null) return;
 
 			popup.VerticalOffset = p.Y + 20;
@@ -126,7 +126,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 			sp.Margin = new Thickness(4, 2, 4, 2);
 
 			var tb = new TextBlock();
-			tb.Text = String.Format("Location: {0:F2}, {1:F2}", dp.X, dp.Y);
+			tb.Text = string.Format("Location: {0:F2}, {1:F2}", dp.X, dp.Y);
 			tb.Foreground = SystemColors.GrayTextBrush;
 			sp.Children.Add(tb);
 
@@ -149,7 +149,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 		{
 			if (Viewport == null) return;
 
-			Rect output = new Rect(this.RenderSize);
+			Rect output = new Rect(RenderSize);
 			CreateRenderTask(Viewport.Visible, output);
 			InvalidateVisual();
 		}
@@ -168,41 +168,42 @@ namespace Microsoft.Research.DynamicDataDisplay
 			InvalidateVisual();
 		}
 
-		protected abstract BitmapSource RenderFrame(DataRect visible, Rect output);
+		protected abstract BitmapSource RenderFrame(DataRect visible, Rect output, RenderRequest renderRequest);
 
 		private void RenderThreadFunc()
 		{
-			WaitHandle[] events = new WaitHandle[] { renderRequested, shutdownRequested };
+			WaitHandle[] events = new WaitHandle[] { _renderRequested, _shutdownRequested };
 			while (true)
 			{
 				lock (this)
 				{
-					activeRequest = null;
-					if (pendingRequest != null)
+					_activeRequest = null;
+					if (_pendingRequest != null)
 					{
-						activeRequest = pendingRequest;
-						pendingRequest = null;
+						_activeRequest = _pendingRequest;
+						_pendingRequest = null;
 					}
 				}
-				if (activeRequest == null)
+				if (_activeRequest == null)
 				{
 					WaitHandle.WaitAny(events);
-					if (shutdownRequested.WaitOne(0))
+					if (_shutdownRequested.WaitOne(0))
 						break;
 				}
 				else
 				{
 					try
 					{
-						BitmapSource result = (BitmapSource)RenderFrame(activeRequest.Visible, activeRequest.Output);
+						// Return null if no update required
+						BitmapSource result = _shutdownStarted ? null : (BitmapSource)RenderFrame(_activeRequest.Visible, _activeRequest.Output, _activeRequest);
 						if (result != null)
 							Dispatcher.BeginInvoke(
 								new RenderCompletionHandler(OnRenderCompleted),
-								new RenderResult(activeRequest, result));
+								new RenderResult(_activeRequest, result));
 					}
 					catch (Exception exc)
 					{
-						Trace.WriteLine(String.Format("RenderRequest {0} failed: {1}", activeRequest.RequestID, exc.Message));
+						Trace.WriteLine(string.Format("RenderRequest {0} failed: {1}", _activeRequest.RequestID, exc.Message));
 					}
 				}
 			}
@@ -212,19 +213,19 @@ namespace Microsoft.Research.DynamicDataDisplay
 		{
 			lock (this)
 			{
-				bitmapInvalidated = true;
+				_bitmapInvalidated = true;
 
-				if (activeRequest != null)
-					activeRequest.Cancel();
-				pendingRequest = new RenderRequest(nextRequestId++, visible, output);
-				renderRequested.Set();
+				if (_activeRequest != null)
+					_activeRequest.Cancel();
+				_pendingRequest = new RenderRequest(_nextRequestId++, visible, output);
+				_renderRequested.Set();
 			}
-			if (renderThread == null)
+			if (_renderThread == null)
 			{
-				renderThread = new Thread(RenderThreadFunc);
-				renderThread.IsBackground = true;
-				renderThread.SetApartmentState(ApartmentState.STA);
-				renderThread.Start();
+				_renderThread = new Thread(RenderThreadFunc);
+				_renderThread.IsBackground = true;
+				_renderThread.SetApartmentState(ApartmentState.STA);
+				_renderThread.Start();
 			}
 		}
 
@@ -234,9 +235,9 @@ namespace Microsoft.Research.DynamicDataDisplay
 		{
 			if (result.IsSuccess)
 			{
-				completedRequest = result.Request;
-				completedBitmap = result.CreateBitmap();
-				bitmapInvalidated = false;
+				_completedRequest = result.Request;
+				_completedBitmap = result.Bitmap;
+				_bitmapInvalidated = false;
 
 				InvalidateVisual();
 				BackgroundRenderer.RaiseRenderingFinished(this);
@@ -245,97 +246,54 @@ namespace Microsoft.Research.DynamicDataDisplay
 
 		protected override void OnRenderCore(DrawingContext dc, RenderState state)
 		{
-			if (completedRequest != null && completedBitmap != null)
-				dc.DrawImage(completedBitmap, completedRequest.Visible.ViewportToScreen(Viewport.Transform));
+			if (_completedRequest != null && _completedBitmap != null)
+				dc.DrawImage(_completedBitmap, _completedRequest.Visible.ViewportToScreen(Viewport.Transform));
 		}
 	}
 
 	public class RenderRequest
 	{
-		private int requestId;
-		private DataRect visible;
-		private Rect output;
-		private int cancelling;
+		private int _requestId;
+		private DataRect _visible;
+		private Rect _output;
+		private int _cancelling;
 
 		public RenderRequest(int requestId, DataRect visible, Rect output)
 		{
-			this.requestId = requestId;
-			this.visible = visible;
-			this.output = output;
+			_requestId = requestId;
+			_visible = visible;
+			_output = output;
 		}
 
-		public int RequestID
-		{
-			get { return requestId; }
-		}
+		public int RequestID => _requestId;
 
-		public DataRect Visible
-		{
-			get { return visible; }
-		}
+		public DataRect Visible => _visible;
 
-		public Rect Output
-		{
-			get { return output; }
-		}
+		public Rect Output => _output;
 
-		public bool IsCancellingRequested
-		{
-			get { return cancelling > 0; }
-		}
+		public bool IsCancellingRequested => _cancelling > 0;
 
-		public void Cancel()
-		{
-			Interlocked.Increment(ref cancelling);
-		}
+		public void Cancel() => Interlocked.Increment(ref _cancelling);
 	}
 
 	public class RenderResult
 	{
-		private RenderRequest request;
-		private int pixelWidth, pixelHeight, stride;
-		private double dpiX, dpiY;
-		private BitmapPalette palette;
-		private PixelFormat format;
-		private Array pixels;
+		private RenderRequest _request;
+		private BitmapSource _source;
 
 		/// <summary>Constructs successul rendering result</summary>
 		/// <param name="request">Source request</param>
 		/// <param name="result">Rendered bitmap</param>
 		public RenderResult(RenderRequest request, BitmapSource result)
 		{
-			this.request = request;
-			pixelWidth = result.PixelWidth;
-			pixelHeight = result.PixelHeight;
-			stride = result.PixelWidth * result.Format.BitsPerPixel / 8;
-			dpiX = result.DpiX;
-			dpiY = result.DpiY;
-			palette = result.Palette;
-			format = result.Format;
-			pixels = new byte[pixelHeight * stride];
-			result.CopyPixels(pixels, stride, 0);
+			_request = request;
+			_source = result;
 		}
 
-		public RenderRequest Request
-		{
-			get
-			{
-				return request;
-			}
-		}
+		public RenderRequest Request => _request;
 
-		public bool IsSuccess
-		{
-			get
-			{
-				return pixels != null;
-			}
-		}
+		public bool IsSuccess => _source != null;
 
-		public BitmapSource CreateBitmap()
-		{
-			return BitmapFrame.Create(pixelWidth, pixelHeight, dpiX, dpiY,
-				format, palette, pixels, stride);
-		}
+		public BitmapSource Bitmap => _source;
 	}
 }

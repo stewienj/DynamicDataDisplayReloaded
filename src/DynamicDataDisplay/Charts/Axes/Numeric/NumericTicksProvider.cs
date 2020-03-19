@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Collections.ObjectModel;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
 	/// <summary>
-	/// Represents a ticks provider for <see cref="System.Double"/> values.
+	/// Represents a ticks provider for <see cref="double"/> values.
 	/// </summary>
 	public sealed class NumericTicksProvider : ITicksProvider<double>
 	{

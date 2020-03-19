@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-	internal abstract class TimePeriodTicksProvider<T> : ITicksProvider<T>
+	public abstract class TimePeriodTicksProvider<T> : ITicksProvider<T>
 	{
 		public event EventHandler Changed;
 		protected void RaiseChanged()
@@ -138,7 +137,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		}
 	}
 
-	internal abstract class DatePeriodTicksProvider : TimePeriodTicksProvider<DateTime>
+	public abstract class DatePeriodTicksProvider : TimePeriodTicksProvider<DateTime>
 	{
 		protected sealed override bool Continue(DateTime current, DateTime end)
 		{

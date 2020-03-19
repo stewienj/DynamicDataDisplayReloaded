@@ -1,0 +1,64 @@
+﻿<Window x:Class="Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.ScreenshotParametersDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Screenshot Parameters" Height="316" Width="380">
+  <DockPanel  DataContext="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}, Path=ScreenshotParameters}">
+    <GroupBox Header="Quick Configure Width and Height" Padding="4" DockPanel.Dock="Top">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="WidthHeightNotSet" Grid.Column="0" Click="WidthHeightNotSet_Click">Not Set</Button>
+        <Button x:Name="WidthHeight640x480" Grid.Column="1" Click="WidthHeight640x480_Click">640x480</Button>
+        <Button x:Name="WidthHeight1024x768" Grid.Column="2" Click="WidthHeight1024x768_Click">1024x768</Button>
+        <Button x:Name="WidthHeight1280x1024" Grid.Column="3" Click="WidthHeight1280x1024_Click">1280x1024</Button>
+        <Button x:Name="WidthHeight1920x1080" Grid.Column="4" Click="WidthHeight1920x1080_Click">1920x1080</Button>
+      </Grid>
+    </GroupBox>
+    <GroupBox Header="Quick Configure DPI" Padding="4" DockPanel.Dock="Top">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="DPI96" Grid.Column="0" Click="DPI96_Click">96 dpi</Button>
+        <Button x:Name="DPI150"  Grid.Column="1" Click="DPI150_Click">150 dpi</Button>
+        <Button x:Name="DPI300" Grid.Column="2" Click="DPI300_Click">300 dpi</Button>
+        <Button x:Name="DPIScreen" Grid.Column="3" Click="DPIScreen_Click">Screen DPI</Button>
+      </Grid>
+    </GroupBox>
+    <GroupBox Header="Manually Configure Width, Height and DPI" Padding="4" DockPanel.Dock="Top">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+          <RowDefinition/>
+          <RowDefinition/>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Width</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Width}" TextAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Height</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Height}" TextAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Dots Per Inch (For Printing)</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Dpi}" TextAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Screen DPI</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ScreenDpi}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+      </Grid>
+    </GroupBox>
+    <GroupBox Header="Click OK or Just Close This Window" Padding="4" DockPanel.Dock="Top">
+      <Grid>
+        <Button VerticalAlignment="Center" HorizontalAlignment="Stretch" Padding="4" Click="OK_Click">OK</Button>
+      </Grid>
+    </GroupBox>
+  </DockPanel>
+</Window>

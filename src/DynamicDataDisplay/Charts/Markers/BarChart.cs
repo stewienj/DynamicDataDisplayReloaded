@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
-using System.Windows;
+﻿using System.Collections.Generic;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 {
@@ -20,7 +15,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 
 		BarFromValueConverter converter = new BarFromValueConverter();
 		List<double> xValues = new List<double>();
-		protected void OnMarkerBind(BindMarkerEventArgs e)
+		protected new void OnMarkerBind(BindMarkerEventArgs e)
 		{
 			var marker = e.Marker;
 
@@ -29,7 +24,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
 			xValues.Add(ViewportPanel.GetX(marker));
 		}
 
-		protected void RebuildMarkers(bool shouldReleaseMarkers)
+		protected new void RebuildMarkers(bool shouldReleaseMarkers)
 		{
 			xValues.Clear();
 

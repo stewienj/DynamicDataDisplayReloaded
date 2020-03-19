@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using System.Windows;
 using System.Collections.Specialized;
-using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common
 {
-	internal sealed class NotifyingUIElementCollection : UIElementCollection, INotifyCollectionChanged
+	public sealed class NotifyingUIElementCollection : UIElementCollection, INotifyCollectionChanged
 	{
 		public NotifyingUIElementCollection(UIElement visualParent, FrameworkElement logicalParent)
 			: base(visualParent, logicalParent)
@@ -95,7 +91,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Common
 		#endregion
 	}
 
-	internal sealed class D3UIElementCollection : D3Collection<UIElement>
+	public sealed class D3UIElementCollection : D3Collection<UIElement>
 	{
 		protected override void OnItemAdding(UIElement item)
 		{

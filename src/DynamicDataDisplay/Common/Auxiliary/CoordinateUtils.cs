@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using System;
-using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {

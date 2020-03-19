@@ -1,27 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Markup;
-using System.Windows.Data;
-using System.Windows;
-using System.Windows.Threading;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Markup;
+using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 {
 	/// <summary>
 	/// Represents an editor of points' position of ViewportPolyline or ViewportPolygon.
+	/// New version written by John Stewien 10th April 2019. Old version had a race condition.
 	/// </summary>
 	[ContentProperty("Polyline")]
 	public class PolylineEditor : IPlotterElement
 	{
+		private List<DraggablePoint> _draggablePoints = new List<DraggablePoint>();
+		private bool _updatingFromPolyline = false;
+		private bool _updatingFromDraggablePoints = false;
+		private bool _removePolyLine = true;
+		private ViewportPolylineBase _polyline;
+		private DispatcherPriority _priority = DispatcherPriority.Normal;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PolylineEditor"/> class.
 		/// </summary>
-		public PolylineEditor() { }
+		public PolylineEditor()
+		{
+		}
 
-		private ViewportPolylineBase polyline;
+		/// <summary>
+		/// Schedule copying the polyline point positions to the draggable points
+		/// </summary>
+		/// <param name="addPolyLine"></param>
+		private void ScheduleSyncPolylineToDraggables(bool addPolyLine)
+		{
+			_removePolyLine = addPolyLine;
+			if (_updatingFromDraggablePoints)
+				return;
+
+			_plotter?.Dispatcher.BeginInvoke((Action)(() => SyncPolylineToDraggables(addPolyLine)), _priority);
+		}
+
+		/// <summary>
+		/// Sychronizes Draggable points, and the polyline
+		/// </summary>
+		private void SyncPolylineToDraggables(bool addPolyline)
+		{
+			if (_updatingFromDraggablePoints || _plotter == null)
+				return;
+
+			_updatingFromPolyline = true;
+
+			if (addPolyline)
+			{
+				_plotter.Children.Add(_polyline);
+			}
+
+			var points = _polyline.Points.ToList();
+
+			while (_draggablePoints.Count < points.Count)
+			{
+				var draggablePoint = new DraggablePoint();
+				draggablePoint.Position = points[_draggablePoints.Count];
+				_draggablePoints.Add(draggablePoint);
+				DependencyPropertyDescriptor.FromProperty(DraggablePoint.PositionProperty, typeof(DraggablePoint)).AddValueChanged(draggablePoint, ScheduleSyncDraggablesToPolyline);
+
+				_plotter?.Children.Add(draggablePoint);
+			}
+
+			while (_draggablePoints.Count > points.Count)
+			{
+				var draggablePoint = _draggablePoints[_draggablePoints.Count - 1];
+				_draggablePoints.RemoveAt(_draggablePoints.Count - 1);
+				_plotter?.Children.Remove(draggablePoint);
+			}
+
+			for (int i = 0; i < points.Count; ++i)
+			{
+				var draggablePoint = _draggablePoints[i];
+				draggablePoint.Position = points[i];
+				draggablePoint.Visibility = _polyline.Visibility;
+			}
+
+			_updatingFromPolyline = false;
+		}
+
+		/// <summary>
+		/// Schedule propagating the new draggable positions to the polyline
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ScheduleSyncDraggablesToPolyline(object sender, EventArgs e)
+		{
+			if (_updatingFromPolyline)
+				return;
+
+			_plotter?.Dispatcher.BeginInvoke((Action)(() => SyncDraggablesToPolyline()), _priority);
+		}
+
+		private void SyncDraggablesToPolyline()
+		{
+			if (_updatingFromPolyline || _plotter == null)
+				return;
+
+			_updatingFromDraggablePoints = true;
+			var points = _draggablePoints.Select(ds => ds.Position);
+			_polyline.Points = new System.Windows.Media.PointCollection(points);
+			_updatingFromDraggablePoints = false;
+		}
+
 		/// <summary>
 		/// Gets or sets the polyline, to edit points of which.
 		/// </summary>
@@ -29,104 +116,79 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 		[NotNull]
 		public ViewportPolylineBase Polyline
 		{
-			get { return polyline; }
+			get { return _polyline; }
 			set
 			{
 				if (value == null)
 					throw new ArgumentNullException("Polyline");
 
-				if (polyline != value)
+				if (_polyline != value)
 				{
-					polyline = value;
-					var descr = DependencyPropertyDescriptor.FromProperty(ViewportPolylineBase.PointsProperty, typeof(ViewportPolylineBase));
-					descr.AddValueChanged(polyline, OnPointsReplaced);
+					_polyline = value;
 
-					if (plotter != null)
+					var visibilityProperty = DependencyPropertyDescriptor.FromProperty(ViewportPolylineBase.VisibilityProperty, typeof(ViewportPolylineBase));
+					visibilityProperty.AddValueChanged(value, (s, e) => ScheduleSyncPolylineToDraggables(false));
+
+					var pointsProperty = DependencyPropertyDescriptor.FromProperty(ViewportPolylineBase.PointsProperty, typeof(ViewportPolylineBase));
+					pointsProperty.AddValueChanged(_polyline, (s, e) => ScheduleSyncPolylineToDraggables(false));
+
+					if (_plotter != null)
 					{
-						AddLineToPlotter(false);
+						ScheduleSyncPolylineToDraggables(true);
 					}
 				}
 			}
 		}
 
-		bool pointsAdded = false;
-		private void OnPointsReplaced(object sender, EventArgs e)
-		{
-			if (plotter == null)
-				return;
-			if (pointsAdded)
-				return;
 
-			ViewportPolylineBase line = (ViewportPolylineBase)sender;
-
-			pointsAdded = true;
-			List<IPlotterElement> draggablePoints = new List<IPlotterElement>();
-			GetDraggablePoints(draggablePoints);
-
-			foreach (var point in draggablePoints)
-			{
-				plotter.Children.Add(point);
-			}
-		}
-
-		private void AddLineToPlotter(bool async)
-		{
-			if (!async)
-			{
-				foreach (var item in GetAllElementsToAdd())
-				{
-					plotter.Children.Add(item);
-				}
-			}
-			else
-			{
-				plotter.Dispatcher.BeginInvoke(((Action)(() => { AddLineToPlotter(false); })), DispatcherPriority.Send);
-			}
-		}
-
-		private List<IPlotterElement> GetAllElementsToAdd()
-		{
-			var result = new List<IPlotterElement>(1 + polyline.Points.Count);
-			result.Add(polyline);
-
-			GetDraggablePoints(result);
-
-			return result;
-		}
-
-		private void GetDraggablePoints(List<IPlotterElement> collection)
-		{
-			for (int i = 0; i < polyline.Points.Count; i++)
-			{
-				DraggablePoint point = new DraggablePoint();
-				point.SetBinding(DraggablePoint.PositionProperty, new Binding
-				{
-					Source = polyline,
-					Path = new PropertyPath("Points[" + i + "]"),
-					Mode = BindingMode.TwoWay
-				});
-				collection.Add(point);
-			}
-		}
+		/// <summary>
+		/// Removes all the objects the editor added to the plotter.
+		/// </summary>
+		/// <param name="plotter"></param>
 
 		#region IPlotterElement Members
 
 		void IPlotterElement.OnPlotterAttached(Plotter plotter)
 		{
-			this.plotter = (Plotter2D)plotter;
+			_plotter = (Plotter2D)plotter;
 
-			if (polyline != null)
+			if (_polyline != null)
 			{
-				AddLineToPlotter(true);
+				ScheduleSyncPolylineToDraggables(!_plotter.Children.Contains(_polyline));
 			}
 		}
 
 		void IPlotterElement.OnPlotterDetaching(Plotter plotter)
 		{
-			this.plotter = null;
+			var polyline = _polyline;
+			_plotter = null;
+			_polyline = null;
+
+			// This needs to be pushed to the next frame as we
+			// are in the middle of handling a collection changed event
+			// from the plotter children, so removing anything from the
+			// plotter here will throw an exception
+			plotter?.Dispatcher?.BeginInvoke((Action)(() =>
+			{
+				if (polyline != null)
+				{
+			  // RemoveLineFromPlotter(plotter);
+			  foreach (var draggablePoint in _draggablePoints)
+					{
+						plotter?.Children.Remove(draggablePoint);
+					}
+
+					if (_removePolyLine)
+					{
+						plotter?.Children.Remove(polyline);
+					}
+
+					_draggablePoints.Clear();
+				}
+			}), _priority);
 		}
 
-		private Plotter2D plotter;
+		private Plotter2D _plotter;
 		/// <summary>
 		/// Gets the parent plotter of chart.
 		/// Should be equal to null if item is not connected to any plotter.
@@ -134,7 +196,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 		/// <value>The plotter.</value>
 		public Plotter Plotter
 		{
-			get { return plotter; }
+			get { return _plotter; }
 		}
 
 		#endregion

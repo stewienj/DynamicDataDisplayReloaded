@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.Research.DynamicDataDisplay
 {
 	public static class IPlotterElementExtensions
 	{
-		public static void RemoveFromPlotter(this IPlotterElement element)
+		public static void RemoveFromPlotter(this IPlotterElement element, Plotter plotter)
 		{
 			if (element == null)
 				throw new ArgumentNullException("element");
 
-			if (element.Plotter != null)
+			if (plotter != null)
 			{
-				element.Plotter.Children.Remove(element);
+				plotter.Children.Remove(element);
 			}
 		}
 

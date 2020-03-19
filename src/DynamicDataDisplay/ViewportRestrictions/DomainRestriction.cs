@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
-
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+﻿namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a restriction which returns data rectangle, intersected with specified data domain.

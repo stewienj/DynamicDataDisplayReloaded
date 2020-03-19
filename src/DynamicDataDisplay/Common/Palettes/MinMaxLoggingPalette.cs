@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Windows.Media;
-using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
 {
@@ -13,8 +9,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
 	/// </summary>
 	public class MinMaxLoggingPalete : DecoratorPaletteBase
 	{
-		double min = Double.MaxValue;
-		double max = Double.MinValue;
+		double min = double.MaxValue;
+		double max = double.MinValue;
 		int counter = 0;
 		public override Color GetColor(double t)
 		{

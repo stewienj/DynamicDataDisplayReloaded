@@ -11,7 +11,7 @@
 
 //namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 //{
-//    internal sealed class EndlessPanningRectAnimation : RectAnimationBase
+//    public sealed class EndlessPanningRectAnimation : RectAnimationBase
 //    {
 //        private DataRect from;
 //        public DataRect From
