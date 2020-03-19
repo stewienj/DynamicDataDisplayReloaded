@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DynamicDataDisplay.Markers.Filters;
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
-using System.ComponentModel;
-using System.Diagnostics;
-using DynamicDataDisplay.Markers.Filters;
-using Microsoft.Research.DynamicDataDisplay;
 
 namespace NewMarkersSample.Pages
 {
@@ -45,7 +35,7 @@ namespace NewMarkersSample.Pages
 
 			markerChart.AddPropertyBinding<Point>(Shape.ToolTipProperty, p =>
 			{
-				return String.Format("X: {0:F2}   Y: {1:F2}", p.X, p.Y);
+				return string.Format("X: {0:F2}   Y: {1:F2}", p.X, p.Y);
 			});
 
 			HSBPalette palette = new HSBPalette();

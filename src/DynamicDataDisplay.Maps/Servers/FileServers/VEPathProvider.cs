@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+using System;
 using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.FileServers
 {

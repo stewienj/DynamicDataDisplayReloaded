@@ -1,7 +1,6 @@
-﻿using System.Windows.Markup;
-using Microsoft.Research.DynamicDataDisplay;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using System.Security;
+using System.Windows.Markup;
 
 [assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "Microsoft.Research.DynamicDataDisplay.Charts.Maps")]
 [assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network")]

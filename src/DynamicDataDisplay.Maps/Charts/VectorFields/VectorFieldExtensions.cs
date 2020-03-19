@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using System.Windows;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts
 {
@@ -12,8 +8,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts
 	{
 		public static Range<double> GetMinMaxLength(this IDataSource2D<Vector> dataSource)
 		{
-			double minLength = Double.PositiveInfinity;
-			double maxLength = Double.NegativeInfinity;
+			double minLength = double.PositiveInfinity;
+			double maxLength = double.NegativeInfinity;
 
 			int width = dataSource.Width;
 			int height = dataSource.Height;

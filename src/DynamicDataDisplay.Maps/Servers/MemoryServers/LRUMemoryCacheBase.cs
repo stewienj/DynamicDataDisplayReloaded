@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using System.Windows.Media.Imaging;
 using System.Diagnostics;
-using System.Windows.Threading;
-using System.Windows.Media;
 using System.IO;
+using System.Linq;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
 {

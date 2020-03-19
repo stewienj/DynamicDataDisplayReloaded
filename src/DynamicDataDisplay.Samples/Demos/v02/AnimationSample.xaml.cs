@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
-using System.Globalization;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
 {
@@ -34,7 +25,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
 		TextBlock headerContents = new TextBlock();
 
 		/// <summary>Timer to animate data</summary>
-		readonly DispatcherTimer timer = new DispatcherTimer();  
+		readonly DispatcherTimer timer = new DispatcherTimer();
 
 		public AnimationSample()
 		{
@@ -56,7 +47,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
 
 			// Here it is - signal that data is updated
 			animatedDataSource.RaiseDataChanged();
-			headerContents.Text = String.Format(CultureInfo.InvariantCulture, "Phase = {0:N2}", phase);
+			headerContents.Text = string.Format(CultureInfo.InvariantCulture, "Phase = {0:N2}", phase);
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)

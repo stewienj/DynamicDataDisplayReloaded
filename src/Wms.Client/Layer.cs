@@ -11,10 +11,10 @@ namespace Wms.Client
 	{
 		private Server server; // The WMS server object representing the server holding this layer.
 
-		private System.Xml.XPath.XPathNavigator nav;		// Keep constant; never give this out. Give out only clones,
-		public System.Xml.XPath.XPathNavigator Navigator	// <-- using this accessor.
+		private System.Xml.XPath.XPathNavigator nav;        // Keep constant; never give this out. Give out only clones,
+		public System.Xml.XPath.XPathNavigator Navigator    // <-- using this accessor.
 		{
-			get {return this.nav.Clone();}
+			get { return this.nav.Clone(); }
 		}
 
 		// The XPathNavigator is to the XML capabilities document of the WMS server.
@@ -26,7 +26,7 @@ namespace Wms.Client
 
 		public Server Server
 		{
-			get {return this.server;}
+			get { return this.server; }
 		}
 
 		// The following are utilities for Layers.
@@ -76,7 +76,7 @@ namespace Wms.Client
 				this.Uri = string.Empty;
 			}
 
-			public override bool Equals(System.Object obj)
+			public override bool Equals(object obj)
 			{
 				if (obj == null)
 					return false;
@@ -93,12 +93,12 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode ();
+				return base.GetHashCode();
 			}
 
 			public bool IsEmpty
 			{
-				get {return this.Uri.Equals(string.Empty);}
+				get { return this.Uri.Equals(string.Empty); }
 			}
 		}
 
@@ -125,22 +125,22 @@ namespace Wms.Client
 
 		public string Name
 		{
-			get {return Capabilities.GetStringInstance(this.nav, @"./Name");}
+			get { return Capabilities.GetStringInstance(this.nav, @"./Name"); }
 		}
 
 		public string Title
 		{
-			get {return Capabilities.GetStringInstance(this.nav, @"./Title");}
+			get { return Capabilities.GetStringInstance(this.nav, @"./Title"); }
 		}
 
 		public string Abstract
 		{
-			get {return Capabilities.GetStringInstance(this.nav, @"./Abstract");}
+			get { return Capabilities.GetStringInstance(this.nav, @"./Abstract"); }
 		}
 
 		public string[] KeywordList
 		{
-			get {return Capabilities.GetStringsInstance(this.nav, @"./KeywordList/Keyword");}
+			get { return Capabilities.GetStringsInstance(this.nav, @"./KeywordList/Keyword"); }
 		}
 
 		public class IdentifierType
@@ -174,12 +174,12 @@ namespace Wms.Client
 
 		public UriAndFormatType[] DataUris
 		{
-			get {return GetUriAndFormatInstances(this.nav, @"./DataUrl");}
+			get { return GetUriAndFormatInstances(this.nav, @"./DataUrl"); }
 		}
 
 		public UriAndFormatType[] FeatureListUris
 		{
-			get {return GetUriAndFormatInstances(this.nav, @"./FeatureListUrl");}
+			get { return GetUriAndFormatInstances(this.nav, @"./FeatureListUrl"); }
 		}
 
 		public class MetadataUriType
@@ -234,13 +234,13 @@ namespace Wms.Client
 
 		public class BoundingBoxType
 		{
-			public string	Srs;
-			public double	MinX;
-			public double	MinY;
-			public double	MaxX;
-			public double	MaxY;
-			public double	ResX;
-			public double	ResY;
+			public string Srs;
+			public double MinX;
+			public double MinY;
+			public double MaxX;
+			public double MaxY;
+			public double ResX;
+			public double ResY;
 
 			public override string ToString()
 			{
@@ -294,7 +294,7 @@ namespace Wms.Client
 				BoundingBoxType[] retVal = new BoundingBoxType[iter.Count];
 				if (iter.MoveNext())
 				{
-					do 
+					do
 					{
 						int i = iter.CurrentPosition - 1;
 						retVal[i] = new BoundingBoxType();
@@ -403,8 +403,8 @@ namespace Wms.Client
 			// The WMS 1.1.1 spec doesn't demand that these values be numbers. Therefore 
 			// treat them as strings. The application can easily parse them as numbers if
 			// appropriate. (Using double.Parse())
-			public string	Min;
-			public string	Max;
+			public string Min;
+			public string Max;
 
 			public ScaleHintType()
 			{
@@ -458,7 +458,7 @@ namespace Wms.Client
 
 			public bool IsEmpty
 			{
-				get {return this.Uri.IsEmpty;}
+				get { return this.Uri.IsEmpty; }
 			}
 		}
 
@@ -492,7 +492,7 @@ namespace Wms.Client
 
 			public bool IsEmpty
 			{
-				get 
+				get
 				{
 					return this.Title.Equals(string.Empty)
 						&& this.Uri.Equals(string.Empty)
@@ -681,7 +681,7 @@ namespace Wms.Client
 				this.UnitSymbol = string.Empty;
 			}
 
-			public override bool Equals(System.Object obj)
+			public override bool Equals(object obj)
 			{
 				if (obj == null)
 					return false;
@@ -700,7 +700,7 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode ();
+				return base.GetHashCode();
 			}
 
 			public override string ToString()
@@ -787,7 +787,7 @@ namespace Wms.Client
 				this.Uri = string.Empty;
 			}
 
-			public override bool Equals(System.Object obj)
+			public override bool Equals(object obj)
 			{
 				if (obj == null)
 					return false;
@@ -804,7 +804,7 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode ();
+				return base.GetHashCode();
 			}
 		}
 
@@ -839,7 +839,7 @@ namespace Wms.Client
 				}
 				return retVal.ToArray(auth.GetType()) as AuthorityUriType[];
 			}
-		}	
+		}
 
 		public class StyleType
 		{
@@ -860,7 +860,7 @@ namespace Wms.Client
 				this.LegendUri = new LogoOrLegendUriType();
 			}
 
-			public override bool Equals(System.Object obj)
+			public override bool Equals(object obj)
 			{
 				if (obj == null)
 					return false;
@@ -882,7 +882,7 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode ();
+				return base.GetHashCode();
 			}
 		}
 
@@ -924,6 +924,6 @@ namespace Wms.Client
 				}
 				return retVal.ToArray(style.GetType()) as StyleType[];
 			}
-		}	
+		}
 	}
 }

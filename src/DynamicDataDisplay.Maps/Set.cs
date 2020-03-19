@@ -1,8 +1,5 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
 using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
@@ -18,38 +15,38 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		public void Add(T item)
 		{
-      lock(cache)
-      {
-        cache.Add(item, Dummy.Instance);
-      }
+			lock (cache)
+			{
+				cache.Add(item, Dummy.Instance);
+			}
 		}
 
 		public bool TryAdd(T item)
 		{
-      lock (cache)
-      {
-        if (!cache.ContainsKey(item))
-        {
-          cache.Add(item, Dummy.Instance);
-          return true;
-        }
-        return false;
-      }
+			lock (cache)
+			{
+				if (!cache.ContainsKey(item))
+				{
+					cache.Add(item, Dummy.Instance);
+					return true;
+				}
+				return false;
+			}
 		}
 
 		public bool Remove(T item)
 		{
-      lock (cache)
-      {
-        bool contains = cache.ContainsKey(item);
-        bool result = cache.Remove(item);
+			lock (cache)
+			{
+				bool contains = cache.ContainsKey(item);
+				bool result = cache.Remove(item);
 
-        if (contains)
-        {
-          Debug.Assert(!cache.ContainsKey(item));
-        }
-        return result;
-      }
+				if (contains)
+				{
+					Debug.Assert(!cache.ContainsKey(item));
+				}
+				return result;
+			}
 		}
 
 		public bool Contains(T item)

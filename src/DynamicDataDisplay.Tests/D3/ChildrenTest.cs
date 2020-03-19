@@ -1,15 +1,11 @@
-﻿using System;
+﻿using DynamicDataDisplay.Test.Common;
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Research.DynamicDataDisplay;
 using System.Reflection;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using DynamicDataDisplay.Test.Common;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace DynamicDataDisplay.Test
 {
@@ -22,7 +18,7 @@ namespace DynamicDataDisplay.Test
 		public ChildrenTest()
 		{
 			testedAssemblies = (from assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies()
-								where assemblyName.Version.Major == 0			// D3 assemblies currently has version 0.*
+								where assemblyName.Version.Major == 0           // D3 assemblies currently has version 0.*
 								select Assembly.Load(assemblyName)).ToList();
 		}
 

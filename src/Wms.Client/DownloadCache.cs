@@ -78,7 +78,7 @@ namespace Wms.Client
 		// Returns the path to the cache directory.
 		private string cacheDir
 		{
-			get {return System.IO.Path.GetTempPath();}
+			get { return System.IO.Path.GetTempPath(); }
 		}
 
 		// Use the following function to generate a unique file name

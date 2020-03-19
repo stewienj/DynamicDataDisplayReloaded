@@ -1,23 +1,16 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using System.IO;
-using System.Globalization;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using System.Diagnostics;
 
 namespace PointSetOnMap
 {
@@ -30,9 +23,9 @@ namespace PointSetOnMap
 		{
 			InitializeComponent();
 
-			dataTypeCombobox.ItemsSource = new List<DataType> 
-			{ 
-				DataType.Temp, DataType.Rainfall, DataType.SoilDepth 
+			dataTypeCombobox.ItemsSource = new List<DataType>
+			{
+				DataType.Temp, DataType.Rainfall, DataType.SoilDepth
 			};
 
 			Loaded += Window1_Loaded;
@@ -120,12 +113,12 @@ namespace PointSetOnMap
 
 			SampleDataPoint res = new SampleDataPoint();
 
-			res.Lat = Double.Parse(pieces[0], CultureInfo.InvariantCulture);
-			res.Lon = Double.Parse(pieces[1], CultureInfo.InvariantCulture);
+			res.Lat = double.Parse(pieces[0], CultureInfo.InvariantCulture);
+			res.Lon = double.Parse(pieces[1], CultureInfo.InvariantCulture);
 
-			res.Temp = Double.Parse(pieces[2], CultureInfo.InvariantCulture);
-			res.RainFall = Double.Parse(pieces[3], CultureInfo.InvariantCulture);
-			res.SoilDepth = Double.Parse(pieces[4], CultureInfo.InvariantCulture);
+			res.Temp = double.Parse(pieces[2], CultureInfo.InvariantCulture);
+			res.RainFall = double.Parse(pieces[3], CultureInfo.InvariantCulture);
+			res.SoilDepth = double.Parse(pieces[4], CultureInfo.InvariantCulture);
 
 			return res;
 		}

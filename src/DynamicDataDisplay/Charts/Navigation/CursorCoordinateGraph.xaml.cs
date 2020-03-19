@@ -634,11 +634,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 		public static readonly DependencyProperty LinkXSourceProperty =
 			DependencyProperty.Register("LinkVerticalSource", typeof(CursorCoordinateGraph), typeof(CursorCoordinateGraph), new PropertyMetadata(null, (d, e) =>
 			 {
-				if (d is CursorCoordinateGraph control)
-				{
-					control.LinkToSource(e.NewValue as CursorCoordinateGraph, Orientation.Vertical);
-				}
-			}));
+				 if (d is CursorCoordinateGraph control)
+				 {
+					 control.LinkToSource(e.NewValue as CursorCoordinateGraph, Orientation.Vertical);
+				 }
+			 }));
 
 
 		public CursorCoordinateGraph LinkHorizontalSource

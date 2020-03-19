@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using System.ServiceModel;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+using System;
 using System.ComponentModel;
-using System.Net;
 using System.Diagnostics;
+using System.Linq;
+using System.Net;
+using System.ServiceModel;
+using System.Text;
 using VE.VESvc;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps
@@ -93,13 +92,13 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps
 		private string[] servers;
 		protected override string CreateRequestUriCore(TileIndex index)
 		{
-			if (!loaded || String.IsNullOrEmpty(UriFormat))
+			if (!loaded || string.IsNullOrEmpty(UriFormat))
 				throw new InvalidOperationException(VE.Properties.Resources.VEServerCannotLoadTile);
 
 			string indexString = CreateTileIndexString(index);
 			string currentServerName = servers[CurrentServer];
 
-			string result = String.Format(UriFormat, currentServerName, indexString);
+			string result = string.Format(UriFormat, currentServerName, indexString);
 			return result;
 		}
 

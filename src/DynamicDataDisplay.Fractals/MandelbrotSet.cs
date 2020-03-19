@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
 
 namespace Microsoft.Research.DynamicDataDisplay.Fractals
 {

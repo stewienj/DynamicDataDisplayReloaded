@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
 {
@@ -10,8 +8,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
 	{
 		public RenderTileProvider()
 		{
-			MinLevel = Int32.MinValue;
-			MaxLevel = Int32.MaxValue;
+			MinLevel = int.MinValue;
+			MaxLevel = int.MaxValue;
 		}
 
 		public override DataRect GetTileBounds(TileIndex id)

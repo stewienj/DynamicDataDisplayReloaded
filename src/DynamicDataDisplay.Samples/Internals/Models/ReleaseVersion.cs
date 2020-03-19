@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models
 {
@@ -22,7 +18,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models
 
 		public override string ToString()
 		{
-			return String.Format("{0}.{1}.{2}", Major, Minor, Revision);
+			return string.Format("{0}.{1}.{2}", Major, Minor, Revision);
 		}
 	}
 }

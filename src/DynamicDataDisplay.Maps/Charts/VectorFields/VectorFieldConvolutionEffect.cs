@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
@@ -47,10 +46,10 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
 			set { SetValue(ShiftProperty, value); }
 		}
 
-		public static readonly DependencyProperty ShiftProperty = 
+		public static readonly DependencyProperty ShiftProperty =
 			ShaderEffect.RegisterPixelShaderSamplerProperty(
 			"Shift",
-			typeof(VectorFieldConvolutionEffect), 
+			typeof(VectorFieldConvolutionEffect),
 			2);
 
 

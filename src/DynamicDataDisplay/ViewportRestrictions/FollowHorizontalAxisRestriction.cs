@@ -24,8 +24,8 @@ namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
 			var descr = DependencyPropertyDescriptor.FromProperty(Viewport2D.VisibleProperty, typeof(Viewport2D));
 			descr.AddValueChanged(sourcePlotter.Viewport, (s, e) =>
 			{
-		  // Update when the source plotter changes
-		  DataRect = sourcePlotter.Viewport.Visible;
+				// Update when the source plotter changes
+				DataRect = sourcePlotter.Viewport.Visible;
 				RaiseChanged();
 			});
 		}

@@ -1,11 +1,7 @@
 ﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Research.DynamicDataDisplay.Charts;
-using System.Windows;
-using System.Threading;
-using System.Security.Permissions;
-using System;
 using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DynamicDataDisplay.Test
 {

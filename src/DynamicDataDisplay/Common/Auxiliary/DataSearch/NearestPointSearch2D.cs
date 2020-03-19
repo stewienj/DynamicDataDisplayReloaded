@@ -79,8 +79,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.DataSearch
 				IEnumerable<Point> allPoints = null;
 				_dispatcher.Invoke(() =>
 		  {
-				  allPoints = lineGraph.GetPoints();
-			  });
+			  allPoints = lineGraph.GetPoints();
+		  });
 				var filteredPoints = allPoints.Where(p => InRange(p, bottomLeft, topRight)).ToList();
 				_filteredPointsByGraph[lineGraph] = filteredPoints;
 			});

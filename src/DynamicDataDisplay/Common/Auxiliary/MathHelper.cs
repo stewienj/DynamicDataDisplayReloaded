@@ -197,9 +197,9 @@ namespace Microsoft.Research.DynamicDataDisplay
 				{
 					return x.ToString("F" + decimalPlaces.ToString());
 				}
-		  // Need to start zeroing out figures that come to the left of the decimal place. Divide by powers of 10
-		  // and pad out with zeros
-		  var retVal = (x * Math.Pow(10, decimalPlaces)).ToString("F0").ToCharArray().Concat(Enumerable.Repeat('0', -decimalPlaces));
+				// Need to start zeroing out figures that come to the left of the decimal place. Divide by powers of 10
+				// and pad out with zeros
+				var retVal = (x * Math.Pow(10, decimalPlaces)).ToString("F0").ToCharArray().Concat(Enumerable.Repeat('0', -decimalPlaces));
 				return new string(retVal.ToArray());
 			};
 

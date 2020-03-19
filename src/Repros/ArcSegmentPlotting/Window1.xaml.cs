@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace ArcSegmentPlotting
 {
@@ -38,9 +28,9 @@ namespace ArcSegmentPlotting
 		private void AddLineGraph(Point startPoint, Point endPoint)
 		{
 			var ds = new EnumerableDataSource<Point>(new List<Point> {
-        new Point { X = startPoint.X, Y = startPoint.Y }, 
-        new Point { X = endPoint.X, Y = endPoint.Y } 
-      });
+		new Point { X = startPoint.X, Y = startPoint.Y },
+		new Point { X = endPoint.X, Y = endPoint.Y }
+	  });
 			ds.SetXYMapping(pt => pt);
 
 			plotter.AddLineGraph(ds);

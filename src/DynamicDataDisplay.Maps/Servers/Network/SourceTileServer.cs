@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network
 {
@@ -10,7 +6,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network
 	{
 		protected SourceTileServer() { }
 
-		private int maxConcurrentDownloads = Int32.MaxValue;
+		private int maxConcurrentDownloads = int.MaxValue;
 		public int MaxConcurrentDownloads
 		{
 			get { return maxConcurrentDownloads; }
@@ -118,18 +114,18 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network
 		}
 
 
-        public override int GetHashCode()
-        {
-            return GetType().GetHashCode();
-        }
+		public override int GetHashCode()
+		{
+			return GetType().GetHashCode();
+		}
 
-        private bool deleteFileCacheOnUpdate = false;
-        public bool DeleteFileCacheOnUpdate
-        {
-            get { return deleteFileCacheOnUpdate; }
-            protected set { deleteFileCacheOnUpdate = value; }
-        }
+		private bool deleteFileCacheOnUpdate = false;
+		public bool DeleteFileCacheOnUpdate
+		{
+			get { return deleteFileCacheOnUpdate; }
+			protected set { deleteFileCacheOnUpdate = value; }
+		}
 
-        public virtual void CancelRunningOperations() { }
+		public virtual void CancelRunningOperations() { }
 	}
 }

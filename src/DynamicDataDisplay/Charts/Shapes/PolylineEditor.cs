@@ -172,8 +172,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
 			{
 				if (polyline != null)
 				{
-			  // RemoveLineFromPlotter(plotter);
-			  foreach (var draggablePoint in _draggablePoints)
+					// RemoveLineFromPlotter(plotter);
+					foreach (var draggablePoint in _draggablePoints)
 					{
 						plotter?.Children.Remove(draggablePoint);
 					}

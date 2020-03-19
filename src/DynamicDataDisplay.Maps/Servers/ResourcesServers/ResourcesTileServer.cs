@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using System.Reflection;
-using System.Windows.Media.Imaging;
-using System.IO;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+using System;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
 {
@@ -57,7 +55,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
 
 		protected void ReportSuccess(BitmapImage bmp, TileIndex id)
 		{
-			Debug.WriteLine(String.Format("{0}: loaded id = {1}", ServerName, id));
+			Debug.WriteLine(string.Format("{0}: loaded id = {1}", ServerName, id));
 			RaiseDataLoaded(new TileLoadResultEventArgs
 			{
 				Image = bmp,
@@ -68,7 +66,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
 
 		protected void ReportFailure(TileIndex id)
 		{
-			Debug.WriteLine(String.Format("{0}: failed id = {1}", ServerName, id));
+			Debug.WriteLine(string.Format("{0}: failed id = {1}", ServerName, id));
 			RaiseDataLoaded(new TileLoadResultEventArgs
 			{
 				Image = null,

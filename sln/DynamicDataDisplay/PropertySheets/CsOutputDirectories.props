@@ -68,8 +68,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <!-- Not ready for this level of commitment yet
+	-->
     <SignAssembly>true</SignAssembly>
-    -->
     <LangVersion>latest</LangVersion>
     <AssemblyOriginatorKeyFile>$(SolutionDir)PropertySheets\DynamicDataDisplay.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>

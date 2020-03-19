@@ -25,14 +25,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Transforms
 
 			Parallel.For(0, ySize, (y) =>
 			{
-		  // calculate target pixel latitude
-		  var tgtLat = northDeg - (y * (northDeg - southDeg) / ySize);
+				// calculate target pixel latitude
+				var tgtLat = northDeg - (y * (northDeg - southDeg) / ySize);
 
-		  // transform the target pixel lat to a source latitude via Mercator transform
-		  var vp = tForm.DataToViewport(new System.Windows.Point(0.0, tgtLat));
+				// transform the target pixel lat to a source latitude via Mercator transform
+				var vp = tForm.DataToViewport(new System.Windows.Point(0.0, tgtLat));
 
-		  // translate src viewport coord to a y value
-		  int srcY = (int)Math.Floor(ySize * (Math.Abs(vp.Y - vpNorth.Y) / Math.Abs(vpNorth.Y - vpSouth.Y)));
+				// translate src viewport coord to a y value
+				int srcY = (int)Math.Floor(ySize * (Math.Abs(vp.Y - vpNorth.Y) / Math.Abs(vpNorth.Y - vpSouth.Y)));
 
 				for (int x = 0; x < xSize; ++x)
 				{

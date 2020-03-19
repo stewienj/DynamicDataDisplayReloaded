@@ -130,13 +130,13 @@ namespace Microsoft.Research.DynamicDataDisplay
 				DefaultValue = null,
 				PropertyChangedCallback = (d, e) =>
 			{
-				  if (d is PointsGraphBase control)
-				  {
-				  // need to store this in a field so it can be accessed off the GUI thread
-				  control.dataTransform = e.NewValue as DataTransform;
-					  control.Update();
-				  }
-			  }
+				if (d is PointsGraphBase control)
+				{
+					// need to store this in a field so it can be accessed off the GUI thread
+					control.dataTransform = e.NewValue as DataTransform;
+					control.Update();
+				}
+			}
 			}
 		  );
 

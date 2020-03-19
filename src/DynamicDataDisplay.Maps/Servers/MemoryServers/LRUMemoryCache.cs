@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
 using System.Windows.Media.Imaging;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
 {

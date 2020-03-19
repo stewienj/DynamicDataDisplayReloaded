@@ -40,8 +40,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			// Have to do this in a dispatcher
 			Dispatcher.InvokeAsync(() =>
 			{
-		  // Make the number of lines we are tracking equal to the number of data sources we have
-		  while (_lineGraphs.Count < lines.Count)
+				// Make the number of lines we are tracking equal to the number of data sources we have
+				while (_lineGraphs.Count < lines.Count)
 				{
 					LineGraph lineGraph = new LineGraph();
 					lineGraph.Filters.Add(new FrequencyFilter());
@@ -59,9 +59,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 				{
 					if (!_autoAssignColors && _previousAutoAssignColors)
 					{
-				  // Make sure data context is changed so Styles can be applied if not auto assigning colors
-				  // but they were auto assigned on the last pass
-				  _lineGraphs[i].DataContext = null;
+						// Make sure data context is changed so Styles can be applied if not auto assigning colors
+						// but they were auto assigned on the last pass
+						_lineGraphs[i].DataContext = null;
 					}
 
 					_lineGraphs[i].DataContext = lines[i];
@@ -114,16 +114,16 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		public static readonly DependencyProperty AutoAsignColorsProperty =
 			DependencyProperty.Register("AutoAsignColors", typeof(bool), typeof(MultipleLineSourceHost), new PropertyMetadata(false, (d, e) =>
 			 {
-				if (d is MultipleLineSourceHost control)
-				{
-				// When set to true auto asign the colors
-				if (e.NewValue is bool autoAssignColors && autoAssignColors == true)
-					{
-						control._autoAssignColors = autoAssignColors;
-						control.RebuildLines(control.MultipleLineSource?.Cast<object>());
-					}
-				}
-			}));
+				 if (d is MultipleLineSourceHost control)
+				 {
+					 // When set to true auto asign the colors
+					 if (e.NewValue is bool autoAssignColors && autoAssignColors == true)
+					 {
+						 control._autoAssignColors = autoAssignColors;
+						 control.RebuildLines(control.MultipleLineSource?.Cast<object>());
+					 }
+				 }
+			 }));
 
 		public IEnumerable MultipleLineSource
 		{
@@ -135,8 +135,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		public static readonly DependencyProperty MultipleLineSourceProperty =
 		  DependencyProperty.Register("MultipleLineSource", typeof(IEnumerable), typeof(MultipleLineSourceHost), new PropertyMetadata(null, (d, e) =>
 		  {
-		  // So need to map each source to a LineGraph object, setting the LineGraph DataContext accordingly
-		  if (d is MultipleLineSourceHost control)
+			  // So need to map each source to a LineGraph object, setting the LineGraph DataContext accordingly
+			  if (d is MultipleLineSourceHost control)
 			  {
 				  if (e.OldValue is INotifyCollectionChanged oldCollection)
 				  {

@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Windows;
 
 public class IsolinePlotterBenchmark
@@ -75,14 +75,14 @@ public class BenchmarkDataSource : IDataSource2D<double>
 		get { return height; }
 	}
 
-    protected void OnChanged()
-    {
-        var handler = Changed;
-        if (handler != null)
-        {
-            handler(this, new EventArgs());
-        }
-    }
+	protected void OnChanged()
+	{
+		var handler = Changed;
+		if (handler != null)
+		{
+			handler(this, new EventArgs());
+		}
+	}
 
 	public event EventHandler Changed;
 

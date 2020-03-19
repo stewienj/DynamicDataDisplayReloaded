@@ -1,13 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
+using System.Windows;
 using System.Windows.Threading;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using System.Threading;
 
 namespace LineTestSample
 {

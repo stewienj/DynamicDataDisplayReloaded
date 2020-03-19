@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using System.Threading;
-using System.Windows.Threading;
-using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.Windows.Media.Imaging;
+using System.Threading;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.ComponentModel;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
 {
@@ -36,8 +31,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
 
 			DeleteFileCacheOnUpdate = true;
 
-			MinLevel = Int32.MinValue;
-			MaxLevel = Int32.MaxValue;
+			MinLevel = int.MinValue;
+			MaxLevel = int.MaxValue;
 		}
 
 		private int threadsCount = 1;

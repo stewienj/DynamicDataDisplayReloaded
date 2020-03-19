@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace NewMarkersSample.Pages
 {
@@ -42,7 +34,7 @@ namespace NewMarkersSample.Pages
 				double hue = Math.Sin(1000 * (p.X + p.Y)) * 180 + 180;
 				var color = new HsbColor(hue, 0.2, 1);
 				return new SolidColorBrush(color.ToArgbColor()).MakeTransparent(0.7);
-			}); 
+			});
 			chart.AddPropertyBindingForNamedPart<Point>("ellipse", Ellipse.StrokeProperty, p =>
 			{
 				double hue = Math.Sin(1000 * (p.X + p.Y)) * 180 + 180;

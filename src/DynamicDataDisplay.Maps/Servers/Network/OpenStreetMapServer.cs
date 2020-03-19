@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
+﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
 {
 	/// <summary>
 	/// Sample network tile server, which downloads tile images from OpenStreetMap server.
@@ -23,7 +21,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
 			UriFormat = "http://{3}.{4}/{0}/{1}/{2}.png";
 			ServerName = "Open Street Maps";
 
-      MaxLatitude = 85.0511287798;
+			MaxLatitude = 85.0511287798;
 			MinLevel = 0;
 			MaxLevel = 17;
 			MaxConcurrentDownloads = 3;
@@ -41,8 +39,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
 				RaiseChangedEvent();
 			}
 		}
-		
-    protected override string CreateRequestUriCore(TileIndex index)
+
+		protected override string CreateRequestUriCore(TileIndex index)
 		{
 			int z = (int)index.Level;
 			int shift = MapTileProvider.GetSideTilesCount(z) / 2;
@@ -69,7 +67,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
 					break;
 			}
 
-			return String.Format(UriFormat, z.ToString(), x.ToString(), y.ToString(), serverIdx.ToString(), uri);
+			return string.Format(UriFormat, z.ToString(), x.ToString(), y.ToString(), serverIdx.ToString(), uri);
 		}
 	}
 }

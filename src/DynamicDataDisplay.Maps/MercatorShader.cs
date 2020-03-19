@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps
 {

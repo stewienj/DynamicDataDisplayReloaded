@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
 using System.Windows.Input;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
 using System.Windows.Markup;
-using System.ComponentModel;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {

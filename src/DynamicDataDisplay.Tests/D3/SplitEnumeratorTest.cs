@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Diagnostics;
+using System.Linq;
 
 namespace DynamicDataDisplay.Tests.D3
 {

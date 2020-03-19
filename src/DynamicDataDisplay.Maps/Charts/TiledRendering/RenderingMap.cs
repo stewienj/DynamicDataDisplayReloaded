@@ -1,18 +1,12 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+using Microsoft.Research.DynamicDataDisplay.Common;
+using Microsoft.Research.DynamicDataDisplay.Maps.Servers;
+using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
 using System.Windows;
-using System.Windows.Markup;
 using System.Windows.Data;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers;
-using System.Collections;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using System.ComponentModel;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using System.Windows.Threading;
 using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
@@ -26,7 +20,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
 		public RenderTileServer RenderTileServer
 		{
 			get { return renderTileServer; }
-		} 
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RenderingMap"/> class.

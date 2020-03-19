@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using System;
 using System.Diagnostics;
 using System.Windows.Threading;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace PerfCounterChart
 {
@@ -33,7 +32,7 @@ namespace PerfCounterChart
 			var newInfo = new PerformanceInfo { Time = DateTime.Now, Value = counter.NextValue() };
 			this.Add(newInfo);
 
-			Debug.WriteLine(String.Format("{0}.{1}: {2}", newInfo.Time.Second, newInfo.Time.Millisecond, newInfo.Value));
+			Debug.WriteLine(string.Format("{0}.{1}: {2}", newInfo.Time.Second, newInfo.Time.Millisecond, newInfo.Value));
 		}
 
 		private TimeSpan updateInterval = TimeSpan.FromMilliseconds(500);

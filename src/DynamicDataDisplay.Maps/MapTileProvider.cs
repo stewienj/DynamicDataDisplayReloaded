@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {
@@ -24,14 +19,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 		public double MaxLatitude
 		{
 			get { return maxY; }
-      set
-      {
-        maxY = value;
-        minY = -value;
+			set
+			{
+				maxY = value;
+				minY = -value;
 
-        rect = DataRect.FromPoints(minX, minY, maxX, maxY);
-      }
-    }
+				rect = DataRect.FromPoints(minX, minY, maxX, maxY);
+			}
+		}
 
 		private double maxShaderLatitude = 85.0511287798;
 		public double MaxShaderLatitude

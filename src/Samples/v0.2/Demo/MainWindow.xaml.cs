@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
 
 namespace Microsoft.Research.DynamicDataDisplay.Demo
 {
@@ -54,7 +45,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Demo
 			xDataSource.SetXMapping(X => X);
 
 
-            CompositeDataSource compositeDataSource = new CompositeDataSource(xDataSource, yDataSource);
+			CompositeDataSource compositeDataSource = new CompositeDataSource(xDataSource, yDataSource);
 
 			Matrix m = Matrix.Identity;
 			m.RotateAt(45, 10, 10);
@@ -63,7 +54,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Demo
 				Stroke = Brushes.Green,
 				StrokeThickness = 2,
 				DataTransform =
-					//new MatrixDataTransform(m) 
+				//new MatrixDataTransform(m) 
 				new RotateDataTransform(45.0.DegreesToRadians())
 			};
 			line.DataSource = compositeDataSource;
@@ -72,11 +63,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Demo
 			plotter.Viewport.Restrictions.Add(new PhysicalProportionsRestriction { ProportionRatio = 1 });
 
 
-            // adding graph to plotter
-            plotter.AddLineGraph(compositeDataSource,
-                new Pen(Brushes.Goldenrod, 3),
-                new SampleMarker(),
-                new PenDescription("Cosine"));
+			// adding graph to plotter
+			plotter.AddLineGraph(compositeDataSource,
+				new Pen(Brushes.Goldenrod, 3),
+				new SampleMarker(),
+				new PenDescription("Cosine"));
 
 			//plotter.Viewport.FitToViewRestrictions.Add(new FollowDataWidthRestriction { Width = 1 });
 
@@ -106,23 +97,23 @@ namespace Microsoft.Research.DynamicDataDisplay.Demo
 				Width = 10,
 				Height = Size
 			};
-            SetMarkerProperties(result);
+			SetMarkerProperties(result);
 			return result;
 		}
 
-        public override void SetMarkerProperties(UIElement marker)
-        {
-            Canvas result = (Canvas)marker;
-            result.Width = Size;
-            result.Height = Size;
-            result.Background = Brush;
-            if (ToolTipText != String.Empty)
-            {
-                ToolTip tt = new ToolTip();
-                tt.Content = ToolTipText;
-                result.ToolTip = tt;
-            }
-        }
+		public override void SetMarkerProperties(UIElement marker)
+		{
+			Canvas result = (Canvas)marker;
+			result.Width = Size;
+			result.Height = Size;
+			result.Background = Brush;
+			if (ToolTipText != string.Empty)
+			{
+				ToolTip tt = new ToolTip();
+				tt.Content = ToolTipText;
+				result.ToolTip = tt;
+			}
+		}
 
 		public override void SetPosition(UIElement marker, Point screenPoint)
 		{

@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using System.Threading;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Globalization;
+using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03
 {
@@ -24,7 +13,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03
 	/// </summary>
 	public partial class SimulationSample : Page
 	{
-		
+
 		// Three observable data sources. Observable data source contains
 		// inside ObservableCollection. Modification of collection instantly modify
 		// visual representation of graph. 
@@ -52,10 +41,10 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03
 						line = r.ReadLine();
 						string[] values = line.Split(',');
 
-						double x = Double.Parse(values[0], culture);
-						double y1 = Double.Parse(values[1], culture);
-						double y2 = Double.Parse(values[2], culture);
-						double y3 = Double.Parse(values[3], culture);
+						double x = double.Parse(values[0], culture);
+						double y1 = double.Parse(values[1], culture);
+						double y2 = double.Parse(values[2], culture);
+						double y3 = double.Parse(values[3], culture);
 
 						Point p1 = new Point(x, y1);
 						Point p2 = new Point(x, y2);

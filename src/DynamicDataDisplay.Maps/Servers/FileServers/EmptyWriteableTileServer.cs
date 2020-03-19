@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
 {
@@ -23,11 +18,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
 			// do nothing
 		}
 
-        public void Clear()
-        {
-            // do nothing
-        }
+		public void Clear()
+		{
+			// do nothing
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

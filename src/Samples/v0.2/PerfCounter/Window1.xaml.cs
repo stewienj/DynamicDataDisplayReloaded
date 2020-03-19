@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Diagnostics;
-using System.Collections.Specialized;
-
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
-using System.Collections.ObjectModel;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
 
 namespace PerfCounterChart
 {
@@ -67,7 +53,7 @@ namespace PerfCounterChart
 			ds.SetXMapping(pi => pi.Time.TimeOfDay.TotalSeconds);
 			ds.SetYMapping(pi => pi.Value);
 
-			LineGraph chart = plotter.AddLineGraph(ds, 2.0, String.Format("{0} - {1}", categoryName, counterName));
+			LineGraph chart = plotter.AddLineGraph(ds, 2.0, string.Format("{0} - {1}", categoryName, counterName));
 			return chart;
 		}
 
@@ -81,7 +67,7 @@ namespace PerfCounterChart
 			ds.SetXMapping(pi => pi.Time.TimeOfDay.TotalSeconds);
 			ds.SetYMapping(pi => pi.Value);
 
-			LineGraph chart = plotter.AddLineGraph(ds, 2.0, String.Format("{0} - {1}", categoryName, counterName));
+			LineGraph chart = plotter.AddLineGraph(ds, 2.0, string.Format("{0} - {1}", categoryName, counterName));
 			return chart;
 		}
 
@@ -95,7 +81,7 @@ namespace PerfCounterChart
 			ds.SetXMapping(pi => pi.Time.TimeOfDay.TotalSeconds);
 			ds.SetYMapping(pi => pi.Value);
 
-			LineGraph chart = plotter.AddLineGraph(ds, 2.0, String.Format("{0} - {1}", categoryName, counterName));
+			LineGraph chart = plotter.AddLineGraph(ds, 2.0, string.Format("{0} - {1}", categoryName, counterName));
 			return chart;
 		}
 
@@ -105,7 +91,7 @@ namespace PerfCounterChart
 
 			double mbytes = graph.DataSource.GetPoints().LastOrDefault().Y;
 
-			graph.Description = new PenDescription(String.Format("Memory - available {0} MBytes", mbytes));
+			graph.Description = new PenDescription(string.Format("Memory - available {0} MBytes", mbytes));
 		}
 	}
 }

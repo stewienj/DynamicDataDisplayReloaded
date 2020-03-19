@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using System.Windows.Input;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Microsoft.Research.DynamicDataDisplay.Controls
 {

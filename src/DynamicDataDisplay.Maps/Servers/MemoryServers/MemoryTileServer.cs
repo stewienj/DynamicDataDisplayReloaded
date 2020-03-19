@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {
-	public sealed class MemoryTileServer : TileServerBase, ITileSystem	{
+	public sealed class MemoryTileServer : TileServerBase, ITileSystem
+	{
 		public MemoryTileServer(string name)
 		{
 			ServerName = name;
@@ -46,14 +44,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		#endregion
 
-        #region ITileStore Members
+		#region ITileStore Members
 
 
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
+		public void Clear()
+		{
+			throw new NotImplementedException();
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

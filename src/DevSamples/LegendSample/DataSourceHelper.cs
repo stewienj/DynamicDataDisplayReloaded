@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
 
 namespace LegendSample
 {

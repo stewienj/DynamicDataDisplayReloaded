@@ -1,6 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
-using Microsoft.Research.DynamicDataDisplay.Controls;
+﻿using Microsoft.Research.DynamicDataDisplay.Controls;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DynamicDataDisplay.Test
 {

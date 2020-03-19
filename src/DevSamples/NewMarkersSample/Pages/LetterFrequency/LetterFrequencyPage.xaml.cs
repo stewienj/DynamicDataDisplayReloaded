@@ -1,21 +1,13 @@
-﻿using System;
+﻿using DynamicDataDisplay.Markers.DataSources.ValueConverters;
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
-using Microsoft.Research.DynamicDataDisplay;
-using DynamicDataDisplay.Markers.DataSources.ValueConverters;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace NewMarkersSample.Pages
 {
@@ -48,8 +40,8 @@ namespace NewMarkersSample.Pages
 			charFrequencies.Clear();
 			for (int i = 0; i < text.Length; i++)
 			{
-				var symbol = Char.ToLower(text[i]);
-				if (Char.IsLetter(symbol))
+				var symbol = char.ToLower(text[i]);
+				if (char.IsLetter(symbol))
 				{
 					int count = 0;
 					charFrequencies.TryGetValue(symbol, out count);

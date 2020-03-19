@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
 using System.Globalization;
-using Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals

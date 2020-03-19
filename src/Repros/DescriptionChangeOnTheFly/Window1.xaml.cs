@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System.Linq;
+using System.Windows;
+using System.Windows.Media;
 
 namespace DescriptionChangeOnTheFly
 {
@@ -36,7 +26,7 @@ namespace DescriptionChangeOnTheFly
 
 			var ds = xs.AsXDataSource().Join(ys.AsYDataSource());
 
-			chart = plotter.AddLineGraph(ds, "Chart1"); 
+			chart = plotter.AddLineGraph(ds, "Chart1");
 		}
 
 		private void changeDescrBtn_Click(object sender, RoutedEventArgs e)

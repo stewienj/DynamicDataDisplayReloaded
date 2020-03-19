@@ -73,12 +73,12 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 			{
 				Dispatcher.Invoke(() =>
 		  {
-				  foreach (FrameworkElement newItem in Items)
-				  {
-					  newItem.SetBinding(FrameworkElement.DataContextProperty, new Binding { Path = new PropertyPath("ChildContext"), Source = this });
-					  Plotter2D.Children.Add(newItem);
-				  }
-			  });
+			  foreach (FrameworkElement newItem in Items)
+			  {
+				  newItem.SetBinding(FrameworkElement.DataContextProperty, new Binding { Path = new PropertyPath("ChildContext"), Source = this });
+				  Plotter2D.Children.Add(newItem);
+			  }
+		  });
 			});
 		}
 

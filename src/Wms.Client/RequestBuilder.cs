@@ -14,9 +14,9 @@ namespace Wms.Client
 	/// </summary>
 	public abstract class RequestBuilder
 	{
-		private System.UriBuilder				uri;
-		private System.Collections.Hashtable	clientInfo;
-		protected System.Collections.Hashtable	queryParameters;
+		private System.UriBuilder uri;
+		private System.Collections.Hashtable clientInfo;
+		protected System.Collections.Hashtable queryParameters;
 
 		public RequestBuilder()
 		{
@@ -41,7 +41,7 @@ namespace Wms.Client
 
 		public System.Collections.Hashtable ClientInfo
 		{
-			get {return this.clientInfo;}
+			get { return this.clientInfo; }
 		}
 
 		public void SetParam(string name, string param)
@@ -62,26 +62,26 @@ namespace Wms.Client
 
 		public string Service
 		{
-			set {this.SetParam("SERVICE", value);}
-			get {return this.GetParam("SERVICE");}
+			set { this.SetParam("SERVICE", value); }
+			get { return this.GetParam("SERVICE"); }
 		}
 
 		public string Version
 		{
-			set {this.SetParam("VERSION", value);}
-			get {return this.GetParam("VERSION");}
+			set { this.SetParam("VERSION", value); }
+			get { return this.GetParam("VERSION"); }
 		}
 
 		public string Exceptions
 		{
-			set {this.SetParam("EXCEPTIONS", value);}
-			get {return this.GetParam("EXCEPTIONS");}
+			set { this.SetParam("EXCEPTIONS", value); }
+			get { return this.GetParam("EXCEPTIONS"); }
 		}
 
 		public string Request
 		{
-			set {this.SetParam("REQUEST", value);}
-			get {return this.GetParam("REQUEST");}
+			set { this.SetParam("REQUEST", value); }
+			get { return this.GetParam("REQUEST"); }
 		}
 
 		public System.Uri Uri
@@ -91,7 +91,7 @@ namespace Wms.Client
 				this.uri = new System.UriBuilder(value.Scheme, value.Host, value.Port, value.AbsolutePath);
 
 			}
-			get {return new System.Uri(this.ToString());}
+			get { return new System.Uri(this.ToString()); }
 		}
 
 		private string getQueryString()
@@ -161,80 +161,80 @@ namespace Wms.Client
 
 		public string Layers
 		{
-			set {this.SetParam("LAYERS", value);}
-			get {return this.GetParam("LAYERS");}
+			set { this.SetParam("LAYERS", value); }
+			get { return this.GetParam("LAYERS"); }
 		}
 
 		public string Styles
 		{
-			set {this.SetParam("STYLES", value);}
-			get {return this.GetParam("STYLES");}
+			set { this.SetParam("STYLES", value); }
+			get { return this.GetParam("STYLES"); }
 		}
 
 		public string Srs
 		{
-			set {this.SetParam("SRS", value);}
-			get {return this.GetParam("SRS");}
+			set { this.SetParam("SRS", value); }
+			get { return this.GetParam("SRS"); }
 		}
 
 		public string BoundingBox
 		{
-			set {this.SetParam("BBOX", value);}
-			get {return this.GetParam("BBOX");}
+			set { this.SetParam("BBOX", value); }
+			get { return this.GetParam("BBOX"); }
 		}
 
 		public int Width
 		{
-			set {this.SetParam("WIDTH", value.ToString());}
-			get {return System.Int32.Parse(this.GetParam("WIDTH"));}
+			set { this.SetParam("WIDTH", value.ToString()); }
+			get { return int.Parse(this.GetParam("WIDTH")); }
 		}
 
 		public int Height
 		{
-			set {this.SetParam("HEIGHT", value.ToString());}
-			get {return System.Int32.Parse(this.GetParam("HEIGHT"));}
+			set { this.SetParam("HEIGHT", value.ToString()); }
+			get { return int.Parse(this.GetParam("HEIGHT")); }
 		}
 
 		public string Format
 		{
-			set {this.SetParam("FORMAT", value);}
-			get {return this.GetParam("FORMAT");}
+			set { this.SetParam("FORMAT", value); }
+			get { return this.GetParam("FORMAT"); }
 		}
 
 		public bool Transparent
 		{
-			set {this.SetParam("TRANSPARENT", value ? "TRUE" : "FALSE");}
-			get {return this.GetParam("TRANSPARENT").Equals("TRUE") ? true : false;}
+			set { this.SetParam("TRANSPARENT", value ? "TRUE" : "FALSE"); }
+			get { return this.GetParam("TRANSPARENT").Equals("TRUE") ? true : false; }
 		}
 
 		public string BackgroundColor
 		{
-			set {this.SetParam("BGCOLOR", value);}
-			get {return this.GetParam("BGCOLOR");}
+			set { this.SetParam("BGCOLOR", value); }
+			get { return this.GetParam("BGCOLOR"); }
 		}
 
 		public string Time
 		{
-			set {this.SetParam("TIME", value);}
-			get {return this.GetParam("TIME");}
+			set { this.SetParam("TIME", value); }
+			get { return this.GetParam("TIME"); }
 		}
 
 		public string Elevation
 		{
-			set {this.SetParam("ELEVATION", value);}
-			get {return this.GetParam("ELEVATION");}
+			set { this.SetParam("ELEVATION", value); }
+			get { return this.GetParam("ELEVATION"); }
 		}
 
 		public string Sld
 		{
-			set {this.SetParam("SLD", value);}
-			get {return this.GetParam("SLD");}
+			set { this.SetParam("SLD", value); }
+			get { return this.GetParam("SLD"); }
 		}
 
 		public string Wfs
 		{
-			set {this.SetParam("WFS", value);}
-			get {return this.GetParam("WFS");}
+			set { this.SetParam("WFS", value); }
+			get { return this.GetParam("WFS"); }
 		}
 
 		// This function adds the default extents to the GetMap URI as explicit

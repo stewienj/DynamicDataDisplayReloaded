@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {
@@ -70,8 +67,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		public void BeginSaveImage(TileIndex id, BitmapSource image, Stream stream)
 		{
-            if (image == null)
-                throw new ArgumentNullException("image");
+			if (image == null)
+				throw new ArgumentNullException("image");
 
 			cache[id] = new WeakReference(image);
 			Statistics.IntValues["ImagesSaved"]++;
@@ -79,14 +76,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		#endregion
 
-        #region ITileStore Members
+		#region ITileStore Members
 
 
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
+		public void Clear()
+		{
+			throw new NotImplementedException();
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -11,7 +10,7 @@ using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts
 {
-  public class Coastline : ViewportElement2D
+	public class Coastline : ViewportElement2D
 	{
 		private readonly string delimiter = "nan nan";
 
@@ -86,7 +85,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 			Init();
 
-      Viewport2D.SetContentBounds(this, new DataRect(-180, -90, 360, 180));
+			Viewport2D.SetContentBounds(this, new DataRect(-180, -90, 360, 180));
 		}
 
 		public Coastline(string path)
@@ -213,7 +212,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 		private double Parse(string str)
 		{
-			return Double.Parse(str, CultureInfo.InvariantCulture);
+			return double.Parse(str, CultureInfo.InvariantCulture);
 		}
 
 		protected override void OnRenderCore(DrawingContext dc, RenderState state)

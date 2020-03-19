@@ -31,7 +31,7 @@ namespace Wms.Client
 			{
 				pattern = pattern + "|" + pattern.Replace("Url", "URL");
 			}
-			return pattern = pattern + "|" + pattern.ToLower()	+ "|" + pattern.ToUpper();
+			return pattern = pattern + "|" + pattern.ToLower() + "|" + pattern.ToUpper();
 		}
 
 		internal static string GetStringInstance(System.Xml.XPath.XPathNavigator node, string selectPattern)
@@ -56,7 +56,7 @@ namespace Wms.Client
 			string[] retVal = new string[iter.Count];
 			while (iter.MoveNext())
 			{
-				retVal[iter.CurrentPosition-1] = iter.Current.Value;
+				retVal[iter.CurrentPosition - 1] = iter.Current.Value;
 			}
 			return retVal;
 		}
@@ -93,182 +93,182 @@ namespace Wms.Client
 
 		public string ServiceOnlineResource
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Service/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Service/OnlineResource"); }
 		}
 
 		public string Version
 		{
-			get {return GetStringInstance(this.doc, @"/*/@Version");}
+			get { return GetStringInstance(this.doc, @"/*/@Version"); }
 		}
 
 		public string UpdateSequence
 		{
-			get {return GetStringInstance(this.doc, @"/*/@updateSequence|./*/UpdateSequence");}
+			get { return GetStringInstance(this.doc, @"/*/@updateSequence|./*/UpdateSequence"); }
 		}
 
 		public string ServiceName
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/Name");}
+			get { return GetStringInstance(this.doc, @"/*/Service/Name"); }
 		}
 
 		public string ServiceTitle
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/Title");}
+			get { return GetStringInstance(this.doc, @"/*/Service/Title"); }
 		}
 
 		public string ServiceAbstract
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/Abstract");}
+			get { return GetStringInstance(this.doc, @"/*/Service/Abstract"); }
 		}
 
 		public string[] ServiceKeywordList
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Service/KeywordList/Keyword");}
+			get { return GetStringsInstance(this.doc, @"/*/Service/KeywordList/Keyword"); }
 		}
 
 		public string ServiceFees
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/Fees");}
+			get { return GetStringInstance(this.doc, @"/*/Service/Fees"); }
 		}
 
 		public string ServiceAccessConstraints
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/AccessConstraints");}
+			get { return GetStringInstance(this.doc, @"/*/Service/AccessConstraints"); }
 		}
 
 		public string ServiceContactPerson
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactPersonPrimary/ContactPerson");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactPersonPrimary/ContactPerson"); }
 		}
 
 		public string ServiceContactOrganization
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactPersonPrimary/ContactOrganization");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactPersonPrimary/ContactOrganization"); }
 		}
 
 		public string ServiceContactPosition
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactPosition");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactPosition"); }
 		}
 
 		public string ServiceContactVoiceTelephone
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactVoiceTelephone");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactVoiceTelephone"); }
 		}
 
 		public string ServiceContactFacsimileTelephone
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactFacsimileTelephone");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactFacsimileTelephone"); }
 		}
 
 		public string ServiceContactElectronicMailAddress
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactElectronicMailAddress");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactElectronicMailAddress"); }
 		}
 
 		public string ServiceContactAddressType
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/AddressType");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/AddressType"); }
 		}
 
 		public string ServiceContactAddress
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/Address");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/Address"); }
 		}
 
 		public string ServiceContactAddressCity
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/City");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/City"); }
 		}
 
 		public string ServiceContactAddressStateOrProvince
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/StateOrProvince");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/StateOrProvince"); }
 		}
 
 		public string ServiceContactAddressPostCode
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/PostCode");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/PostCode"); }
 		}
 
 		public string ServiceContactAddressCountry
 		{
-			get {return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/Country");}
+			get { return GetStringInstance(this.doc, @"/*/Service/ContactInformation/ContactAddress/Country"); }
 		}
 
 		public string GetCapabilitiesRequestUri
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetCapabilities/DCPType/HTTP/Get/OnlineResource"); }
 		}
 
 		public string GetMapRequestUri
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetMap/DCPType/HTTP/Get/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetMap/DCPType/HTTP/Get/OnlineResource"); }
 		}
 
 		public string GetFeatureInfoRequestUri
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetFeatureInfo/DCPType/HTTP/Get/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetFeatureInfo/DCPType/HTTP/Get/OnlineResource"); }
 		}
 
 		public string DescribeLayerRequestUri
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/DescribeLayer/DCPType/HTTP/Get/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/DescribeLayer/DCPType/HTTP/Get/OnlineResource"); }
 		}
 
 		public string GetLegendGraphicRequestUri
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetLegendGraphic/DCPType/HTTP/Get/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetLegendGraphic/DCPType/HTTP/Get/OnlineResource"); }
 		}
 
 		public string GetStylesRequestUri
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetStyles/DCPType/HTTP/Get/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/GetStyles/DCPType/HTTP/Get/OnlineResource"); }
 		}
 
 		public string PutStylesRequestUri
 		{
-			get {return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/PutStyles/DCPType/HTTP/Get/OnlineResource");}
+			get { return GetOnlineResourceInstance(this.doc, @"/*/Capability/Request/PutStyles/DCPType/HTTP/Get/OnlineResource"); }
 		}
 
 		public string[] GetCapabilitiesRequestFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Request/GetCapabilities/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Request/GetCapabilities/Format"); }
 		}
 
 		public string[] GetMapRequestFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Request/GetMap/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Request/GetMap/Format"); }
 		}
 
 		public string[] GetFeatureInfoRequestFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Request/GetFeatureInfo/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Request/GetFeatureInfo/Format"); }
 		}
 
 		public string[] DescribeLayerRequestFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Request/DescribeLayer/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Request/DescribeLayer/Format"); }
 		}
 
 		public string[] GetLegendGraphicRequestFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Request/GetLegendGraphic/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Request/GetLegendGraphic/Format"); }
 		}
 
 		public string[] GetStylesRequestFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Request/GetStyles/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Request/GetStyles/Format"); }
 		}
 
 		public string[] PutStylesRequestFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Request/PutStyles/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Request/PutStyles/Format"); }
 		}
 
 		public string[] ExceptionFormats
 		{
-			get {return GetStringsInstance(this.doc, @"/*/Capability/Exception/Format");}
+			get { return GetStringsInstance(this.doc, @"/*/Capability/Exception/Format"); }
 		}
 
 		public Layer[] Layers

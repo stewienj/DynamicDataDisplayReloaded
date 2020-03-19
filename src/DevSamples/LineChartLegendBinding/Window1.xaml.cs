@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay;
+using System;
+using System.Windows;
 
 namespace LineChartLegendBinding
 {
@@ -63,25 +52,25 @@ namespace LineChartLegendBinding
 				case 0:
 					plotter.Legend.LegendRight = 10;
 					plotter.Legend.LegendTop = 10;
-					plotter.Legend.LegendLeft = Double.NaN;
-					plotter.Legend.LegendBottom = Double.NaN;
+					plotter.Legend.LegendLeft = double.NaN;
+					plotter.Legend.LegendBottom = double.NaN;
 					break;
 				case 1:
-					plotter.Legend.LegendRight = Double.NaN;
+					plotter.Legend.LegendRight = double.NaN;
 					plotter.Legend.LegendTop = 10;
 					plotter.Legend.LegendLeft = 10;
-					plotter.Legend.LegendBottom = Double.NaN;
+					plotter.Legend.LegendBottom = double.NaN;
 					break;
 				case 2:
-					plotter.Legend.LegendRight = Double.NaN;
-					plotter.Legend.LegendTop = Double.NaN;
+					plotter.Legend.LegendRight = double.NaN;
+					plotter.Legend.LegendTop = double.NaN;
 					plotter.Legend.LegendLeft = 10;
 					plotter.Legend.LegendBottom = 10;
 					break;
 				case 3:
 					plotter.Legend.LegendRight = 10;
-					plotter.Legend.LegendTop = Double.NaN;
-					plotter.Legend.LegendLeft = Double.NaN;
+					plotter.Legend.LegendTop = double.NaN;
+					plotter.Legend.LegendLeft = double.NaN;
 					plotter.Legend.LegendBottom = 10;
 					break;
 				default:

@@ -32,15 +32,15 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 			{
 				Dispatcher.Invoke(() =>
 		  {
-				  if (e.PositionsInData.Count() > 0)
-				  {
-					  UpdateUIRepresentation(e.MousePosInData, new Point(e.MousePosInData.X, e.PositionsInData.Last()));
-				  }
-				  else
-				  {
-					  UpdateUIRepresentation(e.MousePosInData, e.MousePosInData);
-				  }
-			  });
+			  if (e.PositionsInData.Count() > 0)
+			  {
+				  UpdateUIRepresentation(e.MousePosInData, new Point(e.MousePosInData.X, e.PositionsInData.Last()));
+			  }
+			  else
+			  {
+				  UpdateUIRepresentation(e.MousePosInData, e.MousePosInData);
+			  }
+		  });
 			});
 		}
 

@@ -6,11 +6,11 @@ namespace Wms.Client
 {
 	/// <summary>
 	/// Represents a WMS server and holds its capabilities description.
-    /// 表示一个WMS服务器
+	/// 表示一个WMS服务器
 	/// </summary>
 	public class Server
 	{
-		private Wms.Client.Capabilities		capabilities;
+		private Wms.Client.Capabilities capabilities;
 
 		public Server(string filePath)
 		{
@@ -19,12 +19,12 @@ namespace Wms.Client
 
 		public Capabilities Capabilities
 		{
-			get {return this.capabilities;}
+			get { return this.capabilities; }
 		}
 
 		public System.Uri Uri
 		{
-			get {return new System.Uri(this.capabilities.GetCapabilitiesRequestUri);}
+			get { return new System.Uri(this.capabilities.GetCapabilitiesRequestUri); }
 		}
 
 		public MapRequestBuilder CreateMapRequest()

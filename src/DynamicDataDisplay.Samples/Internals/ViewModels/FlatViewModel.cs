@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models;
-using System.Collections;
+﻿using System.Collections.Generic;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.ViewModels
 {

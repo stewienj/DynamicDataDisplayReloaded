@@ -38,7 +38,7 @@
     <Compile Include="WmsException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DefaultServerDescriptors.xml" />
+    <None Include="DefaultServerDescriptors.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WmsServerDescriptors.xsd">

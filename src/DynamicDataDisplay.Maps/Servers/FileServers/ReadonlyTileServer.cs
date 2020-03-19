@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Media.Imaging;
-using System.Windows.Media;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {
@@ -15,7 +10,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 		{
 			get { return cache; }
 			protected set { cache = value; }
-		} 
+		}
 
 		public override bool Contains(TileIndex id)
 		{
@@ -29,11 +24,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 			// do nothing
 		}
 
-        public void Clear()
-        {
-            // do nothing
-        }
+		public void Clear()
+		{
+			// do nothing
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

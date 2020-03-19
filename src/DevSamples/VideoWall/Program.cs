@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay;
 
 namespace VideoWall
 {
@@ -33,7 +32,7 @@ namespace VideoWall
 				for (int y = 0; y < yNum; y++)
 				{
 					PlotterWindow window = new PlotterWindow();
-					window.Title = String.Format("{0} - {1}", x, y);
+					window.Title = string.Format("{0} - {1}", x, y);
 
 					window.X = x;
 					window.Y = y;

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Documents;
-using System.IO.Packaging;
+﻿using Microsoft.Research.DynamicDataDisplay.Maps.Servers.FileServers;
+using System;
+using System.ComponentModel;
 using System.IO;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.FileServers;
+using System.IO.Packaging;
 using System.Net.Mime;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.ComponentModel;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {

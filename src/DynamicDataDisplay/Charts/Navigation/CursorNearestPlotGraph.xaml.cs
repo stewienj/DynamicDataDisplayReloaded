@@ -231,8 +231,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 				double xValue = mousePosInData.X;
 				var text = xTextMapping?.Invoke(xValue);
 
-		  // doesnot have xTextMapping or it returned null
-		  text = text ?? GetRoundedValue(visible.XMin, visible.XMax, xValue);
+				// doesnot have xTextMapping or it returned null
+				text = text ?? GetRoundedValue(visible.XMin, visible.XMax, xValue);
 
 				if (!string.IsNullOrEmpty(customXFormat))
 					text = string.Format(customXFormat, text);
@@ -243,8 +243,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
 			{
 				double yValue = mousePosInData.Y;
 				var text = yTextMapping?.Invoke(yValue);
-		  // doesnot have xTextMapping or it returned null
-		  text = text ?? GetRoundedValue(visible.YMin, visible.YMax, yValue);
+				// doesnot have xTextMapping or it returned null
+				text = text ?? GetRoundedValue(visible.YMin, visible.YMax, yValue);
 
 				if (!string.IsNullOrEmpty(customYFormat))
 					text = string.Format(customYFormat, text);

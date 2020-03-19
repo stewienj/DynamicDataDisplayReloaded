@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Win32;
+using System;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Win32;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
 {
@@ -58,7 +51,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
 			byte[] pixels = new byte[bmp.PixelWidth * bmp.PixelHeight * 4];
 			bmp.CopyPixels(pixels, bmp.PixelWidth * 4, 0);
 
-			for (int i = 0; i < pixels.Length; )
+			for (int i = 0; i < pixels.Length;)
 			{
 				//BGRA
 				blues[pixels[i++]]++;

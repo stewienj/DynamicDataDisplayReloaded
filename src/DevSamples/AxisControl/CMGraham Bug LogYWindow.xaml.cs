@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Charts;
 using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace AxisControlSample
 {
@@ -86,7 +80,7 @@ namespace AxisControlSample
 			//edsPow.SetXYMapping(s => new Point(xax.ConvertToDouble(s.X), s.Y));
 			edsPow.SetXMapping(s => xAxis.ConvertToDouble(s.X));
 			edsPow.SetYMapping(s => yAxis.ConvertToDouble(s.Y));
-			edsPow.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, s => String.Format("Vol:{0}\r\nOn:{1}", s.Y, s.X.ToShortDateString()));
+			edsPow.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, s => string.Format("Vol:{0}\r\nOn:{1}", s.Y, s.X.ToShortDateString()));
 
 			EnumerableDataSource<TPoint> edsLinear = new EnumerableDataSource<TPoint>(
 				Enumerable.Range(1, 2000).Select(s =>
@@ -99,7 +93,7 @@ namespace AxisControlSample
 			//edsLinear.SetXYMapping(s => new Point(xax.ConvertToDouble(s.X), s.Y));
 			edsLinear.SetXMapping(s => xAxis.ConvertToDouble(s.X));
 			edsLinear.SetYMapping(s => yAxis.ConvertToDouble(s.Y));
-			edsLinear.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, s => String.Format("Vol:{0}\r\nOn:{1}", s.Y, s.X.ToShortDateString()));
+			edsLinear.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, s => string.Format("Vol:{0}\r\nOn:{1}", s.Y, s.X.ToShortDateString()));
 
 			edsLog10 = new EnumerableDataSource<TPoint>(
 				Enumerable.Range(1, 2000).Select(s =>
@@ -112,7 +106,7 @@ namespace AxisControlSample
 			//edsLog10.SetXYMapping(s => new Point(xax.ConvertToDouble(s.X), s.Y));
 			edsLog10.SetXMapping(s => xAxis.ConvertToDouble(s.X));
 			edsLog10.SetYMapping(s => yAxis.ConvertToDouble(s.Y));
-			edsLog10.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, s => String.Format("Vol:{0}\r\nOn:{1}", s.Y, s.X.ToShortDateString()));
+			edsLog10.AddMapping(ShapeElementPointMarker.ToolTipTextProperty, s => string.Format("Vol:{0}\r\nOn:{1}", s.Y, s.X.ToShortDateString()));
 
 			SolidColorBrush brushPow = new SolidColorBrush(Colors.Green);
 			Pen linePenPow = new Pen(brushPow, 2.0);

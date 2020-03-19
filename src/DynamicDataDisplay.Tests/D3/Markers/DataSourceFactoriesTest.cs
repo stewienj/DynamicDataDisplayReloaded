@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DynamicDataDisplay.Markers.DataSources;
+using DynamicDataDisplay.Markers.DataSources.DataSourceFactories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows;
-using DynamicDataDisplay.Markers.DataSources.DataSourceFactories;
-using DynamicDataDisplay.Markers.DataSources;
 
 namespace DynamicDataDisplay.Tests.D3.Markers
 {

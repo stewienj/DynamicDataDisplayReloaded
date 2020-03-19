@@ -1,23 +1,10 @@
-﻿using System;
+﻿using DynamicDataDisplay.Markers.ForestDisplay;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using DynamicDataDisplay.Markers.MarkerGenerators;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System.Collections.ObjectModel;
-using DynamicDataDisplay.Markers.ForestDisplay;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using System.Windows;
+using System.Windows.Media;
 
 
 namespace ForestDisplaySample
@@ -56,9 +43,9 @@ namespace ForestDisplaySample
 
 		private void LoadForest()
 		{
-      var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-			var lines = File.ReadAllLines(System.IO.Path.Combine(directory,"Data.csv"));
+			var lines = File.ReadAllLines(System.IO.Path.Combine(directory, "Data.csv"));
 
 			string[] ids = new[] { "Abie.bals", "Acer.rubr", "Acer.sacc", "Betu.papy", "Popu.gran", "Popu.trem", "Quer.rubr", "Tili.amer" };
 
@@ -97,7 +84,7 @@ namespace ForestDisplaySample
 
 		private static double Parse(string str)
 		{
-			return Double.Parse(str, CultureInfo.InvariantCulture);
+			return double.Parse(str, CultureInfo.InvariantCulture);
 		}
 
 		private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

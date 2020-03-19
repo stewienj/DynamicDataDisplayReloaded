@@ -1,19 +1,9 @@
 ﻿#define a
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace VideoWall
 {
@@ -44,7 +34,8 @@ namespace VideoWall
 				plotter.HorizontalAxis = null;
 #endif
 			}
-			if (X != 0) {
+			if (X != 0)
+			{
 #if a
 				FrameworkElement element = (FrameworkElement)plotter.MainVerticalAxis;
 				element.Visibility = Visibility.Collapsed;

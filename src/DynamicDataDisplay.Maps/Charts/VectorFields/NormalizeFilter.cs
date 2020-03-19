@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
+﻿namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
 {
 	public class NormalizeFilter : VectorFieldConvolutionFilter
 	{
 		public override void Filter(int[] pixels, int width, int height)
 		{
-			double minBrightness = Double.PositiveInfinity;
-			double maxBrightness = Double.NegativeInfinity;
+			double minBrightness = double.PositiveInfinity;
+			double maxBrightness = double.NegativeInfinity;
 
 			for (int i = 0; i < pixels.Length; i++)
 			{

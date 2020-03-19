@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj">
-      <Project>{EB04A4CD-DDE6-49EB-8FB6-39B35482D792}</Project>
+      <Project>{eb04a4cd-dde6-49eb-8fb6-39b35482d792}</Project>
       <Name>DynamicDataDisplay.Maps</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DynamicDataDisplay\DynamicDataDisplay.csproj">

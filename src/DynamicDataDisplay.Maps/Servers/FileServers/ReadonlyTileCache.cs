@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
 using System.Diagnostics;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
@@ -27,8 +24,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		public void CalcMinMaxLevels()
 		{
-			minLevel = Int32.MaxValue;
-			maxLevel = Int32.MinValue;
+			minLevel = int.MaxValue;
+			maxLevel = int.MinValue;
 
 			foreach (var key in cache.Keys)
 			{
@@ -47,7 +44,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 			get { return minLevel; }
 		}
 
-		private int maxLevel = Int32.MaxValue;
+		private int maxLevel = int.MaxValue;
 		public int MaxLevel
 		{
 			get { return maxLevel; }

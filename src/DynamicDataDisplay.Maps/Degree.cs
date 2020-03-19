@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+using System;
 using System.Globalization;
 using System.Windows.Data;
-using Microsoft.Research.DynamicDataDisplay.Converters;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {
@@ -24,9 +21,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		public Degree(double totalDegrees)
 		{
-			if (Double.IsNaN(totalDegrees))
+			if (double.IsNaN(totalDegrees))
 				throw new ArgumentException("Value cannot be NaN.", "totalDegrees");
-			if (Math.Abs(totalDegrees) >= Int32.MaxValue)
+			if (Math.Abs(totalDegrees) >= int.MaxValue)
 				throw new ArgumentOutOfRangeException("totalDegrees", "Value cannot be greater than Int32.MaxValue.");
 
 			this.value = totalDegrees;
@@ -189,11 +186,11 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		public string ToString(string format)
 		{
-			if (String.IsNullOrEmpty(format))
+			if (string.IsNullOrEmpty(format))
 				throw new ArgumentException("Format string cannot be null or empty.", "format");
 
 			string typeStr = CreateTypeString();
-			string str = String.Format(format, Math.Abs(Degrees), Minutes, TotalSeconds, typeStr);
+			string str = string.Format(format, Math.Abs(Degrees), Minutes, TotalSeconds, typeStr);
 			return str;
 		}
 
@@ -217,30 +214,30 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 				return value >= 0 ? "E" : "W";
 		}
 
-    public static IValueConverter LatitudeConverter
-    {
-      get
-      {
+		public static IValueConverter LatitudeConverter
+		{
+			get
+			{
 
-        return new GenericValueConverter<double>((value) =>
-        {
-          Degree degree = Degree.CreateLatitude(value);
-          return degree.ToString();
-        });
-      }
-    }
-    public static IValueConverter LongitudeConverter
-    {
-      get
-      {
+				return new GenericValueConverter<double>((value) =>
+				{
+					Degree degree = Degree.CreateLatitude(value);
+					return degree.ToString();
+				});
+			}
+		}
+		public static IValueConverter LongitudeConverter
+		{
+			get
+			{
 
-        return new GenericValueConverter<double>((value) =>
-        {
-          Degree degree = Degree.CreateLongitude(value);
-          return degree.ToString();
-        });
-      }
-    }
-  }
+				return new GenericValueConverter<double>((value) =>
+				{
+					Degree degree = Degree.CreateLongitude(value);
+					return degree.ToString();
+				});
+			}
+		}
+	}
 
 }

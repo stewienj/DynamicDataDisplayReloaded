@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using System;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace NewMarkersSample.Pages
 {
@@ -60,7 +50,7 @@ namespace NewMarkersSample.Pages
 				AppendRandomSyllable(builder);
 			}
 
-			builder[0] = Char.ToUpper(builder[0]);
+			builder[0] = char.ToUpper(builder[0]);
 
 			return builder.ToString();
 		}

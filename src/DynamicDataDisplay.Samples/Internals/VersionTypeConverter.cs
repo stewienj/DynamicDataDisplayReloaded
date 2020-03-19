@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models;
+using System;
 using System.ComponentModel;
 using System.Globalization;
-using Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
 {
@@ -24,9 +21,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
 
 			string[] parts = str.Split('.');
 
-			int major = Int32.Parse(parts[0], culture);
-			int minor = Int32.Parse(parts[1], culture);
-			int revision = Int32.Parse(parts[2], culture);
+			int major = int.Parse(parts[0], culture);
+			int minor = int.Parse(parts[1], culture);
+			int revision = int.Parse(parts[2], culture);
 			ReleaseVersion result = new ReleaseVersion(major, minor, revision);
 			return result;
 		}

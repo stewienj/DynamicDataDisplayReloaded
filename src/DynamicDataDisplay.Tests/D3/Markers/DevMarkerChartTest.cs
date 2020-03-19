@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
-using System.Windows;
-using System.Collections.ObjectModel;
-using DynamicDataDisplay.Markers;
+﻿using DynamicDataDisplay.Markers;
 using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace DynamicDataDisplay.Tests.D3.Markers
 {

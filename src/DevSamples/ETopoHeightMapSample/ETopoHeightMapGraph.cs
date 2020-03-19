@@ -1,10 +1,7 @@
 ﻿using Microsoft.Research.DynamicDataDisplay;
 using System.Windows;
-using System.Windows.Controls;
-using System;
-using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using System.Threading;
+using System.Windows.Media.Imaging;
 
 public class ETopoHeightMapGraph : BitmapBasedGraph
 {
@@ -61,7 +58,7 @@ public class ETopoHeightMapGraph : BitmapBasedGraph
 
         int pixelWidth = (int)output.Width;
         int pixelHeight = (int)output.Height;
-        UInt32[] pixels = new UInt32[pixelWidth * pixelHeight];
+        uint[] pixels = new uint[pixelWidth * pixelHeight];
         int i0 = (int)left;
         int j0 = (int)top;
         for (int i = 0; i < (int)width; i++)

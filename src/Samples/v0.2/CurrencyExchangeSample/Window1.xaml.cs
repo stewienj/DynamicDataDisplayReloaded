@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Media;
 
 namespace CurrencyExchangeSample
 {
@@ -75,7 +66,7 @@ namespace CurrencyExchangeSample
 						string[] subLines = line.Split('\t');
 
 						DateTime date = DateTime.Parse(subLines[1]);
-						double rate = Double.Parse(subLines[5], CultureInfo.InvariantCulture);
+						double rate = double.Parse(subLines[5], CultureInfo.InvariantCulture);
 
 						res.Add(new CurrencyInfo { Date = date, Rate = rate });
 					}

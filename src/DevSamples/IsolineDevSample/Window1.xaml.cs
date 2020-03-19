@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Windows;
-using System.Windows.Documents;
-using Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 using System.Reflection;
+using System.Windows;
 
 namespace IsolineSampleApp
 {
@@ -83,7 +80,7 @@ namespace IsolineSampleApp
 				nums = ParseDataString(strings[row]);
 				for (int column = 0; column < width; column++)
 				{
-					double d = Double.Parse(nums[column], culture);
+					double d = double.Parse(nums[column], culture);
 					data[column, row] = d;
 				}
 			}
@@ -97,8 +94,8 @@ namespace IsolineSampleApp
 				{
 					string[] vecStrs = nums[column].Split(new string[] { "; " }, StringSplitOptions.None);
 					gridData[column, row] = new Point(
-						Double.Parse(vecStrs[0], culture),
-						Double.Parse(vecStrs[1], culture));
+						double.Parse(vecStrs[0], culture),
+						double.Parse(vecStrs[1], culture));
 				}
 			}
 

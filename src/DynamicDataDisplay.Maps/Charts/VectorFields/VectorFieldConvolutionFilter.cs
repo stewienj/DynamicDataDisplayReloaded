@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
+﻿namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
 {
 	public abstract class VectorFieldConvolutionFilter
 	{

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Research.DynamicDataDisplay.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Research.DynamicDataDisplay.Common;
 
 namespace DynamicDataDisplay.Test.D3
 {

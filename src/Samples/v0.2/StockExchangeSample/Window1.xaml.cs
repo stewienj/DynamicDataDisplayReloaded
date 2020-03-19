@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using System.Reflection;
 
 namespace StockExchangeSample
 {
@@ -31,7 +31,7 @@ namespace StockExchangeSample
 			// it will be placed not in the top right corner of plotter,
 			// but in the top left one
 			plotter.Legend.LegendLeft = 10;
-			plotter.Legend.LegendRight = Double.NaN;
+			plotter.Legend.LegendRight = double.NaN;
 
 			dj65 = LoadStockRates("DJ65.txt");
 			rts = LoadStockRates("RTS.txt");
@@ -68,7 +68,7 @@ namespace StockExchangeSample
 						string[] subLines = line.Split('\t');
 
 						DateTime date = DateTime.Parse(subLines[1]);
-						double rate = Double.Parse(subLines[5], CultureInfo.InvariantCulture);
+						double rate = double.Parse(subLines[5], CultureInfo.InvariantCulture);
 
 						res.Add(new StockInfo { Date = date, Rate = rate });
 					}

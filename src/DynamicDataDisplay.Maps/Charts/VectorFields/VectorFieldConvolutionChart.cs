@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
-using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.INonUniformDataSource2D<System.Windows.Vector>;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields;
-using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
-using System.Threading;
+using System;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.INonUniformDataSource2D<System.Windows.Vector>;
 
 namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts
 {

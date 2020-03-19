@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.Charts;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Reflection;
-using Microsoft.Research.DynamicDataDisplay;
 using System.Windows;
 using System.Windows.Media;
-using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Charts;
 
 namespace DynamicDataDisplay.Test.Common
 {
