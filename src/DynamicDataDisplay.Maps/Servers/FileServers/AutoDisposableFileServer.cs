@@ -39,7 +39,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 				if (Directory.Exists(CachePath))
 					Directory.Delete(CachePath, true);
 			}
-			catch (Exception exc) { }
+			catch (Exception) { }
 		}
 	}
 }

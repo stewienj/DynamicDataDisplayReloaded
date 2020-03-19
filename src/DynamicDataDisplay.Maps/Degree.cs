@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
+using System.Windows.Data;
+using Microsoft.Research.DynamicDataDisplay.Converters;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {
@@ -214,5 +216,31 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 			else
 				return value >= 0 ? "E" : "W";
 		}
-	}
+
+    public static IValueConverter LatitudeConverter
+    {
+      get
+      {
+
+        return new GenericValueConverter<double>((value) =>
+        {
+          Degree degree = Degree.CreateLatitude(value);
+          return degree.ToString();
+        });
+      }
+    }
+    public static IValueConverter LongitudeConverter
+    {
+      get
+      {
+
+        return new GenericValueConverter<double>((value) =>
+        {
+          Degree degree = Degree.CreateLongitude(value);
+          return degree.ToString();
+        });
+      }
+    }
+  }
+
 }

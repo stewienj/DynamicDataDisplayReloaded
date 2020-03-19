@@ -61,7 +61,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
 			// removing restrictions previously added by base class Map, as in case of rendering to texture they
 			// are not relevant
 			Plotter.Viewport.Restrictions.Remove(base.ProportionsRestriction);
-			Plotter.Viewport.Restrictions.Remove(base.MaxSizeRestriction);
+			Plotter.Viewport.Restrictions.Remove(base.MaxRectRestriction);
 		}
 
 		HashSet<double> levels = new HashSet<double>();

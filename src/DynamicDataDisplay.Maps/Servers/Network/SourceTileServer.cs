@@ -84,7 +84,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network
 			protected set { uriFormat = value; }
 		}
 
-		private double maxLatitude = 85;
+		private double maxLatitude = 85.0511287798;
 		public double MaxLatitude
 		{
 			get { return maxLatitude; }

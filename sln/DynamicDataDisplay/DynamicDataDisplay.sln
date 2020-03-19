@@ -206,6 +206,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendSamples", "..\..\src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcSegmentPlotting", "..\..\src\Repros\ArcSegmentPlotting\ArcSegmentPlotting.csproj", "{A40917DA-091B-4BF5-A645-61EA45D8090F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wms.Client", "..\..\src\Wms.Client\Wms.Client.csproj", "{579AABDD-978C-4A17-8542-FAC4F2631B19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -556,6 +558,10 @@ Global
 		{A40917DA-091B-4BF5-A645-61EA45D8090F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A40917DA-091B-4BF5-A645-61EA45D8090F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A40917DA-091B-4BF5-A645-61EA45D8090F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579AABDD-978C-4A17-8542-FAC4F2631B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579AABDD-978C-4A17-8542-FAC4F2631B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579AABDD-978C-4A17-8542-FAC4F2631B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579AABDD-978C-4A17-8542-FAC4F2631B19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

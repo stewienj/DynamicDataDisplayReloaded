@@ -23,7 +23,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
 			UriFormat = "http://{3}.{4}/{0}/{1}/{2}.png";
 			ServerName = "Open Street Maps";
 
-            MaxLatitude = 85.2878;
+      MaxLatitude = 85.0511287798;
 			MinLevel = 0;
 			MaxLevel = 17;
 			MaxConcurrentDownloads = 3;
@@ -42,7 +42,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
 			}
 		}
 		
-        protected override string CreateRequestUriCore(TileIndex index)
+    protected override string CreateRequestUriCore(TileIndex index)
 		{
 			int z = (int)index.Level;
 			int shift = MapTileProvider.GetSideTilesCount(z) / 2;

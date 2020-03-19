@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!--<UsingTask TaskName="ShaderBuildTask.PixelShaderCompile" AssemblyFile="$(ProjectDir)..\..\lib\ShaderBuildTask.dll" />-->
-  <Import Project="..\..\..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\..\..\packages\Microsoft.Net.Compilers.3.3.1\build\Microsoft.Net.Compilers.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
@@ -71,10 +69,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EffectLibrary.cs" />
+    <Compile Include="LineGraphMap.cs" />
+    <Compile Include="MapChart.cs" />
+    <Compile Include="MapChartViewModel.cs" />
+    <Compile Include="MapMarkerChart.cs" />
     <Compile Include="MapsTraceSource.cs" />
     <Compile Include="Servers\MemoryServers\LRUMemoryCache.cs" />
     <Compile Include="Servers\Network\InternetCacheServer.cs" />
     <Compile Include="Servers\Network\NetworkAvailabilityManager.cs" />
+    <Compile Include="Servers\Network\WMSTileServer.cs" />
     <Compile Include="TileProvider.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -151,6 +154,7 @@
     </Compile>
     <Compile Include="VisibleTileInfo.cs" />
     <None Include="MercatorShader.fx" />
+    <Resource Include="MercatorShader.ps" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DynamicDataDisplay.snk" />
@@ -168,9 +172,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj">
+      <Project>{A5EB794C-7C62-4A0C-A441-ACF7D4074C5D}</Project>
+      <Name>DynamicDataDisplay.Markers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
       <Name>DynamicDataDisplay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wms.Client\Wms.Client.csproj">
+      <Project>{579aabdd-978c-4a17-8542-fac4f2631b19}</Project>
+      <Name>Wms.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

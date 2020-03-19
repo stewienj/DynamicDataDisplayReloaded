@@ -17,23 +17,23 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 		private double minX = -180;
 		private double maxX = 180;
-		private double minY = -87;
-		private double maxY = 87;
+		private double minY = -85.0511287798;
+		private double maxY = 85.0511287798;
 		private DataRect rect;
 
 		public double MaxLatitude
 		{
 			get { return maxY; }
-			set
-			{
-				maxY = value;
-				minY = -value;
+      set
+      {
+        maxY = value;
+        minY = -value;
 
-				rect = DataRect.FromPoints(minX, minY, maxX, maxY);
-			}
-		}
+        rect = DataRect.FromPoints(minX, minY, maxX, maxY);
+      }
+    }
 
-		private double maxShaderLatitude = 85;
+		private double maxShaderLatitude = 85.0511287798;
 		public double MaxShaderLatitude
 		{
 			get { return maxShaderLatitude; }
@@ -72,25 +72,14 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 		// todo rewrite
 		public static IEnumerable<TileIndex> GetTilesForLevel(double level)
 		{
-			int size = GetSideTilesCount(level);
-			for (int x = 0; x < size; x++)
+			int halfSize = GetSideTilesCount(level) / 2;
+			for (int x = -halfSize; x < halfSize; x++)
 			{
-				for (int y = 0; y < size; y++)
+				for (int y = -halfSize; y < halfSize; y++)
 				{
 					yield return new TileIndex(x, y, level);
 				}
 			}
-		}
-
-		public static DataRect GetTileBoundsGeneric(TileIndex tile)
-		{
-			double width = 360.0 / Math.Pow(2, tile.Level);
-			double height = 174.0 / Math.Pow(2, tile.Level);
-			double x = /*minX*/0 + tile.X * width;
-			double y = /*minY*/0 + tile.Y * height;
-
-			DataRect bounds = new DataRect(x, y, width, height);
-			return bounds;
 		}
 
 		public static long GetTotalTilesCount(double level)
@@ -126,8 +115,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 
 			checked
 			{
-				double tileWidth = TileWidth;
-				double tileHeight = TileHeight;
+				double tileWidth = GetTileWidth(level);
+				double tileHeight = GetTileHeight(level);
 
 				int minIx = (int)Math.Floor(region.XMin / tileWidth);
 				int maxIx = (int)Math.Ceiling(region.XMax / tileWidth);
@@ -135,7 +124,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 				int minIy = (int)Math.Floor(region.YMin / tileHeight);
 				int maxIy = (int)Math.Ceiling(region.YMax / tileHeight);
 
-				var maxSideCount = GetSideTilesCount(Level);
+				var maxSideCount = GetSideTilesCount(level);
 
 				int maxIndex = maxSideCount / 2;
 				if (maxIx > maxIndex)
@@ -164,7 +153,6 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 			}
 		}
 
-		[Obsolete("Unready")]
 		public static TileIndex Normalize(TileIndex id)
 		{
 			int actualX = id.X % GetSideTilesCount(id.Level);

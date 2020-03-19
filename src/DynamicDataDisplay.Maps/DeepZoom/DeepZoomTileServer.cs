@@ -14,7 +14,6 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
     {
         private const string DeepZoomNamespace = "http://schemas.microsoft.com/deepzoom/2009";
         private DeepZoomFileServer fileServer;
-        private DeepZoomTileProvider tileProvider;
 
         public DeepZoomFileServer FileServer
         {
@@ -123,7 +122,6 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
         public override bool CanLoadFast(TileIndex id)
         {
             return deepZoomImages.Contains(id);
-            //return base.CanLoadFast(id);
         }
     }
 }

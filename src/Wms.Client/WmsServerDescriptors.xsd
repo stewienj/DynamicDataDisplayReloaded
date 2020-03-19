@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="WmsServerDescriptors" targetNamespace="http://learn.arc.nasa.gov/schemas/WmsServerDescriptors.xsd"
+	elementFormDefault="qualified" xmlns="http://learn.arc.nasa.gov/schemas/WmsServerDescriptors.xsd"
+	xmlns:mstns="http://learn.arc.nasa.gov/schemas/WmsServerDescriptors.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="WmsServerDescriptors">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Server" type="ServerDescriptor" maxOccurs="50" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ServerDescriptor">
+		<xs:sequence>
+			<xs:element name="Uri" type="xs:anyURI" />
+			<xs:element name="Name" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

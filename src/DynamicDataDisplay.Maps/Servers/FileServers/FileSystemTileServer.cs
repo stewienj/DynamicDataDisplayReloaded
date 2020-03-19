@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Diagnostics;
 using System.Windows;
+using Microsoft.Research.DynamicDataDisplay.Maps;
 
 namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
 {
@@ -102,7 +103,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
                 defaultCachePath = appData;
         }
 
-        private static string AppendAssemblyId(string appData)
+        internal static string AppendAssemblyId(string appData)
         {
             var entryAssembly = Assembly.GetEntryAssembly();
             // can be null while loaded for tests execution
@@ -231,7 +232,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
                         {
                             fileMap[tileInfo.Tile] = fileNames.Contains(tileInfo.Name);
                         }
-                        Debug.WriteLine("Precached directory for level " + currentLevel + ": " + timer.ElapsedMilliseconds + " ms");
+                        MapsTraceSource.Instance.ServerInformationTraceSource
+                              .TraceInformation($"Precached directory for level {currentLevel}: {timer.ElapsedMilliseconds} ms");
                     }
                 }
             }

@@ -307,7 +307,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
                     bool wasLatestError = latestFailuredId != null && latestFailuredId.Value.Equals(id);
                     if (!memoryServer.Contains(id) && !wasLatestError)
                     {
-                        pendingImages.Add(id);
+                        pendingImages.TryAdd(id);
                     }
                 }
             }

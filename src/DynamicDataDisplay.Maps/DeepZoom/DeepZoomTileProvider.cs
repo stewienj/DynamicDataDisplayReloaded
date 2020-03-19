@@ -8,8 +8,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
 {
     public class DeepZoomTileProvider : MapTileProvider
     {
-        public int TileWidth { get; set; }
-        public int TileHeight { get; set; }
+        public new int TileWidth { get; set; }
+        public new int TileHeight { get; set; }
 
         public override DataRect GetTileBounds(TileIndex id)
         {
