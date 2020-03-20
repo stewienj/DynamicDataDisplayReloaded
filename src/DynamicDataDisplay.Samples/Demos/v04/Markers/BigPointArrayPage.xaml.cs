@@ -1,5 +1,4 @@
-﻿using DynamicDataDisplay.Markers.Filters;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
 using System;
 using System.Windows;
@@ -17,14 +16,13 @@ namespace NewMarkersSample.Pages
 		public BigPointArrayPage()
 		{
 			InitializeComponent();
-			plotter.Children.Add(plotter.NewLegend);
 		}
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
 			plotter.Visible = new DataRect(0, 0, 1, 1);
 
-			int count = (int)1e5;
+			int count = (int)1e4;
 			Point[] pts = new Point[count];
 
 			Random rnd = new Random();
@@ -43,13 +41,15 @@ namespace NewMarkersSample.Pages
 			{
 				double length = Math.Sqrt(p.X * p.X + p.Y * p.Y) / Math.Sqrt(2);
 
-				return new SolidColorBrush(palette.GetColor(length));
+				var brush = new SolidColorBrush(palette.GetColor(length));
+				brush.Freeze();
+				return brush;
 			});
 
 			//markerChart.Filters.Add(new BoundsFilter());
 			//markerChart.Filters.Add(new ParallelUnitingPointGroupFilter());
-			markerChart.Filters.Add(new ParallelClusteringFilter { MarkerSize = 8 });
-			markerChart.Filters.Add(new UnitingPointGroupFilter { MarkerSize = 6 });
+			//markerChart.Filters.Add(new ParallelClusteringFilter { MarkerSize = 8 });
+			//markerChart.Filters.Add(new UnitingPointGroupFilter { MarkerSize = 6 });
 			markerChart.GetDataAsyncronously = true;
 			//markerChart.ShowMarkersConsequently = false;
 

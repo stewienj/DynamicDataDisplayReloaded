@@ -16,8 +16,6 @@ namespace NewMarkersSample.Pages
 		public PieChartPage()
 		{
 			InitializeComponent();
-
-			plotter.Children.Add(plotter.NewLegend);
 		}
 
 		private readonly ObservableCollection<SellInfo> sells = new ObservableCollection<SellInfo>();

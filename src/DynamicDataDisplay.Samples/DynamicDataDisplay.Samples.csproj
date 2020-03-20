@@ -39,7 +39,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Demos\Custom\GraphicsFontTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demos\Custom\GroupedMarkersOnMapSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demos\Custom\PolarSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demos\Custom\RadioBandViewerSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demos\Custom\HeatMapOnMapSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demos\Custom\RadioBandAxisWithNoChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demos\Custom\StatusByLatLonOnCoastlineSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demos\Custom\StatusByLatLonOnMapSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Demos\v02\AnimationSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Demos\Custom\LineLabelPointValueSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,10 +147,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Demos\v04\Markers\NewMarkersSample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Demos\v04\Markers\PieChart page\PieChartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -151,6 +183,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Demos\Custom\GraphicsFontTest.xaml.cs">
+      <DependentUpon>GraphicsFontTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\GroupedMarkersOnMapSample.xaml.cs">
+      <DependentUpon>GroupedMarkersOnMapSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\PolarSample.xaml.cs">
+      <DependentUpon>PolarSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\RadioBandViewerSample.xaml.cs">
+      <DependentUpon>RadioBandViewerSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\HeatMapOnMapSample.xaml.cs">
+      <DependentUpon>HeatMapOnMapSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\RadioBandAxisWithNoChart.xaml.cs">
+      <DependentUpon>RadioBandAxisWithNoChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\StatusByLatLonOnCoastlineSample.xaml.cs">
+      <DependentUpon>StatusByLatLonOnCoastlineSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\StatusByLatLonOnMapSample.xaml.cs">
+      <DependentUpon>StatusByLatLonOnMapSample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -159,6 +215,9 @@
   <ItemGroup>
     <Compile Include="Demos\v02\AnimationSample.xaml.cs">
       <DependentUpon>AnimationSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Custom\LineLabelPointValueSample.xaml.cs">
+      <DependentUpon>LineLabelPointValueSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demos\v02\CurrencyExchange\CurrencyExchangeSample.xaml.cs">
       <DependentUpon>CurrencyExchangeSample.xaml</DependentUpon>
@@ -213,9 +272,6 @@
     </Compile>
     <Compile Include="Demos\v04\Markers\DifferentBuildInMarkersPage.xaml.cs">
       <DependentUpon>DifferentBuildInMarkersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\v04\Markers\NewMarkersSample.xaml.cs">
-      <DependentUpon>NewMarkersSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demos\v04\Markers\PieChart page\PieChartPage.xaml.cs">
       <DependentUpon>PieChartPage.xaml</DependentUpon>
@@ -278,6 +334,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UIResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="DynamicDataDisplay.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -289,6 +346,10 @@
     <Resource Include="D3-icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj">
+      <Project>{a6671beb-9b21-41bc-b47a-82210c38f322}</Project>
+      <Name>DynamicDataDisplay.BitmapGraphs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay.Coastline\DynamicDataDisplay.Coastline.csproj">
       <Project>{F14D455C-E581-41FF-8C33-561C85A83449}</Project>
       <Name>DynamicDataDisplay.Coastline</Name>
@@ -300,6 +361,14 @@
     <ProjectReference Include="..\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj">
       <Project>{A5EB794C-7C62-4A0C-A441-ACF7D4074C5D}</Project>
       <Name>DynamicDataDisplay.Markers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj">
+      <Project>{d99dfeac-2ac7-4349-b731-6e7b3732ffd3}</Project>
+      <Name>DynamicDataDisplay.RadioBand</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DynamicDataDisplay.Utility\DynamicDataDisplay.Utility.csproj">
+      <Project>{A6671BEB-9B21-41BC-B47A-82210C38F544}</Project>
+      <Name>DynamicDataDisplay.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>

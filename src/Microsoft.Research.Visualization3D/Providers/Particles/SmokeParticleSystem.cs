@@ -1,46 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SlimDX;
-using SlimDX.Direct3D9;
-using Microsoft.Research.Visualization3D.CameraUtilities;
 
 namespace Microsoft.Research.Visualization3D.Particles
 {
-    class SmokeParticleSystem : ParticleSystem
-    {
-        public SmokeParticleSystem(DX3DHost host, Visualization3DDataSource dataSource) :
-            base(host, dataSource)
-        {
-        }
-        
-        protected override void InitializeSettings(ParticleSettings settings)
-        {
-            settings.TextureName = "smoke.png";
+	class SmokeParticleSystem : ParticleSystem
+	{
+		public SmokeParticleSystem(DX3DHost host, Visualization3DDataSource dataSource) :
+			base(host, dataSource)
+		{
+		}
 
-            settings.MaxParticles = 200;
+		protected override void InitializeSettings(ParticleSettings settings)
+		{
+			settings.TextureName = "smoke.png";
 
-            settings.Duration = TimeSpan.FromSeconds(4);
+			settings.MaxParticles = 200;
 
-            settings.MinHorizontalVelocity = 0;
-            settings.MaxHorizontalVelocity = 50;
+			settings.Duration = TimeSpan.FromSeconds(4);
 
-            settings.MinVerticalVelocity = -10;
-            settings.MaxVerticalVelocity = 50;
+			settings.MinHorizontalVelocity = 0;
+			settings.MaxHorizontalVelocity = 50;
 
-            settings.Gravity = new Vector3(0, -20, 0);
+			settings.MinVerticalVelocity = -10;
+			settings.MaxVerticalVelocity = 50;
 
-            settings.EndVelocity = 0;
+			settings.Gravity = new Vector3(0, -20, 0);
 
-            settings.MinRotateSpeed = -2;
-            settings.MaxRotateSpeed = 2;
+			settings.EndVelocity = 0;
 
-            settings.MinStartSize = 1;
-            settings.MaxStartSize = 1;
+			settings.MinRotateSpeed = -2;
+			settings.MaxRotateSpeed = 2;
 
-            settings.MinEndSize = 10;
-            settings.MaxEndSize = 10;
-        }
-    }
+			settings.MinStartSize = 1;
+			settings.MaxStartSize = 1;
+
+			settings.MinEndSize = 10;
+			settings.MaxEndSize = 10;
+		}
+	}
 }

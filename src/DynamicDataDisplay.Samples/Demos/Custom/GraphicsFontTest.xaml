@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Microsoft.Research.DynamicDataDisplay.Samples.Demos.Custom.GraphicsFontTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Microsoft.Research.DynamicDataDisplay.Samples.Demos.Custom"
+             xmlns:autoGen="clr-namespace:Microsoft.Research.DynamicDataDisplay.Utility;assembly=DynamicDataDisplay.Utility"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}" Background="Cornsilk">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <GroupBox Header="List Of Characters" Grid.RowSpan="2">
+      <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Characters}" ScrollViewer.HorizontalScrollBarVisibility="Visible" AutoGeneratingColumn="dg_AutoGeneratingColumnOneWay"/>
+    </GroupBox>
+    <GroupBox Header="Original Grid" Grid.Column="1">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+          <Image Source="{Binding FontGrid}" Stretch="None"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0">Width:<TextBlock Text="{Binding FontGrid.Width}"/></TextBlock>
+        <TextBlock Grid.Column="1">Height:<TextBlock Text="{Binding FontGrid.Height}"/></TextBlock>
+        </Grid>
+      </Grid>
+    </GroupBox>
+  </Grid>
+</UserControl>

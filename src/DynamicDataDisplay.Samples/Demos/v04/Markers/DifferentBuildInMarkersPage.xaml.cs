@@ -16,8 +16,6 @@ namespace NewMarkersSample.Pages
 		public DifferentBuildInMarkersPage()
 		{
 			InitializeComponent();
-			plotter.Children.Add(plotter.NewLegend);
-
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
 		}

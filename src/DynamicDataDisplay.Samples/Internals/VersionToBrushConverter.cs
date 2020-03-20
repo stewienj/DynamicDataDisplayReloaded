@@ -13,16 +13,21 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
 		{
 			string version = value.ToString();
 
-			if (version == "0.2.0")
-				return Brushes.Green;
-			else if (version == "0.3.0")
-				return Brushes.Orange;
-			else if (version == "0.3.1")
-				return Brushes.DarkMagenta;
-			else if (version == "0.4.0")
-				return Brushes.Blue;
+			switch (version)
+			{
+				case "0.2.0":
+					return Brushes.Green;
 
-			throw new NotImplementedException();
+
+				case "0.3.0":
+					return Brushes.Orange;
+				case "0.3.1":
+					return Brushes.DarkMagenta;
+				case "0.4.0":
+					return Brushes.Blue;
+				default:
+					return Brushes.Gray;
+			}
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

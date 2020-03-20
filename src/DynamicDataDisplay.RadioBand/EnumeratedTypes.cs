@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DynamicDataDisplay.RadioBand
+﻿namespace DynamicDataDisplay.RadioBand
 {
-  public enum ColorStyleType
-  {
-    PaleGreen,
-    Orange,
-    Brown,
-    Red
-  }
+	public enum ColorStyleType
+	{
+		PaleGreen,
+		Orange,
+		Brown,
+		Red
+	}
 
-  public enum LayoutStyleType
-  {
-    Overlapped,
-    Stacked
-  }
+	public enum LayoutStyleType
+	{
+		Overlapped,
+		Stacked
+	}
 
 }

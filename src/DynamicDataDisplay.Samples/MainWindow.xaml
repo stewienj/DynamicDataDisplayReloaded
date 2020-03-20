@@ -4,7 +4,7 @@
         xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
         xmlns:v="clr-namespace:Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views"
         Icon="{x:Static d3:D3IconHelper.DynamicDataDisplayWhiteIcon}"
-        Title="WPF DynamicDtataDisplay Samples Gallery" WindowState="Maximized"
+        Title="WPF DynamicDataDisplay Samples Gallery" WindowState="Maximized"
 		>
 
 	<Grid>

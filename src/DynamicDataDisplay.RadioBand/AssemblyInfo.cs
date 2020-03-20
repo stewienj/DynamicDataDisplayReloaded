@@ -1,8 +1,6 @@
-﻿using System.Windows.Markup;
-using DynamicDataDisplay;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.Research.DynamicDataDisplay;
 using System.Security;
-using Microsoft.Research.DynamicDataDisplay;
+using System.Windows.Markup;
 
 [assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.RadioBand")]
 [assembly: AllowPartiallyTrustedCallers]

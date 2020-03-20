@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
 {
@@ -21,9 +22,9 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
 
 			string[] parts = str.Split('.');
 
-			int major = int.Parse(parts[0], culture);
-			int minor = int.Parse(parts[1], culture);
-			int revision = int.Parse(parts[2], culture);
+			string major = parts.Skip(0).FirstOrDefault() ?? "";
+			string minor = parts.Skip(1).FirstOrDefault() ?? "";
+			string revision = parts.Skip(2).FirstOrDefault() ?? "";
 			ReleaseVersion result = new ReleaseVersion(major, minor, revision);
 			return result;
 		}

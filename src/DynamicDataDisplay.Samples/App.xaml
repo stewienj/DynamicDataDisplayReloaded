@@ -28,9 +28,26 @@
 			</m:ReleaseInfo>
 			<m:ReleaseInfo Version="0.4.0">
 				<m:Demonstration Description="Editable shapes" Uri="/Demos/v04/EditableShapesSample.xaml"/>
-				<m:Demonstration Description="Markers" Uri="/Demos/v04/Markers/NewMarkersSample.xaml"/>
-			</m:ReleaseInfo>
-		</m:SamplesCollection>
+        <m:Demonstration Description="Bar Chart" Uri="/Demos/v04/Markers/BarChart page/BarChartPage.xaml"/>
+        <m:Demonstration Description="Pie Chart" Uri="/Demos/v04/Markers/PieChart page/PieChartPage.xaml"/>
+        <m:Demonstration Description="Acceptable Range" Uri="/Demos/v04/Markers/AcceptableRangePage.xaml"/>
+        <m:Demonstration Description="10,000 Unfiltered Points" Uri="/Demos/v04/Markers/BigPointArrayPage.xaml"/>
+        <m:Demonstration Description="Column Chart" Uri="/Demos/v04/Markers/ColumnChartSample.xaml"/>
+        <m:Demonstration Description="Marker Samples" Uri="/Demos/v04/Markers/DifferentBuildInMarkersPage.xaml"/>
+        <m:Demonstration Description="Stock Markers" Uri="/Demos/v04/Markers/StockMarkersPage.xaml"/>
+      </m:ReleaseInfo>
+      <m:ReleaseInfo Version="2015 Onwards">
+        <m:Demonstration Description="Radio Band Viewer" Uri="/Demos/Custom/RadioBandViewerSample.xaml"/>
+        <m:Demonstration Description="Line Label and Point Value" Uri="/Demos/Custom/LineLabelPointValueSample.xaml"/>
+        <m:Demonstration Description="Polar" Uri="/Demos/Custom/PolarSample.xaml"/>
+        <m:Demonstration Description="Radio Band Axis with No Chart" Uri="/Demos/Custom/RadioBandAxisWithNoChart.xaml"/>
+        <m:Demonstration Description="Lat Lon Status On Map" Uri="/Demos/Custom/StatusByLatLonOnMapSample.xaml"/>
+        <m:Demonstration Description="Lat Lon Status On Coastline" Uri="/Demos/Custom/StatusByLatLonOnCoastlineSample.xaml"/>
+        <m:Demonstration Description="Heatmap on Map" Uri="/Demos/Custom/HeatMapOnMapSample.xaml"/>
+        <m:Demonstration Description="Grouped Markers on Map" Uri="/Demos/Custom/GroupedMarkersOnMapSample.xaml"/>
+        <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
+      </m:ReleaseInfo>
+    </m:SamplesCollection>
 
 		<local:VersionToBrushConverter x:Key="versionConverter"/>
 		
@@ -62,7 +79,7 @@
 			</StackPanel>
 		</HierarchicalDataTemplate>
 
-		<HierarchicalDataTemplate DataType="{x:Type m:Demonstration}">
+    <HierarchicalDataTemplate DataType="{x:Type m:Demonstration}" ItemsSource="{Binding Demonstrations}">
 			<TextBlock Text="{Binding Description}"/>
 		</HierarchicalDataTemplate>
 	</Application.Resources>

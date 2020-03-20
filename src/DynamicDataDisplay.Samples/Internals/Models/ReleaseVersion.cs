@@ -1,24 +1,25 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 
 namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models
 {
 	[TypeConverter(typeof(VersionTypeConverter))]
 	public class ReleaseVersion
 	{
-		public ReleaseVersion(int major, int minor, int revision)
+		public ReleaseVersion(string major, string minor, string revision)
 		{
 			this.Major = major;
 			this.Minor = minor;
 			this.Revision = revision;
 		}
 
-		public int Major { get; set; }
-		public int Minor { get; set; }
-		public int Revision { get; set; }
+		public string Major { get; set; }
+		public string Minor { get; set; }
+		public string Revision { get; set; }
 
 		public override string ToString()
 		{
-			return string.Format("{0}.{1}.{2}", Major, Minor, Revision);
+			return new string[] { Major, Minor, Revision }.Where(x => !string.IsNullOrWhiteSpace(x)).Aggregate((a, b) => a + "." + b);
 		}
 	}
 }
