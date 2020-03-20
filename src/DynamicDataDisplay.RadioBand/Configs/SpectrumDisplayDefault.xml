@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RadioBandPlotConfig>
+  <!-- Ticks are where the plot grid lines are drawn-->
+  <!-- The ticks are equally spaced visually -->
+  <Ticks>
+    0
+    0.1E9
+    0.3E9
+    0.5E9
+    1E9
+    2E9
+    3E9
+    4E9
+    6E9
+    8E9
+    10E9
+    20E9
+    30E9
+    40E9
+    60E9
+    100E9
+    1000E9
+  </Ticks>
+
+  <FrequencyRangeLabels DefaultColor="LightGray">
+    Civilian
+    Band
+    Designations
+    <RangeLabel Start="0.03E9" End="0.3E9" Color="LightGreen">
+      VHF
+      30-300
+      MHz
+    </RangeLabel>
+    <RangeLabel Start="0.3E9" End="3E9" Color="LightBlue">
+      UHF
+      300MHz-3GHz
+    </RangeLabel>
+    <RangeLabel Start="1E9" End="2E9" Color="LightGreen">
+      L
+      1-2
+    </RangeLabel>
+    <RangeLabel Start="2E9" End="4.E9" Color="#FFFF80">
+      S
+      2-4
+    </RangeLabel>
+    <RangeLabel Start="4E9" End="8E9" Color="LightGreen">
+      C
+      4-8
+    </RangeLabel>
+    <RangeLabel Start="8E9" End="12E9" Color="LightBlue">
+      X
+      8-12
+    </RangeLabel>
+    <RangeLabel Start="12E9" End="18E9" Color="#FFFF80">
+      Ku
+      12
+      -
+      18
+    </RangeLabel>
+    <RangeLabel Start="18E9" End="27E9" Color="LightGreen">
+      Ku
+      18
+      -
+      27
+    </RangeLabel>
+    <RangeLabel Start="27E9" End="40E9" Color="LightBlue">
+      Ku
+      27
+      -
+      40
+    </RangeLabel>
+    <RangeLabel Start="40E9" End="100E9" Color="#FFFF80">
+      Millimetre
+      Wave
+      40-100
+    </RangeLabel>
+    <RangeLabel Start="100E9" End="1000E9">
+      EHF
+      -
+      THF
+    </RangeLabel>
+  </FrequencyRangeLabels>
+
+  <!-- Point Labels put a label over the point and the color defines a color stop along a gradient -->
+  <FrequencyPointLabels LineMarkerColor="#90888888" LineMarkerThickness="1">
+    Frequency (GHz)
+    <PointLabel Position="0.0" ColorStop="LightGray">
+      0
+    </PointLabel>
+    <PointLabel Position="0.1E9" ColorStop="Red">
+      0.1
+    </PointLabel>
+    <PointLabel Position="0.3E9">
+      0.3
+    </PointLabel>
+    <PointLabel Position="0.5E9">
+      0.5
+    </PointLabel>
+    <PointLabel Position="1E9">
+      1
+    </PointLabel>
+    <PointLabel Position="2E9">
+      2
+    </PointLabel>
+    <PointLabel Position="3E9">
+      3
+    </PointLabel>
+    <PointLabel Position="4E9">
+      4
+    </PointLabel>
+    <PointLabel Position="6E9" ColorStop="Green">
+      6
+    </PointLabel>
+    <PointLabel Position="8E9">
+      8
+    </PointLabel>
+    <PointLabel Position="10E9">
+      10
+    </PointLabel>
+    <PointLabel Position="20E9">
+      20
+    </PointLabel>
+    <PointLabel Position="30E9">
+      30
+    </PointLabel>
+    <PointLabel Position="40E9">
+      40
+    </PointLabel>
+    <PointLabel Position="60E9" >
+      60
+    </PointLabel>
+    <PointLabel Position="100E9" ColorStop="Blue">
+      100
+    </PointLabel>
+    <PointLabel Position="1000E9" ColorStop="LightGray">
+      1000
+    </PointLabel>
+  </FrequencyPointLabels>
+  
+  <!-- Point Labels put a label over the point and the color defines a color stop along a gradient -->
+  <FrequencyPointLabels LineMarkerColor="#60888888" LineMarkerThickness="1">
+    Wavelength (cm)
+    <PointLabel Position="0.0" ColorStop="LightGray">
+      &#8734;
+    </PointLabel>
+    <PointLabel Position="0.1E9" ColorStop="Red">
+      300
+    </PointLabel>
+    <PointLabel Position="0.3E9">
+      100
+    </PointLabel>
+    <PointLabel Position="0.5E9">
+      50
+    </PointLabel>
+    <PointLabel Position="1E9">
+      30
+    </PointLabel>
+    <PointLabel Position="2E9">
+      15
+    </PointLabel>
+    <PointLabel Position="3E9">
+      10
+    </PointLabel>
+    <PointLabel Position="4E9">
+      7.5
+    </PointLabel>
+    <PointLabel Position="6E9" ColorStop="Green">
+      5
+    </PointLabel>
+    <PointLabel Position="8E9">
+      3.75
+    </PointLabel>
+    <PointLabel Position="10E9">
+      3
+    </PointLabel>
+    <PointLabel Position="20E9">
+      1.5
+    </PointLabel>
+    <PointLabel Position="30E9">
+      1
+    </PointLabel>
+    <PointLabel Position="40E9">
+      0.75
+    </PointLabel>
+    <PointLabel Position="60E9">
+      0.5
+    </PointLabel>
+    <PointLabel Position="100E9" ColorStop="Blue">
+      0.3
+    </PointLabel>
+    <PointLabel Position="1000E9" ColorStop="LightGray">
+      0.01
+    </PointLabel>
+  </FrequencyPointLabels>
+
+  <FrequencyRangeLabels DefaultColor="LightGray">
+    NATO
+    Band
+    Designations
+    <RangeLabel Start="0.0E9" End="0.25E9" Color="LightBlue">
+      A
+      0
+      -
+      0.25
+    </RangeLabel>
+    <RangeLabel Start="0.25E9" End="0.5E9" Color="LightGreen">
+      B
+      0.25
+      -
+      0.5
+    </RangeLabel>
+    <RangeLabel Start="0.5E9" End="1E9" Color="#FFFF80">
+      C
+      0.5
+      -
+      1
+    </RangeLabel>
+    <RangeLabel Start="1E9" End="2E9" Color="LightBlue">
+      D
+      1-2
+    </RangeLabel>
+    <RangeLabel Start="2E9" End="3E9" Color="LightGreen">
+      E
+      2-3
+    </RangeLabel>
+    <RangeLabel Start="3E9" End="4E9" Color="#FFFF80">
+      F
+      3-4
+    </RangeLabel>
+    <RangeLabel Start="4E9" End="6E9" Color="LightBlue">
+      G
+      4-6
+    </RangeLabel>
+    <RangeLabel Start="6E9" End="8E9" Color="LightGreen">
+      H
+      6-8
+    </RangeLabel>
+    <RangeLabel Start="8E9" End="10E9" Color="#FFFF80">
+      I
+      8-10
+    </RangeLabel>
+    <RangeLabel Start="10E9" End="20E9" Color="LightBlue">
+      J
+      10-20
+    </RangeLabel>
+    <RangeLabel Start="20E9" End="40E9" Color="LightGreen">
+      K
+      20-40
+    </RangeLabel>
+    <RangeLabel Start="40E9" End="60E9" Color="#FFFF80">
+      L
+      40-60
+    </RangeLabel>
+    <RangeLabel Start="60E9" End="100E9" Color="LightBlue">
+      M
+      60-100
+    </RangeLabel>
+  </FrequencyRangeLabels>
+
+</RadioBandPlotConfig>

@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DynamicDataDisplay.RadioBand"
+                    >
+  <ControlTemplate x:Key="radioBandAxisControlTemplate">
+    <Grid Name="PART_ContentsGrid" ClipToBounds="True" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+      <Grid Name="scalableGrid" HorizontalAlignment="Stretch"/>
+    </Grid>
+  </ControlTemplate>
+</ResourceDictionary>
