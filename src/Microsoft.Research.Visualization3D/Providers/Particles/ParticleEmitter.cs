@@ -1,4 +1,5 @@
 ﻿using Microsoft.Research.Visualization3D.MainLoops;
+using SlimDX;
 
 namespace Microsoft.Research.Visualization3D.Particles
 {

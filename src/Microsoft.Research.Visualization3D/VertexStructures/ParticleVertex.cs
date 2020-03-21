@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using SlimDX;
+using SlimDX.Direct3D9;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.Research.Visualization3D.VertexStructures
 {

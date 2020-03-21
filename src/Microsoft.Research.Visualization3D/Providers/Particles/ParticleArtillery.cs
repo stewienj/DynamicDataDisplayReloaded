@@ -1,4 +1,6 @@
 ﻿using Microsoft.Research.Visualization3D.MainLoops;
+using SlimDX;
+using SlimDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 

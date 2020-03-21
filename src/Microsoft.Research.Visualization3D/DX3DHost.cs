@@ -1,5 +1,7 @@
 ﻿using Microsoft.Research.Visualization3D.CameraUtilities;
 using Microsoft.Research.Visualization3D.MainLoops;
+using SlimDX;
+using SlimDX.Direct3D9;
 using System;
 using System.Windows;
 using System.Windows.Controls;

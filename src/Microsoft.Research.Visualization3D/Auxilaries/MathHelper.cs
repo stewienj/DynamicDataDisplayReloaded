@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SlimDX;
+using System;
 
 namespace Microsoft.Research.Visualization3D.Auxilaries
 {

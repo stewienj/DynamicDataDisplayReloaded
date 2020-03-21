@@ -1,4 +1,6 @@
 using Microsoft.Research.Visualization3D.VertexStructures;
+using SlimDX;
+using SlimDX.Direct3D9;
 using System;
 using System.Threading;
 using System.Windows.Threading;

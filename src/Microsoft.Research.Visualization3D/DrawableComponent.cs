@@ -1,5 +1,6 @@
 ﻿using Microsoft.Research.Visualization3D.CameraUtilities;
 using Microsoft.Research.Visualization3D.MainLoops;
+using SlimDX.Direct3D9;
 using System;
 
 namespace Microsoft.Research.Visualization3D

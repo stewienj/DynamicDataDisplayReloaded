@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Research.Visualization3D.Particles
+﻿using SlimDX;
+
+namespace Microsoft.Research.Visualization3D.Particles
 {
 	class Particle
 	{

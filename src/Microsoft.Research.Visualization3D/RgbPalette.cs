@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using SlimDX;
+using System.Drawing;
 
 namespace Microsoft.Research.Visualization3D
 {

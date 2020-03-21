@@ -1,6 +1,8 @@
 using Microsoft.Research.Visualization3D.Auxilaries;
 using Microsoft.Research.Visualization3D.MainLoops;
 using Microsoft.Research.Visualization3D.VertexStructures;
+using SlimDX;
+using SlimDX.Direct3D9;
 using System.Collections.Generic;
 using System.Windows.Threading;
 

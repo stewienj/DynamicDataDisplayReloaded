@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SlimDX.Direct3D9;
+using System;
 
 namespace Microsoft.Research.Visualization3D.VertexStructures
 {

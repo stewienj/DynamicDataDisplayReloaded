@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SlimDX;
+using SlimDX.Direct3D9;
+using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
 
