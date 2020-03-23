@@ -12,11 +12,6 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 {
 	public class DirectXHost : FrameworkElement, IPlotterElement
 	{
-		public DirectXHost()
-		{
-			Effect = new Transparency();
-		}
-
 		private Device device;
 		private Direct3D direct3D;
 		private D3DImage image = new D3DImage();
@@ -56,22 +51,23 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			pp.SwapEffect = SwapEffect.Discard;
 			pp.DeviceWindowHandle = hwnd.Handle;
 			pp.Windowed = true;
-			pp.BackBufferWidth = (int)ActualWidth;
-			pp.BackBufferHeight = (int)ActualHeight;
-			pp.BackBufferFormat = Format.X8R8G8B8;
+			pp.EnableAutoDepthStencil = true;
+			pp.BackBufferWidth = Math.Max(1,(int)ActualWidth);
+			pp.BackBufferHeight = Math.Max(1,(int)ActualHeight);
+			pp.BackBufferFormat = Format.A8R8G8B8;
+			pp.AutoDepthStencilFormat = Format.D32SingleLockable;
 
 			try
 			{
 				var direct3DEx = new Direct3DEx();
 				direct3D = direct3DEx;
-				device = new DeviceEx(direct3DEx, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.MixedVertexProcessing, pp);
+				device = new DeviceEx(direct3DEx, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, pp);
 			}
 			catch
 			{
 				direct3D = new Direct3D();
 				device = new Device(direct3D, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, pp);
 			}
-
 			System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
 		}
 
@@ -85,8 +81,8 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			{
 				if (sizeChanged)
 				{
-					pp.BackBufferWidth = (int)ActualWidth;
-					pp.BackBufferHeight = (int)ActualHeight;
+					pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
+					pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
 					device.Reset(pp);
 					sizeChanged = false;
 				}
@@ -102,7 +98,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 
 					device.SetRenderState(SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
 					device.SetRenderState(SharpDX.Direct3D9.RenderState.ZEnable, true);
-					device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, new SharpDX.Mathematics.Interop.RawColorBGRA(255, 255, 255, 255), 1.0f, 0);
+					device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, 1.0f, 0);
 					device.BeginScene();
 
 					try

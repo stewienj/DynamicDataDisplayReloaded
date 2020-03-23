@@ -51,7 +51,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SampleLine.cs" />
-    <Compile Include="Transparency.cs" />
     <Compile Include="VertexPosition3Color.cs" />
     <Compile Include="VertexPosition3ColorPointSize.cs" />
     <Compile Include="VertexPosition4Color.cs" />
@@ -63,9 +62,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <FxCompile Include="Transparency.fx" />
     <AppDesigner Include="Properties\" />
-    <Resource Include="Transparency.ps" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
