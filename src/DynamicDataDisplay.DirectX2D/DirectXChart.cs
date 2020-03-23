@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SlimDX.Direct3D9;
+using SharpDX.Direct3D9;
 using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.DirectX2D

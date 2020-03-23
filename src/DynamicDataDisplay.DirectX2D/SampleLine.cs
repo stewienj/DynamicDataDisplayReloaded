@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SlimDX.Direct3D9;
+using SharpDX.Direct3D9;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
-using SlimDX;
+using SharpDX;
 using System.Drawing;
 
 namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
@@ -66,7 +66,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 				pointList[i] = new VertexPosition4Color
 				{
 					Position = new Vector4(100 + 500 * (float)points[i].X, 500 + 500 * (float)points[i].Y, 0.5f,1 ),
-					Color = Color.Orange.ToArgb()
+					Color = System.Drawing.Color.Orange.ToArgb()
 				};
 			}
 
@@ -83,9 +83,9 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			Device.SetTransform(TransformState.View, camera.ViewMatrix);
 			Device.SetTransform(TransformState.Projection, camera.ProjectionMatrix);
 
-			device.SetRenderState(SlimDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
+			device.SetRenderState(SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
 			device.VertexFormat = VertexFormat.Diffuse | VertexFormat.PositionRhw;
-			device.DrawIndexedUserPrimitives<short, VertexPosition4Color>(PrimitiveType.LineList, 0, points.Length, points.Length - 1, lineListIndices, Format.Index16, pointList, VertexPosition4Color.SizeInBytes);
+			device.DrawIndexedUserPrimitives<short, VertexPosition4Color>(PrimitiveType.LineList, 0, points.Length, points.Length - 1, lineListIndices, Format.Index16, pointList);
 		}
 	}
 }

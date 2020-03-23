@@ -5,11 +5,11 @@ using System.Text;
 using System.Windows;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
-using SlimDX.Direct3D9;
+using SharpDX.Direct3D9;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using SlimDX;
+using SharpDX;
 
 namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 {
@@ -105,13 +105,13 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			//Device.SetTransform(TransformState.View, camera.ViewMatrix);
 			//Device.SetTransform(TransformState.Projection, camera.ProjectionMatrix);
 
-			Device.SetRenderState(SlimDX.Direct3D9.RenderState.Lighting, false);
-			Device.SetRenderState<FillMode>(SlimDX.Direct3D9.RenderState.FillMode, FillMode.Wireframe);
-			Device.SetRenderState(SlimDX.Direct3D9.RenderState.PointSize, 5.0f);
+			Device.SetRenderState(SharpDX.Direct3D9.RenderState.Lighting, false);
+			Device.SetRenderState<FillMode>(SharpDX.Direct3D9.RenderState.FillMode, FillMode.Wireframe);
+			Device.SetRenderState(SharpDX.Direct3D9.RenderState.PointSize, 5.0f);
 			Device.VertexFormat = VertexFormat.Position | VertexFormat.Diffuse;
 			Device.SetStreamSource(0, vertexBuffer, 0, VertexPosition4Color.SizeInBytes);
 			Device.Indices = indexBuffer;
-			Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexCount, 0, indicesCount / 3);
+			Device.DrawIndexedPrimitive(PrimitiveType.TriangleList, 0, 0, vertexCount, 0, indicesCount / 3);
 
 			//Device.DrawIndexedUserPrimitives<int, VertexPosition4Color>(PrimitiveType.TriangleList, 0, vertexCount, indicesCount / 3, indicesArray, Format.Index32, verticesArray, VertexPosition4Color.SizeInBytes);
 		}
@@ -149,7 +149,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			{
 				int ix = i % DataSource.Width;
 				int iy = i / DataSource.Width;
-				Point point = dataSource.Grid[ix, iy];
+				System.Windows.Point point = dataSource.Grid[ix, iy];
 				double data = dataSource.Data[ix, iy];
 
 				double interpolatedData = (data - minMax.Min) / minMax.GetLength();

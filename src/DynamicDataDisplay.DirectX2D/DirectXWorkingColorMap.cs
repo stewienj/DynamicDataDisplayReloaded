@@ -5,11 +5,11 @@ using System.Text;
 using System.Windows;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
-using SlimDX.Direct3D9;
+using SharpDX.Direct3D9;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using SlimDX;
+using SharpDX;
 
 namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 {
@@ -96,7 +96,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			//Device.SetStreamSource(0, vertexBuffer, 0, VertexPositionColor.SizeInBytes);
 			//Device.Indices = indexBuffer;
 			//Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexCount, 0, indicesCount / 3);
-			Device.DrawIndexedUserPrimitives<int, VertexPosition4Color>(PrimitiveType.TriangleList, 0, vertexCount, indicesCount / 3, indicesArray, Format.Index32, verticesArray, VertexPosition4Color.SizeInBytes);
+			Device.DrawIndexedUserPrimitives<int, VertexPosition4Color>(PrimitiveType.TriangleList, 0, vertexCount, indicesCount / 3, indicesArray, Format.Index32, verticesArray);
 		}
 
 		public override void OnPlotterAttached(Plotter plotter)
@@ -139,7 +139,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			{
 				int ix = i % DataSource.Width;
 				int iy = i / DataSource.Width;
-				Point point = dataSource.Grid[ix, iy];
+				System.Windows.Point point = dataSource.Grid[ix, iy];
 				double data = dataSource.Data[ix, iy];
 
 				double interpolatedData = (data - minMax.Min) / minMax.GetLength();

@@ -24,7 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SlimDX;
+using SharpDX;
 
 namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 {
