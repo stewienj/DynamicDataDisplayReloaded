@@ -12,21 +12,13 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 {
 	public class DirectXHost : FrameworkElement, IPlotterElement
 	{
-		private Device device;
-		private Direct3D direct3D;
-		private D3DImage image = new D3DImage();
-		private bool sizeChanged;
-		private PresentParameters pp = new PresentParameters();
+		private D3DImage _image = new D3DImage();
+		private bool _sizeChanged;
+		private PresentParameters _pp = new PresentParameters();
 
-		public Device Device
-		{
-			get { return device; }
-		}
+		public Device Device { get; private set; }
 
-		public Direct3D Direct3D
-		{
-			get { return direct3D; }
-		}
+		public Direct3D Direct3D { get; private set; }
 
 		protected override void OnInitialized(EventArgs e)
 		{
@@ -34,72 +26,66 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			Initialize3D();
 		}
 
-		public void AddChild(object child)
-		{
-			AddLogicalChild(child);
-		}
+		public void AddChild(object child) => AddLogicalChild(child);
 
-		public void RemoveChild(object child)
-		{
-			RemoveLogicalChild(child);
-		}
+		public void RemoveChild(object child) => RemoveLogicalChild(child);
 
 		private void Initialize3D()
 		{
 			HwndSource hwnd = new HwndSource(0, 0, 0, 0, 0, "D3", IntPtr.Zero);
 
-			pp.SwapEffect = SwapEffect.Discard;
-			pp.DeviceWindowHandle = hwnd.Handle;
-			pp.Windowed = true;
-			pp.EnableAutoDepthStencil = true;
-			pp.BackBufferWidth = Math.Max(1,(int)ActualWidth);
-			pp.BackBufferHeight = Math.Max(1,(int)ActualHeight);
-			pp.BackBufferFormat = Format.A8R8G8B8;
-			pp.AutoDepthStencilFormat = Format.D32SingleLockable;
+			_pp.SwapEffect = SwapEffect.Discard;
+			_pp.DeviceWindowHandle = hwnd.Handle;
+			_pp.Windowed = true;
+			_pp.EnableAutoDepthStencil = true;
+			_pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
+			_pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
+			_pp.BackBufferFormat = Format.A8R8G8B8;
+			_pp.AutoDepthStencilFormat = Format.D32SingleLockable;
 
 			try
 			{
 				var direct3DEx = new Direct3DEx();
-				direct3D = direct3DEx;
-				device = new DeviceEx(direct3DEx, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, pp);
+				Direct3D = direct3DEx;
+				Device = new DeviceEx(direct3DEx, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, _pp);
 			}
 			catch
 			{
-				direct3D = new Direct3D();
-				device = new Device(direct3D, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, pp);
+				Direct3D = new Direct3D();
+				Device = new Device(Direct3D, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, _pp);
 			}
 			System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
 		}
 
-		int counter = 0;
+		int _counter = 0;
 		private void CompositionTarget_Rendering(object sender, EventArgs e)
 		{
-			if (counter++ % 2 == 0) return;
-			if (image == null) return;
+			if (_counter++ % 2 == 0) return;
+			if (_image == null) return;
 
 			try
 			{
-				if (sizeChanged)
+				if (_sizeChanged)
 				{
-					pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
-					pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
-					device.Reset(pp);
-					sizeChanged = false;
+					_pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
+					_pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
+					Device.Reset(_pp);
+					_sizeChanged = false;
 				}
 
-				if (image.IsFrontBufferAvailable)
+				if (_image.IsFrontBufferAvailable)
 				{
 					Result result = Device.TestCooperativeLevel();
 					if (result.Failure)
 					{
 						throw new SharpDXException();
 					}
-					image.Lock();
+					_image.Lock();
 
-					device.SetRenderState(SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
-					device.SetRenderState(SharpDX.Direct3D9.RenderState.ZEnable, true);
-					device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, 1.0f, 0);
-					device.BeginScene();
+					Device.SetRenderState(SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
+					Device.SetRenderState(SharpDX.Direct3D9.RenderState.ZEnable, true);
+					Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, 1.0f, 0);
+					Device.BeginScene();
 
 					try
 					{
@@ -110,17 +96,17 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 						Debug.WriteLine("Error in rendering in DirectXHost: " + exc.Message);
 					}
 
-					device.EndScene();
-					device.Present();
+					Device.EndScene();
+					Device.Present();
 
-					image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, Device.GetBackBuffer(0, 0).NativePointer);
-					image.AddDirtyRect(new Int32Rect(0, 0, image.PixelWidth, image.PixelHeight));
-					image.Unlock();
+					_image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, Device.GetBackBuffer(0, 0).NativePointer);
+					_image.AddDirtyRect(new Int32Rect(0, 0, _image.PixelWidth, _image.PixelHeight));
+					_image.Unlock();
 				}
 			}
 			catch (SharpDXException exc)
 			{
-				Device.Reset(pp);
+				Device.Reset(_pp);
 				Debug.WriteLine("Exception in main render loop: " + exc.Message);
 			}
 		}
@@ -129,38 +115,35 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 
 		protected override void OnRender(System.Windows.Media.DrawingContext drawingContext)
 		{
-			drawingContext.DrawImage(image, new Rect(RenderSize));
+			drawingContext.DrawImage(_image, new Rect(RenderSize));
 		}
 
 		#region IPlotterElement Members
 
-		private Plotter2D plotter;
+		private Plotter2D _plotter;
 		public void OnPlotterAttached(Plotter plotter)
 		{
-			this.plotter = (Plotter2D)plotter;
-			plotter.CentralGrid.Children.Add(this);
-			this.plotter.Viewport.PropertyChanged += Viewport_PropertyChanged;
+			_plotter = (Plotter2D)plotter;
+			_plotter.CentralGrid.Children.Add(this);
+			_plotter.Viewport.PropertyChanged += Viewport_PropertyChanged;
 		}
 
 		private void Viewport_PropertyChanged(object sender, ExtendedPropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == "Output")
 			{
-				sizeChanged = true;
+				_sizeChanged = true;
 			}
 		}
 
 		public void OnPlotterDetaching(Plotter plotter)
 		{
-			this.plotter.Viewport.PropertyChanged -= Viewport_PropertyChanged;
-			plotter.CentralGrid.Children.Remove(this);
-			this.plotter = null;
+			_plotter.Viewport.PropertyChanged -= Viewport_PropertyChanged;
+			_plotter.CentralGrid.Children.Remove(this);
+			_plotter = null;
 		}
 
-		public Plotter Plotter
-		{
-			get { return plotter; }
-		}
+		public Plotter Plotter => _plotter;
 
 		#endregion
 
