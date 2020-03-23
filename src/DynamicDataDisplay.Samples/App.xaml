@@ -7,49 +7,52 @@
              StartupUri="MainWindow.xaml">
 	<Application.Resources>
 
-		<m:SamplesCollection x:Key="samples">
-			<m:ReleaseInfo Version="0.2.0">
-				<m:Demonstration Description="{p:Resource AnimationSample}" Uri="/Demos/v02/AnimationSample.xaml"/>
-				<m:Demonstration Description="{p:Resource CurrencyExchangeSample}" Uri="/Demos/v02/CurrencyExchange/CurrencyExchangeSample.xaml"/>
-				<m:Demonstration Description="{p:Resource StockExchangeSample}" Uri="/Demos/v02/StockExchange/StockExchangeSample.xaml"/>
-				<m:Demonstration Description="{p:Resource ImageHistogram}" Uri="/Demos/v02/ImageHistogram.xaml"/>
-				<m:Demonstration Description="{p:Resource TooltipSample}" Uri="/Demos/v02/TooltipSample.xaml"/>
-			</m:ReleaseInfo>
-			<m:ReleaseInfo Version="0.3.0">
-				<m:Demonstration Description="{p:Resource Coastline}" Uri="/Demos/v03/Coastline.xaml"/>
-				<m:Demonstration Description="{p:Resource Maps}" Uri="/Demos/v03/Maps.xaml"/>
-				<m:Demonstration Description="{p:Resource MercatorShaderMaps}" Uri="/Demos/v03/MercatorShaderMaps.xaml"/>
-				<m:Demonstration Description="{p:Resource Isoline}" Uri="/Demos/v03/Isolines/Isolines.xaml"/>
-				<m:Demonstration Description="{p:Resource SimulationSample}" Uri="/Demos/v03/SimulationSample.xaml"/>
-			</m:ReleaseInfo>
-			<m:ReleaseInfo Version="0.3.1">
-				<m:Demonstration Description="{p:Resource HideAxisSample}" Uri="/Demos/v031/HideAxisSample.xaml"/>
-				<m:Demonstration Description="{p:Resource AxisColoringSample}" Uri="/Demos/v031/AxisColoringSample.xaml"/>
-			</m:ReleaseInfo>
-			<m:ReleaseInfo Version="0.4.0">
-				<m:Demonstration Description="Editable shapes" Uri="/Demos/v04/EditableShapesSample.xaml"/>
-        <m:Demonstration Description="Bar Chart" Uri="/Demos/v04/Markers/BarChart page/BarChartPage.xaml"/>
-        <m:Demonstration Description="Pie Chart" Uri="/Demos/v04/Markers/PieChart page/PieChartPage.xaml"/>
-        <m:Demonstration Description="Acceptable Range" Uri="/Demos/v04/Markers/AcceptableRangePage.xaml"/>
-        <m:Demonstration Description="10,000 Unfiltered Points" Uri="/Demos/v04/Markers/BigPointArrayPage.xaml"/>
-        <m:Demonstration Description="Column Chart" Uri="/Demos/v04/Markers/ColumnChartSample.xaml"/>
-        <m:Demonstration Description="Marker Samples" Uri="/Demos/v04/Markers/DifferentBuildInMarkersPage.xaml"/>
-        <m:Demonstration Description="Stock Markers" Uri="/Demos/v04/Markers/StockMarkersPage.xaml"/>
-      </m:ReleaseInfo>
-      <m:ReleaseInfo Version="2015 Onwards">
-        <m:Demonstration Description="Radio Band Viewer" Uri="/Demos/Custom/RadioBandViewerSample.xaml"/>
-        <m:Demonstration Description="Line Label and Point Value" Uri="/Demos/Custom/LineLabelPointValueSample.xaml"/>
-        <m:Demonstration Description="Polar" Uri="/Demos/Custom/PolarSample.xaml"/>
-        <m:Demonstration Description="Radio Band Axis with No Chart" Uri="/Demos/Custom/RadioBandAxisWithNoChart.xaml"/>
-        <m:Demonstration Description="Lat Lon Status On Map" Uri="/Demos/Custom/StatusByLatLonOnMapSample.xaml"/>
-        <m:Demonstration Description="Lat Lon Status On Coastline" Uri="/Demos/Custom/StatusByLatLonOnCoastlineSample.xaml"/>
-        <m:Demonstration Description="Heatmap on Map" Uri="/Demos/Custom/HeatMapOnMapSample.xaml"/>
-        <m:Demonstration Description="Grouped Markers on Map" Uri="/Demos/Custom/GroupedMarkersOnMapSample.xaml"/>
-        <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
-      </m:ReleaseInfo>
-    </m:SamplesCollection>
+        <m:SamplesCollection x:Key="samples">
+            <m:ReleaseInfo Version="0.2.0">
+                <m:Demonstration Description="{p:Resource AnimationSample}" Uri="/Demos/v02/AnimationSample.xaml"/>
+                <m:Demonstration Description="{p:Resource CurrencyExchangeSample}" Uri="/Demos/v02/CurrencyExchange/CurrencyExchangeSample.xaml"/>
+                <m:Demonstration Description="{p:Resource StockExchangeSample}" Uri="/Demos/v02/StockExchange/StockExchangeSample.xaml"/>
+                <m:Demonstration Description="{p:Resource ImageHistogram}" Uri="/Demos/v02/ImageHistogram.xaml"/>
+                <m:Demonstration Description="{p:Resource TooltipSample}" Uri="/Demos/v02/TooltipSample.xaml"/>
+            </m:ReleaseInfo>
+            <m:ReleaseInfo Version="0.3.0">
+                <m:Demonstration Description="{p:Resource Coastline}" Uri="/Demos/v03/Coastline.xaml"/>
+                <m:Demonstration Description="{p:Resource Maps}" Uri="/Demos/v03/Maps.xaml"/>
+                <m:Demonstration Description="{p:Resource MercatorShaderMaps}" Uri="/Demos/v03/MercatorShaderMaps.xaml"/>
+                <m:Demonstration Description="{p:Resource Isoline}" Uri="/Demos/v03/Isolines/Isolines.xaml"/>
+                <m:Demonstration Description="{p:Resource SimulationSample}" Uri="/Demos/v03/SimulationSample.xaml"/>
+            </m:ReleaseInfo>
+            <m:ReleaseInfo Version="0.3.1">
+                <m:Demonstration Description="{p:Resource HideAxisSample}" Uri="/Demos/v031/HideAxisSample.xaml"/>
+                <m:Demonstration Description="{p:Resource AxisColoringSample}" Uri="/Demos/v031/AxisColoringSample.xaml"/>
+            </m:ReleaseInfo>
+            <m:ReleaseInfo Version="0.4.0">
+                <m:Demonstration Description="Editable shapes" Uri="/Demos/v04/EditableShapesSample.xaml"/>
+                <m:Demonstration Description="Bar Chart" Uri="/Demos/v04/Markers/BarChart page/BarChartPage.xaml"/>
+                <m:Demonstration Description="Pie Chart" Uri="/Demos/v04/Markers/PieChart page/PieChartPage.xaml"/>
+                <m:Demonstration Description="Acceptable Range" Uri="/Demos/v04/Markers/AcceptableRangePage.xaml"/>
+                <m:Demonstration Description="10,000 Unfiltered Points" Uri="/Demos/v04/Markers/BigPointArrayPage.xaml"/>
+                <m:Demonstration Description="Column Chart" Uri="/Demos/v04/Markers/ColumnChartSample.xaml"/>
+                <m:Demonstration Description="Marker Samples" Uri="/Demos/v04/Markers/DifferentBuildInMarkersPage.xaml"/>
+                <m:Demonstration Description="Stock Markers" Uri="/Demos/v04/Markers/StockMarkersPage.xaml"/>
+            </m:ReleaseInfo>
+            <m:ReleaseInfo Version="2015 Onwards">
+                <m:Demonstration Description="Radio Band Viewer" Uri="/Demos/Custom/RadioBandViewerSample.xaml"/>
+                <m:Demonstration Description="Line Label and Point Value" Uri="/Demos/Custom/LineLabelPointValueSample.xaml"/>
+                <m:Demonstration Description="Polar" Uri="/Demos/Custom/PolarSample.xaml"/>
+                <m:Demonstration Description="Radio Band Axis with No Chart" Uri="/Demos/Custom/RadioBandAxisWithNoChart.xaml"/>
+                <m:Demonstration Description="Lat Lon Status On Map" Uri="/Demos/Custom/StatusByLatLonOnMapSample.xaml"/>
+                <m:Demonstration Description="Lat Lon Status On Coastline" Uri="/Demos/Custom/StatusByLatLonOnCoastlineSample.xaml"/>
+                <m:Demonstration Description="Heatmap on Map" Uri="/Demos/Custom/HeatMapOnMapSample.xaml"/>
+                <m:Demonstration Description="Grouped Markers on Map" Uri="/Demos/Custom/GroupedMarkersOnMapSample.xaml"/>
+                <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
+            </m:ReleaseInfo>
+            <m:ReleaseInfo Version="SlimDX samples (note SlimDX no longer supported">
+                <m:Demonstration Description="Simple Line" Uri="/Demos/SlimDX/SimpleLineSample.xaml"/>
+            </m:ReleaseInfo>
+        </m:SamplesCollection>
 
-		<local:VersionToBrushConverter x:Key="versionConverter"/>
+        <local:VersionToBrushConverter x:Key="versionConverter"/>
 		
 		<Style TargetType="{x:Type TextBlock}" x:Key="TextStyle">
 			<Setter Property="Foreground" Value="White"/>

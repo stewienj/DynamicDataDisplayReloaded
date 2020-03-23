@@ -71,6 +71,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demos\SlimDX\SimpleLineSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Demos\v02\AnimationSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +210,9 @@
     </Compile>
     <Compile Include="Demos\Custom\StatusByLatLonOnMapSample.xaml.cs">
       <DependentUpon>StatusByLatLonOnMapSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\SlimDX\SimpleLineSample.xaml.cs">
+      <DependentUpon>SimpleLineSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -354,6 +361,10 @@
       <Project>{F14D455C-E581-41FF-8C33-561C85A83449}</Project>
       <Name>DynamicDataDisplay.Coastline</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DynamicDataDisplay.DirectX2D\DynamicDataDisplay.DirectX2D.csproj">
+      <Project>{e140351c-f359-40be-9182-120c50a46150}</Project>
+      <Name>DynamicDataDisplay.DirectX2D</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj">
       <Project>{EB04A4CD-DDE6-49EB-8FB6-39B35482D792}</Project>
       <Name>DynamicDataDisplay.Maps</Name>
@@ -394,6 +405,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Demos\v03\Repressilator.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

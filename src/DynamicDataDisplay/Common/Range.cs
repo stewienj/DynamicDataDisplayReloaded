@@ -1,4 +1,5 @@
 ﻿using Microsoft.Research.DynamicDataDisplay.Common;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -23,16 +24,6 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		{
 			this.min = min;
 			this.max = max;
-
-#if DEBUG
-			if (min is IComparable)
-			{
-				IComparable c1 = (IComparable)min;
-				IComparable c2 = (IComparable)max;
-
-				DebugVerify.Is(c1.CompareTo(c2) <= 0);
-			}
-#endif
 		}
 
 		private readonly T min;
