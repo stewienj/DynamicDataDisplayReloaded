@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SharpDX.Direct3D9;
+using System;
 using System.Linq;
-using System.Text;
-using SharpDX.Direct3D9;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
+namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 {
-	public abstract class DirectXChart : FrameworkElement, IPlotterElement
+	public abstract class SharpDXChart : FrameworkElement, IPlotterElement
 	{
-		private DirectXHost dxHost;
+		private SharpDXHost dxHost;
 
-		protected DirectXHost DxHost
+		protected SharpDXHost DxHost
 		{
 			get { return dxHost; }
 		}
@@ -44,7 +42,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		public virtual void OnPlotterAttached(Plotter plotter)
 		{
 			this.plotter = (Plotter2D)plotter;
-			dxHost = this.plotter.Children.OfType<DirectXHost>().FirstOrDefault();
+			dxHost = this.plotter.Children.OfType<SharpDXHost>().FirstOrDefault();
 			if (dxHost == null)
 				throw new InvalidOperationException("First add DirectXHost to plotter.Children");
 

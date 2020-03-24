@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.SharpDX
+namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.SlimDX
 {
 	/// <summary>
 	/// Interaction logic for SimpleLineSample.xaml

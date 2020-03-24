@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
-using SharpDX.Direct3D9;
-using Microsoft.Research.DynamicDataDisplay;
+﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
 using SharpDX;
+using SharpDX.Direct3D9;
+using System;
+using System.Windows;
+using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
 
-namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
+namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 {
-	public class DirectXColorMap : DirectXChart
+	public class SharpDXColorMap : SharpDXChart
 	{
 		#region Properties
 
@@ -28,12 +24,12 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		public static readonly DependencyProperty DataSourceProperty = DependencyProperty.Register(
 		  "DataSource",
 		  typeof(IDataSource2D<double>),
-		  typeof(DirectXColorMap),
+		  typeof(SharpDXColorMap),
 		  new FrameworkPropertyMetadata(null, OnDataSourceReplaced));
 
 		private static void OnDataSourceReplaced(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			DirectXColorMap owner = (DirectXColorMap)d;
+			SharpDXColorMap owner = (SharpDXColorMap)d;
 			owner.OnDataSourceReplaced((DataSource)e.OldValue, (DataSource)e.NewValue);
 		}
 
@@ -69,12 +65,12 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		public static readonly DependencyProperty PaletteProperty = DependencyProperty.Register(
 		  "Palette",
 		  typeof(IPalette),
-		  typeof(DirectXColorMap),
+		  typeof(SharpDXColorMap),
 		  new FrameworkPropertyMetadata(new HSBPalette(), OnPaletteChanged));
 
 		private static void OnPaletteChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			DirectXColorMap owner = (DirectXColorMap)d;
+			SharpDXColorMap owner = (SharpDXColorMap)d;
 			// todo 
 		}
 
@@ -105,9 +101,9 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			//Device.SetTransform(TransformState.View, camera.ViewMatrix);
 			//Device.SetTransform(TransformState.Projection, camera.ProjectionMatrix);
 
-			Device.SetRenderState(SharpDX.Direct3D9.RenderState.Lighting, false);
-			Device.SetRenderState<FillMode>(SharpDX.Direct3D9.RenderState.FillMode, FillMode.Wireframe);
-			Device.SetRenderState(SharpDX.Direct3D9.RenderState.PointSize, 5.0f);
+			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
+			Device.SetRenderState<FillMode>(global::SharpDX.Direct3D9.RenderState.FillMode, FillMode.Wireframe);
+			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.PointSize, 5.0f);
 			Device.VertexFormat = VertexFormat.Position | VertexFormat.Diffuse;
 			Device.SetStreamSource(0, vertexBuffer, 0, VertexPosition4Color.SizeInBytes);
 			Device.Indices = indexBuffer;

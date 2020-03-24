@@ -5,15 +5,15 @@ using System.Text;
 using System.Windows;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
-using SharpDX.Direct3D9;
+using SlimDX.Direct3D9;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using SharpDX;
+using SlimDX;
 
-namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
+namespace Microsoft.Research.DynamicDataDisplay.SlimDX
 {
-	public class DirectXWorkingColorMap : DirectXChart
+	public class SlimDXColorMap : SlimDXChart
 	{
 		#region Properties
 
@@ -28,12 +28,12 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		public static readonly DependencyProperty DataSourceProperty = DependencyProperty.Register(
 		  "DataSource",
 		  typeof(IDataSource2D<double>),
-		  typeof(DirectXWorkingColorMap),
+		  typeof(SlimDXColorMap),
 		  new FrameworkPropertyMetadata(null, OnDataSourceReplaced));
 
 		private static void OnDataSourceReplaced(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			DirectXWorkingColorMap owner = (DirectXWorkingColorMap)d;
+			SlimDXColorMap owner = (SlimDXColorMap)d;
 			owner.OnDataSourceReplaced((DataSource)e.OldValue, (DataSource)e.NewValue);
 		}
 
@@ -69,18 +69,27 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		public static readonly DependencyProperty PaletteProperty = DependencyProperty.Register(
 		  "Palette",
 		  typeof(IPalette),
-		  typeof(DirectXWorkingColorMap),
+		  typeof(SlimDXColorMap),
 		  new FrameworkPropertyMetadata(new HSBPalette(), OnPaletteChanged));
 
 		private static void OnPaletteChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			DirectXWorkingColorMap owner = (DirectXWorkingColorMap)d;
+			SlimDXColorMap owner = (SlimDXColorMap)d;
 			// todo 
 		}
 
 		#endregion // end of Palette property
 
 		#endregion // end of Properties
+
+		private readonly Camera camera = new Camera
+		{
+			FieldOfView = (float)(Math.PI / 4),
+			NearPlane = 0.0f,
+			FarPlane = 100.0f,
+			Location = new Vector3(0, 0, 20),
+			Target = Vector3.Zero
+		};
 
 		protected override void OnDirectXRender()
 		{
@@ -92,30 +101,31 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			//    Matrix.Scaling(3.0f, 3.0f, 1.0f)
 			//    );
 
-			Device.VertexFormat = VertexFormat.PositionRhw | VertexFormat.Diffuse;
-			//Device.SetStreamSource(0, vertexBuffer, 0, VertexPositionColor.SizeInBytes);
-			//Device.Indices = indexBuffer;
-			//Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexCount, 0, indicesCount / 3);
-			Device.DrawIndexedUserPrimitives<int, VertexPosition4Color>(PrimitiveType.TriangleList, 0, vertexCount, indicesCount / 3, indicesArray, Format.Index32, verticesArray);
+			//Device.SetTransform(TransformState.View, Matrix.Translation(-0.1f, -0.1f, 0));
+			//Device.SetTransform(TransformState.View, camera.ViewMatrix);
+			//Device.SetTransform(TransformState.Projection, camera.ProjectionMatrix);
+
+			Device.SetRenderState(global::SlimDX.Direct3D9.RenderState.Lighting, false);
+			Device.SetRenderState<FillMode>(global::SlimDX.Direct3D9.RenderState.FillMode, FillMode.Wireframe);
+			Device.SetRenderState(global::SlimDX.Direct3D9.RenderState.PointSize, 5.0f);
+			Device.VertexFormat = VertexFormat.Position | VertexFormat.Diffuse;
+			Device.SetStreamSource(0, vertexBuffer, 0, VertexPosition4Color.SizeInBytes);
+			Device.Indices = indexBuffer;
+			Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexCount, 0, indicesCount / 3);
+
+			//Device.DrawIndexedUserPrimitives<int, VertexPosition4Color>(PrimitiveType.TriangleList, 0, vertexCount, indicesCount / 3, indicesArray, Format.Index32, verticesArray, VertexPosition4Color.SizeInBytes);
 		}
 
 		public override void OnPlotterAttached(Plotter plotter)
 		{
 			base.OnPlotterAttached(plotter);
-			Plotter.Viewport.PropertyChanged += new EventHandler<ExtendedPropertyChangedEventArgs>(Viewport_PropertyChanged);
+
 			FillVertexBuffer();
 		}
 
-		private void Viewport_PropertyChanged(object sender, ExtendedPropertyChangedEventArgs e)
-		{
-			if (e.PropertyName == "Visible")
-			{
-				FillVertexBuffer();
-			}
-		}
-
-		VertexPosition4Color[] verticesArray;
-		int[] indicesArray;
+		private CoordinateTransform transform;
+		private VertexPosition4Color[] verticesArray;
+		private int[] indicesArray;
 		private int indicesCount;
 		private int vertexCount;
 		private VertexBuffer vertexBuffer;
@@ -130,7 +140,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			var dataSource = DataSource;
 			var palette = Palette;
 			var minMax = dataSource.GetMinMax();
-			var transform = Plotter.Transform;
+			transform = Plotter.Transform;
 
 			vertexCount = DataSource.Width * DataSource.Height;
 
@@ -145,7 +155,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 				double interpolatedData = (data - minMax.Min) / minMax.GetLength();
 				var color = palette.GetColor(interpolatedData);
 
-				var pointInScreen = point.DataToScreen(transform);
+				var pointInScreen = point;//.DataToScreen(transform);
 				var position = new Vector4((float)pointInScreen.X, (float)pointInScreen.Y, 0.5f, 1);
 				verticesArray[i] = new VertexPosition4Color
 				{

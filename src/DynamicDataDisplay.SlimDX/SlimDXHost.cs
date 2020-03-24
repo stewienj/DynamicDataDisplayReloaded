@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SharpDX.Direct3D9;
+using SlimDX.Direct3D9;
 using System.Windows;
 using System.Windows.Interop;
-using SharpDX;
+using SlimDX;
 using System.Diagnostics;
 using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
-namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
+namespace Microsoft.Research.DynamicDataDisplay.SlimDX
 {
-	public class DirectXHost : FrameworkElement, IPlotterElement
+	public class SlimDXHost : FrameworkElement, IPlotterElement
 	{
 		private D3DImage _image = new D3DImage();
 		private bool _sizeChanged;
@@ -95,25 +95,28 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 				if (_image.IsFrontBufferAvailable)
 				{
 					Result result = Device.TestCooperativeLevel();
-					if (result.Failure)
+					if (result.IsFailure)
 					{
-						throw new SharpDXException();
+						throw new Direct3D9Exception();
 					}
-					if(!_image.TryLock(_timeOutDuration))
+					if (!_image.TryLock(_timeOutDuration))
 					{
 						return;
 					}
+
 					try
 					{
-						Device.SetRenderState(SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
-						Device.SetRenderState(SharpDX.Direct3D9.RenderState.ZEnable, true);
-						Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, 1.0f, 0);
+						Device.SetRenderState(global::SlimDX.Direct3D9.RenderState.CullMode, Cull.None);
+						Device.SetRenderState(global::SlimDX.Direct3D9.RenderState.ZEnable, true);
+						Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, new Color4(0, 0, 0, 0), 1.0f, 0);
 						Device.BeginScene();
+
 						Render.Raise(this);
+
 						Device.EndScene();
 						Device.Present();
 
-						_image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, Device.GetBackBuffer(0, 0).NativePointer);
+						_image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, Device.GetBackBuffer(0, 0).ComPointer);
 						_image.AddDirtyRect(new Int32Rect(0, 0, _image.PixelWidth, _image.PixelHeight));
 					}
 					catch (Exception exc)
@@ -126,7 +129,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 					}
 				}
 			}
-			catch (SharpDXException exc)
+			catch (Direct3D9Exception exc)
 			{
 				Device.Reset(_pp);
 				Debug.WriteLine("Exception in main render loop: " + exc.Message);
@@ -156,7 +159,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			{
 				if (e.NewValue is DataRect newRect)
 				{
-				    // Change the matrix
+					// Change the matrix
 				}
 			}
 		}

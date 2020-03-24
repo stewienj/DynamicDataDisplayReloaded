@@ -1,9 +1,12 @@
 ﻿using SlimDX;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Research.Visualization3D.Auxilaries
 {
 	static class DDS
 	{
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable CS0414 // Remove unused private members
 		static readonly uint DDSD_CAPS = 0x00000001;
 		static readonly uint DDSD_HEIGHT = 0x00000002;
 		static readonly uint DDSD_WIDTH = 0x00000004;
@@ -26,6 +29,8 @@ namespace Microsoft.Research.Visualization3D.Auxilaries
 		static readonly uint DDSCAPS2_CUBEMAP_POSITIVEZ = 0x00004000;
 		static readonly uint DDSCAPS2_CUBEMAP_NEGATIVEZ = 0x00008000;
 		static readonly uint DDSCAPS2_VOLUME = 0x00200000;
+#pragma warning restore CS0414 // Remove unused private members
+#pragma warning restore IDE0051 // Remove unused private members
 
 		public static byte[] CreateHeader(uint width, uint height, uint depth)
 		{

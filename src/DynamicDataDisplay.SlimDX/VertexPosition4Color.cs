@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SharpDX;
+using SlimDX;
 
-namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
+namespace Microsoft.Research.DynamicDataDisplay.SlimDX
 {
 	public struct VertexPosition4Color
 	{

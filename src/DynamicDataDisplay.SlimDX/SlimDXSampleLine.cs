@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SharpDX.Direct3D9;
+using SlimDX.Direct3D9;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
-using SharpDX;
+using SlimDX;
 using System.Drawing;
 
-namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
+namespace Microsoft.Research.DynamicDataDisplay.SlimDX
 {
-	public class SampleLine : DirectXChart
+	public class SlimDXSampleLine : SlimDXChart
 	{
 		private IPointDataSource animatedDataSource;
 		private readonly double[] animatedX = new double[100];
@@ -19,7 +19,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		private readonly DispatcherTimer timer = new DispatcherTimer();
 		private Camera camera = new Camera();
 
-		public SampleLine()
+		public SlimDXSampleLine()
 		{
 			EnumerableDataSource<double> xSrc = new EnumerableDataSource<double>(animatedX);
 			xSrc.SetXMapping(x => x);
@@ -66,7 +66,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 				pointList[i] = new VertexPosition4Color
 				{
 					Position = new Vector4(100+200 * (float)points[i].X, 500 + 250 * (float)points[i].Y, 0.5f,1 ),
-					Color = System.Drawing.Color.Orange.ToArgb()
+					Color = System.Drawing.Color.Green.ToArgb()
 				};
 			}
 
@@ -79,13 +79,13 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 				lineListIndices[(i * 2) + 1] = (short)(i + 1);
 			}
 
-			Device.SetTransform(TransformState.World, Matrix.Translation(100, 0, 0));
+			Device.SetTransform(TransformState.World, Matrix.Translation(500, 0, 0));
 			Device.SetTransform(TransformState.View, camera.ViewMatrix);
 			Device.SetTransform(TransformState.Projection, camera.ProjectionMatrix);
 
-			device.SetRenderState(SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
+			//device.SetRenderState(SlimDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
 			device.VertexFormat = VertexFormat.Diffuse | VertexFormat.PositionRhw;
-			device.DrawIndexedUserPrimitives<short, VertexPosition4Color>(PrimitiveType.LineList, 0, points.Length, points.Length - 1, lineListIndices, Format.Index16, pointList);
+			device.DrawIndexedUserPrimitives<short, VertexPosition4Color>(PrimitiveType.LineList, 0, points.Length, points.Length - 1, lineListIndices, Format.Index16, pointList, VertexPosition4Color.SizeInBytes);
 		}
 	}
 }

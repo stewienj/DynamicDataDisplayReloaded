@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SharpDX;
+using SlimDX;
 
-namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
+namespace Microsoft.Research.DynamicDataDisplay.SlimDX
 {
-	public struct VertexPosition3Color
+	public struct VertexPosition3ColorPointSize
 	{
 		public static int SizeInBytes
 		{
-			get { return 3 * sizeof(float) + sizeof(int); }
+			get { return 3 * 4 + 4 + 4; }
 		}
 
 		public Vector3 Position;
+		public float PointSize;
 		public int Color;
 	}
 }

@@ -50,6 +50,9 @@
             <m:ReleaseInfo Version="SharpDX Samples">
                 <m:Demonstration Description="Simple Line" Uri="/Demos/SharpDX/SimpleLineSample.xaml"/>
             </m:ReleaseInfo>
+            <m:ReleaseInfo Version="SlimDX Samples">
+                <m:Demonstration Description="Simple Line" Uri="/Demos/SlimDX/SimpleLineSample.xaml"/>
+            </m:ReleaseInfo>
         </m:SamplesCollection>
 
         <local:VersionToBrushConverter x:Key="versionConverter"/>
