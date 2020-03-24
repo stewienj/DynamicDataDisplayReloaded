@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.IO;
 
 namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 {
 	internal static class Global
 	{
+		public static Stream GetResourceStream(string name)
+		{
+			Assembly a = typeof(Global).Assembly;
+			var resourceNames = a.GetManifestResourceNames();
+			var matching = resourceNames.First(n => n.EndsWith(name));
+			return a.GetManifestResourceStream(matching);
+		}
 		public static Uri MakePackUri(string relativeFile)
 		{
 			string uriString = "pack://application:,,,/" + AssemblyShortName + ";component/" + relativeFile;

@@ -71,7 +71,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Demos\SlimDX\SimpleLineSample.xaml">
+    <Page Include="Demos\SharpDX\SimpleLineSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,7 +211,7 @@
     <Compile Include="Demos\Custom\StatusByLatLonOnMapSample.xaml.cs">
       <DependentUpon>StatusByLatLonOnMapSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Demos\SlimDX\SimpleLineSample.xaml.cs">
+    <Compile Include="Demos\SharpDX\SimpleLineSample.xaml.cs">
       <DependentUpon>SimpleLineSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">

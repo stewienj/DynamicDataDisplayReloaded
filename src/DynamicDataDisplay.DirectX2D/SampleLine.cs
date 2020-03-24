@@ -65,7 +65,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			{
 				pointList[i] = new VertexPosition4Color
 				{
-					Position = new Vector4(100 + 500 * (float)points[i].X, 500 + 500 * (float)points[i].Y, 0.5f,1 ),
+					Position = new Vector4(100+200 * (float)points[i].X, 500 + 250 * (float)points[i].Y, 0.5f,1 ),
 					Color = System.Drawing.Color.Orange.ToArgb()
 				};
 			}

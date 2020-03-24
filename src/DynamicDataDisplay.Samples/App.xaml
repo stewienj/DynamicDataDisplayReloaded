@@ -47,8 +47,8 @@
                 <m:Demonstration Description="Grouped Markers on Map" Uri="/Demos/Custom/GroupedMarkersOnMapSample.xaml"/>
                 <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
             </m:ReleaseInfo>
-            <m:ReleaseInfo Version="SlimDX samples (note SlimDX no longer supported">
-                <m:Demonstration Description="Simple Line" Uri="/Demos/SlimDX/SimpleLineSample.xaml"/>
+            <m:ReleaseInfo Version="SharpDX Samples">
+                <m:Demonstration Description="Simple Line" Uri="/Demos/SharpDX/SimpleLineSample.xaml"/>
             </m:ReleaseInfo>
         </m:SamplesCollection>
 

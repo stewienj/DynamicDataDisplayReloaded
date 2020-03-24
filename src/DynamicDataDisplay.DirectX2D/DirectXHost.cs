@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Interop;
 using SharpDX;
 using System.Diagnostics;
+using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
 
 namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 {
@@ -15,6 +16,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		private D3DImage _image = new D3DImage();
 		private bool _sizeChanged;
 		private PresentParameters _pp = new PresentParameters();
+		private ThrottledAction _resizeAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000));
 
 		public Device Device { get; private set; }
 
@@ -24,6 +26,12 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 		{
 			base.OnInitialized(e);
 			Initialize3D();
+		}
+
+		protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+		{
+			_resizeAction.InvokeAction(() => _sizeChanged = true);
+			base.OnRenderSizeChanged(sizeInfo);
 		}
 
 		public void AddChild(object child) => AddLogicalChild(child);
@@ -57,6 +65,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 			System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
 		}
 
+		Duration _timeOutDuration = new Duration(TimeSpan.FromMilliseconds(200));
 		int _counter = 0;
 		private void CompositionTarget_Rendering(object sender, EventArgs e)
 		{
@@ -65,12 +74,22 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 
 			try
 			{
-				if (_sizeChanged)
+				// Lock the image while we are resetting as the rendering system freezes when we get a clash
+				if (_sizeChanged && _image.TryLock(_timeOutDuration))
 				{
-					_pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
-					_pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
-					Device.Reset(_pp);
-					_sizeChanged = false;
+					try
+					{
+						_pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
+						_pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
+						Device.Reset(_pp);
+						_counter = 0;
+						_sizeChanged = false;
+					}
+					finally
+					{
+						_image.Unlock();
+					}
+					return;
 				}
 
 				if (_image.IsFrontBufferAvailable)
@@ -80,28 +99,31 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 					{
 						throw new SharpDXException();
 					}
-					_image.Lock();
-
-					Device.SetRenderState(SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
-					Device.SetRenderState(SharpDX.Direct3D9.RenderState.ZEnable, true);
-					Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, 1.0f, 0);
-					Device.BeginScene();
-
+					if(!_image.TryLock(_timeOutDuration))
+					{
+						return;
+					}
 					try
 					{
+						Device.SetRenderState(SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
+						Device.SetRenderState(SharpDX.Direct3D9.RenderState.ZEnable, true);
+						Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, 1.0f, 0);
+						Device.BeginScene();
 						Render.Raise(this);
+						Device.EndScene();
+						Device.Present();
+
+						_image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, Device.GetBackBuffer(0, 0).NativePointer);
+						_image.AddDirtyRect(new Int32Rect(0, 0, _image.PixelWidth, _image.PixelHeight));
 					}
 					catch (Exception exc)
 					{
 						Debug.WriteLine("Error in rendering in DirectXHost: " + exc.Message);
 					}
-
-					Device.EndScene();
-					Device.Present();
-
-					_image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, Device.GetBackBuffer(0, 0).NativePointer);
-					_image.AddDirtyRect(new Int32Rect(0, 0, _image.PixelWidth, _image.PixelHeight));
-					_image.Unlock();
+					finally
+					{
+						_image.Unlock();
+					}
 				}
 			}
 			catch (SharpDXException exc)
@@ -130,9 +152,12 @@ namespace Microsoft.Research.DynamicDataDisplay.DirectX2D
 
 		private void Viewport_PropertyChanged(object sender, ExtendedPropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == "Output")
+			if (e.PropertyName == "Visible")
 			{
-				_sizeChanged = true;
+				if (e.NewValue is DataRect newRect)
+				{
+				    // Change the matrix
+				}
 			}
 		}
 
