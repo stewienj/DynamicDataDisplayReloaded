@@ -51,6 +51,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SharpDXSampleLine.cs" />
+    <Compile Include="TransformShader.cs" />
     <Compile Include="VertexPosition3Color.cs" />
     <Compile Include="VertexPosition3ColorPointSize.cs" />
     <Compile Include="VertexPosition4Color.cs" />
@@ -80,6 +81,9 @@
     <PackageReference Include="SharpDX.Mathematics">
       <Version>4.2.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TransformShader.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

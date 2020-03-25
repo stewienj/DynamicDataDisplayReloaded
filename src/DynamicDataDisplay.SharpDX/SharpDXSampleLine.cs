@@ -9,12 +9,15 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 {
 	public class SharpDXSampleLine : SharpDXChart
 	{
+		private static int VERTEX_COUNT = 100;
 		private IPointDataSource animatedDataSource;
-		private readonly double[] animatedX = new double[100];
-		private readonly double[] animatedY = new double[100];
+		private readonly double[] animatedX = new double[VERTEX_COUNT];
+		private readonly double[] animatedY = new double[VERTEX_COUNT];
+		private readonly Vector4[] pointList = new Vector4[VERTEX_COUNT * 2];
 		private double phase = 0;
+		private VertexBuffer _vertices;
 		private readonly DispatcherTimer timer = new DispatcherTimer();
-		private Camera camera = new Camera();
+		private TransformShader _transformEffect;
 
 		public SharpDXSampleLine()
 		{
@@ -27,12 +30,6 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 			timer.Interval = TimeSpan.FromMilliseconds(10);
 			timer.Tick += new EventHandler(timer_Tick);
 			timer.Start();
-
-			camera.FieldOfView = (float)(Math.PI / 4);
-			camera.NearPlane = 0.0f;
-			camera.FarPlane = 40.0f;
-			camera.Location = new Vector3(0.0f, 7.0f, 20.0f);
-			camera.Target = Vector3.Zero;
 		}
 
 		void timer_Tick(object sender, EventArgs e)
@@ -49,40 +46,59 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 				else
 					animatedY[i] = -Math.Sin(animatedX[i] + phase);
 			}
+
+		}
+
+		public override void OnPlotterAttached(Plotter plotter)
+		{
+			base.OnPlotterAttached(plotter);
+
+			var transform = Plotter.Viewport.Transform;
+			var bounds = BoundsHelper.GetViewportBounds(new[] { new System.Windows.Point(100, 250), new System.Windows.Point(1350, 750) }, transform.DataTransform);
+			Viewport2D.SetContentBounds(this, bounds);
+
+			_transformEffect = new TransformShader(Device);
+			_vertices = new VertexBuffer(Device, Utilities.SizeOf<Vector4>() * 2 * VERTEX_COUNT, Usage.WriteOnly, VertexFormat.None, Pool.Default);
+
+			// Allocate Vertex Elements
+			var vertexElems = new[] {
+				new VertexElement(0, 0, DeclarationType.Float4, DeclarationMethod.Default, DeclarationUsage.Position, 0),
+				new VertexElement(0, 16, DeclarationType.Float4, DeclarationMethod.Default, DeclarationUsage.Color, 0),
+				VertexElement.VertexDeclarationEnd
+			};
+
+			// Creates and sets the Vertex Declaration
+			var vertexDecl = new VertexDeclaration(Device, vertexElems);
+			Device.SetStreamSource(0, _vertices, 0, Utilities.SizeOf<Vector4>() * 2);
+			Device.VertexDeclaration = vertexDecl;
+		}
+
+		public override void OnPlotterDetaching(Plotter plotter)
+		{
+			_vertices.Dispose();
+			base.OnPlotterDetaching(plotter);
 		}
 
 		protected override void OnDirectXRender()
 		{
-			var device = Device;
-
 			var points = animatedDataSource.GetPoints().ToArray();
-			var pointList = new VertexPosition4Color[points.Length];
-
 			for (int i = 0; i < points.Length; i++)
 			{
-				pointList[i] = new VertexPosition4Color
-				{
-					Position = new Vector4(100 + 200 * (float)points[i].X, 500 + 250 * (float)points[i].Y, 0.5f, 1),
-					Color = System.Drawing.Color.Orange.ToArgb()
-				};
+				var color = System.Drawing.Color.Blue;
+				//pointList[i * 2] = new Vector4(100 + 200 * (float)points[i].X, 500 + 250 * (float)points[i].Y, 0.5f, 1);
+				pointList[i * 2] = new Vector4((float)points[i].X, (float)points[i].Y, 0.5f, 1);
+				pointList[i * 2 + 1] = new Vector4(color.R / 255f, color.G / 255f, color.B / 255f, color.A / 255f);
 			}
 
-			var lineListIndices = new short[(points.Length * 2) - 2];
+			var dataTransform = Matrix.Scaling(200f, 250f, 1f) * Matrix.Translation(100f, 500f, 0f);
 
-			// Populate the array with references to indices in the vertex buffer
-			for (int i = 0; i < points.Length - 1; i++)
-			{
-				lineListIndices[i * 2] = (short)(i);
-				lineListIndices[(i * 2) + 1] = (short)(i + 1);
-			}
+			_vertices.Lock(0, 0, LockFlags.None).WriteRange(pointList);
+			_vertices.Unlock();
 
-			Device.SetTransform(TransformState.World, Matrix.Translation(100, 0, 0));
-			Device.SetTransform(TransformState.View, camera.ViewMatrix);
-			Device.SetTransform(TransformState.Projection, camera.ProjectionMatrix);
-
-			device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
-			device.VertexFormat = VertexFormat.Diffuse | VertexFormat.PositionRhw;
-			device.DrawIndexedUserPrimitives<short, VertexPosition4Color>(PrimitiveType.LineList, 0, points.Length, points.Length - 1, lineListIndices, Format.Index16, pointList);
+			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
+			_transformEffect.BeginEffect(Plotter.Viewport.Visible, dataTransform);
+			Device.DrawPrimitives(PrimitiveType.LineStrip, 0, VERTEX_COUNT-1);
+			_transformEffect.EndEffect();
 		}
 	}
 }

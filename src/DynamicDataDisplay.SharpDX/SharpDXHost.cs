@@ -2,7 +2,9 @@
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -22,7 +24,6 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 		protected override void OnInitialized(EventArgs e)
 		{
 			base.OnInitialized(e);
-			Initialize3D();
 		}
 
 		protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
@@ -43,11 +44,11 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 			_pp.DeviceWindowHandle = hwnd.Handle;
 			_pp.Windowed = true;
 			_pp.EnableAutoDepthStencil = true;
-			_pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
-			_pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
+			_pp.BackBufferWidth = Math.Max(100, (int)ActualWidth);
+			_pp.BackBufferHeight = Math.Max(100, (int)ActualHeight);
 			_pp.BackBufferFormat = Format.A8R8G8B8;
 			_pp.AutoDepthStencilFormat = Format.D32SingleLockable;
-
+			_pp.BackBufferCount = 1;
 			try
 			{
 				var direct3DEx = new Direct3DEx();
@@ -56,17 +57,21 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 			}
 			catch
 			{
-				Direct3D = new Direct3D();
-				Device = new Device(Direct3D, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, _pp);
+				// At this point we are pretty much screwed, require DeviceEx for the reset capability
+				MessageBox.Show("Can't start DirectX, so that pretty much discounts doing anything else");
 			}
 			System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
 		}
 
+		bool renderNext = true;
 		Duration _timeOutDuration = new Duration(TimeSpan.FromMilliseconds(200));
-		int _counter = 0;
 		private void CompositionTarget_Rendering(object sender, EventArgs e)
 		{
-			if (_counter++ % 2 == 0) return;
+			renderNext = !renderNext;
+			if (renderNext)
+			{
+				return;
+			}
 			if (_image == null) return;
 
 			try
@@ -76,10 +81,11 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 				{
 					try
 					{
-						_pp.BackBufferWidth = Math.Max(1, (int)ActualWidth);
-						_pp.BackBufferHeight = Math.Max(1, (int)ActualHeight);
+						HwndSource hwnd = new HwndSource(0, 0, 0, 0, 0, "D3", IntPtr.Zero);
+						_pp.DeviceWindowHandle = hwnd.Handle;
+						_pp.BackBufferWidth = Math.Max(100, (int)ActualWidth);
+						_pp.BackBufferHeight = Math.Max(100, (int)ActualHeight);
 						Device.Reset(_pp);
-						_counter = 0;
 						_sizeChanged = false;
 					}
 					finally
@@ -145,6 +151,7 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 			_plotter = (Plotter2D)plotter;
 			_plotter.CentralGrid.Children.Add(this);
 			_plotter.Viewport.PropertyChanged += Viewport_PropertyChanged;
+			Initialize3D();
 		}
 
 		private void Viewport_PropertyChanged(object sender, ExtendedPropertyChangedEventArgs e)
@@ -163,6 +170,8 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 			_plotter.Viewport.PropertyChanged -= Viewport_PropertyChanged;
 			_plotter.CentralGrid.Children.Remove(this);
 			_plotter = null;
+			Device.Dispose();
+			Direct3D.Dispose();
 		}
 
 		public Plotter Plotter => _plotter;

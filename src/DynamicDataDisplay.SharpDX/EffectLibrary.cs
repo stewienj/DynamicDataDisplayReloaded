@@ -7,12 +7,18 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 {
 	internal static class Global
 	{
-		public static Stream GetResourceStream(string name)
+		public static string GetResourceText(string name)
 		{
 			Assembly a = typeof(Global).Assembly;
 			var resourceNames = a.GetManifestResourceNames();
 			var matching = resourceNames.First(n => n.EndsWith(name));
-			return a.GetManifestResourceStream(matching);
+			using (var stream = a.GetManifestResourceStream(matching))
+			{
+				using(var reader = new StreamReader(stream))
+				{
+					return reader.ReadToEnd();
+				}
+			}
 		}
 		public static Uri MakePackUri(string relativeFile)
 		{
