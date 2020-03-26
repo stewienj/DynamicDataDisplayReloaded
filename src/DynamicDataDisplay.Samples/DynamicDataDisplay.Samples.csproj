@@ -380,9 +380,9 @@
       <Project>{d99dfeac-2ac7-4349-b731-6e7b3732ffd3}</Project>
       <Name>DynamicDataDisplay.RadioBand</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay.SharpDX\DynamicDataDisplay.SharpDX.csproj">
+    <ProjectReference Include="..\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj">
       <Project>{e140351c-f359-40be-9182-120c50a45061}</Project>
-      <Name>DynamicDataDisplay.SharpDX</Name>
+      <Name>DynamicDataDisplay.SharpDX9</Name>
     </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay.SlimDX\DynamicDataDisplay.SlimDX.csproj">
       <Project>{e140351c-f359-40be-9182-120c50a46150}</Project>

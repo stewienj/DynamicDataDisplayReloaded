@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX
+namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
 	public class SharpDXSampleLine : SharpDXChart
 	{

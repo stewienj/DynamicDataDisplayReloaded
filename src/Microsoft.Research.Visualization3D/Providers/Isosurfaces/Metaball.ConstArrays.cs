@@ -10,7 +10,6 @@ namespace Microsoft.Research.Visualization3D.Isosurfaces
 	{
 		public delegate void EmptyDelegate();
 
-		float fStepSize = 0.05f;
 		float fTargetValue = 0.0f;
 
 		ExecuteState operation;

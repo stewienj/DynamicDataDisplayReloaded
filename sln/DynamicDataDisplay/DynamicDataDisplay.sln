@@ -216,7 +216,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Research.Visualiz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.RadioBand", "..\..\src\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj", "{D99DFEAC-2AC7-4349-B731-6E7B3732FFD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.SharpDX", "..\..\src\DynamicDataDisplay.SharpDX\DynamicDataDisplay.SharpDX.csproj", "{E140351C-F359-40BE-9182-120C50A45061}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.SharpDX9", "..\..\src\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj", "{E140351C-F359-40BE-9182-120C50A45061}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.SlimDX", "..\..\src\DynamicDataDisplay.SlimDX\DynamicDataDisplay.SlimDX.csproj", "{E140351C-F359-40BE-9182-120C50A46150}"
 EndProject

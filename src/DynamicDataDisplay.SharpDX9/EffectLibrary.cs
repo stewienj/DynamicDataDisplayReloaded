@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX
+namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
 	internal static class Global
 	{

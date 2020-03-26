@@ -7,7 +7,7 @@ using System;
 using System.Windows;
 using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX
+namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
 	public class SharpDXWorkingColorMap : SharpDXChart
 	{

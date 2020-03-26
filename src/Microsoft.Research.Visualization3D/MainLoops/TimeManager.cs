@@ -8,9 +8,7 @@ namespace Microsoft.Research.Visualization3D.MainLoops
 	{
 		private delegate void EmptyEventHandler();
 		public delegate void TimedEventHandler(object sender, TimedEventArgs e);
-		private long oldTime;
 		private long delta;
-		private float timeProportion = 100000.0f;
 		Stopwatch stopwatch;
 
 		private TimeEntity currentTimeEntity;

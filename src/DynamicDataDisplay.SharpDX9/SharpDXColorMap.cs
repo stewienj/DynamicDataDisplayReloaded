@@ -7,7 +7,7 @@ using System;
 using System.Windows;
 using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX
+namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
 	public class SharpDXColorMap : SharpDXChart
 	{
@@ -77,15 +77,6 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX
 		#endregion // end of Palette property
 
 		#endregion // end of Properties
-
-		private readonly Camera camera = new Camera
-		{
-			FieldOfView = (float)(Math.PI / 4),
-			NearPlane = 0.0f,
-			FarPlane = 100.0f,
-			Location = new Vector3(0, 0, 20),
-			Target = Vector3.Zero
-		};
 
 		protected override void OnDirectXRender()
 		{
