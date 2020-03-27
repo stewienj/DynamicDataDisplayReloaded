@@ -1,4 +1,5 @@
 ﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+using Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -7,17 +8,18 @@ using System.Windows.Threading;
 
 namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
-	public class SharpDXSampleLine : SharpDXChart
+	public class SharpDXSampleLine : SharpDXChartElement
 	{
-		private static int VERTEX_COUNT = 100;
+		private static int VERTEX_COUNT = 1000;
 		private IPointDataSource animatedDataSource;
 		private readonly double[] animatedX = new double[VERTEX_COUNT];
 		private readonly double[] animatedY = new double[VERTEX_COUNT];
 		private readonly Vector4[] pointList = new Vector4[VERTEX_COUNT * 2];
 		private double phase = 0;
 		private VertexBuffer _vertices;
+		private VertexDeclaration _vertexDecl;
 		private readonly DispatcherTimer timer = new DispatcherTimer();
-		private TransformShader _transformEffect;
+		private DxLineMultiColorShader _transformEffect;
 
 		public SharpDXSampleLine()
 		{
@@ -46,7 +48,6 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 				else
 					animatedY[i] = -Math.Sin(animatedX[i] + phase);
 			}
-
 		}
 
 		public override void OnPlotterAttached(Plotter plotter)
@@ -57,7 +58,7 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 			var bounds = BoundsHelper.GetViewportBounds(new[] { new System.Windows.Point(100, 250), new System.Windows.Point(1350, 750) }, transform.DataTransform);
 			Viewport2D.SetContentBounds(this, bounds);
 
-			_transformEffect = new TransformShader(Device);
+			_transformEffect = new DxLineMultiColorShader(Device);
 			_vertices = new VertexBuffer(Device, Utilities.SizeOf<Vector4>() * 2 * VERTEX_COUNT, Usage.WriteOnly, VertexFormat.None, Pool.Default);
 
 			// Allocate Vertex Elements
@@ -68,9 +69,7 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 			};
 
 			// Creates and sets the Vertex Declaration
-			var vertexDecl = new VertexDeclaration(Device, vertexElems);
-			Device.SetStreamSource(0, _vertices, 0, Utilities.SizeOf<Vector4>() * 2);
-			Device.VertexDeclaration = vertexDecl;
+			_vertexDecl = new VertexDeclaration(Device, vertexElems);
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)
@@ -95,7 +94,13 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 			_vertices.Lock(0, 0, LockFlags.None).WriteRange(pointList);
 			_vertices.Unlock();
 
+			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
+			//Device.SetRenderState<FillMode>(global::SharpDX.Direct3D9.RenderState.FillMode, FillMode.Wireframe);
+			//Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.PointSize, 5.0f);
+
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
+			Device.SetStreamSource(0, _vertices, 0, Utilities.SizeOf<Vector4>() * 2);
+			Device.VertexDeclaration = _vertexDecl;
 			_transformEffect.BeginEffect(Plotter.Viewport.Visible, dataTransform);
 			Device.DrawPrimitives(PrimitiveType.LineStrip, 0, VERTEX_COUNT-1);
 			_transformEffect.EndEffect();

@@ -9,7 +9,7 @@ using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource
 
 namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
-	public class SharpDXWorkingColorMap : SharpDXChart
+	public class SharpDXWorkingColorMap : SharpDXChartElement
 	{
 		#region Properties
 

@@ -9,8 +9,7 @@
     <Grid>
         <d3:ChartPlotter>
             <d3:SharpDXHost/>
-            <d3:SharpDXSampleLine>
-            </d3:SharpDXSampleLine>
+            <d3:SharpDXSampleLine/>
         </d3:ChartPlotter>
     </Grid>
 </Page>

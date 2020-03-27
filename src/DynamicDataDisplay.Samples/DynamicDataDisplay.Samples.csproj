@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demos\SharpDX\WaveyLineSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Demos\SlimDX\SimpleLineSample.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -217,6 +221,9 @@
     </Compile>
     <Compile Include="Demos\SharpDX\SimpleLineSample.xaml.cs">
       <DependentUpon>SimpleLineSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\SharpDX\WaveyLineSample.xaml.cs">
+      <DependentUpon>WaveyLineSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demos\SlimDX\SimpleLineSample.xaml.cs">
       <DependentUpon>SimpleLineSample.xaml</DependentUpon>

@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
-	public abstract class SharpDXChart : FrameworkElement, IPlotterElement
+	public abstract class SharpDXChartElement : FrameworkElement, IPlotterElement
 	{
 		private SharpDXHost dxHost;
 

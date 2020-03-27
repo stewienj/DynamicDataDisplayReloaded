@@ -289,5 +289,24 @@ namespace Microsoft.Research.DynamicDataDisplay
 			}
 		}
 
+		/// <summary>
+		/// Rounds up a number to the next highest power of 2
+		/// </summary>
+		/// <param name="x"></param>
+		/// <returns></returns>
+		public static int CeilingPow2(int x)
+		{
+			if (x > 2)
+			{
+				x--;
+				x |= x >> 1;
+				x |= x >> 2;
+				x |= x >> 4;
+				x |= x >> 8;
+				x |= x >> 16;
+				x++;
+			}
+			return x;
+		}
 	}
 }

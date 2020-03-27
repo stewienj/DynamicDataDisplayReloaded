@@ -20,6 +20,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -31,7 +32,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="SharpDXChart.cs" />
+    <Compile Include="DataSources\PointColor.cs" />
+    <Compile Include="Lines\DxLineMultiColor.cs" />
+    <Compile Include="Lines\DxLineMultiColorShader.cs" />
+    <Compile Include="Lines\DxLineSingleColor.cs" />
+    <Compile Include="Lines\DxMultiLineMultiColor.cs" />
+    <Compile Include="Lines\DxMultiLineSingleColor.cs" />
+    <Compile Include="SharpDXChartElement.cs" />
     <Compile Include="SharpDXColorMap.cs" />
     <Compile Include="SharpDXWorkingColorMap.cs" />
     <Compile Include="SharpDXHost.cs" />
@@ -82,8 +89,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TransformShader.fx" />
+    <EmbeddedResource Include="Lines\DxLineMultiColorShader.fx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
