@@ -10,7 +10,7 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
 {
 	public class TransformShader
 	{
-		private Effect _effect;
+		protected Effect _effect;
 		private EffectHandle _technique;
 		private EffectHandle _pass;
 

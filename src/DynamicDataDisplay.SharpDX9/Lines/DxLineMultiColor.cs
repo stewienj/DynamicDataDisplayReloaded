@@ -21,9 +21,9 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
 		private int _vecticesCount = 0;
 		private VertexDeclaration _vertexDecl;
 		private DxLineMultiColorShader _transformEffect;
-		private PointColor[] _pointList;
+		private DxPointAndColor[] _pointList;
 		private int _lastVertexLength = 0;
-		// Limit updates to 100 tiems per second. This also schedules updates to another thread.
+		// Limit updates to 100 times per second. This also schedules updates to another thread.
 		private ThrottledAction _throttledAction = new ThrottledAction(TimeSpan.FromMilliseconds(10));
 		private SynchronizationContext _syncContext = null;
 
@@ -52,7 +52,7 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
 			base.OnPlotterDetaching(plotter);
 		}
 
-		private void UpdateFromSourceChange(IEnumerable<PointColor> newList)
+		private void UpdateFromSourceChange(IEnumerable<DxPointAndColor> newList)
 		{
 			// Vertices will be resized to the next power of 2, saves on resizing too much
 			_pointList = newList.ToArray();
@@ -66,8 +66,6 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
 			}
 			// Lock the entire buffer by specifying 0 for the offset and size
 			var buffer = _vertices.Lock(0, 0, LockFlags.None);
-			//var float4s = _pointList.SelectMany(p => p.Float4s).ToArray();
-			//buffer.WriteRange(float4s);
 			buffer.WriteRange(_pointList);
 			_vertices.Unlock();
 			_vecticesCount = pointCount;
@@ -96,6 +94,7 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
 						Viewport2D.SetContentBounds(this, bounds);
 					}, null);
 				};
+				// Spawn action on throttled update thread
 				_throttledAction.InvokeAction(resizeAction);
 			}
 		}
@@ -104,42 +103,29 @@ namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
 		{
 			if (_vecticesCount <= 0)
 				return;
-			//Device.SetRenderState<FillMode>(global::SharpDX.Direct3D9.RenderState.FillMode, FillMode.Wireframe);
-			//Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.PointSize, 5.0f);
-
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
 			Device.SetStreamSource(0, _vertices, 0, Utilities.SizeOf<Vector4>() * 2);
 			Device.VertexDeclaration = _vertexDecl;
-			_transformEffect.BeginEffect(Plotter.Viewport.Visible /* DataTransform */);
+			_transformEffect.BeginEffect(Plotter.Viewport.Visible, DxDataTransform);
 			Device.DrawPrimitives(PrimitiveType.LineStrip, 0, _vecticesCount - 1);
 			_transformEffect.EndEffect();
 		}
 
-		public IEnumerable<PointColor> DataSource
+		public IEnumerable<DxPointAndColor> DataSource
 		{
-			get { return (IEnumerable<PointColor>)GetValue(DataSourceProperty); }
+			get { return (IEnumerable<DxPointAndColor>)GetValue(DataSourceProperty); }
 			set { SetValue(DataSourceProperty, value); }
 		}
 
 		// Using a DependencyProperty as the backing store for DataSource.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty DataSourceProperty =
-			DependencyProperty.Register("DataSource", typeof(IEnumerable<PointColor>), typeof(DxLineMultiColor), new PropertyMetadata(null, (s,e)=> 
+			DependencyProperty.Register("DataSource", typeof(IEnumerable<DxPointAndColor>), typeof(DxLineMultiColor), new PropertyMetadata(null, (s,e)=> 
 			{ 
-				if (s is DxLineMultiColor control && e.NewValue is IEnumerable<PointColor> newData)
+				if (s is DxLineMultiColor control && e.NewValue is IEnumerable<DxPointAndColor> newData)
 				{
 					control.UpdateFromSourceChange(newData);
 				}
 			}));
-
-		public System.Numerics.Matrix4x4 DataTranform
-		{
-			get { return (System.Numerics.Matrix4x4)GetValue(DataTranformProperty); }
-			set { SetValue(DataTranformProperty, value); }
-		}
-
-		// Using a DependencyProperty as the backing store for DataTranform.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty DataTranformProperty =
-			DependencyProperty.Register("DataTranform", typeof(System.Numerics.Matrix4x4), typeof(DxLineMultiColor), new PropertyMetadata(System.Numerics.Matrix4x4.Identity));
 	}
 }
