@@ -1,4 +1,5 @@
 ﻿using SharpDX;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,18 @@ namespace DynamicDataDisplay.SharpDX9.DataTypes
 			_color = color;
 		}
 
-        /// <summary>
+		public VertexElement[] GetVertexElements()
+		{
+			// Allocate Vertex Elements
+			var vertexElems = new[] {
+				new VertexElement(0, 0, DeclarationType.Float4, DeclarationMethod.Default, DeclarationUsage.Position, 0),
+				new VertexElement(0, 16, DeclarationType.Float4, DeclarationMethod.Default, DeclarationUsage.Color, 0),
+				VertexElement.VertexDeclarationEnd
+			};
+			return vertexElems;
+		}
+
+		/// <summary>
 		/// Convert x,y or x,y,z to Vector4. Note that w will be set for 1 as this is meant to be a point. When w is 1 then tranlations
 		/// will be applied. When w is 0 then translations won't be applied as it represents a vector.
 		/// </summary>

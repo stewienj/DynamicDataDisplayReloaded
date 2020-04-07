@@ -62,6 +62,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TransformShader.cs" />
+    <Compile Include="Triangles\DxTriangleFanMultiColor.cs" />
+    <Compile Include="Triangles\DxTriangleFanSingleColor.cs" />
+    <Compile Include="Triangles\DxTrianglesMultiColor.cs" />
+    <Compile Include="Triangles\DxTrianglesSingleColor.cs" />
+    <Compile Include="Triangles\DxTriangleStripMultiColor.cs" />
+    <Compile Include="Triangles\DxTriangleStripSingleColor.cs" />
     <Compile Include="VertexPosition3Color.cs" />
     <Compile Include="VertexPosition3ColorPointSize.cs" />
     <Compile Include="VertexPosition4Color.cs" />
@@ -98,9 +104,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Shaders\DxPointGlobalColorShader.fx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Triangles\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

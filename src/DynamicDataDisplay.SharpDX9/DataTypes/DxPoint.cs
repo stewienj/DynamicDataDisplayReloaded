@@ -1,4 +1,5 @@
 ﻿using SharpDX;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,16 @@ namespace DynamicDataDisplay.SharpDX9.DataTypes
 		public DxPoint(Vector4 point)
 		{
 			_point = point;
+		}
+
+		public VertexElement[] GetVertexElements()
+		{
+			// Allocate Vertex Elements
+			var vertexElems = new[] {
+				new VertexElement(0, 0, DeclarationType.Float4, DeclarationMethod.Default, DeclarationUsage.Position, 0),
+				VertexElement.VertexDeclarationEnd
+			};
+			return vertexElems;
 		}
 
 		/// <summary>

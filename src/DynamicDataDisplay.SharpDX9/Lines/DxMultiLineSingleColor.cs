@@ -23,18 +23,8 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 		protected override TransformShader GetTransformEffect(Device device)
 		{
 			_shader = new DxPointGlobalColorShader(Device);
-			_shader.DxColor = new DxColor(LineColor);
+			_shader.DxColor = new DxColor(Color);
 			return _shader;
-		}
-
-		protected override VertexElement[] GetVertexElements()
-		{
-			// Allocate Vertex Elements
-			var vertexElems = new[] {
-				new VertexElement(0, 0, DeclarationType.Float4, DeclarationMethod.Default, DeclarationUsage.Position, 0),
-				VertexElement.VertexDeclarationEnd
-			};
-			return vertexElems;
 		}
 
 		protected override PrimitiveType GetPrimitiveType()
@@ -42,20 +32,10 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 			return PrimitiveType.LineList;
 		}
 
-		public System.Windows.Media.Color LineColor
+		protected override void SetColor(DxColor color)
 		{
-			get { return (System.Windows.Media.Color)GetValue(LineColorProperty); }
-			set { SetValue(LineColorProperty, value); }
+			_shader.DxColor = color;
 		}
 
-		// Using a DependencyProperty as the backing store for LineColor.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty LineColorProperty =
-			DependencyProperty.Register("LineColor", typeof(System.Windows.Media.Color), typeof(DxMultiLineSingleColor), new PropertyMetadata(System.Windows.Media.Colors.Black, (s, e) =>
-			{
-				if (s is DxMultiLineSingleColor control && e.NewValue is System.Windows.Media.Color newColor)
-				{
-					control._shader.DxColor = new DxColor(newColor);
-				}
-			}));
 	}
 }

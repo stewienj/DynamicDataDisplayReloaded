@@ -103,7 +103,11 @@ namespace DynamicDataDisplay.SharpDX9
 			_transformEffect.EndEffect();
 		}
 
-		protected abstract VertexElement[] GetVertexElements();
+		private VertexElement[] GetVertexElements()
+		{
+			return new TDxPoint().GetVertexElements();
+		}
+
 		protected abstract TransformShader GetTransformEffect(Device device);
 
 		protected abstract PrimitiveType GetPrimitiveType();
@@ -121,6 +125,28 @@ namespace DynamicDataDisplay.SharpDX9
 				if (s is SharpDxPrimitive<TDxPoint> control && e.NewValue is IEnumerable<TDxPoint> newData)
 				{
 					control.UpdateFromSourceChange(newData);
+				}
+			}));
+
+
+		protected virtual void SetColor(DxColor color)
+		{
+
+		}
+
+		public System.Windows.Media.Color Color
+		{
+			get { return (System.Windows.Media.Color)GetValue(ColorProperty); }
+			set { SetValue(ColorProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for LineColor.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ColorProperty =
+			DependencyProperty.Register("Color", typeof(System.Windows.Media.Color), typeof(SharpDxPrimitive<TDxPoint>), new PropertyMetadata(System.Windows.Media.Colors.Black, (s, e) =>
+			{
+				if (s is SharpDxPrimitive<TDxPoint> control && e.NewValue is System.Windows.Media.Color newColor)
+				{
+					control.SetColor(new DxColor(newColor));
 				}
 			}));
 	}
