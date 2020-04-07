@@ -207,6 +207,7 @@
     <Compile Include="Common\Auxiliary\DataSearch\SearchResult1d.cs" />
     <Compile Include="Common\Auxiliary\DataSearch\SortedXSearcher1d.cs" />
     <Compile Include="Common\Auxiliary\DependencyObjectExtensions.cs" />
+    <Compile Include="Common\Auxiliary\EngineeringNotation.cs" />
     <Compile Include="Common\Auxiliary\Extensions.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\XbapConditionalExpression.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\TemplateBinding.cs" />

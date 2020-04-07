@@ -59,7 +59,6 @@
     <Compile Include="CursorNearestRadioBandLine.xaml.cs">
       <DependentUpon>CursorNearestRadioBandLine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EngineeringNotation.cs" />
     <Compile Include="FrequencyFilterSlider.xaml.cs">
       <DependentUpon>FrequencyFilterSlider.xaml</DependentUpon>
     </Compile>

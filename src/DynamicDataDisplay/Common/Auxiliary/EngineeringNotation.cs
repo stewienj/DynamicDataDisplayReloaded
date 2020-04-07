@@ -1,11 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Windows;
 
-namespace DynamicDataDisplay.RadioBand
+namespace Microsoft.Research.DynamicDataDisplay
 {
 	public static class EngineeringNotation
 	{
 		/// <summary>
-		/// Converts a string to Engineering Notation, used by the methods above
+		/// Converts a string to Engineering Notation, used by the methods above, written by John Stewien
 		/// </summary>
 		/// <example>
 		/// class Program
@@ -338,6 +340,11 @@ namespace DynamicDataDisplay.RadioBand
 					suffix = "y"; break;
 			}
 			return $"{prefix}{str}{suffix}";
+		}
+
+		public static string ToEngineeringNotation(this double d, int significantFigures = 3)
+		{
+			return EngineeringNotation.ToEngineeringNotation(d.ToString(), significantFigures);
 		}
 	}
 }

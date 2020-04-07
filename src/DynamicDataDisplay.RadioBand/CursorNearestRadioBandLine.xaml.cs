@@ -162,7 +162,7 @@ namespace DynamicDataDisplay.RadioBand
 			var xText = ((Func<string>)(() =>
 			{
 				double xValue = mousePosInData.X;
-				return MathHelper.ToEngineeringNotation(xValue) + "Hz";
+				return xValue.ToEngineeringNotation() + "Hz";
 			})).Invoke();
 
 			var yText = ((Func<string>)(() =>

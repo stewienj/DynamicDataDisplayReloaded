@@ -66,7 +66,7 @@ namespace DynamicDataDisplay.RadioBand
 			if (child is CursorCoordinateGraph graph)
 			{
 				graph.YTextMapping = (y) => "";
-				graph.XTextMapping = (x) => MathHelper.ToEngineeringNotation(x) + "Hz";
+				graph.XTextMapping = (x) => x.ToEngineeringNotation() + "Hz";
 			}
 		}
 
