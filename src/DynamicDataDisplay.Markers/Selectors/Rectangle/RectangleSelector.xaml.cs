@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
+namespace DynamicDataDisplay.Charts.Selectors
 {
 	public partial class RectangleSelector : FrameworkElement, IPlotterElement
 	{

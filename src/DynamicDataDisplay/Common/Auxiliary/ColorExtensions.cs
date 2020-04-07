@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
+namespace DynamicDataDisplay.Common.Auxiliary
 {
 	public static class ColorExtensions
 	{

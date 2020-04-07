@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
+namespace DynamicDataDisplay.Common.Auxiliary
 {
 	public static class Extensions
 	{

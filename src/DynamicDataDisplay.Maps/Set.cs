@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	/// <summary>
 	/// Represents an unordered set of values.

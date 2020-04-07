@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Represents color in Hue Saturation Brightness color space.

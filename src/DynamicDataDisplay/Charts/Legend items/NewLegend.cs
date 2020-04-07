@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public delegate IEnumerable<FrameworkElement> LegendItemsBuilder(IPlotterElement element);
 

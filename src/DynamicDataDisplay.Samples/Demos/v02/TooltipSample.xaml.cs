@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+﻿using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.PointMarkers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
+namespace DynamicDataDisplay.Samples.Demos.v02
 {
 	/// <summary>
 	/// Interaction logic for TooltipSample.xaml

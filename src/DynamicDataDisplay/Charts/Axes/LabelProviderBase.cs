@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System;
 using System.ComponentModel;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
+namespace DynamicDataDisplay.Charts.Axes
 {
 	/// <summary>
 	/// Contains data for custom generation of tick's label.

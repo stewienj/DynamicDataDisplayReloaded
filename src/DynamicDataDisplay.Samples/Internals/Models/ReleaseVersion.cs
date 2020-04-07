@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models
+namespace DynamicDataDisplay.Samples.Internals.Models
 {
 	[TypeConverter(typeof(VersionTypeConverter))]
 	public class ReleaseVersion

@@ -1,13 +1,13 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
+﻿using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.UndoSystem;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
 	// See d3\Charts\Navigation\ChartCommands.cs for a quick description of
 	// how to create new commands.

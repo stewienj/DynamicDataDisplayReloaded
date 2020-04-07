@@ -1,4 +1,4 @@
 ﻿using System.Windows.Markup;
-using Microsoft.Research.DynamicDataDisplay;
+using DynamicDataDisplay;
 
-[assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "Microsoft.Research.DynamicDataDisplay.SlimDX")]
+[assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.SlimDX")]

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
+using DynamicDataDisplay.DataSources;
+using DataSource = DynamicDataDisplay.DataSources.IDataSource2D<double>;
 using SlimDX.Direct3D9;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Common.Palettes;
+using DynamicDataDisplay.Common.Auxiliary;
 using SlimDX;
 
-namespace Microsoft.Research.DynamicDataDisplay.SlimDX
+namespace DynamicDataDisplay.SlimDX
 {
 	public class SlimDXColorMap : SlimDXChart
 	{

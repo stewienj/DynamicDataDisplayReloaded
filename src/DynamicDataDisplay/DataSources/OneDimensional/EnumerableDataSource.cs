@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources
+namespace DynamicDataDisplay.DataSources
 {
 	public class EnumerableDataSource<T> : EnumerableDataSourceBase<T>
 	{

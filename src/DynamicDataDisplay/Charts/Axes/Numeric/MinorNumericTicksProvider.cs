@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public sealed class MinorNumericTicksProvider : ITicksProvider<double>
 	{

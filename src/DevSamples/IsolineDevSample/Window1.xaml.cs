@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional;
+﻿using DynamicDataDisplay.DataSources.MultiDimensional;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

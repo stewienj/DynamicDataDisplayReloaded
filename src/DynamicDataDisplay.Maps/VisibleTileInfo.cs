@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System.Diagnostics;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps
+namespace DynamicDataDisplay.Maps
 {
 	[DebuggerDisplay("Tile = {Tile}, Screen = {ScreenBounds}, Visible = {VisibleBounds}")]
 	public sealed class VisibleTileInfo

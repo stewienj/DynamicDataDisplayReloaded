@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Utility
+namespace DynamicDataDisplay.Utility
 {
 	/// <summary>
 	/// Handles the left mouse down/up and timings to determine if the user

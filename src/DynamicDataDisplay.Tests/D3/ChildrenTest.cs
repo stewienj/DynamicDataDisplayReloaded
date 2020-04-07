@@ -1,6 +1,6 @@
 ﻿using DynamicDataDisplay.Test.Common;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

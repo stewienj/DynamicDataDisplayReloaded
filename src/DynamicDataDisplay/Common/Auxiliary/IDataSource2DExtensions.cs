@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.DataSources;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
+namespace DynamicDataDisplay.Common.Auxiliary
 {
 	public static class IDataSource2DExtensions
 	{

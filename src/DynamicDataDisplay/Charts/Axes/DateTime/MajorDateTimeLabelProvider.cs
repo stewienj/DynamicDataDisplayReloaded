@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Charts.Axes;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents a label provider for major ticks of <see cref="System.DateTime"/> type.

@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public abstract class TimeTicksProviderBase<T> : ITicksProvider<T>
 	{

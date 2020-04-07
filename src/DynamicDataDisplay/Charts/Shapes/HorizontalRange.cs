@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Paints horizontal filled and outlined range in viewport coordinates.

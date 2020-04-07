@@ -6,7 +6,7 @@
 //using System.Collections;
 //using System.Windows;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
+//namespace DynamicDataDisplay.Charts.NewLine
 //{
 //    public class RawPointDataSource : PointDataSourceBase, INotifyCollectionChanged
 //    {

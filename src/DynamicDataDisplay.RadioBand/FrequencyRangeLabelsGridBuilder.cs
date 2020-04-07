@@ -1,6 +1,6 @@
 ﻿using DynamicDataDisplay.RadioBand.ConfigLoader;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Linq;

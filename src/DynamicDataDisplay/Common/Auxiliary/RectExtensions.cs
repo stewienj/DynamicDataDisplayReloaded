@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public static class RectExtensions
 	{

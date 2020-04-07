@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Draws grid over viewport. Number of 

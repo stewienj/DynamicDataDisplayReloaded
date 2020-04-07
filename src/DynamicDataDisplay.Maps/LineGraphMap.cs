@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps
+namespace DynamicDataDisplay.Maps
 {
 	/// <summary>
 	/// This renders a line 3 times over, at 360 degrees each way from the original

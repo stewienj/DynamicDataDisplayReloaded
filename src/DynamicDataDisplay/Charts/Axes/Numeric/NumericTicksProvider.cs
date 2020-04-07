@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents a ticks provider for <see cref="double"/> values.

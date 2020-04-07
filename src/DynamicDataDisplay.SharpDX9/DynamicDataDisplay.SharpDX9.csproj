@@ -6,7 +6,7 @@
     <ProjectGuid>{E140351C-F359-40BE-9182-120C50A45061}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.SharpDX9</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.SharpDX9</RootNamespace>
     <AssemblyName>DynamicDataDisplay.SharpDX9</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

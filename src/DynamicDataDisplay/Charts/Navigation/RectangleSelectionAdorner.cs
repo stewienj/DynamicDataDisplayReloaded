@@ -2,7 +2,7 @@
 using System.Windows.Documents;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
 	/// <summary>Helper class to draw semitransparent rectangle over the
 	/// selection area</summary>

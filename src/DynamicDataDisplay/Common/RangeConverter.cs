@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay.Charts;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	public sealed class RangeConverter : TypeConverter
 	{

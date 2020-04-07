@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
+namespace DynamicDataDisplay.Common.Palettes
 {
 	/// <summary>
 	/// Represents a simple base class for a palette. Contains an abstract merhod for creation of color and method to raise changed event.

@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.ViewportRestrictions;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -10,7 +10,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Viewport2D provides virtual coordinates.

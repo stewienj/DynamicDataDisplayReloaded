@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+namespace DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a viewport restriction which allows the target plotter's Vertical axis

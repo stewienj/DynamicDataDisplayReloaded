@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.ComponentModel;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
+namespace DynamicDataDisplay.Common.Palettes
 {
 	public sealed class HSBPalette : IPalette
 	{

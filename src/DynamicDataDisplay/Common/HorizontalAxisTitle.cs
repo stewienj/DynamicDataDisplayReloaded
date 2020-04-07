@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Represents a title of horizontal axis. Can be placed from top or bottom of Plotter.

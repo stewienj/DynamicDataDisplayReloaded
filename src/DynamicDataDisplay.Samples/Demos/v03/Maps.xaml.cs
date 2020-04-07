@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay.Charts;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03
+namespace DynamicDataDisplay.Samples.Demos.v03
 {
 	/// <summary>
 	/// Interaction logic for Maps.xaml

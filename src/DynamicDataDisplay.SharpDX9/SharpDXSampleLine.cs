@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines;
+﻿using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.SharpDX9.Lines;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
 using System.Linq;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX9
 {
 	public class SharpDXSampleLine : SharpDXChartElement
 	{

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SlimDX.Direct3D9;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using SlimDX;
 using System.Drawing;
 
-namespace Microsoft.Research.DynamicDataDisplay.SlimDX
+namespace DynamicDataDisplay.SlimDX
 {
 	public class SlimDXSampleLine : SlimDXChart
 	{

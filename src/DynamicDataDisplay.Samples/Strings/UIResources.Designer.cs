@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Strings {
+namespace DynamicDataDisplay.Samples.Strings {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Strings {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Research.DynamicDataDisplay.Samples.Strings.UIResources", typeof(UIResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DynamicDataDisplay.Samples.Strings.UIResources", typeof(UIResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

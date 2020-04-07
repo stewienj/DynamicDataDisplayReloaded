@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+namespace DynamicDataDisplay.ViewportRestrictions
 {
 	public sealed class DateTimeVerticalAxisRestriction : ViewportRestriction
 	{

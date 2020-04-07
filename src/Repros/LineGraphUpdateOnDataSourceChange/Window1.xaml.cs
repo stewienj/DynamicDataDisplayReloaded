@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.DataSources;
 using System;
 using System.Collections.Generic;
 using System.Linq;

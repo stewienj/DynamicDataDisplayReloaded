@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Maps;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Maps;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public class MercatorShaderMap : Map
 	{

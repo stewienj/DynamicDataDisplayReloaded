@@ -13,7 +13,7 @@ using System.Windows.Interop;
 using SlimDX.Direct3D9;
 using SlimDX;
 using System.Drawing;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.DataSources;
 using System.Windows.Threading;
 using System.Diagnostics;
 

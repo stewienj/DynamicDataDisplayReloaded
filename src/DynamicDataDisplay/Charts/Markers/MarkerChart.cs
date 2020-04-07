@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
+namespace DynamicDataDisplay.Charts.Markers
 {
 	public class MarkerChart : PlotterElement
 	{

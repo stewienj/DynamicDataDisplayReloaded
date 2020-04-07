@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+namespace DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a viewport restriction which modifies x coordinates of result visible rect to be adjacent to the right border of initial rect and have a fixed given width.

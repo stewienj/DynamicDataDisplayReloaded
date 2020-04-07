@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
+namespace DynamicDataDisplay.Samples.Internals
 {
 	public class ViewState : DependencyObject, INotifyPropertyChanged
 	{

@@ -212,7 +212,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Utility"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.BitmapGraphs", "..\..\src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj", "{A6671BEB-9B21-41BC-B47A-82210C38F322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Research.Visualization3D", "..\..\src\Microsoft.Research.Visualization3D\Microsoft.Research.Visualization3D.csproj", "{849033AA-0765-49F8-B60D-D85CE5CD32EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Visualization3D", "..\..\src\DynamicDataDisplay.Visualization3D\DynamicDataDisplay.Visualization3D.csproj", "{849033AA-0765-49F8-B60D-D85CE5CD32EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.RadioBand", "..\..\src\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj", "{D99DFEAC-2AC7-4349-B731-6E7B3732FFD3}"
 EndProject

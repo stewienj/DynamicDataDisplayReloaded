@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.PointMarkers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

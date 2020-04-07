@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
+namespace DynamicDataDisplay.PointMarkers
 {
 	/// <summary>Invokes specified delegate for rendering custon marker
 	/// at every point of graph</summary>

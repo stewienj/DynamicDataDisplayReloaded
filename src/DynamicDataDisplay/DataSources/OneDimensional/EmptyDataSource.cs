@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources
+namespace DynamicDataDisplay.DataSources
 {
 	/// <summary>
 	/// Empty data source - for testing purposes, represents data source with 0 points inside.

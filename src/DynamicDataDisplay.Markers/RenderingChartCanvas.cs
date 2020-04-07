@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
+﻿using DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Markers
+namespace DynamicDataDisplay.Markers
 {
 	public class RenderingChartCanvas : FrameworkElement
 	{

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Maps;
+﻿using DynamicDataDisplay.Maps;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public class FileSystemTileServer : TileServerBase
 	{

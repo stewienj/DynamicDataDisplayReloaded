@@ -1,10 +1,9 @@
 ﻿using DynamicDataDisplay.Markers;
-using Microsoft.Research.DynamicDataDisplay.Markers;
-using Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
+using DynamicDataDisplay.Markers.MarkerGenerators.Rendering;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
+namespace DynamicDataDisplay.Charts.Markers
 {
 	public class RenderingChart : DevMarkerChart
 	{

@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.RadioBand.ConfigLoader;
-using Microsoft.Research.DynamicDataDisplay;
+using DynamicDataDisplay;
 using System;
 using System.Windows;
 using System.Windows.Controls;

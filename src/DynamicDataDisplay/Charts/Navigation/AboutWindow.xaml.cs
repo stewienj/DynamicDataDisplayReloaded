@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+namespace DynamicDataDisplay.Charts.Navigation
 {
 	/// <summary>
 	/// Interaction logic for AboutWindow.xaml

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
+﻿using DynamicDataDisplay;
 using System;
 using System.Collections;
 using System.Collections.Generic;

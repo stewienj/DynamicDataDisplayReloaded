@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public static class IPlotterElementExtensions
 	{

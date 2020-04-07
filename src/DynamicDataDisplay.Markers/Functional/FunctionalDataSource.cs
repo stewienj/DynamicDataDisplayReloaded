@@ -4,7 +4,7 @@
 //using System.Text;
 //using System.Windows;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Functional
+//namespace DynamicDataDisplay.Charts.NewLine.Functional
 //{
 //    public sealed class FunctionalDataSource : FunctionalDataSourceBase
 //    {

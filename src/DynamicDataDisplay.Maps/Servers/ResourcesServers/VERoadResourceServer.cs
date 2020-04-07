@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
+﻿namespace DynamicDataDisplay.Maps.Servers
 {
 	public class VERoadResourceServer : ResourcesTileServer
 	{

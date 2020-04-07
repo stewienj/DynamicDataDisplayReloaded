@@ -7,9 +7,9 @@
 //using System.Windows.Media.Animation;
 //using System.Windows;
 //using System.Diagnostics;
-//using Microsoft.Research.DynamicDataDisplay.Common;
+//using DynamicDataDisplay.Common;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+//namespace DynamicDataDisplay.Charts.Navigation
 //{
 //    public sealed class EndlessPanningRectAnimation : RectAnimationBase
 //    {

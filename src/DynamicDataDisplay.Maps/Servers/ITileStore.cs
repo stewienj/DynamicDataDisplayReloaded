@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	/// <summary>
 	/// Contains a method to save tile image for given id.

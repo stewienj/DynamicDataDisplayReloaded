@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02.CurrencyExchange
+namespace DynamicDataDisplay.Samples.Demos.v02.CurrencyExchange
 {
 	/// <summary>
 	/// This is a auxiliary class to hold currencies exchange rate for one date

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Converters
+namespace DynamicDataDisplay.Converters
 {
 	public sealed class BrushHSBConverter : IValueConverter
 	{

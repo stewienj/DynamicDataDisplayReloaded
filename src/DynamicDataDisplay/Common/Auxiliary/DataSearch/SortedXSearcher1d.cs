@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
+namespace DynamicDataDisplay.Common.DataSearch
 {
 	public class SortedXSearcher1d
 	{

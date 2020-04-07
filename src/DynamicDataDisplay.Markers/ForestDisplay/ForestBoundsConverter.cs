@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Converters;
 using System;
 using System.Globalization;
 

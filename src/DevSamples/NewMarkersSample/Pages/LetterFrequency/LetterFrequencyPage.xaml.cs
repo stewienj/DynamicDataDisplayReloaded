@@ -1,7 +1,7 @@
 ﻿using DynamicDataDisplay.Markers.DataSources.ValueConverters;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

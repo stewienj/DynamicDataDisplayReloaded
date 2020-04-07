@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
+namespace DynamicDataDisplay.Common.Palettes
 {
 	public class UniformPaletteColorStep
 	{

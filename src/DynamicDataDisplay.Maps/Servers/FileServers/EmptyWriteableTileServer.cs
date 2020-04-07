@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
+namespace DynamicDataDisplay.Maps.Servers
 {
 	public class EmptyWriteableTileServer : EmptyTileServer, ITileStore, IWriteableTileServer
 	{

@@ -12,13 +12,13 @@
 //using System.Windows.Media;
 //using System.Windows.Media.Imaging;
 //using System.Windows.Shapes;
-//using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
-//using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
-//using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-//using filters = Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
+//using DynamicDataDisplay.Charts.NewLine;
+//using DynamicDataDisplay.Charts.NewLine.Filters;
+//using DynamicDataDisplay.Common.Auxiliary;
+//using filters = DynamicDataDisplay.Charts.NewLine.Filters;
 //using System.Windows.Data;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts
+//namespace DynamicDataDisplay.Charts
 //{
 //    public class LineChart : Control, IPlotterElement
 //    {

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.SharpDX9.DataSources;
+﻿using DynamicDataDisplay.SharpDX9.DataSources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.SharpDX
+namespace DynamicDataDisplay.Samples.Demos.SharpDX
 {
 	/// <summary>
 	/// Interaction logic for WaveyLineSample.xaml

@@ -2,13 +2,13 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
-//using Microsoft.Research.DynamicDataDisplay.Charts;
+//using DynamicDataDisplay.Charts;
 //using System.Windows;
-//using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+//using DynamicDataDisplay.Charts.Markers;
 //using System.Windows.Data;
-//using Microsoft.Research.DynamicDataDisplay.Common;
-//using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
-//using Microsoft.Research.DynamicDataDisplay;
+//using DynamicDataDisplay.Common;
+//using DynamicDataDisplay.Charts.NewLine;
+//using DynamicDataDisplay;
 
 //namespace DynamicDataDisplay.Markers
 //{

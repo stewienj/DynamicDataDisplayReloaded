@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
+namespace DynamicDataDisplay.Common.DataSearch
 {
 	public sealed class GenericSearcher1d<TCollection, TMember> where TMember : IComparable<TMember>
 	{

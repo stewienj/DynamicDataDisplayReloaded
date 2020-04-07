@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.SharpDX9.DataSources;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.SharpDX9.DataSources;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
+namespace DynamicDataDisplay.SharpDX9.Lines
 {
 	/// <summary>
 	/// This takes a collection of PointAndColor objects and renders them in a continuous line

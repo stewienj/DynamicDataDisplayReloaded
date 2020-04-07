@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// <see cref="LegendItem"/> is a base class for item in legend, that represents some chart. 

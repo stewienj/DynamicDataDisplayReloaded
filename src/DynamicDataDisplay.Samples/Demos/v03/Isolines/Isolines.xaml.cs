@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.DataSources.MultiDimensional;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03.Isolines
+namespace DynamicDataDisplay.Samples.Demos.v03.Isolines
 {
 	/// <summary>
 	/// Interaction logic for Isolines.xaml
@@ -46,7 +46,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03.Isolines
 			var assembly = Assembly.GetExecutingAssembly();
 
 			List<string> strings = new List<string>();
-			using (Stream stream = assembly.GetManifestResourceStream("Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03.Isolines.SampleData.txt"))
+			using (Stream stream = assembly.GetManifestResourceStream("DynamicDataDisplay.Samples.Demos.v03.Isolines.SampleData.txt"))
 			{
 				using (StreamReader reader = new StreamReader(stream))
 				{

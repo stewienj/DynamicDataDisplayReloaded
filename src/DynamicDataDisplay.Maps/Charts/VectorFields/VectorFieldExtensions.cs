@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.DataSources;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts
+namespace DynamicDataDisplay.Maps.Charts
 {
 	public static class VectorFieldExtensions
 	{

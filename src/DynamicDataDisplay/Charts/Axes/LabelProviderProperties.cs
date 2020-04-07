@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
+namespace DynamicDataDisplay.Charts.Axes
 {
 	public class LabelProviderProperties : DependencyObject
 	{

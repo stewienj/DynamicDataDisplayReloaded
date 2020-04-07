@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
     /// <summary>Base class for all navigation providers</summary>
 	public abstract class NavigationBase : ViewportElement2D {

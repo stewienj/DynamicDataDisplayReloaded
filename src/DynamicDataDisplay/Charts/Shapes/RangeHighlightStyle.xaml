@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:l="clr-namespace:Microsoft.Research.DynamicDataDisplay.Charts">
+		xmlns:l="clr-namespace:DynamicDataDisplay.Charts">
 
 	<Style TargetType="{x:Type Shape}" x:Key="linesPathStyle">
 		<Setter Property="Fill" Value="{x:Null}"/>

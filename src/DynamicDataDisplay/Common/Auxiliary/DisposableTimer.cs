@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
+namespace DynamicDataDisplay.Common.Auxiliary
 {
 	public sealed class DisposableTimer : IDisposable
 	{

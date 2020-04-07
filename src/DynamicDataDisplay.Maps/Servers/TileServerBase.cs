@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Maps;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Maps;
 using System;
 using System.IO;
 using System.Text;
@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public abstract class TileServerBase : DispatcherObject, ITileServer
 	{

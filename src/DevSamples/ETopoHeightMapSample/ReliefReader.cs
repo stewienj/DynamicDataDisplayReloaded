@@ -1,5 +1,5 @@
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
-using Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional;
+using DynamicDataDisplay.Common.Palettes;
+using DynamicDataDisplay.DataSources.MultiDimensional;
 using System;
 using System.IO;
 using System.Windows;

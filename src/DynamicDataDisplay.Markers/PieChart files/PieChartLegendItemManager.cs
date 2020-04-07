@@ -2,8 +2,8 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
-//using Microsoft.Research.DynamicDataDisplay.Charts;
-//using Microsoft.Research.DynamicDataDisplay.Common;
+//using DynamicDataDisplay.Charts;
+//using DynamicDataDisplay.Common;
 //using DynamicDataDisplay.Markers.DataSources;
 //using System.Collections.Specialized;
 //using System.Windows;

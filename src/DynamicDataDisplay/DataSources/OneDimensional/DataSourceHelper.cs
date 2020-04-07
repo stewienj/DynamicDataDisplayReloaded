@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay.Charts;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources
+namespace DynamicDataDisplay.DataSources
 {
 	public static class DataSourceHelper
 	{

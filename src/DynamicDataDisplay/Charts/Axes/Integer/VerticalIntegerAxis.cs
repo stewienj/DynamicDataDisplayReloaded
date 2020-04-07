@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
+namespace DynamicDataDisplay.Charts.Axes
 {
 	public class VerticalIntegerAxis : IntegerAxis
 	{

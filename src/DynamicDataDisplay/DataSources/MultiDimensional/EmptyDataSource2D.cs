@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional
+namespace DynamicDataDisplay.DataSources.MultiDimensional
 {
 	/// <summary>
 	/// Defines empty two-dimensional data source.
@@ -47,7 +47,7 @@ namespace Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional
 		#region IDataSource2D<T> Members
 
 
-		public Microsoft.Research.DynamicDataDisplay.Charts.Range<T>? Range
+		public DynamicDataDisplay.Charts.Range<T>? Range
 		{
 			get { throw new NotImplementedException(); }
 		}

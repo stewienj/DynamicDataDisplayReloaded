@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using DynamicDataDisplay.Converters;
 using System;
 using System.Globalization;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Represents a converter of Viewport.Visible for InjectedPlotter.

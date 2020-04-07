@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Reflection;
 using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
 	/// <summary>This class is responsible for displaying and populating default context menu</summary>
 	public partial class DefaultContextMenu : NavigationBase
@@ -32,7 +32,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 
 			BitmapImage icon = new BitmapImage();
 			icon.BeginInit();
-			icon.StreamSource = currentAssembly.GetManifestResourceStream("Microsoft.Research.DynamicDataDisplay.Resources." + name + ".png");
+			icon.StreamSource = currentAssembly.GetManifestResourceStream("DynamicDataDisplay.Resources." + name + ".png");
 			icon.EndInit();
 			return icon;
 		}

@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.ViewportRestrictions;
 using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public class VerticalDateTimeAxis : DateTimeAxis
 	{

@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.DataSources;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.Custom
+namespace DynamicDataDisplay.Samples.Demos.Custom
 {
 	/// <summary>
 	/// Interaction logic for PolarSample.xaml

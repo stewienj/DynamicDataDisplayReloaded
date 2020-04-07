@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
+﻿using DynamicDataDisplay.Common.UndoSystem;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public static class Viewport2DExtensions
 	{

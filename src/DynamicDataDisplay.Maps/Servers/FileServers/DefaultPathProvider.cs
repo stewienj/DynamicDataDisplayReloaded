@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System.IO;
 using System.Text;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.FileServers
+namespace DynamicDataDisplay.Maps.Servers.FileServers
 {
 	public sealed class DefaultPathProvider : TilePathProvider
 	{

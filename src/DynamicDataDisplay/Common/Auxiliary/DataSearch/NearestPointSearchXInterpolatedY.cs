@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.DataSearch
+namespace DynamicDataDisplay.Common.Auxiliary.DataSearch
 {
 	/// <summary>
 	/// Keeps the cursor in the current X position, finds there nearest values either side of the cursor in the X plane only,

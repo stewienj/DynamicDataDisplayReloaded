@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
     /// <summary>This class allows convenient navigation around viewport using touchpad on
     /// some notebooks</summary>

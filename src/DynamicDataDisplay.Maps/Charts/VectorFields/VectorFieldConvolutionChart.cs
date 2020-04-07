@@ -1,14 +1,14 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.Maps.Charts.VectorFields;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.INonUniformDataSource2D<System.Windows.Vector>;
+using DataSource = DynamicDataDisplay.DataSources.INonUniformDataSource2D<System.Windows.Vector>;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts
+namespace DynamicDataDisplay.Maps.Charts
 {
 	public class VectorFieldConvolutionChart : FrameworkElement, IPlotterElement
 	{

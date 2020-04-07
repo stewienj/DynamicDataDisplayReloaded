@@ -1,13 +1,13 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.PointMarkers;
+using DynamicDataDisplay.ViewportRestrictions;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Demo
+namespace DynamicDataDisplay.Demo
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.Auxiliary;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewAxis
+namespace DynamicDataDisplay.Charts.NewAxis
 {
 	public abstract class DateTimeTicksProviderBase : ITicksProvider<DateTime>
 	{

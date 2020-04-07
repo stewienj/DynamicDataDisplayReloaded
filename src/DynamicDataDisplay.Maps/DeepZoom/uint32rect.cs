@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
+namespace DynamicDataDisplay.Maps.DeepZoom
 {
 	public struct uint32rect
 	{

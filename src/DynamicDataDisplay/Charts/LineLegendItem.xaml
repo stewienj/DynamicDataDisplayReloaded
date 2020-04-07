@@ -1,7 +1,7 @@
-﻿<l:LegendItem x:Class="Microsoft.Research.DynamicDataDisplay.LineLegendItem"
+﻿<l:LegendItem x:Class="DynamicDataDisplay.LineLegendItem"
 			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			xmlns:l="clr-namespace:Microsoft.Research.DynamicDataDisplay"
+			xmlns:l="clr-namespace:DynamicDataDisplay"
 			>
 	<l:LegendItem.ContentTemplate>
 		<DataTemplate>

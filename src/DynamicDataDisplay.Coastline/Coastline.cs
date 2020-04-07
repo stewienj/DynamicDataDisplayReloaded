@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
+﻿using DynamicDataDisplay.Charts.Filters;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public class Coastline : ViewportElement2D
 	{
@@ -75,7 +75,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 		public Coastline()
 		{
-			string path = "Microsoft.Research.DynamicDataDisplay.Charts.Coastline.txt";
+			string path = "DynamicDataDisplay.Charts.Coastline.txt";
 
 			Assembly assembly = Assembly.GetAssembly(typeof(Coastline));
 			using (StreamReader reader = new StreamReader(assembly.GetManifestResourceStream(path)))

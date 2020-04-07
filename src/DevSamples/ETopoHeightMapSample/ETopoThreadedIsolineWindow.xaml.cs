@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts.Isolines;
+using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Common.Auxiliary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;

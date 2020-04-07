@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Maps.Charts.TiledRendering;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 

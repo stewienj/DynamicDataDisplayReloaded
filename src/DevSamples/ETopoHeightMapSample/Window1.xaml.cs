@@ -1,7 +1,7 @@
 ﻿#define new
 
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Maps.Charts.TiledRendering;
 using System.IO;
 using System.Windows;
 

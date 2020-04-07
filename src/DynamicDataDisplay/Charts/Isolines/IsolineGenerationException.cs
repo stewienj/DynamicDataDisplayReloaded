@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
+namespace DynamicDataDisplay.Charts.Isolines
 {
 	/// <summary>
 	/// Exception that is thrown when error occurs while building isolines.

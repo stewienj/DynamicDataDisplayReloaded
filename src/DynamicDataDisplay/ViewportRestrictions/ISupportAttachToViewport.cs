@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+﻿namespace DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a restriction which is capable to attach to or detach from <see cref="Viewport"/>, to which it is applied.

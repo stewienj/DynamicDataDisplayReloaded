@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+namespace DynamicDataDisplay.Charts.Navigation
 {
 	/// <summary>
 	/// Represents a horizontal scroll bar on the borrom of <see cref="Plotter"/>.

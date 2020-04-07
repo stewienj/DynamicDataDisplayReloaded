@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	[DebuggerDisplay("Count = {Cache.Count}")]
 	public sealed class VisualBindingCollection

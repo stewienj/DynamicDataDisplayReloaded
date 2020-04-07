@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
+﻿using DynamicDataDisplay;
 using System.Security;
 using System.Windows.Markup;
 

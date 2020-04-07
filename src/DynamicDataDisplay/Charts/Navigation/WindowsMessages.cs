@@ -1,5 +1,5 @@
 ﻿
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
 	public static class WindowsMessages
 	{

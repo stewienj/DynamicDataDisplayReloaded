@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
-using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Charts.Filters;
+using DynamicDataDisplay.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents a collection of point filters of <see cref="LineGraph"/>.

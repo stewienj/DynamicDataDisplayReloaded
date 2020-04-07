@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.ServiceModel;
 using System.Text;
 using VE.VESvc;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps
+namespace DynamicDataDisplay.Maps
 {
 	/// <summary>
 	/// Represents a VirtualEarth Imagery Service tile server.

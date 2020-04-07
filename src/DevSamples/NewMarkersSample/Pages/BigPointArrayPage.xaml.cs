@@ -1,6 +1,6 @@
 ﻿using DynamicDataDisplay.Markers.Filters;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Common.Palettes;
 using System;
 using System.Windows;
 using System.Windows.Controls;

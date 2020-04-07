@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
+namespace DynamicDataDisplay.Charts.Axes.Numeric
 {
 	public class CustomBaseNumericLabelProvider : LabelProvider<double>
 	{

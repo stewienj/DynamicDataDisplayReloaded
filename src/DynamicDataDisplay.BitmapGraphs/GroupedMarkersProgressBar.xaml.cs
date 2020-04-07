@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	/// <summary>
 	/// Interaction logic for HeatmapProgressBar.xaml

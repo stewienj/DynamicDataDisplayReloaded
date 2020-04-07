@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay
+﻿namespace DynamicDataDisplay
 {
 	public enum PlotterLoadMode
 	{

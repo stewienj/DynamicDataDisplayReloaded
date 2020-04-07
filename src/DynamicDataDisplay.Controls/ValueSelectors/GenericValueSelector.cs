@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Shapes;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Controls
+namespace DynamicDataDisplay.Controls
 {
 	public abstract class GenericValueSelector<T> : SelectorPlotter, INotifyPropertyChanged
 	{

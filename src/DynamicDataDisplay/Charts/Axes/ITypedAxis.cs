@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+﻿using DynamicDataDisplay.Charts.Axes;
 using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Describes axis as having ticks type.

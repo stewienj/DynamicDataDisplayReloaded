@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
+namespace DynamicDataDisplay.Maps.Charts.VectorFields
 {
 	public class VectorFieldConvolutionEffect : ShaderEffect
 	{

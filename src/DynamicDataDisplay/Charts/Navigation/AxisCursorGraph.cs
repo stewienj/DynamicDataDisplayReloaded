@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+namespace DynamicDataDisplay.Charts.Navigation
 {
 	/// <summary>
 	/// Adds to ChartPlotter two lines upon axes, showing current cursor position.

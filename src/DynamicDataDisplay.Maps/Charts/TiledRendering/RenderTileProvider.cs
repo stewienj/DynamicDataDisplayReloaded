@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
+namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 {
 	public sealed class RenderTileProvider : TileProvider
 	{

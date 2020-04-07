@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
+namespace DynamicDataDisplay.Charts.Markers
 {
 	public class ColumnChart : DevMarkerChart
 	{

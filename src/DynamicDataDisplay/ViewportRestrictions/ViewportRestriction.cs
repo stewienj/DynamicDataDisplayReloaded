@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+namespace DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a base class for all restrictions that are being applied to viewport's visible rect.

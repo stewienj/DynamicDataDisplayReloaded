@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views
+namespace DynamicDataDisplay.Samples.Internals.Views
 {
 	public static class ViewService
 	{

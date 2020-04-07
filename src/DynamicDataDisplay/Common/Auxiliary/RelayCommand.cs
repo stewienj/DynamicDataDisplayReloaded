@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
+namespace DynamicDataDisplay.Common.Auxiliary
 {
 	/// <summary>
 	/// Preferable to use RelayCommandFactory to generate these

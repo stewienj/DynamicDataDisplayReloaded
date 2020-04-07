@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
+﻿namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 {
 	public interface IRenderingTileServer
 	{

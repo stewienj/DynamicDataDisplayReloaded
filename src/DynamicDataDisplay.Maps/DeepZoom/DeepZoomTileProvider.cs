@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
+namespace DynamicDataDisplay.Maps.DeepZoom
 {
 	public class DeepZoomTileProvider : MapTileProvider
 	{

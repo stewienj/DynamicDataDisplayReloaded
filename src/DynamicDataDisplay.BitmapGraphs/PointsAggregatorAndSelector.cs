@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Utility;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	public class PointsAggregatorAndSelector
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	public static class TokenizerHelper
 	{

@@ -1,7 +1,7 @@
 ﻿using DynamicDataDisplay.Markers;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
-using Microsoft.Research.DynamicDataDisplay.Markers.Strings;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
+using DynamicDataDisplay.Charts.Markers;
+using DynamicDataDisplay.Markers.Strings;
+using DynamicDataDisplay.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -12,7 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
+namespace DynamicDataDisplay.Charts.Selectors
 {
 	/// <summary>
 	/// Represents a Plotter element for selecting a number of Points Of Interest (POI).

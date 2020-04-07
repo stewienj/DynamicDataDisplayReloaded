@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
+namespace DynamicDataDisplay.Samples.Internals
 {
 	public sealed class VersionToBrushConverter : IValueConverter
 	{

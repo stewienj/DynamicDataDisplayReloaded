@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using d3 = Microsoft.Research.DynamicDataDisplay;
+using d3 = DynamicDataDisplay;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public class ViewportHostPanel : ViewportPanel, IPlotterElement
 	{

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
+namespace DynamicDataDisplay.PointMarkers
 {
 	/// <summary>Renders specified text near the point</summary>
 	public class CenteredTextMarker : PointMarker

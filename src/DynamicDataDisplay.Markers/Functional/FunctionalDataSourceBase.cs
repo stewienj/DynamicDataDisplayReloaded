@@ -3,10 +3,10 @@
 //using System.Linq;
 //using System.Text;
 //using System.Windows;
-//using Microsoft.Research.DynamicDataDisplay.Charts;
+//using DynamicDataDisplay.Charts;
 //using System.Collections;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Functional
+//namespace DynamicDataDisplay.Charts.NewLine.Functional
 //{
 //    public abstract class FunctionalDataSourceBase : DependencyObject, IPointDataSource
 //    {

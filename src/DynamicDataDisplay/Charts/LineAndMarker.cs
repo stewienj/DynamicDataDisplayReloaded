@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay
+﻿namespace DynamicDataDisplay
 {
 	public sealed class LineAndMarker<T>
 	{

@@ -3,7 +3,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
 			 xmlns:local="clr-namespace:DynamicDataDisplay.Markers"
-			 xmlns:local2="clr-namespace:Microsoft.Research.DynamicDataDisplay.Charts.Markers">
+			 xmlns:local2="clr-namespace:DynamicDataDisplay.Charts.Markers">
 	<Grid>
 		<d3:ChartPlotter Name="plotter">
 			<local2:DevMarkerChart x:Name="markerChart" BoundsUnionMode="Bounds" ItemsSource="{Binding}">

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.DataSources;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
+namespace DynamicDataDisplay.Samples.Demos.v02
 {
 	/// <summary>
 	/// Interaction logic for AnimationSample.xaml

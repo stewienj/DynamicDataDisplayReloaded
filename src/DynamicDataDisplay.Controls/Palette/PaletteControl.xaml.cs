@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Common.Palettes;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,7 +7,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Controls
+namespace DynamicDataDisplay.Controls
 {
 	/// <summary>
 	/// Control to display palette as an image and axis with ticks.

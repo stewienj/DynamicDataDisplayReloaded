@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+namespace DynamicDataDisplay.Charts.Navigation
 {
 	public sealed class PhysicalRectAnimation
 	{

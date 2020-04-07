@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Filters
+namespace DynamicDataDisplay.Charts.Filters
 {
 	/// <summary>Provides algorithm for filtering point lists in screen coordinates</summary>
 	public interface IPointsFilter

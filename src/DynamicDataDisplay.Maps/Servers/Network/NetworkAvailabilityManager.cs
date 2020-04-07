@@ -2,7 +2,7 @@
 using System.Net.NetworkInformation;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network
+namespace DynamicDataDisplay.Maps.Servers.Network
 {
 	public sealed class NetworkAvailabilityManager : WeakEventManager
 	{

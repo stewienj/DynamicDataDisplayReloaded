@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.UndoSystem
+namespace DynamicDataDisplay.Common.UndoSystem
 {
 	public class UndoProvider : INotifyPropertyChanged
 	{

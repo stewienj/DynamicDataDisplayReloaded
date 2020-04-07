@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.DataSources
+namespace DynamicDataDisplay.SharpDX9.DataSources
 {
 	public struct DxPoint
 	{

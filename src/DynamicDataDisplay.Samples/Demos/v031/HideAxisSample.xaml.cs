@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v031
+namespace DynamicDataDisplay.Samples.Demos.v031
 {
 	/// <summary>
 	/// Interaction logic for HideAxisSample.xaml

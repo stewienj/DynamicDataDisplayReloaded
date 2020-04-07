@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.DateTime.Strategies
+namespace DynamicDataDisplay.Charts.Axes.DateTime.Strategies
 {
 	public class DelegateDateTimeStrategy : DefaultDateTimeTicksStrategy
 	{

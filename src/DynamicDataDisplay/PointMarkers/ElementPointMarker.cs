@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
+namespace DynamicDataDisplay.PointMarkers
 {
 	/// <summary>Provides elements that represent markers along the graph</summary>
 	public abstract class ElementPointMarker : DependencyObject

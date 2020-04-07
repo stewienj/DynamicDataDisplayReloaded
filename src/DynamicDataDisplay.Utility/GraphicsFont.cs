@@ -8,7 +8,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Research.DynamicDataDisplay.Utility
+namespace DynamicDataDisplay.Utility
 {
 	/// <summary>
 	/// Creates a big texture square with all the usable characters rendered to it in a grid.

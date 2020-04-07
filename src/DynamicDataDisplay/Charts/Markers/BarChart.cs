@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
+namespace DynamicDataDisplay.Charts.Markers
 {
 	public class OldBarChart : MarkerChart
 	{

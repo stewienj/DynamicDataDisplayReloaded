@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
+namespace DynamicDataDisplay.Maps.DeepZoom
 {
 	public class Collection
 	{

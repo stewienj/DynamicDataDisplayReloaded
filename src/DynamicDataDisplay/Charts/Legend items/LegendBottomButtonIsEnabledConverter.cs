@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using DynamicDataDisplay.Converters;
 using System;
 using System.Globalization;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public sealed class LegendBottomButtonIsEnabledConverter : ThreeValuesMultiConverter<double, double, double>
 	{

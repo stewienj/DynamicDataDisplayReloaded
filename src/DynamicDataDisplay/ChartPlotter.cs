@@ -1,14 +1,14 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes;
+using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.Navigation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>Chart plotter is a plotter that renders axis and grid</summary>
 	public class ChartPlotter : Plotter2D

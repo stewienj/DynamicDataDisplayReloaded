@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Legend_items;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Legend_items;
+using DynamicDataDisplay.DataSources;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Represents a series of points connected by one polyline.

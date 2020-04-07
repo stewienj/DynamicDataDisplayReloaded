@@ -1,9 +1,9 @@
-﻿<v:ViewBase	    x:Class="Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views.TreeDemonstrationView"
+﻿<v:ViewBase	    x:Class="DynamicDataDisplay.Samples.Internals.Views.TreeDemonstrationView"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:model="clr-namespace:Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models"
-				xmlns:v="clr-namespace:Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views"
-				xmlns:p="clr-namespace:Microsoft.Research.DynamicDataDisplay.Samples.Internals"
+                xmlns:model="clr-namespace:DynamicDataDisplay.Samples.Internals.Models"
+				xmlns:v="clr-namespace:DynamicDataDisplay.Samples.Internals.Views"
+				xmlns:p="clr-namespace:DynamicDataDisplay.Samples.Internals"
 				Loaded="OnLoaded" Background="AliceBlue"
     >
 	<UserControl.Resources>

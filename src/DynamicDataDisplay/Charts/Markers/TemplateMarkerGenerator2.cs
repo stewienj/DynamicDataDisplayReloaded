@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System;
 using System.Windows;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
+namespace DynamicDataDisplay.Charts.Markers
 {
 	[ContentProperty("Template")]
 	public class TemplateMarkerGenerator2 : OldMarkerGenerator

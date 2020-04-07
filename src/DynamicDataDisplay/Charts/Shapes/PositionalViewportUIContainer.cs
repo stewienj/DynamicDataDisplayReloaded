@@ -1,14 +1,14 @@
 ﻿#define old
 
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public sealed class PositionChangedEventArgs : EventArgs
 	{

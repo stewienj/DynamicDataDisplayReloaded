@@ -6,7 +6,7 @@
     <ProjectGuid>{16CA59CE-4664-4739-A1B1-1FCD0447595E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.Samples</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.Samples</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Samples</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

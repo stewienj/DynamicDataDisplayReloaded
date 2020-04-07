@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts
+﻿namespace DynamicDataDisplay.Charts
 {
 	public enum DifferenceIn
 	{

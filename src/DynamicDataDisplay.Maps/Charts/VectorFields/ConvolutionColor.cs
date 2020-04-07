@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
+namespace DynamicDataDisplay.Maps.Charts.VectorFields
 {
 	[DebuggerDisplay("R={R}, G={G}, B={B}")]
 	internal struct ConvolutionColor

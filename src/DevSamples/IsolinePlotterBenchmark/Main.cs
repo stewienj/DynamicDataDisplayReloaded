@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.Charts.Isolines;
+using DynamicDataDisplay.DataSources;
 using System;
 using System.Windows;
 
@@ -89,7 +89,7 @@ public class BenchmarkDataSource : IDataSource2D<double>
 	#region IDataSource2D<double> Members
 
 
-	public Microsoft.Research.DynamicDataDisplay.Charts.Range<double>? Range
+	public DynamicDataDisplay.Charts.Range<double>? Range
 	{
 		get { throw new NotImplementedException(); }
 	}

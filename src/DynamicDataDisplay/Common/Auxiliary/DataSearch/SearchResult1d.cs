@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Common.DataSearch
+﻿namespace DynamicDataDisplay.Common.DataSearch
 {
 	public struct SearchResult1d
 	{

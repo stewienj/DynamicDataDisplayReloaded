@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional
+namespace DynamicDataDisplay.DataSources.MultiDimensional
 {
 	public static class DataSource2DHelper
 	{

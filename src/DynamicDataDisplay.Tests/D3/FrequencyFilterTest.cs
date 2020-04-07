@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
+﻿using DynamicDataDisplay.Charts.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Windows;

@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public class LiveToolTip : ContentControl
 	{
@@ -22,7 +22,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 
 		public LiveToolTip()
 		{
-			Name = "Microsoft_Research_Dynamic_Data_Display_Charts_LiveToolTip_" + nameCounter;
+			Name = "Dynamic_Data_Display_Charts_LiveToolTip_" + nameCounter;
 			nameCounter++;
 		}
 

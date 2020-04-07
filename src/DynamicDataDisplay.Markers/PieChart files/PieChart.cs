@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts.Markers;
 using System;
 using System.Windows;
 using System.Windows.Media;

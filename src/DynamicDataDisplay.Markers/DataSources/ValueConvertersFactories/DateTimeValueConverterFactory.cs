@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.Markers.DataSources.ValueConverters;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts;
 using System;
 using System.Windows.Data;
 

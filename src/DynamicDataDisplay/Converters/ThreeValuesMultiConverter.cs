@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Converters
+namespace DynamicDataDisplay.Converters
 {
 	public abstract class ThreeValuesMultiConverter<T1, T2, T3> : IMultiValueConverter
 	{

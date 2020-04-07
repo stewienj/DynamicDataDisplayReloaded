@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
+namespace DynamicDataDisplay.Charts.Isolines
 {
 	public class FastIsolineRenderer : IsolineRenderer
 	{

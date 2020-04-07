@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.ViewportRestrictions;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;

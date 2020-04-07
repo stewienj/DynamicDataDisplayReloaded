@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts.NewLine.Filters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;

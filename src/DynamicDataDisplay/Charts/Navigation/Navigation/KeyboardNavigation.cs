@@ -3,7 +3,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Win32;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
 	/// <summary>Provides keyboard navigation around viewport</summary>
 	public class KeyboardNavigation : NavigationBase

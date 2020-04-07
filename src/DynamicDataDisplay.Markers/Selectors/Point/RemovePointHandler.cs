@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+﻿using DynamicDataDisplay.Charts.Markers;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
+namespace DynamicDataDisplay.Charts.Selectors
 {
 	public class RemovePointHandler : PointSelectorModeHandler
 	{

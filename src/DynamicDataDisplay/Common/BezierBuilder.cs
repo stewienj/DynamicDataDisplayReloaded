@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
+namespace DynamicDataDisplay.Charts.NewLine
 {
 	// todo check a license
 	public static class BezierBuilder

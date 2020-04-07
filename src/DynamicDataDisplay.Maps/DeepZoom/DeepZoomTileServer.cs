@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
+namespace DynamicDataDisplay.Maps.DeepZoom
 {
 	public class DeepZoomTileServer : SourceTileServer
 	{

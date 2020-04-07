@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
+﻿namespace DynamicDataDisplay.Charts.Maps.Network
 {
 	public enum OpenStreetMapRenderer
 	{

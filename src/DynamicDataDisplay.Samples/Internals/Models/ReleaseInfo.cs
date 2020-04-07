@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models
+namespace DynamicDataDisplay.Samples.Internals.Models
 {
 	[ContentProperty("Demonstrations")]
 	public class ReleaseInfo

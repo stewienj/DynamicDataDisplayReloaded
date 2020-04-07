@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+﻿using DynamicDataDisplay.Charts.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
 	/// <summary>
 	/// Is responsible for displaying and populating default context menu of ChartPlotter
@@ -37,7 +37,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 
 			BitmapImage icon = new BitmapImage();
 			icon.BeginInit();
-			icon.StreamSource = currentAssembly.GetManifestResourceStream("Microsoft.Research.DynamicDataDisplay.Resources." + name + ".png");
+			icon.StreamSource = currentAssembly.GetManifestResourceStream("DynamicDataDisplay.Resources." + name + ".png");
 			icon.EndInit();
 			icon.Freeze();
 
@@ -74,7 +74,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 					IsCheckable = true,
 					CommandTarget = target
 				};
-				lockZoomX.SetBinding(MenuItem.CommandParameterProperty, new Microsoft.Research.DynamicDataDisplay.MarkupExtensions.SelfBinding("IsChecked"));
+				lockZoomX.SetBinding(MenuItem.CommandParameterProperty, new DynamicDataDisplay.MarkupExtensions.SelfBinding("IsChecked"));
 
 				MenuItem lockZoomY = new MenuItem
 				{
@@ -84,7 +84,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Navigation
 					IsCheckable = true,
 					CommandTarget = target
 				};
-				lockZoomY.SetBinding(MenuItem.CommandParameterProperty, new Microsoft.Research.DynamicDataDisplay.MarkupExtensions.SelfBinding("IsChecked"));
+				lockZoomY.SetBinding(MenuItem.CommandParameterProperty, new DynamicDataDisplay.MarkupExtensions.SelfBinding("IsChecked"));
 
 				MenuItem editScreenshotParameters = new MenuItem
 				{

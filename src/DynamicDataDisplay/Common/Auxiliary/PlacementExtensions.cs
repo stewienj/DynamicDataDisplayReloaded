@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay.Charts;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
+namespace DynamicDataDisplay.Common.Auxiliary
 {
 	public static class PlacementExtensions
 	{

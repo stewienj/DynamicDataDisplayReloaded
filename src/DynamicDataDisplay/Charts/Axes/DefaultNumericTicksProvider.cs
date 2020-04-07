@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.Auxiliary;
 using System.Collections.ObjectModel;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewAxis
+namespace DynamicDataDisplay.Charts.NewAxis
 {
 	public sealed class DefaultDoubleTicksProvider : ITicksProvider<double>
 	{

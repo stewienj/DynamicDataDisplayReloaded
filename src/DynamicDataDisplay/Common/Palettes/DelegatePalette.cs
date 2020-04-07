@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
+namespace DynamicDataDisplay.Common.Palettes
 {
 	public sealed class DelegatePalette : PaletteBase
 	{

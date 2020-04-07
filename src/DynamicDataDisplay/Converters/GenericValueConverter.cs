@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Converters
+namespace DynamicDataDisplay.Converters
 {
 	public class GenericValueConverter<T> : IValueConverter
 	{

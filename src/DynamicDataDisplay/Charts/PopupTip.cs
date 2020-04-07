@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Windows.Controls.Primitives;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public class PopupTip : Popup
 	{

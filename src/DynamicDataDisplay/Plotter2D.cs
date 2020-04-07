@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.ViewportRestrictions;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>Control for plotting 2d images</summary>
 	public class Plotter2D : Plotter

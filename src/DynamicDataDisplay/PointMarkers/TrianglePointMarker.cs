@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
+namespace DynamicDataDisplay.PointMarkers
 {
 	/// <summary>Class that renders triangular marker at every point of graph</summary>
 	public class TrianglePointMarker : ShapePointMarker

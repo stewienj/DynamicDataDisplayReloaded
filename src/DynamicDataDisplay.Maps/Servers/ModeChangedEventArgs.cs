@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
+namespace DynamicDataDisplay.Maps.Servers
 {
 	public sealed class ModeChangedEventArgs : EventArgs
 	{

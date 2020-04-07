@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -119,7 +119,7 @@ namespace DynamicDataDisplay.RadioBand
 			return base.MeasureOverride(constraint);
 		}
 
-		protected override void OnViewportPropertyChanged(Microsoft.Research.DynamicDataDisplay.ExtendedPropertyChangedEventArgs e)
+		protected override void OnViewportPropertyChanged(DynamicDataDisplay.ExtendedPropertyChangedEventArgs e)
 		{
 			InvalidateVisual();
 		}

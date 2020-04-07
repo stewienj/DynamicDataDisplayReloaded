@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	public sealed class NotifyingUIElementCollection : UIElementCollection, INotifyCollectionChanged
 	{

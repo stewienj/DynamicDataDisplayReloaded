@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts
+﻿namespace DynamicDataDisplay.Maps.Charts
 {
 	/// <summary>
 	/// Represents a plotter with now extra place around it, e.g. without Left, Right, Top, Bottom panels and without

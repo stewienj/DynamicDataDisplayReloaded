@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Transforms
+namespace DynamicDataDisplay.Transforms
 {
 	//-------------------------------------------------------------------------
 	public static class ImageTransforms

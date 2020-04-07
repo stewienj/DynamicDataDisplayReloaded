@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
+namespace DynamicDataDisplay.Charts.Shapes
 {
 	public abstract class ViewportPolylineBase : ViewportShape
 	{

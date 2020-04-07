@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Utility
+namespace DynamicDataDisplay.Utility
 {
 	/// <summary>
 	/// This allows a view model to observe the size of the control

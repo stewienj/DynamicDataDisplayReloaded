@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	[DebuggerDisplay("Count = {Count}")]
 	public sealed class ResourcePool<T>

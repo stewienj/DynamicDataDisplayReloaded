@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
+namespace DynamicDataDisplay.Charts.Selectors
 {
 	public class ClickAndDragHandler : RectangleSelectorModeHandler
 	{

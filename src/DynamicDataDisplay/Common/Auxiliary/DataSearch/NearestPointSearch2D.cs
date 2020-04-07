@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.DataSearch
+namespace DynamicDataDisplay.Common.Auxiliary.DataSearch
 {
 	public class NearestPointSearch2D
 	{

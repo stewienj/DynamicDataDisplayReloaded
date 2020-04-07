@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
+﻿namespace DynamicDataDisplay.Charts.Selectors
 {
 	public class NoneModeHandler : PointSelectorModeHandler
 	{

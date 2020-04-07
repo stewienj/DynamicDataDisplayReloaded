@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
+namespace DynamicDataDisplay.Common.Palettes
 {
 	public static class UniformLinearPalettes
 	{

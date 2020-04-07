@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources
+namespace DynamicDataDisplay.DataSources
 {
 	/// <summary>Mapping class holds information about mapping of TSource type
 	/// to some DependencyProperty.</summary>

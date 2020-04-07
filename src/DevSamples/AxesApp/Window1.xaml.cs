@@ -12,7 +12,7 @@ namespace AxesApp
 		{
 			InitializeComponent();
 			var genericPlotter = plotter.GetGenericPlotter<DateTime, double>();
-			genericPlotter.DataRect = new Microsoft.Research.DynamicDataDisplay.GenericRect<DateTime, double>(DateTime.Now, 0, DateTime.Now.AddMinutes(60), 1);
+			genericPlotter.DataRect = new DynamicDataDisplay.GenericRect<DateTime, double>(DateTime.Now, 0, DateTime.Now.AddMinutes(60), 1);
 		}
 	}
 }

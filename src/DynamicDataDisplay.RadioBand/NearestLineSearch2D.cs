@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.DataSearch;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.Auxiliary.DataSearch;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

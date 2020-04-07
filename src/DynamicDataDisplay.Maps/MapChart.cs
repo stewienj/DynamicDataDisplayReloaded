@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps
+namespace DynamicDataDisplay.Maps
 {
 	//---------------------------------------------------------------------------
 	public class MapChart : ChartPlotter

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.UndoSystem
+namespace DynamicDataDisplay.Common.UndoSystem
 {
 	public sealed class CollectionRemoveAction<T> : UndoAction
 	{

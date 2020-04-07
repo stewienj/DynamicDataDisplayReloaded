@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Maps;
-using Microsoft.Research.DynamicDataDisplay.Maps.Properties;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Maps;
+using DynamicDataDisplay.Maps.Properties;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.Collections.Concurrent;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public abstract class NetworkTileServer : SourceTileServer, IWeakEventListener
 	{

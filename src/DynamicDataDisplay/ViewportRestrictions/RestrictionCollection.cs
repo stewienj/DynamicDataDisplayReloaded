@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System;
 using System.Collections.Specialized;
 
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+namespace DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a collection of <see cref="ViewportRestriction"/>s.

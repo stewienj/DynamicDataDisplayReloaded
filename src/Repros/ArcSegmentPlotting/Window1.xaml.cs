@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.DataSources;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;

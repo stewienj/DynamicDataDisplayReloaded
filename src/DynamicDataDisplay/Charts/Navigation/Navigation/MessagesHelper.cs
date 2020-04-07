@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
     /// <summary>Helper class to parse Windows messages</summary>
 	internal static class MessagesHelper {

@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+﻿namespace DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a ViewportRestriction, which the minimal size of <see cref="Viewport"/>'s Visible.

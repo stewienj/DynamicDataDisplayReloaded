@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.DataSearch;
+﻿using DynamicDataDisplay.Common.Auxiliary.DataSearch;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+namespace DynamicDataDisplay.Charts.Navigation
 {
 	/// <summary>
 	/// Adds to ChartPlotter two crossed lines, bound to mouse cursor position, and two labels near axes with mouse position in its text.

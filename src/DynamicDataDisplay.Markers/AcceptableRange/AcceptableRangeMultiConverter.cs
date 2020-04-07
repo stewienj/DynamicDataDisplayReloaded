@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using DynamicDataDisplay.Converters;
 using System;
 using System.Globalization;
 

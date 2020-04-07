@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Maps.Servers.Network;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
+namespace DynamicDataDisplay.Maps.Servers
 {
 	public class EmptyTileServer : SourceTileServer
 	{

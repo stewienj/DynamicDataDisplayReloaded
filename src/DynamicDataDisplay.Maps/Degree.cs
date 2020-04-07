@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using DynamicDataDisplay.Converters;
 using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public struct Degree : IComparable, IComparable<Degree>, IEquatable<Degree>
 	{

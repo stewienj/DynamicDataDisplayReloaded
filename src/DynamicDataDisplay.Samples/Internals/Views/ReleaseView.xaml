@@ -1,8 +1,8 @@
-﻿<UserControl x:Class="Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views.ReleaseView"
+﻿<UserControl x:Class="DynamicDataDisplay.Samples.Internals.Views.ReleaseView"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:m="clr-namespace:Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models"
-			 xmlns:v="clr-namespace:Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views"
+			 xmlns:m="clr-namespace:DynamicDataDisplay.Samples.Internals.Models"
+			 xmlns:v="clr-namespace:DynamicDataDisplay.Samples.Internals.Views"
 			 v:ViewService.SelectedValue="{Binding ElementName=list, Path=SelectedValue}"
 			 >
 	<ListView ItemsSource="{Binding}" Name="list" SelectionMode="Single">

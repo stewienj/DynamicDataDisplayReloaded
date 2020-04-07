@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.DataSearch
+namespace DynamicDataDisplay.Common.Auxiliary.DataSearch
 {
 	public class PositionAndCheckDistance
 	{

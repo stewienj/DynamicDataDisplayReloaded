@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.PointMarkers
+namespace DynamicDataDisplay.PointMarkers
 {
 	/// <summary>Adds Circle element at every point of graph</summary>
 	public class CircleElementPointMarker : ShapeElementPointMarker

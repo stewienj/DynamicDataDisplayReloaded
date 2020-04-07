@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network;
+﻿using DynamicDataDisplay.Charts.Maps.Network;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

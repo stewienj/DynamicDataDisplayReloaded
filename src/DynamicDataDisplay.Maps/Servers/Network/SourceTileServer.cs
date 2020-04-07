@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network
+namespace DynamicDataDisplay.Maps.Servers.Network
 {
 	public abstract class SourceTileServer : TileServerBase
 	{

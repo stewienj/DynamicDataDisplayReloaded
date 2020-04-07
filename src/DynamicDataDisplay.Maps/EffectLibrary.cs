@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps
+namespace DynamicDataDisplay.Maps
 {
 	internal static class Global
 	{

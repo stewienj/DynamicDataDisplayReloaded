@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
+﻿using DynamicDataDisplay;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows;
 

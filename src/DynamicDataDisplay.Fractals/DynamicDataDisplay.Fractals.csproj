@@ -6,7 +6,7 @@
     <ProjectGuid>{579AABDD-978C-4A17-8542-FAC4F2631B08}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.Fractals</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.Fractals</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Fractals</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

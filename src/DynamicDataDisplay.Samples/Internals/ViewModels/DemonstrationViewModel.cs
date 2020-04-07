@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models;
+﻿using DynamicDataDisplay.Samples.Internals.Models;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.ViewModels
+namespace DynamicDataDisplay.Samples.Internals.ViewModels
 {
 	public class DemonstrationViewModel
 	{

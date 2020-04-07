@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows;
 

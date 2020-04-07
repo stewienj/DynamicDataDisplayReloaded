@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+﻿namespace DynamicDataDisplay.Charts.Navigation
 {
 	public interface IPlotterContextMenuSource
 	{

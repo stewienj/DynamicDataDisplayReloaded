@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes.Numeric;
+using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.PointMarkers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

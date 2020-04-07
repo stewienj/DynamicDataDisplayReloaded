@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SlimDX;
 
-namespace Microsoft.Research.DynamicDataDisplay.SlimDX
+namespace DynamicDataDisplay.SlimDX
 {
 	public struct VertexPosition3ColorPointSize
 	{

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.DataSearch;
+﻿using DynamicDataDisplay.Common.DataSearch;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents a marker with position.X bound to mouse cursor's position and position.Y is determined by interpolation of <see cref="MarkerPointsGraph"/>'s points.

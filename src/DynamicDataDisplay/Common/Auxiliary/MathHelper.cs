@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public static class MathHelper
 	{

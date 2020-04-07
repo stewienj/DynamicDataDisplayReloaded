@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
     /// <summary>Adds some inertia to content of 2D viewport to make it more material</summary>
     /// <remarks>This is experimental code</remarks>

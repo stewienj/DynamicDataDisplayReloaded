@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
+namespace DynamicDataDisplay.Charts.Isolines
 {
 	public partial class FastIsolineDisplay : IsolineGraphBase
 	{

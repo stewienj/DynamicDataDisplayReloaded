@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// An ordered pair of values, representing a segment.

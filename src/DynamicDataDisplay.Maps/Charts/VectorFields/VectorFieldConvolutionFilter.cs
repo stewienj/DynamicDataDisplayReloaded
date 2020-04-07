@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.VectorFields
+﻿namespace DynamicDataDisplay.Maps.Charts.VectorFields
 {
 	public abstract class VectorFieldConvolutionFilter
 	{

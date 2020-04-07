@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
+﻿namespace DynamicDataDisplay.Charts.Axes.Numeric
 {
 	public sealed class NumericConversion
 	{

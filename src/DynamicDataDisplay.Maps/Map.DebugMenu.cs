@@ -6,7 +6,7 @@ using System.Windows;
 using System.Diagnostics;
 using System.IO;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public partial class Map
 	{

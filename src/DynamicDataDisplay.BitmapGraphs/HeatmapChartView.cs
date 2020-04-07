@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	public class HeatmapChartView : PointsBitmapGraphBase
 	{

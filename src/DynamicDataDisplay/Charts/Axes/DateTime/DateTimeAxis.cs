@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.ViewportRestrictions;
 using System;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents an axis with ticks of <see cref="System.DateTime"/> type.

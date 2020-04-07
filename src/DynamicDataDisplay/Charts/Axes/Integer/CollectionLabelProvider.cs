@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
+namespace DynamicDataDisplay.Charts.Axes
 {
 	public class CollectionLabelProvider<T> : LabelProviderBase<int>
 	{

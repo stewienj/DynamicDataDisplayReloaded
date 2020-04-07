@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Maps;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Maps;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public class WriteableFileSystemTileServer : FileSystemTileServer, ITileStore, IWriteableTileServer
 	{

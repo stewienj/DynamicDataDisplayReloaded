@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.ScreenshotParametersControl"
+﻿<UserControl x:Class="DynamicDataDisplay.Common.Auxiliary.ScreenshotParametersControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Microsoft.Research.DynamicDataDisplay.Common.Auxiliary"
+             xmlns:local="clr-namespace:DynamicDataDisplay.Common.Auxiliary"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
   <DockPanel DataContext="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type UserControl}}, Path=ScreenshotParameters}">

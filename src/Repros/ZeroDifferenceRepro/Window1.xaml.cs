@@ -4,21 +4,21 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Common.Auxiliary;
 
 #if old
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.Charts;
 #else
 #if !old
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
+using DynamicDataDisplay.Charts.NewLine;
 #endif
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes.Numeric;
 #if !old
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Functional;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
+using DynamicDataDisplay.Charts.NewLine.Functional;
+using DynamicDataDisplay.Charts.NewLine.Filters;
 #endif
 #endif
 

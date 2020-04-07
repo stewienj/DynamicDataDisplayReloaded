@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes
+namespace DynamicDataDisplay.Charts.Axes
 {
 	/// <summary>
 	/// Represents a base class for all DynamicDataDisplay's axes.

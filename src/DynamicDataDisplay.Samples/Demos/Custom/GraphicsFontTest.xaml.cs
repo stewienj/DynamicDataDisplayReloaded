@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Utility;
+﻿using DynamicDataDisplay.Utility;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.Custom
+namespace DynamicDataDisplay.Samples.Demos.Custom
 {
 	/// <summary>
 	/// Interaction logic for GraphicsFontTest.xaml

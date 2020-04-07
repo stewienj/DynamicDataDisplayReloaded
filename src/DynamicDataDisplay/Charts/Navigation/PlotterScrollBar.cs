@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay.Charts;
 using System;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public abstract class PlotterScrollBar : IPlotterElement
 	{

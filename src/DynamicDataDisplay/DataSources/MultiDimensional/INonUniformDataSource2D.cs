@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.DataSources
+﻿namespace DynamicDataDisplay.DataSources
 {
 	public interface INonUniformDataSource2D<T> : IDataSource2D<T> where T : struct
 	{

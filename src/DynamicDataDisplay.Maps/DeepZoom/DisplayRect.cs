@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
+﻿namespace DynamicDataDisplay.Maps.DeepZoom
 {
 	/// <summary>
 	/// One or more of these elements are used to describe available pixels.

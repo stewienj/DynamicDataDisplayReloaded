@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.DataSources;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02.CurrencyExchange
+namespace DynamicDataDisplay.Samples.Demos.v02.CurrencyExchange
 {
 	/// <summary>
 	/// Interaction logic for CurrencyExchangeSample.xaml
@@ -51,7 +51,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02.CurrencyExchan
 		private static List<CurrencyInfo> LoadCurrencyRates(string fileName)
 		{
 			var assembly = Assembly.GetExecutingAssembly();
-			using (Stream resourceStream = assembly.GetManifestResourceStream("Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02.CurrencyExchange." + fileName))
+			using (Stream resourceStream = assembly.GetManifestResourceStream("DynamicDataDisplay.Samples.Demos.v02.CurrencyExchange." + fileName))
 			{
 				using (StreamReader reader = new StreamReader(resourceStream))
 				{

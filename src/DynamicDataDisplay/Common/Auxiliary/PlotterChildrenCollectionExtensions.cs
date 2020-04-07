@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System;
 using System.Linq;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public static class PlotterChildrenCollectionExtensions
 	{

@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts.NewLine.Filters;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections;
 using System.Collections.Specialized;

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Selectors;
+﻿using DynamicDataDisplay.Charts.Selectors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DynamicDataDisplay.Tests.D3

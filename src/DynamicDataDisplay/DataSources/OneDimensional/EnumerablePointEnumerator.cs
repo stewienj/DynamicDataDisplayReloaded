@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources
+namespace DynamicDataDisplay.DataSources
 {
 	/// <summary>This enumerator enumerates given enumerable object as sequence of points</summary>
 	/// <typeparam name="T">Type parameter of source IEnumerable</typeparam>

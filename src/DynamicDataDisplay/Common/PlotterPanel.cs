@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Common
+﻿namespace DynamicDataDisplay.Common
 {
 	public enum PlotterPanel
 	{

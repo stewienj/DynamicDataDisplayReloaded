@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.ComponentModel;
 using System.Windows;

@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Maps;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Maps;
+using DynamicDataDisplay.Maps.Servers.Network;
+using DynamicDataDisplay.ViewportRestrictions;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -16,7 +16,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	[ContentProperty("SourceTileServer")]
 	public partial class Map : Canvas, IPlotterElement

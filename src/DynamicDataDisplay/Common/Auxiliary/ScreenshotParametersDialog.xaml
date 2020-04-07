@@ -1,4 +1,4 @@
-﻿<Window x:Class="Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.ScreenshotParametersDialog"
+﻿<Window x:Class="DynamicDataDisplay.Common.Auxiliary.ScreenshotParametersDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Screenshot Parameters" Height="316" Width="380">

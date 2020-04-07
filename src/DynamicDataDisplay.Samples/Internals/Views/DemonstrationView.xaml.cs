@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views
+namespace DynamicDataDisplay.Samples.Internals.Views
 {
 	/// <summary>
 	/// Interaction logic for DemonstrationView.xaml

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Filters
+namespace DynamicDataDisplay.Charts.Filters
 {
 	public abstract class PointsFilterBase : IPointsFilter
 	{

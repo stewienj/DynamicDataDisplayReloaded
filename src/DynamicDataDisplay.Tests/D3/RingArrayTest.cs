@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DynamicDataDisplay.Test.D3

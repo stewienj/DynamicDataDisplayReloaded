@@ -4,12 +4,12 @@ using System;
 using System.Windows;
 
 #if false
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
+using DynamicDataDisplay.Charts.NewLine;
+using DynamicDataDisplay.Charts.NewLine.Filters;
 #endif
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
-using Microsoft.Research.DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes.Numeric;
+using DynamicDataDisplay;
 
 namespace NewLineTestApp
 {
@@ -53,7 +53,7 @@ namespace NewLineTestApp
 			//plotter.Children.Add(new LineChart { DataSource = new FunctionalDataSource { Function = x => Math.Atan(x) } });
 			//plotter.Children.Add(new LineChart { DataSource = new FunctionalDataSource { Function = x => Math.Tan(x) } });
 #else
-			var ds2 = new Microsoft.Research.DynamicDataDisplay.DataSources.RawDataSource(pts);
+			var ds2 = new DynamicDataDisplay.DataSources.RawDataSource(pts);
 			lineGraph = plotter.AddLineGraph(ds2);
 #endif
 
@@ -66,7 +66,7 @@ namespace NewLineTestApp
 			if (lineGraph == null)
 				return;
 
-			//((Microsoft.Research.DynamicDataDisplay.Filters.InclinationFilter)lineGraph.Filters[0]).CriticalAngle = e.NewValue;
+			//((DynamicDataDisplay.Filters.InclinationFilter)lineGraph.Filters[0]).CriticalAngle = e.NewValue;
 		}
 
 		private double Sinc(double x)

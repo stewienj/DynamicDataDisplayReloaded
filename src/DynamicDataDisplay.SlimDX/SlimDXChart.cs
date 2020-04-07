@@ -5,7 +5,7 @@ using System.Text;
 using SlimDX.Direct3D9;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.SlimDX
+namespace DynamicDataDisplay.SlimDX
 {
 	public abstract class SlimDXChart : FrameworkElement, IPlotterElement
 	{

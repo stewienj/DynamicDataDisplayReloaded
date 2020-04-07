@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	// TODO: probably optimize memory usage by replacing implicit creation of 
 	// all commands on first usage of this class - 

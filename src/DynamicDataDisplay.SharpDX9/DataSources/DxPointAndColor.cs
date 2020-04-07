@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.DataSources
+namespace DynamicDataDisplay.SharpDX9.DataSources
 {
 	// Probably don't need to set this explicitly but will just in case
 	public struct DxPointAndColor

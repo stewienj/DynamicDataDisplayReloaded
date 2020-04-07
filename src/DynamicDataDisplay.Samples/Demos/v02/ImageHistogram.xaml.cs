@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.DataSources;
 using Microsoft.Win32;
 using System;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02
+namespace DynamicDataDisplay.Samples.Demos.v02
 {
 	/// <summary>
 	/// Interaction logic for ImageHistogram.xaml

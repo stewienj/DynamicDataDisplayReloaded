@@ -1,6 +1,6 @@
 ﻿using DynamicDataDisplay.Markers;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Charts.Markers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.ObjectModel;

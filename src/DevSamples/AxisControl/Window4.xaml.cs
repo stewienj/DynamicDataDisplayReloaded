@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Shapes;
 using System;
 using System.Diagnostics;
 using System.Globalization;

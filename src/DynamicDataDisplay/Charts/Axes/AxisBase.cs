@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Charts.Axes;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents a base class for all axes in ChartPlotter.
@@ -67,8 +67,8 @@ namespace Microsoft.Research.DynamicDataDisplay.Charts
 		/// </value>
 		public bool IsDefaultAxis
 		{
-			get { return Microsoft.Research.DynamicDataDisplay.Plotter.GetIsDefaultAxis(this); }
-			set { Microsoft.Research.DynamicDataDisplay.Plotter.SetIsDefaultAxis(this, value); }
+			get { return DynamicDataDisplay.Plotter.GetIsDefaultAxis(this); }
+			set { DynamicDataDisplay.Plotter.SetIsDefaultAxis(this, value); }
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs e)

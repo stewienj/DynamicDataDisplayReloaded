@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
+namespace DynamicDataDisplay.Charts.Shapes
 {
 	/// <summary>
 	/// Represents a closed filled figure with points in Viewport coordinates.

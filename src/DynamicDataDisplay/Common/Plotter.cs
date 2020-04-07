@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common.UndoSystem;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
+﻿using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.UndoSystem;
+using DynamicDataDisplay.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -18,7 +18,7 @@ using System.Windows.Markup;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>Plotter is a base control for displaying various graphs. It provides
 	/// means to draw chart itself and side space for axes, annotations, etc</summary>

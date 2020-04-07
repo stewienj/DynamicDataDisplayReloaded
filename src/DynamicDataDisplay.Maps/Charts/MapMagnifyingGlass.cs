@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Maps.Servers.Network;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	[ContentProperty("NetworkTileServer")]
 	public class MapMagnifyingGlass : ContentGraph

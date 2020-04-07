@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
+namespace DynamicDataDisplay.Charts.Isolines
 {
 	public class AdditionalLinesRenderer : IsolineRenderer
 	{

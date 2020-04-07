@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
+﻿namespace DynamicDataDisplay.Charts.NewLine
 {
 	public static class LineChartExtensions
 	{

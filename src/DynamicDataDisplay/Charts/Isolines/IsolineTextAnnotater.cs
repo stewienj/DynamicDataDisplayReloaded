@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Isolines
+namespace DynamicDataDisplay.Charts.Isolines
 {
 	/// <summary>
 	/// IsolineTextAnnotater defines methods to annotate isolines - create a list of labels with its position.

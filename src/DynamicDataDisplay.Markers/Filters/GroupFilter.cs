@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters;
+﻿using DynamicDataDisplay.Charts.NewLine.Filters;
 
 namespace DynamicDataDisplay.Markers.Filters
 {

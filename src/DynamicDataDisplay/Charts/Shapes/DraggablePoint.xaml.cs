@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
+namespace DynamicDataDisplay.Charts.Shapes
 {
 
 	/// <summary>

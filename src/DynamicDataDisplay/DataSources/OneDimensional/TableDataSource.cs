@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources
+namespace DynamicDataDisplay.DataSources
 {
 	/// <summary>Data source that extracts sequence of points and their attributes from DataTable</summary>
 	public class TableDataSource : EnumerableDataSource<DataRow>

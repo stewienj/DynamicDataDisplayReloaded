@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX9
 {
 	public abstract class SharpDXChartElement : FrameworkElement, IPlotterElement
 	{

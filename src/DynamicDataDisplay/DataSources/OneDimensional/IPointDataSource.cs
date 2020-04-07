@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.DataSources
+namespace DynamicDataDisplay.DataSources
 {
 	/// <summary>Data source that returns sequence of 2D points.</summary>
 	public interface IPointDataSource

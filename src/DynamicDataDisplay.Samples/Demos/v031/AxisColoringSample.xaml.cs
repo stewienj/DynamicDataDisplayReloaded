@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.GenericLocational;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes.GenericLocational;
+using DynamicDataDisplay.Charts.Axes.Numeric;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v031
+namespace DynamicDataDisplay.Samples.Demos.v031
 {
 	/// <summary>
 	/// Interaction logic for AxisColoringSample.xaml

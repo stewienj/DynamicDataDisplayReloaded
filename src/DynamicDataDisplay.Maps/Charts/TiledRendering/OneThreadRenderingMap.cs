@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
+namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 {
 	[ContentProperty("VisualToRender")]
 	public class OneThreadRenderingMap : RenderingMap

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples
+namespace DynamicDataDisplay.Samples
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

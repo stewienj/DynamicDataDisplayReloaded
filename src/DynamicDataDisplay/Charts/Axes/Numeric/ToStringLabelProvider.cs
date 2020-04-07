@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+﻿using DynamicDataDisplay.Charts.Axes;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents a simple label provider for double ticks, which simply returns result of .ToString() method, called for rounded ticks.

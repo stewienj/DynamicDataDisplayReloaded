@@ -6,7 +6,7 @@
     <ProjectGuid>{F14D455C-E581-41FF-8C33-561C85A83449}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.Charts</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.Charts</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Coastline</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

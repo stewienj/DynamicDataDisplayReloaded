@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+﻿namespace DynamicDataDisplay.ViewportRestrictions
 {
 	/// <summary>
 	/// Represents a restriction which returns data rectangle, intersected with specified data domain.

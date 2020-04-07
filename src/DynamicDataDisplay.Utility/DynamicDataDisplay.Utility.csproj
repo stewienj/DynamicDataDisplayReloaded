@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A6671BEB-9B21-41BC-B47A-82210C38F544}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.Utility</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.Utility</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

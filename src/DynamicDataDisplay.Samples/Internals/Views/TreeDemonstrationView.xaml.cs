@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views
+namespace DynamicDataDisplay.Samples.Internals.Views
 {
 	/// <summary>
 	/// Interaction logic for FlatDemonstrationView.xaml

@@ -1,6 +1,6 @@
 ﻿using SharpDX.Direct3D9;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
+namespace DynamicDataDisplay.SharpDX9.Lines
 {
 	public class DxLineMultiColorShader : TransformShader
 	{

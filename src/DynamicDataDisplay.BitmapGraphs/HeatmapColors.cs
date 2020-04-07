@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	public class HeatmapColors
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.Custom
+namespace DynamicDataDisplay.Samples.Demos.Custom
 {
 	/// <summary>
 	/// Interaction logic for StatusByLatLonOnMapSample.xaml

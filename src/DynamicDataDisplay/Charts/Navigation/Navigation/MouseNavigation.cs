@@ -4,7 +4,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
     /// <summary>Provides common methods of mouse navigation around viewport</summary>
 	public class MouseNavigation : NavigationBase {

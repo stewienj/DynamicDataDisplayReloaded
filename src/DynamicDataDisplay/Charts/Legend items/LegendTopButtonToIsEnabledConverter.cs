@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using DynamicDataDisplay.Converters;
 using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public sealed class LegendTopButtonToIsEnabledConverter : GenericValueConverter<double>
 	{

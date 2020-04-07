@@ -1,7 +1,7 @@
 ﻿using DynamicDataDisplay.Markers.MarkerGenerators;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Converters;
-using Microsoft.Research.DynamicDataDisplay.MarkupExtensions;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Converters;
+using DynamicDataDisplay.MarkupExtensions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;

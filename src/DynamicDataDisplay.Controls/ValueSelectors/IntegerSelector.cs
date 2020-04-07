@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes;
 using System;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Controls
+namespace DynamicDataDisplay.Controls
 {
 	/// <summary>
 	/// Represents a control for precise selecting <see cref="T:System.Int32"/> values.

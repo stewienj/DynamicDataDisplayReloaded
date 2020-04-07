@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Common.UndoSystem
+﻿namespace DynamicDataDisplay.Common.UndoSystem
 {
 	public abstract class UndoAction
 	{

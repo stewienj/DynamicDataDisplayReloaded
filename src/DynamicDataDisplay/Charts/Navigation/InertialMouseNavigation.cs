@@ -4,14 +4,14 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
-//using Microsoft.Research.DynamicDataDisplay.Navigation;
+//using DynamicDataDisplay.Navigation;
 //using System.Windows.Input;
 //using System.Windows;
 //using System.Windows.Media.Animation;
 //using System.Windows.Media;
 //using System.Diagnostics;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+//namespace DynamicDataDisplay.Charts.Navigation
 //{
 //    [Obsolete("Unready because Viewport became non-visual and no longer has BeginAnimation method.", true)]
 //    public class InertialMouseNavigation : MouseNavigation

@@ -5,12 +5,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
 using System.Windows.Markup;
 using System.ComponentModel;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>Plotter is a base control for displaying various graphs. It provides
 	/// mainCanvas to draw graph itself and side space for axes, annotations, etc</summary>

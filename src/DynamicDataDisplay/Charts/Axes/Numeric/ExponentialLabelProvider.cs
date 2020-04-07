@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+﻿using DynamicDataDisplay.Charts.Axes;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents an axis label provider for double ticks, generating labels with numbers in exponential form when it is appropriate.

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+﻿using DynamicDataDisplay.Charts.Navigation;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary.DataSearch
+namespace DynamicDataDisplay.Common.Auxiliary.DataSearch
 {
 	/// <summary>
 	/// Keeps the cursor in the current X position, finds there nearest values either side of the cursor in the X plane only,

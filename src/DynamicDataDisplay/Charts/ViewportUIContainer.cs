@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	[ContentProperty("Content")]
 	public class ViewportUIContainer : DependencyObject, IPlotterElement

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Navigation
+namespace DynamicDataDisplay.Navigation
 {
 	// todo проверить, как происходит работа когда мышь не над плоттером, а над его ребенком
 	// todo если все ОК, то перевести все маус навигейшн контролы на этот класс как базовый

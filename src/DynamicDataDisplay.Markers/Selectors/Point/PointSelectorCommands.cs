@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Markers.Strings;
+﻿using DynamicDataDisplay.Markers.Strings;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
+namespace DynamicDataDisplay.Charts.Selectors
 {
 	public static class PointSelectorCommands
 	{

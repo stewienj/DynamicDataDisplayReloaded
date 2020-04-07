@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.DataSources;
 using System;
 using System.Linq;
 using System.Windows;

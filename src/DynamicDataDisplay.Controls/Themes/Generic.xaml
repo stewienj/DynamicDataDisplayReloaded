@@ -1,8 +1,8 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Microsoft.Research.DynamicDataDisplay.Controls"
-    xmlns:d3="clr-namespace:Microsoft.Research.DynamicDataDisplay.Charts.Shapes;assembly=DynamicDataDisplay">
+    xmlns:local="clr-namespace:DynamicDataDisplay.Controls"
+    xmlns:d3="clr-namespace:DynamicDataDisplay.Charts.Shapes;assembly=DynamicDataDisplay">
 
     <Style TargetType="{x:Type d3:TemplateableDraggablePoint}" >
         <Setter Property="VerticalContentAlignment" Value="Top"/>

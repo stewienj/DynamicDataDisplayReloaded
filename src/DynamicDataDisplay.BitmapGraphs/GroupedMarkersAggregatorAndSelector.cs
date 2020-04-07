@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	public class GroupedMarkersAggregatorAndSelector : PointsAggregatorAndSelector
 	{

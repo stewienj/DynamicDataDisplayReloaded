@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
 using System;
 using System.Windows;
 using System.Windows.Controls;

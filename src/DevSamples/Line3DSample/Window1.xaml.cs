@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Research.DynamicDataDisplay.DataSources.MultiDimensional;
+using DynamicDataDisplay.DataSources.MultiDimensional;
 
 namespace Line3DSample
 {

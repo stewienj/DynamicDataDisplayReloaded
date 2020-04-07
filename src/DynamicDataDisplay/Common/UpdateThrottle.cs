@@ -2,7 +2,7 @@
 using System.Timers;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	public class UpdateThrottle
 	{

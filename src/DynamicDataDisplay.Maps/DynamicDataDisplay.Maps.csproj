@@ -6,7 +6,7 @@
     <ProjectGuid>{EB04A4CD-DDE6-49EB-8FB6-39B35482D792}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.Maps</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.Maps</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Maps</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

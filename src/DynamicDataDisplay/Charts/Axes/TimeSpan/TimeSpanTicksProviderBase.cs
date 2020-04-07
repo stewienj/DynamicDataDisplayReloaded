@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public abstract class TimeSpanTicksProviderBase : TimePeriodTicksProvider<TimeSpan>
 	{

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Controls;
+﻿using DynamicDataDisplay.Controls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DynamicDataDisplay.Test

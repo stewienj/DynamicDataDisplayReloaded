@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.Markers.MarkerGenerators;
-using Microsoft.Research.DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;

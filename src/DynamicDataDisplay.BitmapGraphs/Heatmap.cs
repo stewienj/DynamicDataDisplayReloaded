@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Utility;
+﻿using DynamicDataDisplay.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	public class Heatmap
 	{

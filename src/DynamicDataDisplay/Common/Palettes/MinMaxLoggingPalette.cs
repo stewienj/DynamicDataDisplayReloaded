@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
+namespace DynamicDataDisplay.Common.Palettes
 {
 	/// <summary>
 	/// Represents a palette that calculates minimal and maximal values of interpolation coefficient and every 100000 calls writes these values 

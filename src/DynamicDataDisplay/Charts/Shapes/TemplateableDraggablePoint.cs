@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
+namespace DynamicDataDisplay.Charts.Shapes
 {
 	public class TemplateableDraggablePoint : DraggablePoint
 	{

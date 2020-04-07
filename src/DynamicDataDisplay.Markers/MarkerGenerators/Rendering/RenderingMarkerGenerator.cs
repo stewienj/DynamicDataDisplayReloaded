@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Markers.MarkerGenerators.Rendering
+namespace DynamicDataDisplay.Markers.MarkerGenerators.Rendering
 {
 	[ContentProperty("RendererTemplate")]
 	public class RenderingMarkerGenerator : MarkerGenerator

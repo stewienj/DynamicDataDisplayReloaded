@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers
+namespace DynamicDataDisplay.Maps.Servers
 {
 	public abstract class ResourcesTileServer : ITileServer
 	{
-		private const string prefix = "Microsoft.Research.DynamicDataDisplay.Maps.Tiles";
+		private const string prefix = "DynamicDataDisplay.Maps.Tiles";
 
 		private static readonly Assembly currentAssembly;
 		private static readonly string[] resourceNames;

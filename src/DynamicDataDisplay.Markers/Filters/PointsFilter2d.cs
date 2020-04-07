@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
+namespace DynamicDataDisplay.Charts.NewLine.Filters
 {
 	public abstract class PointsFilter2d : DependencyObject, IDisposable
 	{

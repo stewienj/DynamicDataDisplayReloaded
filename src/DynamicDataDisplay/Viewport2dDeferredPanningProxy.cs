@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public sealed class Viewport2dDeferredPanningProxy : Viewport2D
 	{

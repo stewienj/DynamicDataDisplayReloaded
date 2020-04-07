@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v04
+namespace DynamicDataDisplay.Samples.Demos.v04
 {
 	/// <summary>
 	/// Interaction logic for EditableShapesPage.xaml

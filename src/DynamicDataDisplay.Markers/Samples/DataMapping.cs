@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes;
+﻿using DynamicDataDisplay.Charts.Axes;
 
 namespace DynamicDataDisplay.Markers.Samples
 {

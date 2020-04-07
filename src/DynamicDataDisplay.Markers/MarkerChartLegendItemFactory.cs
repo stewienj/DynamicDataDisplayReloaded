@@ -2,8 +2,8 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
-//using Microsoft.Research.DynamicDataDisplay.Charts;
-//using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+//using DynamicDataDisplay.Charts;
+//using DynamicDataDisplay.Charts.Markers;
 
 //namespace DynamicDataDisplay.Markers
 //{

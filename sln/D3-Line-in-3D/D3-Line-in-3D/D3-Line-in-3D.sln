@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay", "..\..\..\src\DynamicDataDisplay\DynamicDataDisplay.csproj", "{ECD37682-DF7E-409F-912D-0965634556B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Research.Visualization3D", "..\..\..\src\Microsoft.Research.Visualization3D\Microsoft.Research.Visualization3D.csproj", "{849033AA-0765-49F8-B60D-D85CE5CD32EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Visualization3D", "..\..\..\src\DynamicDataDisplay.Visualization3D\DynamicDataDisplay.Visualization3D.csproj", "{849033AA-0765-49F8-B60D-D85CE5CD32EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LineSampleDraft", "..\..\..\src\D3-Line-in-3D\LineSample\LineSampleDraft.csproj", "{E7854E79-0CB6-4BF9-83C2-12B314E9C8EA}"
 EndProject

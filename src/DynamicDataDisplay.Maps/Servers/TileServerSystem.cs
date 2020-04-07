@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Maps.Servers;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public sealed class TileServerSystem : DispatcherObject, ITileSystem
 	{

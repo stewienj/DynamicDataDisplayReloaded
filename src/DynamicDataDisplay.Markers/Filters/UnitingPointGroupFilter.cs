@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Common.Auxiliary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;

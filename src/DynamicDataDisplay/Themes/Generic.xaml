@@ -1,10 +1,10 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:charts="clr-namespace:Microsoft.Research.DynamicDataDisplay.Charts"
-	xmlns:shapes="clr-namespace:Microsoft.Research.DynamicDataDisplay.Charts.Shapes"
-	xmlns:navigation="clr-namespace:Microsoft.Research.DynamicDataDisplay.Charts.Navigation"
-	xmlns:markup="clr-namespace:Microsoft.Research.DynamicDataDisplay.MarkupExtensions">
+    xmlns:charts="clr-namespace:DynamicDataDisplay.Charts"
+	xmlns:shapes="clr-namespace:DynamicDataDisplay.Charts.Shapes"
+	xmlns:navigation="clr-namespace:DynamicDataDisplay.Charts.Navigation"
+	xmlns:markup="clr-namespace:DynamicDataDisplay.MarkupExtensions">
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="/DynamicDataDisplay;component/Charts/Legend items/LegendResources.xaml"/>

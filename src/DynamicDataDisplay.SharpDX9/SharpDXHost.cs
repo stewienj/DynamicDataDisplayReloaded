@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -8,7 +8,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX9
 {
 	public class SharpDXHost : FrameworkElement, IPlotterElement
 	{

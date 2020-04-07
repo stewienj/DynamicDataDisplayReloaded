@@ -1,5 +1,5 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Navigation;
+﻿using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.Navigation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -24,7 +24,7 @@ namespace InertiaSample
 		{
 			plotter.Children.Remove(plotter.Children.OfType<MouseNavigation>().FirstOrDefault());
 			//plotter.Children.Remove(plotter.Children.OfType<DefaultContextMenu>().First());
-			//plotter.Children.Remove(plotter.Children.OfType<Microsoft.Research.DynamicDataDisplay.Navigation.KeyboardNavigation>().First());
+			//plotter.Children.Remove(plotter.Children.OfType<DynamicDataDisplay.Navigation.KeyboardNavigation>().First());
 
 			//var inertialNav = new InertialMouseNavigation();
 			var inertialNav = new PhysicalNavigation();

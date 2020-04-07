@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
+namespace DynamicDataDisplay.Charts.Axes.Numeric
 {
 	/// <summary>
 	/// Represents a ticks provider for logarithmically transfomed axis - returns ticks which are a power of specified logarithm base.

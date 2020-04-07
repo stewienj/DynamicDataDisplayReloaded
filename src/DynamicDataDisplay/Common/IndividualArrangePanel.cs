@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	/// <summary>
 	/// Represents a custom Panel, which performs Arrange of its children independently, and does not remeasure or rearrange itself or all children when one child is

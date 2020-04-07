@@ -1,6 +1,6 @@
 ﻿using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.MarkupExtensions
+namespace DynamicDataDisplay.MarkupExtensions
 {
 	public class TemplateBinding : Binding
 	{

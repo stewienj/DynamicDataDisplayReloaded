@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.PointMarkers;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
     public class MarkerPointsGraph : PointsGraphBase
     {

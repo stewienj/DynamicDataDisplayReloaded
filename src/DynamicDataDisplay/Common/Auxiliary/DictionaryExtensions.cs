@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Isolines;
+﻿using DynamicDataDisplay.Charts.Isolines;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Auxiliary
+namespace DynamicDataDisplay.Common.Auxiliary
 {
 	public static class DictionaryExtensions
 	{

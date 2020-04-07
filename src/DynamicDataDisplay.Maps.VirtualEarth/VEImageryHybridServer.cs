@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Maps
+﻿namespace DynamicDataDisplay.Maps
 {
 	/// <summary>
 	/// Represents a VirtualEarth Imagery Service Hybrid tile server.

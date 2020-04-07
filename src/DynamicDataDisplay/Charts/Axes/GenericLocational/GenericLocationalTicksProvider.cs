@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common.DataSearch;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.DataSearch;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.GenericLocational
+namespace DynamicDataDisplay.Charts.Axes.GenericLocational
 {
 	public class GenericLocationalTicksProvider<TCollection, TAxis> : ITicksProvider<TAxis> where TAxis : IComparable<TAxis>
 	{

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX99.Properties {
+namespace DynamicDataDisplay.SharpDX99.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

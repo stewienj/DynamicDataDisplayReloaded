@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.GenericLocational;
-using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Axes.GenericLocational;
+using DynamicDataDisplay.Charts.Axes.Numeric;
 using System;
 using System.Collections.Generic;
 using System.Windows;

@@ -79,9 +79,9 @@
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
       <Name>DynamicDataDisplay</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.Research.Visualization3D\Microsoft.Research.Visualization3D.csproj">
+    <ProjectReference Include="..\..\DynamicDataDisplay.Visualization3D\DynamicDataDisplay.Visualization3D.csproj">
       <Project>{849033AA-0765-49F8-B60D-D85CE5CD32EB}</Project>
-      <Name>Microsoft.Research.Visualization3D</Name>
+      <Name>DynamicDataDisplay.Visualization3D</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

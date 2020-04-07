@@ -6,7 +6,7 @@
 //using System.Collections;
 //using System.Collections.Specialized;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
+//namespace DynamicDataDisplay.Charts.NewLine
 //{
 //    public class EnumerableDataSource<T> : IPointDataSource, INotifyCollectionChanged
 //    {

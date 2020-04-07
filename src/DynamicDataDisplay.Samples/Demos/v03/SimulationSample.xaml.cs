@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.DataSources;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -6,7 +6,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03
+namespace DynamicDataDisplay.Samples.Demos.v03
 {
 	/// <summary>
 	/// Interaction logic for SimulationSample.xaml
@@ -30,7 +30,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03
 			CultureInfo culture = CultureInfo.InvariantCulture;
 			Assembly executingAssembly = Assembly.GetExecutingAssembly();
 			// load spim-generated data from embedded resource file
-			const string spimDataName = "Microsoft.Research.DynamicDataDisplay.Samples.Demos.v03.Repressilator.txt";
+			const string spimDataName = "DynamicDataDisplay.Samples.Demos.v03.Repressilator.txt";
 			using (Stream spimStream = executingAssembly.GetManifestResourceStream(spimDataName))
 			{
 				using (StreamReader r = new StreamReader(spimStream))

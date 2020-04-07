@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.GenericLocational
+namespace DynamicDataDisplay.Charts.Axes.GenericLocational
 {
 	public class GenericLocationalLabelProvider<TItem, TAxis> : LabelProviderBase<TAxis>
 	{

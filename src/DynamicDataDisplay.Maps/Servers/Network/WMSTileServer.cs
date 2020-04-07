@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using Wms.Client;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network
+namespace DynamicDataDisplay.Maps.Servers.Network
 {
 	public class WMSTileServer : NetworkTileServer
 	{

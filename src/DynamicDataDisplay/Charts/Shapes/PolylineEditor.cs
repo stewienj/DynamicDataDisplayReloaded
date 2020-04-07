@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Markup;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
+namespace DynamicDataDisplay.Charts.Shapes
 {
 	/// <summary>
 	/// Represents an editor of points' position of ViewportPolyline or ViewportPolygon.

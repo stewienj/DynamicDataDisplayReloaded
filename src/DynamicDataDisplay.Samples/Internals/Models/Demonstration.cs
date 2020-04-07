@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Documents;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models
+namespace DynamicDataDisplay.Samples.Internals.Models
 {
 	public class Demonstration : DependencyObject
 	{

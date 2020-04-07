@@ -1,7 +1,7 @@
 ﻿#define MULTIPLE
 
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Charts.Filters;
 using System;
 using System.Collections.Generic;
 using System.Windows;

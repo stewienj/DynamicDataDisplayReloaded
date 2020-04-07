@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.MarkupExtensions
+namespace DynamicDataDisplay.MarkupExtensions
 {
 	/// <summary>
 	/// Represents a markup extension, which allows to get an access to application resource files.

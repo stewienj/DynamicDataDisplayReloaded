@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.ViewportRestrictions
+namespace DynamicDataDisplay.ViewportRestrictions
 {
 	public class DataHeightRestriction : ViewportRestriction, ISupportAttachToViewport
 	{

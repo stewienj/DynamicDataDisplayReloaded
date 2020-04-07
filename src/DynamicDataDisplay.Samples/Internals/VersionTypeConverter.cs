@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models;
+﻿using DynamicDataDisplay.Samples.Internals.Models;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
+namespace DynamicDataDisplay.Samples.Internals
 {
 	public class VersionTypeConverter : TypeConverter
 	{

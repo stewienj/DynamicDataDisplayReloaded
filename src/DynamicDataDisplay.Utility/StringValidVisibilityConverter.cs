@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Utility
+namespace DynamicDataDisplay.Utility
 {
 	[ValueConversion(typeof(string), typeof(Visibility))]
 	public class StringValidVisibilityConverter : IValueConverter

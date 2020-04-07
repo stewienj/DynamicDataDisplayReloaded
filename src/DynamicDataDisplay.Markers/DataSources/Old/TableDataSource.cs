@@ -6,7 +6,7 @@
 //using System.Windows;
 //using System.Collections;
 
-//namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
+//namespace DynamicDataDisplay.Charts.NewLine
 //{
 //    public class TableDataSource : IPointDataSource
 //    {

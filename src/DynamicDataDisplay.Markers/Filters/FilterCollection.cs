@@ -1,11 +1,11 @@
 ﻿using DynamicDataDisplay.Markers.DataSources;
-using Microsoft.Research.DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
+namespace DynamicDataDisplay.Charts.NewLine.Filters
 {
 	public sealed class FilterCollection : D3Collection<PointsFilter2d>, IDisposable
 	{

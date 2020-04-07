@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps
+namespace DynamicDataDisplay.Maps
 {
 	//---------------------------------------------------------------------------
 	public class MapChartViewModel : INotifyPropertyChanged
@@ -79,7 +79,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Maps
 		}
 
 		//-------------------------------------------------------------------------
-		private void TileSystem_ModeChanged(object sender, Microsoft.Research.DynamicDataDisplay.Maps.Servers.ModeChangedEventArgs e)
+		private void TileSystem_ModeChanged(object sender, DynamicDataDisplay.Maps.Servers.ModeChangedEventArgs e)
 		{
 			MapCacheMode = e.Mode;
 		}

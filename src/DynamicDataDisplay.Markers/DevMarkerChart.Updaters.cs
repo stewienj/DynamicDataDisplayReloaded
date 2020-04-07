@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
+namespace DynamicDataDisplay.Charts.Markers
 {
 	public partial class DevMarkerChart
 	{

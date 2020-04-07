@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.Palettes
+namespace DynamicDataDisplay.Common.Palettes
 {
 	/// <summary>
 	/// Contains some predefined linear palettes.

@@ -2,10 +2,10 @@
 using DynamicDataDisplay.Markers.DataSources;
 using DynamicDataDisplay.Markers.DataSources.ValueConverters;
 using DynamicDataDisplay.Markers.DataSources.ValueConvertersFactories;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.Charts.NewLine;
+using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -15,7 +15,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Markers
+namespace DynamicDataDisplay.Charts.Markers
 {
 	[ContentProperty("MarkerBuilder")]
 	public partial class DevMarkerChart : PointChartBase

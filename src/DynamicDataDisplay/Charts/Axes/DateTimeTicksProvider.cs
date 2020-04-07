@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Globalization;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.Auxiliary;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewAxis
+namespace DynamicDataDisplay.Charts.NewAxis
 {
 	public class DateTimeTicksProvider : DateTimeTicksProviderBase
 	{

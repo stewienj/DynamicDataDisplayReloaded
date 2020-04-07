@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common.UndoSystem
+namespace DynamicDataDisplay.Common.UndoSystem
 {
 	public sealed class LambdaUndoAction : UndoAction
 	{

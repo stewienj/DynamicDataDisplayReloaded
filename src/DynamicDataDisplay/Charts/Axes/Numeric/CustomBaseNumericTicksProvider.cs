@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric
+namespace DynamicDataDisplay.Charts.Axes.Numeric
 {
 	[ContentProperty("TicksProvider")]
 	public class CustomBaseNumericTicksProvider : ITicksProvider<double>

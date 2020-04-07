@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
+namespace DynamicDataDisplay.Charts.NewLine.Filters
 {
 	public class FrequencyScreenXFilter : PointsFilter2d
 	{

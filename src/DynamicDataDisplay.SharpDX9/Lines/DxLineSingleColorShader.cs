@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.SharpDX9.DataSources;
+﻿using DynamicDataDisplay.SharpDX9.DataSources;
 using SharpDX;
 using SharpDX.Direct3D9;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9.Lines
+namespace DynamicDataDisplay.SharpDX9.Lines
 {
 	public class DxLineSingleColorShader : TransformShader
 	{

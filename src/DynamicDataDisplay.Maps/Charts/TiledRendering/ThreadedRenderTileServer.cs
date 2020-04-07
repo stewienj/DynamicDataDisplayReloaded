@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
+namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 {
 	public class ThreadedRenderTileServer : SourceTileServer, IRenderingTileServer
 	{

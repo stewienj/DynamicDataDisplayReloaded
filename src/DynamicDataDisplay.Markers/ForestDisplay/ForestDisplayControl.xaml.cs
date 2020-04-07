@@ -1,7 +1,7 @@
 ﻿using DynamicDataDisplay.Markers.ForestDisplay;
 using DynamicDataDisplay.Markers.MarkerGenerators;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+using DynamicDataDisplay;
+using DynamicDataDisplay.ViewportRestrictions;
 using System;
 using System.Collections.Generic;
 using System.Windows.Controls;

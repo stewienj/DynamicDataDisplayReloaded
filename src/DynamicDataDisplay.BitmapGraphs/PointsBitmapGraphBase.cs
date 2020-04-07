@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Utility;
+﻿using DynamicDataDisplay.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	public abstract class PointsBitmapGraphBase : BitmapBasedGraph
 	{

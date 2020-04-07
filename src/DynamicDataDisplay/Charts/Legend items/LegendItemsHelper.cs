@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Legend_items
+namespace DynamicDataDisplay.Charts.Legend_items
 {
 	public static class LegendItemsHelper
 	{

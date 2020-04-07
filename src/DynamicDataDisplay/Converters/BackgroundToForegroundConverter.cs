@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Converters
+namespace DynamicDataDisplay.Converters
 {
 	public class BackgroundToForegroundConverter : GenericValueConverter<SolidColorBrush>
 	{

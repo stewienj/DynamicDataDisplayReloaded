@@ -1,6 +1,6 @@
 ﻿using SharpDX;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX9
 {
 	public struct VertexPosition4Color
 	{

@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
-using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
+﻿using DynamicDataDisplay.Charts.Markers;
+using DynamicDataDisplay.Charts.Shapes;
 using System.Linq;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Selectors
+namespace DynamicDataDisplay.Charts.Selectors
 {
 	public class SinglePointSelector : PointSelector
 	{

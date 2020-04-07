@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps.Network
+﻿namespace DynamicDataDisplay.Charts.Maps.Network
 {
 	/// <summary>
 	/// Sample network tile server, which downloads tile images from OpenStreetMap server.

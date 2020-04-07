@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+﻿using DynamicDataDisplay.ViewportRestrictions;
 
-namespace Microsoft.Research.DynamicDataDisplay.Controls
+namespace DynamicDataDisplay.Controls
 {
 	internal sealed class FixedXRestriction : ViewportRestriction
 	{

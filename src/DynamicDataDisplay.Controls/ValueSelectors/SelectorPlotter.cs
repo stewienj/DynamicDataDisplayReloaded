@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Shapes;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Shapes;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Controls
+namespace DynamicDataDisplay.Controls
 {
 	/// <summary>
 	/// Interaction logic for SelectionPlotter.xaml

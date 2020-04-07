@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Navigation
+namespace DynamicDataDisplay.Charts.Navigation
 {
 	[Obsolete("Working wrongly.", true)]
 	public sealed class VerticalScrollBar : PlotterScrollBar

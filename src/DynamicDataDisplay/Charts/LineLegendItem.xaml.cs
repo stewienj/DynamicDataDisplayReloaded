@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay
+﻿namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Interaction logic for LineLegendItem.xaml

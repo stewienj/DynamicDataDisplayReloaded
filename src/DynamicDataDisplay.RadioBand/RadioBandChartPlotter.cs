@@ -1,9 +1,9 @@
 ﻿using DynamicDataDisplay.RadioBand.ConfigLoader;
-using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.ViewportRestrictions;
+using DynamicDataDisplay;
+using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Navigation;
+using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.ViewportRestrictions;
 using Microsoft.Win32;
 using System;
 using System.Collections;

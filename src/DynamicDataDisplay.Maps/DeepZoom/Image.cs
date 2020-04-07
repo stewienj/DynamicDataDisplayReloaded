@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.DeepZoom
+namespace DynamicDataDisplay.Maps.DeepZoom
 {
 	/// <summary>
 	/// If you are defining a single image (versus a collection of images) for Deep Zoom, this element is the root element of the schema.

@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
+﻿using DynamicDataDisplay.Charts.Maps;
 using System;
 using System.Text;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Servers.FileServers
+namespace DynamicDataDisplay.Maps.Servers.FileServers
 {
 	public sealed class VEPathProvider : TilePathProvider
 	{

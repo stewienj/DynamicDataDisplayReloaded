@@ -1,10 +1,10 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Maps.Servers;
+﻿using DynamicDataDisplay.Maps.Servers;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public partial class Map
 	{

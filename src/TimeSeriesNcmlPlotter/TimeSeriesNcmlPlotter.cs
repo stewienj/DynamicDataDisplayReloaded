@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
-using Microsoft.Research.DynamicDataDisplay;
+using DynamicDataDisplay;
 
 public class TimeSeriesNcmlPlotter
 {

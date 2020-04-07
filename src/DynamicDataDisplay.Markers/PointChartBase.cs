@@ -1,7 +1,7 @@
 ﻿using DynamicDataDisplay.Markers.DataSources;
 using DynamicDataDisplay.Markers.DataSources.DataSourceFactories;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine
+namespace DynamicDataDisplay.Charts.NewLine
 {
 	public abstract class PointChartBase : ContentControl, IPlotterElement
 	{

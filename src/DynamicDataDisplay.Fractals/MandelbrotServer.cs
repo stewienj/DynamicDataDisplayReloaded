@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Common.Palettes;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
-namespace Microsoft.Research.DynamicDataDisplay.Fractals
+namespace DynamicDataDisplay.Fractals
 {
 	public class MandelbrotServer : SourceTileServer
 	{

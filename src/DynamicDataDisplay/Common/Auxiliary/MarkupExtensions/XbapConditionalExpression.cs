@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.MarkupExtensions
+namespace DynamicDataDisplay.MarkupExtensions
 {
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public class XbapConditionalExpression : MarkupExtension

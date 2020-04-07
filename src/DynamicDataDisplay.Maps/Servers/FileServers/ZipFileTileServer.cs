@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Maps.Servers.FileServers;
+﻿using DynamicDataDisplay.Maps.Servers.FileServers;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -6,7 +6,7 @@ using System.IO.Packaging;
 using System.Net.Mime;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+namespace DynamicDataDisplay.Charts.Maps
 {
 	public class ZipFileTileServer : ReadonlyTileServer, IDisposable, ISupportInitialize
 	{

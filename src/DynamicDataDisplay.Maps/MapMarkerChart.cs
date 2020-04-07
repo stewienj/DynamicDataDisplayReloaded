@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Markers;
+﻿using DynamicDataDisplay.Charts.Markers;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps
+namespace DynamicDataDisplay.Maps
 {
 	/// <summary>
 	/// This is for future use

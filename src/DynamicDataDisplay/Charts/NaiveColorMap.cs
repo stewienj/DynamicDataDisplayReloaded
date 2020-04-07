@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.Palettes;
 using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	public class NaiveColorMap
 	{

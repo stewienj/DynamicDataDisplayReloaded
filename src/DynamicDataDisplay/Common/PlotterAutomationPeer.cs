@@ -1,6 +1,6 @@
 ﻿using System.Windows.Automation.Peers;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	public class PlotterAutomationPeer : FrameworkElementAutomationPeer
 	{

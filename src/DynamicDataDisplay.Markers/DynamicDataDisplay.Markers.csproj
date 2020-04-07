@@ -6,7 +6,7 @@
     <ProjectGuid>{A5EB794C-7C62-4A0C-A441-ACF7D4074C5D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.Markers</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.Markers</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Markers</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

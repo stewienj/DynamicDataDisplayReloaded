@@ -6,7 +6,7 @@
     <ProjectGuid>{8AEE9DA5-83F5-401F-8C58-9BAC660A0E6E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Research.DynamicDataDisplay.Controls</RootNamespace>
+    <RootNamespace>DynamicDataDisplay.Controls</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

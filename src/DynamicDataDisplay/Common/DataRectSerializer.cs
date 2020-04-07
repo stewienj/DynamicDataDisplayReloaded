@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	public sealed class DataRectSerializer : ValueSerializer
 	{

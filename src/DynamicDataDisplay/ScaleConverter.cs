@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Converters;
+﻿using DynamicDataDisplay.Converters;
 using System;
 using System.Globalization;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public sealed class ScaleConverter : GenericValueConverter<DataRect>
 	{

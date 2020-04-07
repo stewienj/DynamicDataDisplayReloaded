@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.DataSources;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02.StockExchange
+namespace DynamicDataDisplay.Samples.Demos.v02.StockExchange
 {
 	/// <summary>
 	/// Interaction logic for Page1.xaml
@@ -54,7 +54,7 @@ namespace Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02.StockExchange
 		private static List<StockInfo> LoadStockRates(string fileName)
 		{
 			var assembly = Assembly.GetExecutingAssembly();
-			using (Stream resourceStream = assembly.GetManifestResourceStream("Microsoft.Research.DynamicDataDisplay.Samples.Demos.v02.StockExchange." + fileName))
+			using (Stream resourceStream = assembly.GetManifestResourceStream("DynamicDataDisplay.Samples.Demos.v02.StockExchange." + fileName))
 			{
 				using (StreamReader reader = new StreamReader(resourceStream))
 				{

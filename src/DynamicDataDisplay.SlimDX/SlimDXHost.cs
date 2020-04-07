@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Interop;
 using SlimDX;
 using System.Diagnostics;
-using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.Auxiliary;
 
-namespace Microsoft.Research.DynamicDataDisplay.SlimDX
+namespace DynamicDataDisplay.SlimDX
 {
 	public class SlimDXHost : FrameworkElement, IPlotterElement
 	{

@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay;
-using Microsoft.Research.DynamicDataDisplay.Charts.NewLine;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Charts.NewLine;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.Shapes
+namespace DynamicDataDisplay.Charts.Shapes
 {
 	public class ViewportPolyBezierCurve : ViewportPolylineBase
 	{

@@ -1,4 +1,4 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
+﻿using DynamicDataDisplay.Common.Palettes;
 using System.Windows;
 
 namespace PaletteControlSampleApp

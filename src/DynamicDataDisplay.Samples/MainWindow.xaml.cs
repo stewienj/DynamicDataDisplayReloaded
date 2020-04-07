@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Interaction logic for Window1.xaml

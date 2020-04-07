@@ -1,7 +1,7 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Maps;
-using Microsoft.Research.DynamicDataDisplay.Common;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers;
-using Microsoft.Research.DynamicDataDisplay.Maps.Servers.Network;
+﻿using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Common;
+using DynamicDataDisplay.Maps.Servers;
+using DynamicDataDisplay.Maps.Servers.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts.TiledRendering
+namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 {
 	/// <summary>
 	/// Represents a sort of map that renders contents of some visual element to tiles and the displays this tile pyramid.

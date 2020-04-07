@@ -1,13 +1,13 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
-using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Common.Palettes;
+using DynamicDataDisplay.DataSources;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
 using System.Windows;
-using DataSource = Microsoft.Research.DynamicDataDisplay.DataSources.IDataSource2D<double>;
+using DataSource = DynamicDataDisplay.DataSources.IDataSource2D<double>;
 
-namespace Microsoft.Research.DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX9
 {
 	public class SharpDXColorMap : SharpDXChartElement
 	{

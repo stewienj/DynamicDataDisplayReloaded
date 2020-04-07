@@ -1,6 +1,6 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Axes.Numeric;
+﻿using DynamicDataDisplay.Charts.Axes.Numeric;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Represents a numeric axis with values of <see cref="double"/> type.

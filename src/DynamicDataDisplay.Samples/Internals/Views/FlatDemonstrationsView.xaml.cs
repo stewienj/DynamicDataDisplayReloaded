@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Samples.Internals.Models;
-using Microsoft.Research.DynamicDataDisplay.Samples.Internals.ViewModels;
+﻿using DynamicDataDisplay.Samples.Internals.Models;
+using DynamicDataDisplay.Samples.Internals.ViewModels;
 using System.Linq;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.Views
+namespace DynamicDataDisplay.Samples.Internals.Views
 {
 	/// <summary>
 	/// Interaction logic for FlatDemonstrationsView.xaml

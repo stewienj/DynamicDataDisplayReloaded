@@ -1,9 +1,9 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Auxiliary;
+﻿using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Microsoft.Research.DynamicDataDisplay.Charts.NewLine.Filters
+namespace DynamicDataDisplay.Charts.NewLine.Filters
 {
 	public class InclinationFilter2 : PointsFilter2d
 	{

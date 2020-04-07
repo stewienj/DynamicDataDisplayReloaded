@@ -1,12 +1,12 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts;
-using Microsoft.Research.DynamicDataDisplay.Charts.Filters;
-using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+﻿using DynamicDataDisplay.Charts;
+using DynamicDataDisplay.Charts.Filters;
+using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.PointMarkers;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>
 	/// Extensions for <see cref="Plotter2D"/> - simplified methods to add line and marker charts.

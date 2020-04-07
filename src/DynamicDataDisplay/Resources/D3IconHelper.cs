@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public static class D3IconHelper
 	{
@@ -13,7 +13,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 				if (icon == null)
 				{
 					Assembly currentAssembly = typeof(D3IconHelper).Assembly;
-					icon = BitmapFrame.Create(currentAssembly.GetManifestResourceStream("Microsoft.Research.DynamicDataDisplay.Resources.D3-icon.ico"));
+					icon = BitmapFrame.Create(currentAssembly.GetManifestResourceStream("DynamicDataDisplay.Resources.D3-icon.ico"));
 				}
 				return icon;
 			}
@@ -27,7 +27,7 @@ namespace Microsoft.Research.DynamicDataDisplay
 				if (whiteIcon == null)
 				{
 					Assembly currentAssembly = typeof(D3IconHelper).Assembly;
-					whiteIcon = BitmapFrame.Create(currentAssembly.GetManifestResourceStream("Microsoft.Research.DynamicDataDisplay.Resources.D3-icon-white.ico"));
+					whiteIcon = BitmapFrame.Create(currentAssembly.GetManifestResourceStream("DynamicDataDisplay.Resources.D3-icon-white.ico"));
 				}
 
 				return whiteIcon;

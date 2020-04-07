@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Charts.Navigation;
+﻿using DynamicDataDisplay.Charts.Navigation;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Microsoft.Research.DynamicDataDisplay.Controls
+namespace DynamicDataDisplay.Controls
 {
 	public sealed class SelectorAxisNavigation : AxisNavigation
 	{

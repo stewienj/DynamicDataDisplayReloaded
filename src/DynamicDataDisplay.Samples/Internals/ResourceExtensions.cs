@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Markup;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals
+namespace DynamicDataDisplay.Samples.Internals
 {
 	/// <summary>
 	/// Represents a markup extension, which allows to get an access to application resource files.

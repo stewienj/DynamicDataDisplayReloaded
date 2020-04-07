@@ -1,11 +1,11 @@
-﻿using Microsoft.Research.DynamicDataDisplay.DataSources;
-using Microsoft.Research.DynamicDataDisplay.PointMarkers;
+﻿using DynamicDataDisplay.DataSources;
+using DynamicDataDisplay.PointMarkers;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	public class ElementMarkerPointsGraph : PointsGraphBase
 	{

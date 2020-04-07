@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace Microsoft.Research.DynamicDataDisplay
+namespace DynamicDataDisplay
 {
 	/// <summary>ViewportElement2D is intended to be a child of Viewport2D. Specifics
 	/// of ViewportElement2D is Viewport2D attached property</summary>

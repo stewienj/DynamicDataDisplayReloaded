@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts
+﻿namespace DynamicDataDisplay.Charts
 {
 	/// <summary>
 	/// Defines the position of axis inside ChartPlotter.

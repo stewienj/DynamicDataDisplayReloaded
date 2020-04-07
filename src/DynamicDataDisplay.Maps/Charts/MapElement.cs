@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Microsoft.Research.DynamicDataDisplay.Maps.Charts
+namespace DynamicDataDisplay.Maps.Charts
 {
 	public class MapElement : FrameworkElement
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Microsoft.Research.DynamicDataDisplay.Samples.Internals.ViewModels
+namespace DynamicDataDisplay.Samples.Internals.ViewModels
 {
 	public class FlatViewModel
 	{

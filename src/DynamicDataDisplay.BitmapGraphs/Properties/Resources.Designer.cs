@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs.Properties {
+namespace DynamicDataDisplay.BitmapGraphs.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Microsoft.Research.DynamicDataDisplay.BitmapGraphs.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Research.DynamicDataDisplay.BitmapGraphs.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DynamicDataDisplay.BitmapGraphs.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

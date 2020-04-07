@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Research.DynamicDataDisplay.Charts.Maps
+﻿namespace DynamicDataDisplay.Charts.Maps
 {
 	/// <summary>
 	/// Represents a enumeration of tile cache locations - types of base folders used to store tiles.

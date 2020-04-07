@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Microsoft.Research.DynamicDataDisplay.Common
+namespace DynamicDataDisplay.Common
 {
 	[Conditional("DEBUG")]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]

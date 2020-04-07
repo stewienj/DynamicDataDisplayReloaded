@@ -1,8 +1,8 @@
-﻿using Microsoft.Research.DynamicDataDisplay.Common.Palettes;
+﻿using DynamicDataDisplay.Common.Palettes;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.Research.DynamicDataDisplay.Fractals
+namespace DynamicDataDisplay.Fractals
 {
 	public class MandelbrotSet
 	{
