@@ -63,8 +63,8 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 				_vertices = new VertexBuffer(Device, Utilities.SizeOf<Vector4>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
 				_lastVertexLength = newSize;
 			}
-			// Lock the entire buffer by specifying 0 for the offset and size
-			var buffer = _vertices.Lock(0, 0, LockFlags.None);
+			// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
+			var buffer = _vertices.Lock(0, 0, LockFlags.Discard);
 			buffer.WriteRange(_pointList);
 			_vertices.Unlock();
 			_vecticesCount = pointCount;

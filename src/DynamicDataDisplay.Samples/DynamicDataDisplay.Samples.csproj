@@ -71,11 +71,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Demos\SharpDX\SimpleLineSample.xaml">
+    <Page Include="Demos\SharpDX\DxLineSingleColorSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Demos\SharpDX\WaveyLineSample.xaml">
+    <Page Include="Demos\SharpDX\DxLineMultiColorSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,11 +219,11 @@
     <Compile Include="Demos\Custom\StatusByLatLonOnMapSample.xaml.cs">
       <DependentUpon>StatusByLatLonOnMapSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Demos\SharpDX\SimpleLineSample.xaml.cs">
-      <DependentUpon>SimpleLineSample.xaml</DependentUpon>
+    <Compile Include="Demos\SharpDX\DxLineSingleColorSample.xaml.cs">
+      <DependentUpon>DxLineSingleColorSample.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Demos\SharpDX\WaveyLineSample.xaml.cs">
-      <DependentUpon>WaveyLineSample.xaml</DependentUpon>
+    <Compile Include="Demos\SharpDX\DxLineMultiColorSample.xaml.cs">
+      <DependentUpon>DxLineMultiColorSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demos\SlimDX\SimpleLineSample.xaml.cs">
       <DependentUpon>SimpleLineSample.xaml</DependentUpon>

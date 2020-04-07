@@ -48,8 +48,8 @@
                 <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
             </m:ReleaseInfo>
             <m:ReleaseInfo Version="SharpDX Samples">
-                <m:Demonstration Description="Simple Line" Uri="/Demos/SharpDX/SimpleLineSample.xaml"/>
-                <m:Demonstration Description="Wavey Line" Uri="/Demos/SharpDX/WaveyLineSample.xaml"/>
+                <m:Demonstration Description="DxLineMultiColor" Uri="/Demos/SharpDX/DxLineMultiColorSample.xaml"/>
+                <m:Demonstration Description="DxLineSingleColor" Uri="/Demos/SharpDX/DxLineSingleColorSample.xaml"/>
             </m:ReleaseInfo>
             <m:ReleaseInfo Version="SlimDX Samples">
                 <m:Demonstration Description="Simple Line" Uri="/Demos/SlimDX/SimpleLineSample.xaml"/>

@@ -19,23 +19,33 @@ using System.Windows.Shapes;
 namespace DynamicDataDisplay.Samples.Demos.SharpDX
 {
 	/// <summary>
-	/// Interaction logic for WaveyLineSample.xaml
+	/// Interaction logic for DxLineMultiColorSample.xaml
 	/// </summary>
-	public partial class WaveyLineSample : Page
+	public partial class DxLineMultiColorSample : Page
 	{
-		public WaveyLineSample()
+		public DxLineMultiColorSample()
 		{
-			this.DataContext = new WaveyLineViewModel();
+			var viewModel = new DxLineMultiColorViewModel();
+			this.DataContext = viewModel;
+			IsVisibleChanged += (s, e) =>
+			{
+				if (!IsVisible)
+				{
+					viewModel.Dispose();
+				}
+			};
 			InitializeComponent();
+
 		}
 	}
 
-	public class WaveyLineViewModel : INotifyPropertyChanged
+	public class DxLineMultiColorViewModel : INotifyPropertyChanged
 	{
 		int pointCount = 10_000;
 		double scaler = 1.0 / 10_000;
+		public volatile bool _hasBeenDisposed = false;
 
-		public WaveyLineViewModel()
+		public DxLineMultiColorViewModel()
 		{
 			StartCalculatingPoints1();
 			StartCalculatingPoints2();
@@ -47,7 +57,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 			Task.Factory.StartNew(()=> 
 			{
 				DateTime startTime = DateTime.Now;
-				while (true)
+				while (!_hasBeenDisposed)
 				{
 					float inversePointMax = 1f / (pointCount - 1);
 					double phase = -2.0 * Math.PI * (startTime - DateTime.Now).TotalSeconds / 20.0;
@@ -60,7 +70,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 							float y = (float)(15*Math.Sin(x + phase) * Math.Sin(x * 101.0));
 							float colorIndex = (y+15f)/5f % 1f;
 							return new DxPointAndColor(x, y, 3, 0, colorIndex, 1f - colorIndex);
-						});
+						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points1)));
 					Thread.Sleep(10);
 				}
@@ -72,7 +82,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 			Task.Factory.StartNew(() =>
 			{
 				DateTime startTime = DateTime.Now;
-				while (true)
+				while (!_hasBeenDisposed)
 				{
 					float inversePointMax = 1f / (pointCount - 1);
 					double phase = 2.0 * Math.PI * (startTime - DateTime.Now).TotalSeconds / 10.0;
@@ -85,7 +95,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 							float y = (float)(10*Math.Sin(x + phase) * Math.Sin(x * 102.0));
 							float colorIndex = (y + 10f) / 5f % 1f;
 							return new DxPointAndColor(x, y, 2, colorIndex, 1f - colorIndex, 0);
-						});
+						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points2)));
 					Thread.Sleep(10);
 				}
@@ -96,7 +106,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 			Task.Factory.StartNew(() =>
 			{
 				DateTime startTime = DateTime.Now;
-				while (true)
+				while (!_hasBeenDisposed)
 				{
 					float inversePointMax = 1f / (pointCount - 1);
 					double phase = 2.0 * Math.PI * (startTime - DateTime.Now).TotalSeconds / 5.0;
@@ -109,13 +119,16 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 							float y = (float)(20.0 * Math.Sin(x) * Math.Sin(x * 103.0) * Math.Sin(phase));
 							float colorIndex = (y + 20f) / 5f % 1f;
 							return new DxPointAndColor(x, y, 1, 1f - colorIndex, 0, colorIndex);
-						});
+						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points3)));
 					Thread.Sleep(10);
 				}
 			}, TaskCreationOptions.LongRunning);
 		}
-
+		public void Dispose()
+		{
+			_hasBeenDisposed = true;
+		}
 
 		public IEnumerable<DxPointAndColor> Points1 { get; set; }
 		public IEnumerable<DxPointAndColor> Points2 { get; set; }

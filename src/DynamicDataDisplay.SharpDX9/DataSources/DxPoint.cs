@@ -20,7 +20,7 @@ namespace DynamicDataDisplay.SharpDX9.DataSources
 		{
 		}
 
-		public DxPoint(float x, float y, float depth) : this(ToVector(x, y, depth))
+		public DxPoint(float x, float y, float depth=1) : this(ToVector(x, y, depth))
 		{
 		}
 
