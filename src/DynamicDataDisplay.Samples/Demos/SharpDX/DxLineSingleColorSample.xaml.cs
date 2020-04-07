@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataSources;
+﻿using DynamicDataDisplay.SharpDX9.DataTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

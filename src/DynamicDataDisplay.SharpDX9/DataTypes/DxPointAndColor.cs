@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicDataDisplay.SharpDX9.DataSources
+namespace DynamicDataDisplay.SharpDX9.DataTypes
 {
 	// Probably don't need to set this explicitly but will just in case
-	public struct DxPointAndColor
+	public struct DxPointAndColor : IDxPoint
 	{
 		private Vector4 _point;
 		private Vector4 _color;

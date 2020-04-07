@@ -32,17 +32,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="DataSources\DxPoint.cs" />
-    <Compile Include="DataSources\DxColor.cs" />
-    <Compile Include="DataSources\DxPointAndColor.cs" />
+    <Compile Include="DataTypes\DxPoint.cs" />
+    <Compile Include="DataTypes\DxColor.cs" />
+    <Compile Include="DataTypes\DxPointAndColor.cs" />
+    <Compile Include="DataTypes\IDxPoint.cs" />
     <Compile Include="Lines\DxLineMultiColor.cs" />
-    <Compile Include="Lines\DxLineMultiColorShader.cs" />
+    <Compile Include="Shaders\DxPointAndColorShader.cs" />
     <Compile Include="Lines\DxLineSingleColor.cs" />
-    <Compile Include="Lines\DxLineSingleColorShader.cs" />
+    <Compile Include="Shaders\DxPointGlobalColorShader.cs" />
     <Compile Include="Lines\DxMultiLineMultiColor.cs" />
     <Compile Include="Lines\DxMultiLineSingleColor.cs" />
     <Compile Include="SharpDXChartElement.cs" />
     <Compile Include="SharpDXColorMap.cs" />
+    <Compile Include="SharpDxPrimitive.cs" />
     <Compile Include="SharpDXWorkingColorMap.cs" />
     <Compile Include="SharpDXHost.cs" />
     <Compile Include="EffectLibrary.cs" />
@@ -91,10 +93,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Lines\DxLineMultiColorShader.fx" />
+    <EmbeddedResource Include="Shaders\DxPointAndColorShader.fx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Lines\DxLineSingleColorShader.fx" />
+    <EmbeddedResource Include="Shaders\DxPointGlobalColorShader.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Triangles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

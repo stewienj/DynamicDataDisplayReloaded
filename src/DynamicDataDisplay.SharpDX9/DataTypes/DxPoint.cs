@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicDataDisplay.SharpDX9.DataSources
+namespace DynamicDataDisplay.SharpDX9.DataTypes
 {
-	public struct DxPoint
+	public struct DxPoint : IDxPoint
 	{
 		private Vector4 _point;
 
