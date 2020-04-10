@@ -15,8 +15,8 @@ namespace DynamicDataDisplay.SharpDX9
 	public abstract class BaseDxPrimitive<TDxPoint> : BaseDxChartElement where TDxPoint : struct, IDxPoint
 	{
 		protected VertexBuffer _vertexBuffer = null;
-		private int _vertexBufferAllocated = 0;
-		protected int _vectexCount = 0;
+		protected int _vertexBufferAllocated = 0;
+		protected int _vertexCount = 0;
 		private SynchronizationContext _syncContext = null;
 		protected VertexDeclaration _vertexDeclaration;
 		protected BaseDxTransformShader _transformEffect;
@@ -42,9 +42,10 @@ namespace DynamicDataDisplay.SharpDX9
 			base.OnPlotterDetaching(plotter);
 		}
 
-
-		private void UpdateVertexBufferFromDataSource(IEnumerable<TDxPoint> newPoints)
+		protected virtual bool UpdateVertexBufferFromDataSource(IEnumerable<TDxPoint> newPoints)
 		{
+			bool vertexBufferSizeChanged = false;
+
 			// Vertices will be resized to the next power of 2, saves on resizing too much
 			_pointList = newPoints.ToArray();
 			var pointCount = _pointList.Length;
@@ -54,12 +55,13 @@ namespace DynamicDataDisplay.SharpDX9
 				var newSize = MathHelper.CeilingPow2(pointCount);
 				_vertexBuffer = new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
 				_vertexBufferAllocated = newSize;
+				vertexBufferSizeChanged = true;
 			}
 			// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
-			var buffer = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
-			buffer.WriteRange(_pointList);
+			var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
+			vertexStream.WriteRange(_pointList);
 			_vertexBuffer.Unlock();
-			_vectexCount = pointCount;
+			_vertexCount = pointCount;
 
 			// Calculate the bounds of the list on a background thread
 			var localPointList = _pointList;
@@ -88,18 +90,19 @@ namespace DynamicDataDisplay.SharpDX9
 				// Spawn action on throttled update thread
 				_throttledAction.InvokeAction(resizeAction);
 			}
+			return vertexBufferSizeChanged;
 		}
 
 		protected override void OnDirectXRender()
 		{
-			if (_vectexCount <= 0)
+			if (_vertexCount <= 0)
 				return;
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<TDxPoint>());
 			Device.VertexDeclaration = _vertexDeclaration;
 			_transformEffect.BeginEffect(Plotter.Viewport.Visible, DxDataTransform);
-			Device.DrawPrimitives(GetPrimitiveType(), 0, _vectexCount - 1);
+			Device.DrawPrimitives(GetPrimitiveType(), 0, _vertexCount - 1);
 			_transformEffect.EndEffect();
 		}
 

@@ -40,7 +40,6 @@
     <Compile Include="DataTypes\IDxPoint.cs" />
     <Compile Include="Lines\DxLineMultiColor.cs" />
     <Compile Include="Lines\DxInstancedLineSingleColor.cs" />
-    <Compile Include="Prototypes\InstancingPrototype.cs" />
     <Compile Include="Shaders\DxPointAndColorShader.cs" />
     <Compile Include="Lines\DxLineSingleColor.cs" />
     <Compile Include="Shaders\DxPointInstancedGlobalColorShader.cs" />

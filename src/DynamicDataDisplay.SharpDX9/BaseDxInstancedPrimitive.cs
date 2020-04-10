@@ -21,6 +21,7 @@ namespace DynamicDataDisplay.SharpDX9
 	/// <typeparam name="TDxInstance"></typeparam>
 	public abstract class BaseDxInstancedPrimitive<TDxPoint, TDxInstance> : BaseDxPrimitive<TDxPoint> where TDxPoint : struct, IDxPoint where TDxInstance : struct, IDxPoint
 	{
+		private IndexBuffer _indexBuffer = null; 
 		private VertexBuffer _instanceBuffer = null;
 		private int _instanceBufferAllocated = 0;
 		private int _instanceCount = 0;
@@ -43,6 +44,26 @@ namespace DynamicDataDisplay.SharpDX9
 			base.OnPlotterDetaching(plotter);
 		}
 
+		protected override bool UpdateVertexBufferFromDataSource(IEnumerable<TDxPoint> newPoints)
+		{
+			var vertexBufferSizeChanged = base.UpdateVertexBufferFromDataSource(newPoints);
+			if(vertexBufferSizeChanged)
+			{
+				_indexBuffer?.Dispose();
+				// Create a 16 bit index buffer
+				_indexBuffer = new IndexBuffer(Device, Utilities.SizeOf<ushort>() * _vertexBufferAllocated, Usage.WriteOnly, Pool.Default, true);
+			}
+			// Now set the index buffer to match
+
+			// Lock the buffer, so that we can access the data.
+			DataStream indexStream = _indexBuffer.Lock(0, 0, LockFlags.Discard);
+			indexStream.WriteRange(Enumerable.Range(0, _vertexBufferAllocated).Select(i=>(ushort)i).ToArray());
+			// Unlock the stream again, committing all changes.
+			_indexBuffer.Unlock();
+
+			return vertexBufferSizeChanged;
+		}
+
 		protected void UpdateInstanceBufferFromPositions(IEnumerable<TDxInstance> newInstances)
 		{
 			_instanceList = newInstances.ToArray();
@@ -63,7 +84,7 @@ namespace DynamicDataDisplay.SharpDX9
 
 		protected override void OnDirectXRender()
 		{
-			if (_vectexCount <= 0)
+			if (_vertexCount <= 0)
 				return;
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
@@ -72,10 +93,14 @@ namespace DynamicDataDisplay.SharpDX9
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<TDxPoint>());
 			Device.SetStreamSource(1, _instanceBuffer, 0, Utilities.SizeOf<TDxInstance>());
 			Device.VertexDeclaration = _vertexDeclaration;
-			
+			Device.Indices = _indexBuffer;
+
 			Action<int> perPass = passNo =>
 			{
-				 Device.DrawPrimitives(GetPrimitiveType(), 0, _vectexCount - 1);
+				// Draw everything, I can't work out what effect the 4th parameter has,
+				// doesn't seem to affect anything, so I left it at zero, maybe comes into
+				// effect for certain primitive types
+				Device.DrawIndexedPrimitive(GetPrimitiveType(), 0, 0, 0, 0, _vertexCount-1);
 			};
 			_transformEffect.DoMultipassEffect(Plotter.Viewport.Visible, perPass, DxDataTransform);
 
