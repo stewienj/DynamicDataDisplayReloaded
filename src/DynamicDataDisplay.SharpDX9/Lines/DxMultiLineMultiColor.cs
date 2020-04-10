@@ -16,9 +16,9 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 	/// <summary>
 	/// This takes a collection of PointAndColor objects and renders them in seprate lines
 	/// </summary>
-	public class DxMultiLineMultiColor : SharpDxPrimitive<DxPointAndColor>
+	public class DxMultiLineMultiColor : BaseDxPrimitive<DxPointAndColor>
 	{
-		protected override TransformShader GetTransformEffect(Device device)
+		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
 			return new DxPointAndColorShader(device);
 		}

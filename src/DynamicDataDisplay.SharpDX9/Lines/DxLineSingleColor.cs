@@ -16,11 +16,11 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 	/// <summary>
 	/// This takes a collection of points and renders a continous line in a single color
 	/// </summary>
-	public class DxLineSingleColor : SharpDxPrimitive<DxPoint>
+	public class DxLineSingleColor : BaseDxPrimitive<DxPoint>
 	{
 		private DxPointGlobalColorShader _shader;
 
-		protected override TransformShader GetTransformEffect(Device device)
+		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
 			_shader = new DxPointGlobalColorShader(Device);
 			_shader.DxColor = new DxColor(Color);
@@ -31,9 +31,13 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 		{
 			return PrimitiveType.LineStrip;
 		}
+
 		protected override void SetColor(DxColor color)
 		{
-			_shader.DxColor = color;
+			if (_shader != null)
+			{
+				_shader.DxColor = color;
+			}
 		}
 	}
 }

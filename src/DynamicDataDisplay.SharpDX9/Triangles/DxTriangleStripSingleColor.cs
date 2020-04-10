@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DynamicDataDisplay.SharpDX9.Triangles
 {
-	public class DxTriangleStripSingleColor : SharpDxPrimitive<DxPoint>
+	public class DxTriangleStripSingleColor : BaseDxPrimitive<DxPoint>
 	{
 		private DxPointGlobalColorShader _shader;
 
-		protected override TransformShader GetTransformEffect(Device device)
+		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
 			_shader = new DxPointGlobalColorShader(Device);
 			_shader.DxColor = new DxColor(Color);

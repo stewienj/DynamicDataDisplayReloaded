@@ -12,14 +12,14 @@ using System.Windows;
 
 namespace DynamicDataDisplay.SharpDX9
 {
-	public abstract class SharpDxPrimitive<TDxPoint> : SharpDXChartElement where TDxPoint : struct, IDxPoint
+	public abstract class BaseDxPrimitive<TDxPoint> : BaseDxChartElement where TDxPoint : struct, IDxPoint
 	{
-		private VertexBuffer _vertices = null;
-		private int _lastVertexLength = 0;
-		private int _vecticesCount = 0;
+		protected VertexBuffer _vertexBuffer = null;
+		private int _vertexBufferAllocated = 0;
+		protected int _vectexCount = 0;
 		private SynchronizationContext _syncContext = null;
-		private VertexDeclaration _vertexDecl;
-		private TransformShader _transformEffect;
+		protected VertexDeclaration _vertexDeclaration;
+		protected BaseDxTransformShader _transformEffect;
 		private TDxPoint[] _pointList;
 		// Limit updates to 100 times per second. This also schedules updates to another thread.
 		private ThrottledAction _throttledAction = new ThrottledAction(TimeSpan.FromMilliseconds(10));
@@ -33,33 +33,33 @@ namespace DynamicDataDisplay.SharpDX9
 			_transformEffect = GetTransformEffect(Device);
 
 			// Creates and sets the Vertex Declaration
-			_vertexDecl = new VertexDeclaration(Device, GetVertexElements());
+			_vertexDeclaration = new VertexDeclaration(Device, new TDxPoint().GetVertexElements());
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)
 		{
-			_vertices?.Dispose();
+			_vertexBuffer?.Dispose();
 			base.OnPlotterDetaching(plotter);
 		}
 
 
-		private void UpdateFromSourceChange(IEnumerable<TDxPoint> newList)
+		private void UpdateVertexBufferFromDataSource(IEnumerable<TDxPoint> newPoints)
 		{
 			// Vertices will be resized to the next power of 2, saves on resizing too much
-			_pointList = newList.ToArray();
+			_pointList = newPoints.ToArray();
 			var pointCount = _pointList.Length;
-			if (_vertices == null || pointCount > _lastVertexLength || pointCount < (_lastVertexLength >> 1))
+			if (_vertexBuffer == null || pointCount > _vertexBufferAllocated || pointCount < (_vertexBufferAllocated >> 1))
 			{
-				_vertices?.Dispose();
+				_vertexBuffer?.Dispose();
 				var newSize = MathHelper.CeilingPow2(pointCount);
-				_vertices = new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
-				_lastVertexLength = newSize;
+				_vertexBuffer = new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
+				_vertexBufferAllocated = newSize;
 			}
 			// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
-			var buffer = _vertices.Lock(0, 0, LockFlags.Discard);
+			var buffer = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
 			buffer.WriteRange(_pointList);
-			_vertices.Unlock();
-			_vecticesCount = pointCount;
+			_vertexBuffer.Unlock();
+			_vectexCount = pointCount;
 
 			// Calculate the bounds of the list on a background thread
 			var localPointList = _pointList;
@@ -92,23 +92,18 @@ namespace DynamicDataDisplay.SharpDX9
 
 		protected override void OnDirectXRender()
 		{
-			if (_vecticesCount <= 0)
+			if (_vectexCount <= 0)
 				return;
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
-			Device.SetStreamSource(0, _vertices, 0, Utilities.SizeOf<TDxPoint>());
-			Device.VertexDeclaration = _vertexDecl;
+			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<TDxPoint>());
+			Device.VertexDeclaration = _vertexDeclaration;
 			_transformEffect.BeginEffect(Plotter.Viewport.Visible, DxDataTransform);
-			Device.DrawPrimitives(GetPrimitiveType(), 0, _vecticesCount - 1);
+			Device.DrawPrimitives(GetPrimitiveType(), 0, _vectexCount - 1);
 			_transformEffect.EndEffect();
 		}
 
-		private VertexElement[] GetVertexElements()
-		{
-			return new TDxPoint().GetVertexElements();
-		}
-
-		protected abstract TransformShader GetTransformEffect(Device device);
+		protected abstract BaseDxTransformShader GetTransformEffect(Device device);
 
 		protected abstract PrimitiveType GetPrimitiveType();
 
@@ -120,11 +115,11 @@ namespace DynamicDataDisplay.SharpDX9
 
 		// Using a DependencyProperty as the backing store for DataSource.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty DataSourceProperty =
-			DependencyProperty.Register("DataSource", typeof(IEnumerable<TDxPoint>), typeof(SharpDxPrimitive<TDxPoint>), new PropertyMetadata(null, (s, e) =>
+			DependencyProperty.Register("DataSource", typeof(IEnumerable<TDxPoint>), typeof(BaseDxPrimitive<TDxPoint>), new PropertyMetadata(null, (s, e) =>
 			{
-				if (s is SharpDxPrimitive<TDxPoint> control && e.NewValue is IEnumerable<TDxPoint> newData)
+				if (s is BaseDxPrimitive<TDxPoint> control && e.NewValue is IEnumerable<TDxPoint> newData)
 				{
-					control.UpdateFromSourceChange(newData);
+					control.UpdateVertexBufferFromDataSource(newData);
 				}
 			}));
 
@@ -142,9 +137,9 @@ namespace DynamicDataDisplay.SharpDX9
 
 		// Using a DependencyProperty as the backing store for LineColor.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty ColorProperty =
-			DependencyProperty.Register("Color", typeof(System.Windows.Media.Color), typeof(SharpDxPrimitive<TDxPoint>), new PropertyMetadata(System.Windows.Media.Colors.Black, (s, e) =>
+			DependencyProperty.Register("Color", typeof(System.Windows.Media.Color), typeof(BaseDxPrimitive<TDxPoint>), new PropertyMetadata(System.Windows.Media.Colors.Black, (s, e) =>
 			{
-				if (s is SharpDxPrimitive<TDxPoint> control && e.NewValue is System.Windows.Media.Color newColor)
+				if (s is BaseDxPrimitive<TDxPoint> control && e.NewValue is System.Windows.Media.Color newColor)
 				{
 					control.SetColor(new DxColor(newColor));
 				}

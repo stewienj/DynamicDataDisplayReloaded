@@ -2,9 +2,9 @@
 
 namespace DynamicDataDisplay.SharpDX9.Shaders
 {
-	public class DxPointAndColorShader : TransformShader
+	public class DxPointAndColorShader : BaseDxTransformShader
 	{
-		public DxPointAndColorShader(Device device) : base(device, nameof(DxPointAndColorShader))
+		public DxPointAndColorShader(Device device) : base(device)
 		{
 		}
 	}

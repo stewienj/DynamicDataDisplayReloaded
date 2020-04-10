@@ -47,7 +47,7 @@ namespace DynamicDataDisplay.SharpDX9
 			_pp.BackBufferWidth = Math.Max(100, (int)ActualWidth);
 			_pp.BackBufferHeight = Math.Max(100, (int)ActualHeight);
 			_pp.BackBufferFormat = Format.A8R8G8B8;
-			_pp.AutoDepthStencilFormat = Format.D32SingleLockable;
+			_pp.AutoDepthStencilFormat = Format.D16Lockable;
 			_pp.BackBufferCount = 1;
 			try
 			{

@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace DynamicDataDisplay.SharpDX9
 {
-	public abstract class SharpDXChartElement : FrameworkElement, IPlotterElement
+	public abstract class BaseDxChartElement : FrameworkElement, IPlotterElement
 	{
 		private SharpDXHost dxHost;
 
@@ -42,9 +42,9 @@ namespace DynamicDataDisplay.SharpDX9
 
 		// Using a DependencyProperty as the backing store for DataTranform.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty DataTransformProperty =
-			DependencyProperty.Register("DataTransform", typeof(System.Numerics.Matrix4x4), typeof(SharpDXChartElement), new PropertyMetadata(System.Numerics.Matrix4x4.Identity, (s, e) =>
+			DependencyProperty.Register("DataTransform", typeof(System.Numerics.Matrix4x4), typeof(BaseDxChartElement), new PropertyMetadata(System.Numerics.Matrix4x4.Identity, (s, e) =>
 			{
-				if (s is SharpDXChartElement control && e.NewValue is System.Numerics.Matrix4x4 matrix)
+				if (s is BaseDxChartElement control && e.NewValue is System.Numerics.Matrix4x4 matrix)
 				{
 					control.DxDataTransform = new Matrix(
 						matrix.M11, matrix.M12, matrix.M13, matrix.M14,

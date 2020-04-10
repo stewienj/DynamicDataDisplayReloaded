@@ -71,6 +71,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demos\SharpDX\DxInstancedLineSingleColorSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Demos\SharpDX\DxLineSingleColorSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,6 +222,9 @@
     </Compile>
     <Compile Include="Demos\Custom\StatusByLatLonOnMapSample.xaml.cs">
       <DependentUpon>StatusByLatLonOnMapSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\SharpDX\DxInstancedLineSingleColorSample.xaml.cs">
+      <DependentUpon>DxInstancedLineSingleColorSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demos\SharpDX\DxLineSingleColorSample.xaml.cs">
       <DependentUpon>DxLineSingleColorSample.xaml</DependentUpon>

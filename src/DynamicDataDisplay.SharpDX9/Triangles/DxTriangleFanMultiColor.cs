@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DynamicDataDisplay.SharpDX9.Triangles
 {
-	public class DxTriangleFanMultiColor : SharpDxPrimitive<DxPointAndColor>
+	public class DxTriangleFanMultiColor : BaseDxPrimitive<DxPointAndColor>
 	{
-		protected override TransformShader GetTransformEffect(Device device)
+		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
 			return new DxPointAndColorShader(device);
 		}

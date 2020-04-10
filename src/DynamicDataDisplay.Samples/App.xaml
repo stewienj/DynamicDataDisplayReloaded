@@ -50,6 +50,7 @@
             <m:ReleaseInfo Version="SharpDX Samples">
                 <m:Demonstration Description="DxLineMultiColor" Uri="/Demos/SharpDX/DxLineMultiColorSample.xaml"/>
                 <m:Demonstration Description="DxLineSingleColor" Uri="/Demos/SharpDX/DxLineSingleColorSample.xaml"/>
+                <m:Demonstration Description="DxInstancedLineSingleColorSample" Uri="/Demos/SharpDX/DxInstancedLineSingleColorSample.xaml"/>
             </m:ReleaseInfo>
             <m:ReleaseInfo Version="SlimDX Samples">
                 <m:Demonstration Description="Simple Line" Uri="/Demos/SlimDX/SimpleLineSample.xaml"/>

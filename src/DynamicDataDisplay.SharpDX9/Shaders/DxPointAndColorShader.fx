@@ -30,7 +30,7 @@ float4 PS(PS_IN input) : COLOR
 
 technique Main {
 	pass P0 {
-		VertexShader = compile vs_2_0 VS();
-		PixelShader = compile ps_2_0 PS();
+		VertexShader = compile vs_3_0 VS();
+		PixelShader = compile ps_3_0 PS();
 	}
 }

@@ -32,22 +32,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BaseDxInstancedPrimitive.cs" />
+    <Compile Include="DataTypes\DxInstancePoint.cs" />
     <Compile Include="DataTypes\DxPoint.cs" />
     <Compile Include="DataTypes\DxColor.cs" />
     <Compile Include="DataTypes\DxPointAndColor.cs" />
     <Compile Include="DataTypes\IDxPoint.cs" />
     <Compile Include="Lines\DxLineMultiColor.cs" />
+    <Compile Include="Lines\DxInstancedLineSingleColor.cs" />
+    <Compile Include="Prototypes\InstancingPrototype.cs" />
     <Compile Include="Shaders\DxPointAndColorShader.cs" />
     <Compile Include="Lines\DxLineSingleColor.cs" />
+    <Compile Include="Shaders\DxPointInstancedGlobalColorShader.cs" />
     <Compile Include="Shaders\DxPointGlobalColorShader.cs" />
     <Compile Include="Lines\DxMultiLineMultiColor.cs" />
     <Compile Include="Lines\DxMultiLineSingleColor.cs" />
-    <Compile Include="SharpDXChartElement.cs" />
-    <Compile Include="SharpDXColorMap.cs" />
-    <Compile Include="SharpDxPrimitive.cs" />
-    <Compile Include="SharpDXWorkingColorMap.cs" />
+    <Compile Include="BaseDxChartElement.cs" />
+    <Compile Include="BaseDxPrimitive.cs" />
+    <Compile Include="Shaders\InstancingPrototypeShader.cs" />
     <Compile Include="SharpDXHost.cs" />
-    <Compile Include="EffectLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,16 +64,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TransformShader.cs" />
+    <Compile Include="BaseDxTransformShader.cs" />
     <Compile Include="Triangles\DxTriangleFanMultiColor.cs" />
     <Compile Include="Triangles\DxTriangleFanSingleColor.cs" />
     <Compile Include="Triangles\DxTrianglesMultiColor.cs" />
     <Compile Include="Triangles\DxTrianglesSingleColor.cs" />
     <Compile Include="Triangles\DxTriangleStripMultiColor.cs" />
     <Compile Include="Triangles\DxTriangleStripSingleColor.cs" />
-    <Compile Include="VertexPosition3Color.cs" />
-    <Compile Include="VertexPosition3ColorPointSize.cs" />
-    <Compile Include="VertexPosition4Color.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -104,7 +104,13 @@
   <ItemGroup>
     <EmbeddedResource Include="Shaders\DxPointGlobalColorShader.fx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Markers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Shaders\DxPointInstancedGlobalColorShader.fx" />
+    <EmbeddedResource Include="Shaders\InstancingPrototypeShader.fx" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
