@@ -1,7 +1,7 @@
 ﻿struct VS_IN
 {
-	float4 pos : POSITION0;
-	float4 pos2 : POSITION1;
+	float2 pos : POSITION0;
+	float2 pos2 : POSITION1;
 };
 
 struct PS_IN
@@ -12,17 +12,20 @@ struct PS_IN
 
 float4x4 worldViewProj;
 float4 pointColor;
+float depth;
+
 
 PS_IN VS(VS_IN input)
 {
 	PS_IN output = (PS_IN)0;
-	input.pos.x += input.pos2.x;
-	input.pos.y += input.pos2.y;
-	input.pos.z += input.pos2.z;
 
-	output.pos = mul(input.pos, worldViewProj);
+	output.pos.x = input.pos.x + input.pos2.x;
+	output.pos.y = input.pos.y + input.pos2.y;
+	output.pos.z = depth;
+	output.pos.w = 1;
+
+	output.pos = mul(output.pos, worldViewProj);
 	output.col = pointColor;
-
 	return output;
 }
 

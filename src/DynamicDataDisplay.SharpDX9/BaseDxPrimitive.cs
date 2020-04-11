@@ -95,15 +95,17 @@ namespace DynamicDataDisplay.SharpDX9
 
 		protected override void OnDirectXRender()
 		{
+			var test = Utilities.SizeOf<TDxPoint>();
 			if (_vertexCount <= 0)
 				return;
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<TDxPoint>());
 			Device.VertexDeclaration = _vertexDeclaration;
-			_transformEffect.BeginEffect(Plotter.Viewport.Visible, DxDataTransform);
-			Device.DrawPrimitives(GetPrimitiveType(), 0, _vertexCount - 1);
-			_transformEffect.EndEffect();
+			_transformEffect.DoMultipassEffect(this, passNo =>
+			{
+				Device.DrawPrimitives(GetPrimitiveType(), 0, _vertexCount - 1);
+			});
 		}
 
 		protected abstract BaseDxTransformShader GetTransformEffect(Device device);
@@ -123,28 +125,6 @@ namespace DynamicDataDisplay.SharpDX9
 				if (s is BaseDxPrimitive<TDxPoint> control && e.NewValue is IEnumerable<TDxPoint> newData)
 				{
 					control.UpdateVertexBufferFromDataSource(newData);
-				}
-			}));
-
-
-		protected virtual void SetColor(DxColor color)
-		{
-
-		}
-
-		public System.Windows.Media.Color Color
-		{
-			get { return (System.Windows.Media.Color)GetValue(ColorProperty); }
-			set { SetValue(ColorProperty, value); }
-		}
-
-		// Using a DependencyProperty as the backing store for LineColor.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty ColorProperty =
-			DependencyProperty.Register("Color", typeof(System.Windows.Media.Color), typeof(BaseDxPrimitive<TDxPoint>), new PropertyMetadata(System.Windows.Media.Colors.Black, (s, e) =>
-			{
-				if (s is BaseDxPrimitive<TDxPoint> control && e.NewValue is System.Windows.Media.Color newColor)
-				{
-					control.SetColor(new DxColor(newColor));
 				}
 			}));
 	}

@@ -47,7 +47,7 @@ namespace DynamicDataDisplay.SharpDX9
 			_pp.BackBufferWidth = Math.Max(100, (int)ActualWidth);
 			_pp.BackBufferHeight = Math.Max(100, (int)ActualHeight);
 			_pp.BackBufferFormat = Format.A8R8G8B8;
-			_pp.AutoDepthStencilFormat = Format.D16Lockable;
+			_pp.AutoDepthStencilFormat = Format.D32SingleLockable;
 			_pp.BackBufferCount = 1;
 			try
 			{
@@ -110,7 +110,7 @@ namespace DynamicDataDisplay.SharpDX9
 					{
 						Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
 						Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.ZEnable, true);
-						Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, 1.0f, 0);
+						Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, float.MaxValue, 0);
 						Device.BeginScene();
 						Render.Raise(this);
 						Device.EndScene();

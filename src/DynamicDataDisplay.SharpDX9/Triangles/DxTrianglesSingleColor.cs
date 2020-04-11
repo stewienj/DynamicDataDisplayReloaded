@@ -11,22 +11,14 @@ namespace DynamicDataDisplay.SharpDX9.Triangles
 {
 	public class DxTrianglesSingleColor : BaseDxPrimitive<DxPoint>
 	{
-		private DxPointGlobalColorShader _shader;
-
 		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
-			_shader = new DxPointGlobalColorShader(Device);
-			_shader.DxColor = new DxColor(Color);
-			return _shader;
+			return new DxPointSingleColorShader(Device);
 		}
 
 		protected override PrimitiveType GetPrimitiveType()
 		{
 			return PrimitiveType.TriangleList;
-		}
-		protected override void SetColor(DxColor color)
-		{
-			_shader.DxColor = color;
 		}
 	}
 }

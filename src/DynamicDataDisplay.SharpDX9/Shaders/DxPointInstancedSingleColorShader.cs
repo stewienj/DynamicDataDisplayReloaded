@@ -4,10 +4,10 @@ using SharpDX.Direct3D9;
 
 namespace DynamicDataDisplay.SharpDX9.Shaders
 {
-	public class DxPointInstancedGlobalColorShader: DxPointGlobalColorShader
+	public class DxPointInstancedSingleColorShader: BaseDxTransformShader
 	{
 
-		public DxPointInstancedGlobalColorShader(Device device) : base(device)
+		public DxPointInstancedSingleColorShader(Device device) : base(device)
 		{
 		}
 	}

@@ -69,7 +69,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 							float x = (float)(2.0 * Math.PI * i * scaler);
 							float y = (float)(15*Math.Sin(x + phase) * Math.Sin(x * 101.0));
 							float colorIndex = (y+15f)/5f % 1f;
-							return new DxPointAndColor(x, y, 3, 0, colorIndex, 1f - colorIndex);
+							return new DxPointAndColor(x, y, 0, colorIndex, 1f - colorIndex);
 						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points1)));
 					Thread.Sleep(10);
@@ -94,7 +94,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 							float x = (float)(2.0 * Math.PI * i * scaler);
 							float y = (float)(10*Math.Sin(x + phase) * Math.Sin(x * 102.0));
 							float colorIndex = (y + 10f) / 5f % 1f;
-							return new DxPointAndColor(x, y, 2, colorIndex, 1f - colorIndex, 0);
+							return new DxPointAndColor(x, y, colorIndex, 1f - colorIndex, 0);
 						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points2)));
 					Thread.Sleep(10);
@@ -118,7 +118,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 							float x = (float)(2.0 * Math.PI * i * scaler);
 							float y = (float)(20.0 * Math.Sin(x) * Math.Sin(x * 103.0) * Math.Sin(phase));
 							float colorIndex = (y + 20f) / 5f % 1f;
-							return new DxPointAndColor(x, y, 1, 1f - colorIndex, 0, colorIndex);
+							return new DxPointAndColor(x, y, 1f - colorIndex, 0, colorIndex);
 						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points3)));
 					Thread.Sleep(10);

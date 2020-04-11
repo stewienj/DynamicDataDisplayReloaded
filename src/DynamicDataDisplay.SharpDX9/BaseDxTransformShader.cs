@@ -1,4 +1,5 @@
-﻿using SharpDX;
+﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+using SharpDX;
 using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
@@ -39,33 +40,12 @@ namespace DynamicDataDisplay.SharpDX9
 			}
 		}
 
-		public void BeginEffect(DataRect dataRect)
+		public void DoMultipassEffect(BaseDxChartElement chart, Action<int> processPass)
 		{
-			BeginEffect(dataRect, Matrix.Identity);
+			DoMultipassEffect(chart.VisibleRect, chart.DxDepth, chart.DxColor, chart.DxDataTransform, processPass);
 		}
 
-		public void DoMultipassEffect(DataRect dataRect, Action<int> processPass)
-		{
-			DoMultipassEffect(dataRect, processPass, Matrix.Identity);
-		}
-
-		public virtual void BeginEffect(DataRect dataRect, Matrix dataTransform)
-		{
-			// Todo move the centre point
-			var view = Matrix.LookAtLH(new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, -1f), new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, 0), Vector3.UnitY);
-			var proj = Matrix.OrthoLH((float)dataRect.Width, (float)dataRect.Height, 0.1f, 100.0f);
-			var viewProj = Matrix.Multiply(view, proj);
-
-			// Can do any rotations etc here
-			var worldViewProj = dataTransform * viewProj;
-
-			_effect.Technique = _technique;
-			_effect.SetValue("worldViewProj", worldViewProj);
-			_effect.Begin();
-			_effect.BeginPass(0);
-		}
-
-		public virtual void DoMultipassEffect(DataRect dataRect, Action<int> processPass, Matrix dataTransform)
+		protected virtual void DoMultipassEffect(DataRect dataRect, float depth, DxColor color, Matrix dataTransform, Action<int> processPass)
 		{
 			// Todo move the centre point
 			var view = Matrix.LookAtLH(new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, -1f), new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, 0), Vector3.UnitY);
@@ -77,6 +57,8 @@ namespace DynamicDataDisplay.SharpDX9
 
 			_effect.Technique = _technique;
 
+			_effect.SetValue("pointColor", color.Float4);
+			_effect.SetValue("depth", depth);
 			_effect.SetValue("worldViewProj", worldViewProj);
 			var passCount = _effect.Begin();
 			for (int passNo = 0; passNo < passCount; ++passNo)
@@ -85,12 +67,6 @@ namespace DynamicDataDisplay.SharpDX9
 				processPass(passNo);
 				_effect.EndPass();
 			}
-			_effect.End();
-		}
-
-		public virtual void EndEffect()
-		{
-			_effect.EndPass();
 			_effect.End();
 		}
 	}

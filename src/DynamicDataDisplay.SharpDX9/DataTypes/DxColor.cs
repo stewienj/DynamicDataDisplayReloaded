@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace DynamicDataDisplay.SharpDX9.DataTypes
 {
-	// Probably don't need to set this explicitly but will just in case
+	/// <summary>
+	/// Dx color, converts a color to 4 floats
+	/// </summary>
 	public struct DxColor
 	{
 		private Vector4 _color;

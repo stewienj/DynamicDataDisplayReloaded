@@ -50,9 +50,9 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 		{
 			Positions = new DxInstancePoint[]
 			{
-				new DxInstancePoint(0, 0.2f, 0, 0),
-				new DxInstancePoint(0,    0, 0, 0),
-				new DxInstancePoint(0,-0.2f, 0, 0)
+				new DxInstancePoint(0, 0.2f),
+				new DxInstancePoint(0,    0),
+				new DxInstancePoint(0,-0.2f)
 			};
 			StartCalculatingPoints1();
 		}

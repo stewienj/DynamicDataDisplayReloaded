@@ -14,12 +14,11 @@ using System.Windows;
 namespace DynamicDataDisplay.SharpDX9.Lines
 {
 	/// <summary>
-	/// This takes a collection of points and renders a continous line in a single color
+	/// This takes a collection of points and renders a continous line in a single color, then reproduces that line
+	/// multiple times in the positions specified by the instance point locations.
 	/// </summary>
 	public class DxInstancedLineSingleColor : BaseDxInstancedPrimitive<DxPoint, DxInstancePoint>
 	{
-		private DxPointGlobalColorShader _shader;
-
 		public override void OnPlotterAttached(Plotter plotter)
 		{
 			base.OnPlotterAttached(plotter);
@@ -27,22 +26,12 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 
 		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
-			_shader = new DxPointInstancedGlobalColorShader(Device);
-			_shader.DxColor = new DxColor(Color);
-			return _shader;
+			return new DxPointInstancedSingleColorShader(Device);
 		}
 
 		protected override PrimitiveType GetPrimitiveType()
 		{
 			return PrimitiveType.LineStrip;
-		}
-
-		protected override void SetColor(DxColor color)
-		{
-			if (_shader != null)
-			{
-				_shader.DxColor = color;
-			}
 		}
 	}
 }

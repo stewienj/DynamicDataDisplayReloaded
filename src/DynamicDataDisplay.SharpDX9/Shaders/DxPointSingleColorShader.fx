@@ -1,6 +1,6 @@
 ﻿struct VS_IN
 {
-	float4 pos : POSITION;
+	float2 pos : POSITION;
 };
 
 struct PS_IN
@@ -11,12 +11,16 @@ struct PS_IN
 
 float4x4 worldViewProj;
 float4 pointColor;
+float depth;
 
 PS_IN VS(VS_IN input)
 {
 	PS_IN output = (PS_IN)0;
-
-	output.pos = mul(input.pos, worldViewProj);
+	// Expand x,y to x,y,z,w. When w is 1 then translations are applied, if w was zero then only scale is applied.
+	output.pos = float4(input.pos.x, input.pos.y, depth, 1);
+	// Multiply by the world matrix
+	output.pos = mul(output.pos, worldViewProj);
+	// Use the global color
 	output.col = pointColor;
 
 	return output;

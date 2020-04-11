@@ -18,26 +18,14 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 	/// </summary>
 	public class DxMultiLineSingleColor : BaseDxPrimitive<DxPoint>
 	{
-		private DxPointGlobalColorShader _shader;
-
 		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
-			_shader = new DxPointGlobalColorShader(Device);
-			_shader.DxColor = new DxColor(Color);
-			return _shader;
+			return new DxPointSingleColorShader(Device);
 		}
 
 		protected override PrimitiveType GetPrimitiveType()
 		{
 			return PrimitiveType.LineList;
-		}
-
-		protected override void SetColor(DxColor color)
-		{
-			if (_shader != null)
-			{
-				_shader.DxColor = color;
-			}
 		}
 	}
 }

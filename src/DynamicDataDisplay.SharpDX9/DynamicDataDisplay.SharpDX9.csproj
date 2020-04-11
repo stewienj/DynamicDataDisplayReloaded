@@ -42,13 +42,12 @@
     <Compile Include="Lines\DxInstancedLineSingleColor.cs" />
     <Compile Include="Shaders\DxPointAndColorShader.cs" />
     <Compile Include="Lines\DxLineSingleColor.cs" />
-    <Compile Include="Shaders\DxPointInstancedGlobalColorShader.cs" />
-    <Compile Include="Shaders\DxPointGlobalColorShader.cs" />
+    <Compile Include="Shaders\DxPointInstancedSingleColorShader.cs" />
+    <Compile Include="Shaders\DxPointSingleColorShader.cs" />
     <Compile Include="Lines\DxMultiLineMultiColor.cs" />
     <Compile Include="Lines\DxMultiLineSingleColor.cs" />
     <Compile Include="BaseDxChartElement.cs" />
     <Compile Include="BaseDxPrimitive.cs" />
-    <Compile Include="Shaders\InstancingPrototypeShader.cs" />
     <Compile Include="SharpDXHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -101,14 +100,13 @@
     <EmbeddedResource Include="Shaders\DxPointAndColorShader.fx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Shaders\DxPointGlobalColorShader.fx" />
+    <EmbeddedResource Include="Shaders\DxPointSingleColorShader.fx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Markers\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Shaders\DxPointInstancedGlobalColorShader.fx" />
-    <EmbeddedResource Include="Shaders\InstancingPrototypeShader.fx" />
+    <EmbeddedResource Include="Shaders\DxPointInstancedSingleColorShader.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

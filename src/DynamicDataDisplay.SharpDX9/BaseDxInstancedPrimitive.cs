@@ -95,14 +95,13 @@ namespace DynamicDataDisplay.SharpDX9
 			Device.VertexDeclaration = _vertexDeclaration;
 			Device.Indices = _indexBuffer;
 
-			Action<int> perPass = passNo =>
+			_transformEffect.DoMultipassEffect(this, passNo =>
 			{
 				// Draw everything, I can't work out what effect the 4th parameter has,
 				// doesn't seem to affect anything, so I left it at zero, maybe comes into
 				// effect for certain primitive types
-				Device.DrawIndexedPrimitive(GetPrimitiveType(), 0, 0, 0, 0, _vertexCount-1);
-			};
-			_transformEffect.DoMultipassEffect(Plotter.Viewport.Visible, perPass, DxDataTransform);
+				Device.DrawIndexedPrimitive(GetPrimitiveType(), 0, 0, 0, 0, _vertexCount - 1);
+			});
 
 			Device.ResetStreamSourceFrequency(1);
 			Device.ResetStreamSourceFrequency(0);

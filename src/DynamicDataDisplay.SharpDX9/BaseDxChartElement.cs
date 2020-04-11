@@ -1,4 +1,5 @@
-﻿using SharpDX;
+﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+using SharpDX;
 using SharpDX.Direct3D9;
 using System;
 using System.Linq;
@@ -32,7 +33,9 @@ namespace DynamicDataDisplay.SharpDX9
 
 		protected virtual void OnDirectXRender() { }
 
-		protected Matrix DxDataTransform { get; private set; } = Matrix.Identity;
+		public DataRect VisibleRect => Plotter.Viewport.Visible;
+
+		public Matrix DxDataTransform { get; private set; } = Matrix.Identity;
 
 		public System.Numerics.Matrix4x4 DataTransform
 		{
@@ -54,6 +57,41 @@ namespace DynamicDataDisplay.SharpDX9
 				}
 			}));
 
+		public float DxDepth { get; private set; } = 1f;
+
+		public float Depth
+		{
+			get { return (float)GetValue(DepthProperty); }
+			set { SetValue(DepthProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for Depth.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty DepthProperty =
+			DependencyProperty.Register("Depth", typeof(float), typeof(BaseDxChartElement), new PropertyMetadata(1f, (s,e) =>
+			{
+				if (s is BaseDxChartElement control && e.NewValue is float newDepth)
+				{
+					control.DxDepth = newDepth;
+				}
+			}));
+
+		public DxColor DxColor { get; private set; }
+
+		public System.Windows.Media.Color Color
+		{
+			get { return (System.Windows.Media.Color)GetValue(ColorProperty); }
+			set { SetValue(ColorProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for LineColor.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ColorProperty =
+			DependencyProperty.Register("Color", typeof(System.Windows.Media.Color), typeof(BaseDxChartElement), new PropertyMetadata(System.Windows.Media.Colors.Black, (s, e) =>
+			{
+				if (s is BaseDxChartElement control && e.NewValue is System.Windows.Media.Color newColor)
+				{
+					control.DxColor = new DxColor(newColor);
+				}
+			}));
 
 		#region IPlotterElement Members
 
