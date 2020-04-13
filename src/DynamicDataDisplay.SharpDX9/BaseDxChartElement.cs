@@ -26,12 +26,12 @@ namespace DynamicDataDisplay.SharpDX9
 			get { return dxHost.Direct3D; }
 		}
 
-		private void OnDirectXRender(object sender, EventArgs e)
+		private void OnDirectXRender(object sender, RenderEventArgs e)
 		{
-			OnDirectXRender();
+			OnDirectXRender(e.Width, e.Height);
 		}
 
-		protected virtual void OnDirectXRender() { }
+		protected virtual void OnDirectXRender(int width, int height) { }
 
 		public DataRect VisibleRect => Plotter.Viewport.Visible;
 

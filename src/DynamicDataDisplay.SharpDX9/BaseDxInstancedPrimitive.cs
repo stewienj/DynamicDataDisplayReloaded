@@ -44,9 +44,9 @@ namespace DynamicDataDisplay.SharpDX9
 			base.OnPlotterDetaching(plotter);
 		}
 
-		protected override bool UpdateVertexBufferFromDataSource(IEnumerable<TDxPoint> newPoints)
+		protected override bool UpdateVertexBufferFromGeometrySource(IEnumerable<TDxPoint> newPoints)
 		{
-			var vertexBufferSizeChanged = base.UpdateVertexBufferFromDataSource(newPoints);
+			var vertexBufferSizeChanged = base.UpdateVertexBufferFromGeometrySource(newPoints);
 			if(vertexBufferSizeChanged)
 			{
 				_indexBuffer?.Dispose();
@@ -82,7 +82,7 @@ namespace DynamicDataDisplay.SharpDX9
 			_instanceCount = instanceCount;
 		}
 
-		protected override void OnDirectXRender()
+		protected override void OnDirectXRender(int width, int height)
 		{
 			if (_vertexCount <= 0)
 				return;
@@ -95,7 +95,7 @@ namespace DynamicDataDisplay.SharpDX9
 			Device.VertexDeclaration = _vertexDeclaration;
 			Device.Indices = _indexBuffer;
 
-			_transformEffect.DoMultipassEffect(this, passNo =>
+			_transformEffect.DoMultipassEffect(width, height, this, passNo =>
 			{
 				// Draw everything, I can't work out what effect the 4th parameter has,
 				// doesn't seem to affect anything, so I left it at zero, maybe comes into

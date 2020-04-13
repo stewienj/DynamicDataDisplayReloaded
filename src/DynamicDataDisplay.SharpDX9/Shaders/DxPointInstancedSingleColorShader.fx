@@ -13,7 +13,8 @@ struct PS_IN
 float4x4 worldViewProj;
 float4 pointColor;
 float depth;
-
+float bufferWidth;
+float bufferHeight;
 
 PS_IN VS(VS_IN input)
 {

@@ -83,6 +83,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demos\SharpDX\DxMarkerColoredByInstanceSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Demos\SlimDX\SimpleLineSample.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -231,6 +235,9 @@
     </Compile>
     <Compile Include="Demos\SharpDX\DxLineMultiColorSample.xaml.cs">
       <DependentUpon>DxLineMultiColorSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\SharpDX\DxMarkerColoredByInstanceSample.xaml.cs">
+      <DependentUpon>DxMarkerColoredByInstanceSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Demos\SlimDX\SimpleLineSample.xaml.cs">
       <DependentUpon>SimpleLineSample.xaml</DependentUpon>

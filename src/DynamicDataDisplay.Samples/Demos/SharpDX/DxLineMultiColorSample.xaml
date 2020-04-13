@@ -11,9 +11,9 @@
     <Grid>
         <d3:ChartPlotter>
             <d3:SharpDXHost/>
-            <d3:DxLineMultiColor DataSource="{Binding Points1}" Depth="3"/>
-            <d3:DxLineMultiColor DataSource="{Binding Points2}" Depth="2"/>
-            <d3:DxLineMultiColor DataSource="{Binding Points3}" Depth="1"/>
+            <d3:DxLineMultiColor GeometrySource="{Binding Points1}" Depth="3"/>
+            <d3:DxLineMultiColor GeometrySource="{Binding Points2}" Depth="2"/>
+            <d3:DxLineMultiColor GeometrySource="{Binding Points3}" Depth="1"/>
         </d3:ChartPlotter>
     </Grid>
 </Page>

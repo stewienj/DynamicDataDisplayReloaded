@@ -13,6 +13,8 @@ struct PS_IN
 float4x4 worldViewProj;
 float4 pointColor; // ignored for this shader
 float depth;
+float bufferWidth;
+float bufferHeight;
 
 PS_IN VS(VS_IN input)
 {

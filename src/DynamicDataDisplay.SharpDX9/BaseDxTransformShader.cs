@@ -40,12 +40,12 @@ namespace DynamicDataDisplay.SharpDX9
 			}
 		}
 
-		public void DoMultipassEffect(BaseDxChartElement chart, Action<int> processPass)
+		public void DoMultipassEffect(int width, int height, BaseDxChartElement chart, Action<int> processPass)
 		{
-			DoMultipassEffect(chart.VisibleRect, chart.DxDepth, chart.DxColor, chart.DxDataTransform, processPass);
+			DoMultipassEffect(width, height, chart.VisibleRect, chart.DxDepth, chart.DxColor, chart.DxDataTransform, processPass);
 		}
 
-		protected virtual void DoMultipassEffect(DataRect dataRect, float depth, DxColor color, Matrix dataTransform, Action<int> processPass)
+		protected virtual void DoMultipassEffect(int width, int height, DataRect dataRect, float depth, DxColor color, Matrix dataTransform, Action<int> processPass)
 		{
 			// Todo move the centre point
 			var view = Matrix.LookAtLH(new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, -1f), new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, 0), Vector3.UnitY);
@@ -57,6 +57,8 @@ namespace DynamicDataDisplay.SharpDX9
 
 			_effect.Technique = _technique;
 
+			_effect.SetValue("bufferWidth", (float)width);
+			_effect.SetValue("bufferHeight", (float)height);
 			_effect.SetValue("pointColor", color.Float4);
 			_effect.SetValue("depth", depth);
 			_effect.SetValue("worldViewProj", worldViewProj);

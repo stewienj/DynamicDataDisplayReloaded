@@ -22,7 +22,7 @@ namespace NewMarkersSample.Pages
 		{
 			plotter.Visible = new DataRect(0, 0, 1, 1);
 
-			int count = (int)1e4;
+			int count = (int)1e5;
 			Point[] pts = new Point[count];
 
 			Random rnd = new Random();

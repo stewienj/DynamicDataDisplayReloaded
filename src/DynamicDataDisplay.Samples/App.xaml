@@ -31,7 +31,7 @@
                 <m:Demonstration Description="Bar Chart" Uri="/Demos/v04/Markers/BarChart page/BarChartPage.xaml"/>
                 <m:Demonstration Description="Pie Chart" Uri="/Demos/v04/Markers/PieChart page/PieChartPage.xaml"/>
                 <m:Demonstration Description="Acceptable Range" Uri="/Demos/v04/Markers/AcceptableRangePage.xaml"/>
-                <m:Demonstration Description="10,000 Unfiltered Points" Uri="/Demos/v04/Markers/BigPointArrayPage.xaml"/>
+                <m:Demonstration Description="100,000 Unfiltered Points" Uri="/Demos/v04/Markers/BigPointArrayPage.xaml"/>
                 <m:Demonstration Description="Column Chart" Uri="/Demos/v04/Markers/ColumnChartSample.xaml"/>
                 <m:Demonstration Description="Marker Samples" Uri="/Demos/v04/Markers/DifferentBuildInMarkersPage.xaml"/>
                 <m:Demonstration Description="Stock Markers" Uri="/Demos/v04/Markers/StockMarkersPage.xaml"/>
@@ -50,7 +50,8 @@
             <m:ReleaseInfo Version="SharpDX Samples">
                 <m:Demonstration Description="DxLineMultiColor" Uri="/Demos/SharpDX/DxLineMultiColorSample.xaml"/>
                 <m:Demonstration Description="DxLineSingleColor" Uri="/Demos/SharpDX/DxLineSingleColorSample.xaml"/>
-                <m:Demonstration Description="DxInstancedLineSingleColorSample" Uri="/Demos/SharpDX/DxInstancedLineSingleColorSample.xaml"/>
+                <m:Demonstration Description="DxInstancedLineSingleColor" Uri="/Demos/SharpDX/DxInstancedLineSingleColorSample.xaml"/>
+                <m:Demonstration Description="DxMarkerColoredByInstance" Uri="/Demos/SharpDX/DxMarkerColoredByInstanceSample.xaml"/>
             </m:ReleaseInfo>
             <m:ReleaseInfo Version="SlimDX Samples">
                 <m:Demonstration Description="Simple Line" Uri="/Demos/SlimDX/SimpleLineSample.xaml"/>

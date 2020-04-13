@@ -20,6 +20,9 @@ namespace DynamicDataDisplay.SharpDX9.DataTypes
 		{
 		}
 
+		public DxPoint(double x, double y) : this(new Vector2((float)x, (float)y))
+		{
+		}
 		public DxPoint(float x, float y) : this(new Vector2(x, y))
 		{
 		}

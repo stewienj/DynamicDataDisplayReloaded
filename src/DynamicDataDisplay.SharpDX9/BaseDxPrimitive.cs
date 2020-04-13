@@ -42,7 +42,7 @@ namespace DynamicDataDisplay.SharpDX9
 			base.OnPlotterDetaching(plotter);
 		}
 
-		protected virtual bool UpdateVertexBufferFromDataSource(IEnumerable<TDxPoint> newPoints)
+		protected virtual bool UpdateVertexBufferFromGeometrySource(IEnumerable<TDxPoint> newPoints)
 		{
 			bool vertexBufferSizeChanged = false;
 
@@ -93,7 +93,7 @@ namespace DynamicDataDisplay.SharpDX9
 			return vertexBufferSizeChanged;
 		}
 
-		protected override void OnDirectXRender()
+		protected override void OnDirectXRender(int width, int height)
 		{
 			var test = Utilities.SizeOf<TDxPoint>();
 			if (_vertexCount <= 0)
@@ -102,7 +102,7 @@ namespace DynamicDataDisplay.SharpDX9
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<TDxPoint>());
 			Device.VertexDeclaration = _vertexDeclaration;
-			_transformEffect.DoMultipassEffect(this, passNo =>
+			_transformEffect.DoMultipassEffect(width, height, this, passNo =>
 			{
 				Device.DrawPrimitives(GetPrimitiveType(), 0, _vertexCount - 1);
 			});
@@ -112,19 +112,19 @@ namespace DynamicDataDisplay.SharpDX9
 
 		protected abstract PrimitiveType GetPrimitiveType();
 
-		public IEnumerable<TDxPoint> DataSource
+		public IEnumerable<TDxPoint> GeometrySource
 		{
-			get { return (IEnumerable<TDxPoint>)GetValue(DataSourceProperty); }
-			set { SetValue(DataSourceProperty, value); }
+			get { return (IEnumerable<TDxPoint>)GetValue(GeometrySourceProperty); }
+			set { SetValue(GeometrySourceProperty, value); }
 		}
 
 		// Using a DependencyProperty as the backing store for DataSource.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty DataSourceProperty =
-			DependencyProperty.Register("DataSource", typeof(IEnumerable<TDxPoint>), typeof(BaseDxPrimitive<TDxPoint>), new PropertyMetadata(null, (s, e) =>
+		public static readonly DependencyProperty GeometrySourceProperty =
+			DependencyProperty.Register("GeometrySource", typeof(IEnumerable<TDxPoint>), typeof(BaseDxPrimitive<TDxPoint>), new PropertyMetadata(null, (s, e) =>
 			{
 				if (s is BaseDxPrimitive<TDxPoint> control && e.NewValue is IEnumerable<TDxPoint> newData)
 				{
-					control.UpdateVertexBufferFromDataSource(newData);
+					control.UpdateVertexBufferFromGeometrySource(newData);
 				}
 			}));
 	}

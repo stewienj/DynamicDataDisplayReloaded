@@ -112,7 +112,7 @@ namespace DynamicDataDisplay.SharpDX9
 						Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.ZEnable, true);
 						Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, float.MaxValue, 0);
 						Device.BeginScene();
-						Render.Raise(this);
+						Render.Raise(this, new RenderEventArgs(_pp.BackBufferWidth, _pp.BackBufferHeight));
 						Device.EndScene();
 						Device.Present();
 
@@ -136,7 +136,7 @@ namespace DynamicDataDisplay.SharpDX9
 			}
 		}
 
-		public event EventHandler Render;
+		public event EventHandler<RenderEventArgs> Render;
 
 		protected override void OnRender(System.Windows.Media.DrawingContext drawingContext)
 		{
@@ -179,4 +179,18 @@ namespace DynamicDataDisplay.SharpDX9
 		#endregion
 
 	}
+
+	public class RenderEventArgs : EventArgs
+	{
+		public RenderEventArgs(int width, int height)
+		{
+			Width = width;
+			Height = height;
+		}
+
+		public int Width { get; }
+		public int Height { get; }
+	}
+		
+
 }

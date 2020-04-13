@@ -11,7 +11,7 @@
     <Grid>
         <d3:ChartPlotter>
             <d3:SharpDXHost/>
-            <d3:DxInstancedLineSingleColor DataSource="{Binding Points1}" Positions="{Binding Positions}"  Color="{Binding Color1}" Depth="1"/>
+            <d3:DxInstancedLineSingleColor GeometrySource="{Binding Points1}" Positions="{Binding Positions}"  Color="{Binding Color1}" Depth="1"/>
         </d3:ChartPlotter>
     </Grid>
 </Page>

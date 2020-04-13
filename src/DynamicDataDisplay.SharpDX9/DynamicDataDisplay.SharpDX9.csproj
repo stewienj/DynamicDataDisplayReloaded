@@ -36,12 +36,16 @@
     <Compile Include="DataTypes\DxInstancePoint.cs" />
     <Compile Include="DataTypes\DxPoint.cs" />
     <Compile Include="DataTypes\DxColor.cs" />
+    <Compile Include="DataTypes\DxInstancedPointAndColor.cs" />
     <Compile Include="DataTypes\DxPointAndColor.cs" />
     <Compile Include="DataTypes\IDxPoint.cs" />
     <Compile Include="Lines\DxLineMultiColor.cs" />
     <Compile Include="Lines\DxInstancedLineSingleColor.cs" />
+    <Compile Include="Markers\DxMarkerFanColoredByInstance.cs" />
+    <Compile Include="Markers\DxMarkerColoredByInstance.cs" />
     <Compile Include="Shaders\DxPointAndColorShader.cs" />
     <Compile Include="Lines\DxLineSingleColor.cs" />
+    <Compile Include="Shaders\DxMarkerColoredByInstanceShader.cs" />
     <Compile Include="Shaders\DxPointInstancedSingleColorShader.cs" />
     <Compile Include="Shaders\DxPointSingleColorShader.cs" />
     <Compile Include="Lines\DxMultiLineMultiColor.cs" />
@@ -103,7 +107,7 @@
     <EmbeddedResource Include="Shaders\DxPointSingleColorShader.fx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Markers\" />
+    <EmbeddedResource Include="Shaders\DxMarkerColoredByInstanceShader.fx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Shaders\DxPointInstancedSingleColorShader.fx" />
