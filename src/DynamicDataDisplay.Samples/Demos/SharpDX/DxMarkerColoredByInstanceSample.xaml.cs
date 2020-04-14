@@ -58,7 +58,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 		private DxInstancedPointAndColor[] _currentArray = new DxInstancedPointAndColor[_pointCount];
 		private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 		public volatile bool _hasBeenDisposed = false;
-		public volatile bool _animationRunning = true;
+		public volatile bool _animationRunning = false;
 		public volatile bool _doReset = true;
 
 		public DxMarkerColoredByInstanceViewModel()

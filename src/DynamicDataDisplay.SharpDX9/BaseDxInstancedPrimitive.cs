@@ -51,13 +51,13 @@ namespace DynamicDataDisplay.SharpDX9
 			{
 				_indexBuffer?.Dispose();
 				// Create a 16 bit index buffer
-				_indexBuffer = new IndexBuffer(Device, Utilities.SizeOf<ushort>() * _vertexBufferAllocated, Usage.WriteOnly, Pool.Default, true);
+				_indexBuffer = new IndexBuffer(Device, Utilities.SizeOf<int>() * _vertexBufferAllocated, Usage.WriteOnly, Pool.Default, false);
 			}
 			// Now set the index buffer to match
 
 			// Lock the buffer, so that we can access the data.
 			DataStream indexStream = _indexBuffer.Lock(0, 0, LockFlags.Discard);
-			indexStream.WriteRange(Enumerable.Range(0, _vertexBufferAllocated).Select(i=>(ushort)i).ToArray());
+			indexStream.WriteRange(Enumerable.Range(0, _vertexBufferAllocated).ToArray());
 			// Unlock the stream again, committing all changes.
 			_indexBuffer.Unlock();
 
