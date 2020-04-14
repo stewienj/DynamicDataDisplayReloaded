@@ -64,7 +64,8 @@ namespace DynamicDataDisplay.SharpDX9
 		}
 
 		bool renderNext = true;
-		Duration _timeOutDuration = new Duration(TimeSpan.FromMilliseconds(200));
+        // Note that if you exceed 2 seconds per frame render, then it will stop updating.
+		Duration _timeOutDuration = new Duration(TimeSpan.FromMilliseconds(2000));
 		private void CompositionTarget_Rendering(object sender, EventArgs e)
 		{
 			renderNext = !renderNext;
@@ -97,14 +98,14 @@ namespace DynamicDataDisplay.SharpDX9
 
 				if (_image.IsFrontBufferAvailable)
 				{
+					if (!_image.TryLock(_timeOutDuration))
+					{
+						return;
+					}
 					Result result = Device.TestCooperativeLevel();
 					if (result.Failure)
 					{
 						throw new SharpDXException();
-					}
-					if (!_image.TryLock(_timeOutDuration))
-					{
-						return;
 					}
 					try
 					{
