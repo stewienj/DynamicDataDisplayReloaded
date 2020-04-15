@@ -17,7 +17,12 @@ namespace Wms.Client
 			// Constructor requires a path to an XML capabilities file,
 			// and a reference to a Wms.Client.Server object.
 			this.server = server;
-			this.doc = new System.Xml.XPath.XPathDocument(filePath);
+
+			// Disable the XmlResolver since it fails if proxy authentication is required
+			// when retreiving schemas listed in the Xml file
+			var xmlReader = new System.Xml.XmlTextReader(filePath);
+			xmlReader.XmlResolver = null;
+			this.doc = new System.Xml.XPath.XPathDocument(xmlReader);
 		}
 
 		// The next several "Get" functions are utilities for parsing the capabilities
@@ -276,7 +281,7 @@ namespace Wms.Client
 			get
 			{
 				System.Xml.XPath.XPathNodeIterator iter
-					= this.doc.CreateNavigator().Select(ExpandPattern(@"/*/Capability"));
+				  = this.doc.CreateNavigator().Select(ExpandPattern(@"/*/Capability"));
 				if (iter.MoveNext())
 				{
 					return Layer.GetLayers(iter.Current, this.server);
@@ -301,7 +306,7 @@ namespace Wms.Client
 			get
 			{
 				System.Xml.XPath.XPathNodeIterator iter
-					= this.doc.CreateNavigator().Select(ExpandPattern(@"./UserDefinedSymbolization"));
+				  = this.doc.CreateNavigator().Select(ExpandPattern(@"./UserDefinedSymbolization"));
 				UserDefinedSymbolizationType retVal = new UserDefinedSymbolizationType();
 				if (iter.MoveNext())
 				{
