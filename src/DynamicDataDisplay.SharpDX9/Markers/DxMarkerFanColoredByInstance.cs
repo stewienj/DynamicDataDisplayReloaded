@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DynamicDataDisplay.SharpDX9.Lines
+namespace DynamicDataDisplay.SharpDX9.Markers
 {
 	/// <summary>
 	/// This takes a collection of points and renders a continous line in a single color, then reproduces that line

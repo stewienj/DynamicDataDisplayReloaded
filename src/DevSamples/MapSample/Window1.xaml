@@ -9,12 +9,12 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <d3:ChartPlotter Name="leftPlotter" Grid.Column="0">
+        <d3:ChartPlotter x:Name="leftPlotter" Grid.Column="0">
             <d3:ChartPlotter.DataTransform>
                 <d3:MercatorTransform/>
             </d3:ChartPlotter.DataTransform>
 
-            <d3:Map Name="leftmap">
+            <d3:Map x:Name="leftmap">
 				<d3:OpenStreetMapServer/>
             </d3:Map>
 
@@ -25,12 +25,12 @@
             <d3:CursorCoordinateGraph VerticalLineStroke="Blue" HorizontalLineStroke="Blue" Name="leftCursor" AutoHide="False"/>
         </d3:ChartPlotter>
 
-        <d3:ChartPlotter Name="rightPlotter" Grid.Column="1">
+        <d3:ChartPlotter x:Name="rightPlotter" Grid.Column="1">
             <d3:ChartPlotter.DataTransform>
                 <d3:MercatorTransform/>
             </d3:ChartPlotter.DataTransform>
 
-            <d3:Map Name="rightMap">
+            <d3:Map x:Name="rightMap">
                 <!--<d3:VERoadMixedServer/>-->
                 <d3:EmptyTileServer/>
 

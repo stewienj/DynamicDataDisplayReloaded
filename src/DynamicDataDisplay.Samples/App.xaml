@@ -53,9 +53,6 @@
                 <m:Demonstration Description="DxInstancedLineSingleColor" Uri="/Demos/SharpDX/DxInstancedLineSingleColorSample.xaml"/>
                 <m:Demonstration Description="DxMarkerColoredByInstance" Uri="/Demos/SharpDX/DxMarkerColoredByInstanceSample.xaml"/>
             </m:ReleaseInfo>
-            <m:ReleaseInfo Version="SlimDX Samples">
-                <m:Demonstration Description="Simple Line" Uri="/Demos/SlimDX/SimpleLineSample.xaml"/>
-            </m:ReleaseInfo>
         </m:SamplesCollection>
 
         <local:VersionToBrushConverter x:Key="versionConverter"/>
