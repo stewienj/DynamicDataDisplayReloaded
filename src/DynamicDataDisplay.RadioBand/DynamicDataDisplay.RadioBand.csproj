@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+      <Link>Properties\BuildAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ConfigLoader\FrequencyLabelSet.cs" />
     <Compile Include="CursorNearestRadioBandLine.xaml.cs">

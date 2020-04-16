@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Markup;
 
-namespace DynamicDataDisplay.Utility
+namespace DynamicDataDisplay.MarkupExtensions
 {
 	// EnumToItemsSource, used to make ComboBoxes from Enums
 	// Needs on the enumerated type an EnumToDescriptionConverter,

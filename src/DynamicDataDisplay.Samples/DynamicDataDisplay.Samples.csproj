@@ -196,6 +196,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+      <Link>Properties\BuildAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -379,10 +382,6 @@
       <Project>{a6671beb-9b21-41bc-b47a-82210c38f322}</Project>
       <Name>DynamicDataDisplay.BitmapGraphs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay.Coastline\DynamicDataDisplay.Coastline.csproj">
-      <Project>{F14D455C-E581-41FF-8C33-561C85A83449}</Project>
-      <Name>DynamicDataDisplay.Coastline</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj">
       <Project>{EB04A4CD-DDE6-49EB-8FB6-39B35482D792}</Project>
       <Name>DynamicDataDisplay.Maps</Name>
@@ -398,10 +397,6 @@
     <ProjectReference Include="..\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj">
       <Project>{e140351c-f359-40be-9182-120c50a45061}</Project>
       <Name>DynamicDataDisplay.SharpDX9</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay.Utility\DynamicDataDisplay.Utility.csproj">
-      <Project>{A6671BEB-9B21-41BC-B47A-82210C38F544}</Project>
-      <Name>DynamicDataDisplay.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>

@@ -22,6 +22,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
@@ -38,6 +39,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+      <Link>Properties\BuildAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ArrayBitmapSource.cs" />
+    <Compile Include="GraphicsFont.cs" />
     <Compile Include="GroupedMarkers.cs" />
     <Compile Include="GroupedMarkersAggregatorAndSelector.cs" />
     <Compile Include="GroupedMarkersCalculationProgressArgs.cs" />
@@ -67,6 +73,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="StatusByLatLonChartView.cs" />
+    <Compile Include="UIElementSingleClickDoubleClickRouter.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -77,10 +84,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamicDataDisplay.Utility\DynamicDataDisplay.Utility.csproj">
-      <Project>{A6671BEB-9B21-41BC-B47A-82210C38F544}</Project>
-      <Name>DynamicDataDisplay.Utility</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
       <Name>DynamicDataDisplay</Name>

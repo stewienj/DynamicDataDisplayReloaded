@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DynamicDataDisplay.Samples.Demos.Custom"
-             xmlns:autoGen="clr-namespace:DynamicDataDisplay.Utility;assembly=DynamicDataDisplay.Utility"
+             xmlns:autoGen="clr-namespace:DynamicDataDisplay.Common.Auxiliary;assembly=DynamicDataDisplay"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}" Background="Cornsilk">

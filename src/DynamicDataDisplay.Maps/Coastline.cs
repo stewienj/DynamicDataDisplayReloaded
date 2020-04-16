@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 
-namespace DynamicDataDisplay.Charts
+namespace DynamicDataDisplay.Maps
 {
 	public class Coastline : ViewportElement2D
 	{
@@ -75,7 +75,7 @@ namespace DynamicDataDisplay.Charts
 
 		public Coastline()
 		{
-			string path = "DynamicDataDisplay.Charts.Coastline.txt";
+			string path = "DynamicDataDisplay.Maps.Coastline.txt";
 
 			Assembly assembly = Assembly.GetAssembly(typeof(Coastline));
 			using (StreamReader reader = new StreamReader(assembly.GetManifestResourceStream(path)))

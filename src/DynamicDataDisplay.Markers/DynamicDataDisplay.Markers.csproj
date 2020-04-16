@@ -31,6 +31,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+      <Link>Properties\BuildAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AcceptableRange\AcceptableRangeChart.cs" />
     <Compile Include="AcceptableRange\AcceptableRangeMultiConverter.cs" />
     <Compile Include="AssemblyInfo.cs" />

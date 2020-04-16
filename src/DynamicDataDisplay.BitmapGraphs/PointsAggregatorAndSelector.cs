@@ -1,5 +1,4 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
-using DynamicDataDisplay.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -46,8 +46,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InertiaSample", "..\..\src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercatorMapSample", "..\..\src\DevSamples\MercatorMapSample\MercatorMapSample.csproj", "{8F2EC231-53A6-4114-9959-EEDED48F1289}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Coastline", "..\..\src\DynamicDataDisplay.Coastline\DynamicDataDisplay.Coastline.csproj", "{F14D455C-E581-41FF-8C33-561C85A83449}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueSelectionSampleApp", "..\..\src\DevSamples\ValueSelectionSampleApp\ValueSelectionSampleApp.csproj", "{19DF272C-DBFE-4923-8A41-6BF355A0CB88}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextMenuSample", "..\..\src\DevSamples\ContextMenuSample\ContextMenuSample.csproj", "{C952C296-9634-4694-87A3-166D1915EA45}"
@@ -206,8 +204,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendSamples", "..\..\src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcSegmentPlotting", "..\..\src\Repros\ArcSegmentPlotting\ArcSegmentPlotting.csproj", "{A40917DA-091B-4BF5-A645-61EA45D8090F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Utility", "..\..\src\DynamicDataDisplay.Utility\DynamicDataDisplay.Utility.csproj", "{A6671BEB-9B21-41BC-B47A-82210C38F544}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.BitmapGraphs", "..\..\src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj", "{A6671BEB-9B21-41BC-B47A-82210C38F322}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDataDisplay.Visualization3D", "..\..\src\DynamicDataDisplay.Visualization3D\DynamicDataDisplay.Visualization3D.csproj", "{849033AA-0765-49F8-B60D-D85CE5CD32EB}"
@@ -246,10 +242,6 @@ Global
 		{8F2EC231-53A6-4114-9959-EEDED48F1289}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F2EC231-53A6-4114-9959-EEDED48F1289}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F2EC231-53A6-4114-9959-EEDED48F1289}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F14D455C-E581-41FF-8C33-561C85A83449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F14D455C-E581-41FF-8C33-561C85A83449}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F14D455C-E581-41FF-8C33-561C85A83449}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F14D455C-E581-41FF-8C33-561C85A83449}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19DF272C-DBFE-4923-8A41-6BF355A0CB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19DF272C-DBFE-4923-8A41-6BF355A0CB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19DF272C-DBFE-4923-8A41-6BF355A0CB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -566,10 +558,6 @@ Global
 		{A40917DA-091B-4BF5-A645-61EA45D8090F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A40917DA-091B-4BF5-A645-61EA45D8090F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A40917DA-091B-4BF5-A645-61EA45D8090F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6671BEB-9B21-41BC-B47A-82210C38F544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6671BEB-9B21-41BC-B47A-82210C38F544}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6671BEB-9B21-41BC-B47A-82210C38F544}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6671BEB-9B21-41BC-B47A-82210C38F544}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6671BEB-9B21-41BC-B47A-82210C38F322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6671BEB-9B21-41BC-B47A-82210C38F322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6671BEB-9B21-41BC-B47A-82210C38F322}.Release|Any CPU.ActiveCfg = Release|Any CPU

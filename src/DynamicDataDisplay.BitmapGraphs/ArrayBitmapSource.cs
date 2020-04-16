@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace DynamicDataDisplay.Utility
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	/// <summary>
 	/// Wraps a 2 dimensional array as a bitmap source

@@ -74,9 +74,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DynamicDataDisplay.Coastline\DynamicDataDisplay.Coastline.csproj">
-      <Project>{F14D455C-E581-41FF-8C33-561C85A83449}</Project>
-      <Name>DynamicDataDisplay.Coastline</Name>
+    <ProjectReference Include="..\..\..\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj">
+      <Project>{eb04a4cd-dde6-49eb-8fb6-39b35482d792}</Project>
+      <Name>DynamicDataDisplay.Maps</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\DynamicDataDisplay\DynamicDataDisplay.csproj">
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>

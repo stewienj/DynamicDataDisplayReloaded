@@ -32,6 +32,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+      <Link>Properties\BuildAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Charts\Map.DebugMenu.cs" />
     <Compile Include="Charts\TiledRendering\CapturingPlotter.xaml.cs">
@@ -53,6 +56,7 @@
     <Compile Include="Charts\VectorFields\VectorFieldConvolutionChart.cs" />
     <Compile Include="Charts\VectorFields\VectorFieldConvolutionFilter.cs" />
     <Compile Include="Charts\VectorFields\VectorFieldExtensions.cs" />
+    <Compile Include="Coastline.cs" />
     <Compile Include="CoordinateType.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -201,6 +205,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Coastline.txt" />
     <Content Include="Wms.Client\DefaultServerDescriptors.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

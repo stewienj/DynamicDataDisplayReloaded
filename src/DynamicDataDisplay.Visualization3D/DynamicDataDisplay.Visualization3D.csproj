@@ -34,6 +34,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+      <Link>Properties\BuildAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Auxilaries\DDS.cs" />
     <Compile Include="Auxilaries\MathHelper.cs" />
     <Compile Include="DataSource.cs" />

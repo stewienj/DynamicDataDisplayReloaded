@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.Utility;
+﻿using DynamicDataDisplay.BitmapGraphs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;

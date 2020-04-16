@@ -33,6 +33,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+      <Link>Properties\BuildAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Charts\Axes\AxisControlBase.cs" />
     <Compile Include="Charts\Axes\AxisGrid.cs" />
     <Compile Include="Charts\Axes\DateTime\DateTimeToDoubleConversion.cs" />
@@ -209,6 +212,7 @@
     <Compile Include="Common\Auxiliary\DependencyObjectExtensions.cs" />
     <Compile Include="Common\Auxiliary\EngineeringNotation.cs" />
     <Compile Include="Common\Auxiliary\Extensions.cs" />
+    <Compile Include="Common\Auxiliary\MarkupExtensions\EnumToItemsSource.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\XbapConditionalExpression.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\TemplateBinding.cs" />
     <Compile Include="Common\Auxiliary\MenuItemExtensions.cs" />

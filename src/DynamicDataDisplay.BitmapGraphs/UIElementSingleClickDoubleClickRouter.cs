@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace DynamicDataDisplay.Utility
+namespace DynamicDataDisplay.BitmapGraphs
 {
 	/// <summary>
 	/// Handles the left mouse down/up and timings to determine if the user
