@@ -9,6 +9,6 @@ The base for this project is a clone of the DynamicDataDisplay Sources v0.3.4703
 
 The reason why I am doing this is because I have a whole lot of old code that I want to resurrect that depends on the old DynamicDataDisplay. However not only do I want to resurrect that old code, but I also want to improve on it.
 
-Here's an example of one of the improvements I've made
+Here's an example of one of the improvements I've made in the video below. Click the image to go to youtube.
 
-[![DirectX Rendering](https://img.youtube.com/vi/c7qLWb2EHGI/0.jpg)](https://www.youtube.com/watch?v=c7qLWb2EHGI "DirectX Rendering")
+[<img src="https://img.youtube.com/vi/c7qLWb2EHGI/maxresdefault.jpg" width="100%">](https://www.youtube.com/watch?v=c7qLWb2EHGI "DirectX Rendering Video")
