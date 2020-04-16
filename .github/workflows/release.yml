@@ -62,5 +62,5 @@ jobs:
     - name: Create DynamicDataDisplayReloaded.SharpDX9 nuget package
       run: nuget pack "src\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Debug_AnyCPU"     
 
-    #- name: Publish Nuget Packages
-    #  run: dotnet nuget push Publish/*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
+    - name: Publish Nuget Packages
+      run: nuget push Publish/*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
