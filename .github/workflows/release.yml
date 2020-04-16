@@ -63,4 +63,4 @@ jobs:
       run: nuget pack "src\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Publish Nuget Packages
-      run: nuget push Publish/*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Publish/*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
