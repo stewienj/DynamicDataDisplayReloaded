@@ -155,7 +155,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="VisibleTileInfo.cs" />
+    <Compile Include="Wms.Client\Capabilities.cs" />
+    <Compile Include="Wms.Client\DownloadCache.cs" />
+    <Compile Include="Wms.Client\ExtensionMap.cs" />
+    <Compile Include="Wms.Client\Layer.cs" />
+    <Compile Include="Wms.Client\RequestBuilder.cs" />
+    <Compile Include="Wms.Client\Server.cs" />
+    <Compile Include="Wms.Client\WmsException.cs" />
     <None Include="MercatorShader.fx" />
+    <None Include="Wms.Client\Wms.Client.csproj" />
+    <None Include="Wms.Client\WmsServerDescriptors.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Resource Include="MercatorShader.ps" />
   </ItemGroup>
   <ItemGroup>
@@ -182,16 +193,15 @@
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
       <Name>DynamicDataDisplay</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wms.Client\Wms.Client.csproj">
-      <Project>{579aabdd-978c-4a17-8542-fac4f2631b19}</Project>
-      <Name>Wms.Client</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Charts\TiledRendering\CapturingPlotter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Wms.Client\DefaultServerDescriptors.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!--<Target Name="EffectCompile" Condition="'@(Effect)' != '' ">
