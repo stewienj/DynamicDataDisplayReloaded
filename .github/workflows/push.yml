@@ -45,22 +45,28 @@ jobs:
       run: msbuild sln\DynamicDataDisplay\DynamicDataDisplay.sln /p:Configuration=Release
 
     - name: Create DynamicDataDisplayReloaded nuget package
-      run: nuget pack "src\DynamicDataDisplay\DynamicDataDisplay.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      run: nuget pack "src\DynamicDataDisplay\DynamicDataDisplay.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      #run: nuget pack "src\DynamicDataDisplay\DynamicDataDisplay.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Create DynamicDataDisplayReloaded.BitmapGraphs nuget package
-      run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      #run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Create DynamicDataDisplayReloaded.Maps nuget package
-      run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      #run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Create DynamicDataDisplayReloaded.Markers nuget package
-      run: nuget pack "src\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      run: nuget pack "src\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      #run: nuget pack "src\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Create DynamicDataDisplayReloaded.RadioBand nuget package
-      run: nuget pack "src\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      run: nuget pack "src\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      #run: nuget pack "src\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Create DynamicDataDisplayReloaded.SharpDX9 nuget package
-      run: nuget pack "src\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      run: nuget pack "src\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      #run: nuget pack "src\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     #- name: Publish Nuget Packages
     #  run: dotnet nuget push Publish/*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
