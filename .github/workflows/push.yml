@@ -53,8 +53,8 @@ jobs:
       #run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Create DynamicDataDisplayReloaded.Maps nuget package
-      run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
-      #run: nuget pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      run: nuget pack "src\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
+      #run: nuget pack "src\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj" -Symbols -SymbolPackageFormat snupkg -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
 
     - name: Create DynamicDataDisplayReloaded.Markers nuget package
       run: nuget pack "src\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" -OutputDirectory Publish -properties "Configuration=Release;Platform=AnyCPU;OutputPath=..\..\sln\DynamicDataDisplay\Bin\Release_AnyCPU"     
