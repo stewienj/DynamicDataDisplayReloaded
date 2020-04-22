@@ -8,7 +8,7 @@
     <projectUrl>https://github.com/stewienj/DynamicDataDisplayReloaded</projectUrl>
 	<license type="expression">MS-RL</license>
     <dependencies>
-	  <group>
+	  <group targetFramework=".NETFramework4.5">
         <dependency id="DynamicDataDisplayReloaded" version="$version$"/>
 	  </group>
     </dependencies>
