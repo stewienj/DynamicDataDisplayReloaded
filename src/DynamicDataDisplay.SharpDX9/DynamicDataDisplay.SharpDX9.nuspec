@@ -8,9 +8,11 @@
     <projectUrl>https://github.com/stewienj/DynamicDataDisplayReloaded</projectUrl>
 	<license type="expression">MS-RL</license>
     <dependencies>
-	  <group>
-        <dependency id="DynamicDataDisplayReloaded" version="$version$"/>
-	  </group>
+	<group targetFramework=".NETFramework4.5">
+      <dependency id="DynamicDataDisplayReloaded" version="$version$"/>
+      <dependency id="SharpDX.Direct3D9" version="4.2.0"/>
+      <dependency id="SharpDX.Mathematics" version="4.2.0"/>
+    </group>
     </dependencies>
   </metadata>
 </package>

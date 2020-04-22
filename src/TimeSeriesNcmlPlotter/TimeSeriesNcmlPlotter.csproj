@@ -8,7 +8,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TimeSeriesNcmlPlotter</RootNamespace>
     <AssemblyName>TimeSeriesNcmlPlotter</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <ImportGroup Label="PropertySheets">

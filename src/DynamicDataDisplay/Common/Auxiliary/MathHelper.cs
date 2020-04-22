@@ -125,16 +125,13 @@ namespace DynamicDataDisplay
 		/// <returns></returns>
 		public static int CeilingPow2(int x)
 		{
-			if (x > 2)
-			{
-				x--;
-				x |= x >> 1;
-				x |= x >> 2;
-				x |= x >> 4;
-				x |= x >> 8;
-				x |= x >> 16;
-				x++;
-			}
+			x--;
+			x |= x >> 1;
+			x |= x >> 2;
+			x |= x >> 4;
+			x |= x >> 8;
+			x |= x >> 16;
+			x++;
 			return x;
 		}
 	}
