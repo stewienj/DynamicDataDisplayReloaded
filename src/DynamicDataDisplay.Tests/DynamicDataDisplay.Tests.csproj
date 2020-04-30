@@ -9,7 +9,6 @@
     <AssemblyName>DynamicDataDisplay.Tests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <AssemblyOriginatorKeyFile>DynamicDataDisplay.snk</AssemblyOriginatorKeyFile>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -80,9 +79,6 @@
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
       <Name>DynamicDataDisplay</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DynamicDataDisplay.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -62,9 +62,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DynamicDataDisplay.snk" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="DynamicDataDisplay.Controls.Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -9,8 +9,6 @@
     <RootNamespace>DynamicDataDisplay.Maps</RootNamespace>
     <AssemblyName>DynamicDataDisplay.Maps</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>DynamicDataDisplay.snk</AssemblyOriginatorKeyFile>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -171,9 +169,6 @@
       <SubType>Designer</SubType>
     </None>
     <Resource Include="MercatorShader.ps" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DynamicDataDisplay.snk" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

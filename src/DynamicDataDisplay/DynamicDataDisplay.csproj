@@ -473,7 +473,6 @@
     <Compile Include="ViewportRestrictions\RestrictionCollection.cs" />
     <Compile Include="ViewportRestrictions\ScaleInjectionRestriction.cs" />
     <Compile Include="ViewportRestrictions\ViewportRestriction.cs" />
-    <None Include="DynamicDataDisplay.snk" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
