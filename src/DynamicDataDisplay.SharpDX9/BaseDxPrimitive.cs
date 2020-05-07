@@ -49,18 +49,27 @@ namespace DynamicDataDisplay.SharpDX9
 			// Vertices will be resized to the next power of 2, saves on resizing too much
 			_pointList = newPoints.ToArray();
 			var pointCount = _pointList.Length;
-			if (_vertexBuffer == null || pointCount > _vertexBufferAllocated || pointCount < (_vertexBufferAllocated >> 1))
+
+			// There's an issue with nVidia cards that the rendering pipeline locks up if we try to reuse
+			// Vertex buffers allocated on the default pool. AMD cards seem to be ok. Work around is to use
+			// the system pool, which is slow, or lock the back buffer via the target image.
+
+			if (DxHost.LockImage())
 			{
-				_vertexBuffer?.Dispose();
-				var newSize = MathHelper.CeilingPow2(pointCount);
-				_vertexBuffer = new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
-				_vertexBufferAllocated = newSize;
-				vertexBufferSizeChanged = true;
+				if (_vertexBuffer == null || pointCount > _vertexBufferAllocated || pointCount < (_vertexBufferAllocated >> 1))
+				{
+					_vertexBuffer?.Dispose();
+					var newSize = MathHelper.CeilingPow2(pointCount);
+					_vertexBuffer = new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
+					_vertexBufferAllocated = newSize;
+					vertexBufferSizeChanged = true;
+				}
+				// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
+				var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
+				vertexStream.WriteRange(_pointList);
+				_vertexBuffer.Unlock();
+				DxHost.UnlockImage();
 			}
-			// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
-			var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
-			vertexStream.WriteRange(_pointList);
-			_vertexBuffer.Unlock();
 			_vertexCount = pointCount;
 
 			// Calculate the bounds of the list on a background thread

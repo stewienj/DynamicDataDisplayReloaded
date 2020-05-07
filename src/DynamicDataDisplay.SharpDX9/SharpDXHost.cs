@@ -2,9 +2,7 @@
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -30,6 +28,16 @@ namespace DynamicDataDisplay.SharpDX9
 		{
 			_resizeAction.InvokeAction(() => _sizeChanged = true);
 			base.OnRenderSizeChanged(sizeInfo);
+		}
+
+		public bool LockImage()
+		{
+			return _image.TryLock(_timeOutDuration);
+		}
+
+		public void UnlockImage()
+		{
+			_image.Unlock();
 		}
 
 		public void AddChild(object child) => AddLogicalChild(child);
