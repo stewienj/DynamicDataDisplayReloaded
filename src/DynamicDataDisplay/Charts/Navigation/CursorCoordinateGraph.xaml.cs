@@ -38,30 +38,21 @@ namespace DynamicDataDisplay.Charts.Navigation
 		/// For some reason MouseLeave was not being fired all the time, IsMouseOver is always true,
 		/// and IsMouseDirectlyOver is always false. So I had to do this instead:
 		/// </remarks>
-		public bool? IsMouseOverControl
+		public bool IsMouseOverControl
 		{
 			get
 			{
-				Win32Stuff.POINT p = new Win32Stuff.POINT();
-				// Returns nonzero if successful or zero otherwise
-				if (Win32Stuff.GetCursorPos(out p))
-				{
-					var parentWindow = Window.GetWindow(this);
-					var hWnd = new System.Windows.Interop.WindowInteropHelper(parentWindow).Handle;
-					if (Win32Stuff.ScreenToClient(hWnd, ref p))
-					{
-						var mousePos = parentWindow.TranslatePoint(new Point(p.x, p.y), this);
-						Rect output = Plotter2D.Viewport.Output;
-						return output.Contains(mousePos);
-					}
-				}
-				return null;
+				var parentWindow = Window.GetWindow(this);
+				Point parentMousePos = Mouse.GetPosition(parentWindow);
+				var mousePos = parentWindow.TranslatePoint(parentMousePos, this);
+				Rect output = Plotter2D.Viewport.Output;
+				return output.Contains(mousePos);
 			}
 		}
 
 		private bool IsMouseOverLinked =>
-		  _linkedHorizontalSource?.IsMouseOverControl == true ||
-		  _linkedVerticalSource?.IsMouseOverControl == true;
+		  _linkedHorizontalSource.IsMouseOverControl ||
+		  _linkedVerticalSource.IsMouseOverControl;
 
 		#region Plotter
 
@@ -105,7 +96,7 @@ namespace DynamicDataDisplay.Charts.Navigation
 				}
 				else
 				{
-					if (IsMouseOverControl == false)
+					if (!IsMouseOverControl)
 					{
 						SetVisibility(Visibility.Hidden);
 					}
@@ -154,7 +145,7 @@ namespace DynamicDataDisplay.Charts.Navigation
 			}
 			else
 			{
-				if (IsMouseOverControl == false && IsMouseOverLinked == false)
+				if (!IsMouseOverControl && !IsMouseOverLinked)
 				{
 					SetVisibility(Visibility.Hidden);
 				}
