@@ -51,8 +51,8 @@ namespace DynamicDataDisplay.Charts.Navigation
 		}
 
 		private bool IsMouseOverLinked =>
-		  _linkedHorizontalSource.IsMouseOverControl ||
-		  _linkedVerticalSource.IsMouseOverControl;
+		  _linkedHorizontalSource?.IsMouseOverControl == true ||
+		  _linkedVerticalSource?.IsMouseOverControl == true;
 
 		#region Plotter
 
