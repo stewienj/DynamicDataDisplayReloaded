@@ -42,17 +42,15 @@ namespace DynamicDataDisplay.Charts.Shapes
 
 			if (offset.LengthSquared > 0)
 			{
+				Window window = Window.GetWindow(this);
+				Point point = window.PointToScreen(Mouse.GetPosition(window));
 				success = false;
-				Win32Stuff.POINT p = new Win32Stuff.POINT();
-				if (Win32Stuff.GetCursorPos(out p))
+				var newX = Convert.ToInt16(point.X + offset.X);
+				var newY = Convert.ToInt16(point.Y + offset.Y);
+				if (Win32Stuff.SetCursorPos(newX, newY))
 				{
-					p.x = Convert.ToInt16(p.x + offset.X);
-					p.y = Convert.ToInt16(p.y + offset.Y);
-					if (Win32Stuff.SetCursorPos(p.x, p.y))
-					{
-						success = true;
-						ignoreNextMouseMove = true;
-					}
+					success = true;
+					ignoreNextMouseMove = true;
 				}
 			}
 			if (!success)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace DynamicDataDisplay.Common
 {
@@ -8,8 +9,16 @@ namespace DynamicDataDisplay.Common
 		[DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
 		public static extern int GetDoubleClickTime();
 
-		[DllImport("User32.Dll")]
-		public static extern bool SetCursorPos(int x, int y);
+		[SecurityCritical]
+		[DllImport("User32.Dll", EntryPoint = "SetCursorPos")]
+		private static extern bool SetCursorPosPInvoke(int x, int y);
+
+		[SecuritySafeCritical]
+		public static bool SetCursorPos(int x, int y)
+		{
+			return SetCursorPosPInvoke(x, y);
+		}
+
 
 		[DllImport("User32.Dll")]
 		public static extern bool GetCursorPos(out POINT lpPoint);
