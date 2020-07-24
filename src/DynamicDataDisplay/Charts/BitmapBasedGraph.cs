@@ -35,21 +35,14 @@ namespace DynamicDataDisplay
 		/// <summary>Pending render request</summary>
 		private RenderRequest _pendingRequest = null;
 
-		/// <summary>Single apartment thread used for background rendering</summary>
-		/// <remarks>STA is required for creating WPF components in this thread</remarks>
-		private Thread _renderThread = null;
-
-		private AutoResetEvent _renderRequested = new AutoResetEvent(false);
-
-		private ManualResetEvent _shutdownRequested = new ManualResetEvent(false);
-
 		/// <summary>True means that current bitmap is invalidated and is to be re-rendered.</summary>
 		private bool _bitmapInvalidated = true;
 
 		/// <summary>Shows tooltips.</summary>
 		private PopupTip _popup;
 
-		private bool _shutdownStarted = false;
+		// Throttle to 60 requests per second
+		private ThrottledAction _renderAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000.0 / 60.0));
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MarkerPointsGraph"/> class.
@@ -57,11 +50,6 @@ namespace DynamicDataDisplay
 		public BitmapBasedGraph()
 		{
 			ManualTranslate = true;
-			Dispatcher.ShutdownStarted += (s, e) =>
-			{
-				_shutdownStarted = true;
-				_activeRequest?.Cancel();
-			};
 		}
 
 		protected virtual UIElement GetTooltipForPoint(Point point, DataRect visible, Rect output)
@@ -164,47 +152,44 @@ namespace DynamicDataDisplay
 		protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
 		{
 			base.OnRenderSizeChanged(sizeInfo);
-			CreateRenderTask(Viewport.Visible, new Rect(sizeInfo.NewSize));
+			CreateRenderTask(Viewport?.Visible ?? new DataRect(0,0,1,1), new Rect(sizeInfo.NewSize));
 			InvalidateVisual();
+		}
+
+
+		protected override void OnPlotterDetaching(Plotter plotter)
+		{
+			base.OnPlotterDetaching(plotter);
+			_activeRequest?.Cancel();
 		}
 
 		protected abstract BitmapSource RenderFrame(DataRect visible, Rect output, RenderRequest renderRequest);
 
 		private void RenderThreadFunc()
 		{
-			WaitHandle[] events = new WaitHandle[] { _renderRequested, _shutdownRequested };
-			while (true)
+			lock (this)
 			{
-				lock (this)
+				_activeRequest = null;
+				if (_pendingRequest != null)
 				{
-					_activeRequest = null;
-					if (_pendingRequest != null)
-					{
-						_activeRequest = _pendingRequest;
-						_pendingRequest = null;
-					}
+					_activeRequest = _pendingRequest;
+					_pendingRequest = null;
 				}
-				if (_activeRequest == null)
+			}
+			if (_activeRequest != null)
+			{
+				try
 				{
-					WaitHandle.WaitAny(events);
-					if (_shutdownRequested.WaitOne(0))
-						break;
+					// Return null if no update required
+					BitmapSource result = Dispatcher.HasShutdownStarted ? null : (BitmapSource)RenderFrame(_activeRequest.Visible, _activeRequest.Output, _activeRequest);
+					if (result != null)
+						Dispatcher.BeginInvoke(
+							new RenderCompletionHandler(OnRenderCompleted),
+							new RenderResult(_activeRequest, result));
 				}
-				else
+				catch (Exception exc)
 				{
-					try
-					{
-						// Return null if no update required
-						BitmapSource result = _shutdownStarted ? null : (BitmapSource)RenderFrame(_activeRequest.Visible, _activeRequest.Output, _activeRequest);
-						if (result != null)
-							Dispatcher.BeginInvoke(
-								new RenderCompletionHandler(OnRenderCompleted),
-								new RenderResult(_activeRequest, result));
-					}
-					catch (Exception exc)
-					{
-						Trace.WriteLine(string.Format("RenderRequest {0} failed: {1}", _activeRequest.RequestID, exc.Message));
-					}
+					Trace.WriteLine(string.Format("RenderRequest {0} failed: {1}", _activeRequest.RequestID, exc.Message));
 				}
 			}
 		}
@@ -218,14 +203,7 @@ namespace DynamicDataDisplay
 				if (_activeRequest != null)
 					_activeRequest.Cancel();
 				_pendingRequest = new RenderRequest(_nextRequestId++, visible, output);
-				_renderRequested.Set();
-			}
-			if (_renderThread == null)
-			{
-				_renderThread = new Thread(RenderThreadFunc);
-				_renderThread.IsBackground = true;
-				_renderThread.SetApartmentState(ApartmentState.STA);
-				_renderThread.Start();
+				_renderAction.InvokeAction(RenderThreadFunc);
 			}
 		}
 

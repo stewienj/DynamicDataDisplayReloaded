@@ -65,6 +65,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 			{
 				_mouseHandler.MouseLeftSingleClick -= Mouse_LeftSingleClick;
 				_mouseHandler.MouseCancelLeftSingleClick -= Mouse_CancelLeftSingleClick;
+				_mouseHandler.Dispose();
 				_mouseHandler = null;
 			}
 		}
@@ -96,52 +97,51 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 			_pointsUpdate.InvokeAction(() =>
 			{
-		  // Do a sanity check and retun a nothing result if anything is invalid
-		  if (dataTransform == null || pointsSource == null || NewPointsReady == null || _pointObjectToPointConverter == null)
+				// Do a sanity check and retun a nothing result if anything is invalid
+				if (dataTransform == null || pointsSource == null || NewPointsReady == null || _pointObjectToPointConverter == null)
 				{
-			  // Invoke the data update event
-			  NewPointsReady?.Invoke(this,
-				new AggregatedPointsChangedArgs
-				  {
-					  ViewportAggregatedPoints = new List<(Point, int, Rect)>()
-				  });
+					// Invoke the data update event
+					NewPointsReady?.Invoke(this,
+					  new AggregatedPointsChangedArgs
+					  {
+						  ViewportAggregatedPoints = new List<(Point, int, Rect)>()
+					  });
 					return;
 				}
 
-		  // Transforms points to Binned Buckets
-		  var ToBinnedBucketAndPoint = CalculateToBinnedBucketAndPoint(transform);
+				// Transforms points to Binned Buckets
+				var ToBinnedBucketAndPoint = CalculateToBinnedBucketAndPoint(transform);
 
 				var BinnedBucketToLocation = CalculateBinnedBucketToLocation(transform);
 				var BinnedBucketToRect = CalculateBinnedBucketToRect(transform);
 
+				// Transform points to DataRect
+				// Fire event with all the new data
 
-		  // Transform points to DataRect
-		  // Fire event with all the new data
+				var pointsViewport = pointsSource
+				  .Cast<object>()
+				  .AsParallel()
+				  .Select(ll => dataTransform.DataToViewport(_pointObjectToPointConverter(ll)));
 
-		  var pointsViewport = pointsSource
-			.Cast<object>()
-			.AsParallel()
-			.Select(ll => dataTransform.DataToViewport(_pointObjectToPointConverter(ll)));
+				// Scale the points to integers, group, the rescale back to near original value
+				var scaledPoints = pointsViewport
+				  // Create scaled/original pairs
+				  .Select(ToBinnedBucketAndPoint)
+				  // Convert to dictionary indexed by scaled pairs
+				  .ToLookup(xyp => xyp.BinnedBucket, xy => xy.Point.ToVector())
+				  // Aggregate the original pairs into averages
+				  .Select(g => (Point: (g.Aggregate((xy1, xy2) => xy1 + xy2) / g.Count()).ToPoint(), Count: g.Count(), Bin: BinnedBucketToRect(g.Key)))
+				  // This just uses the center of the rectangle
+				  //.Select(g => (Point: BinnedBucketToLocation(g.Key), Count: g.Count()))
+				  // Convert to list
+				  .ToList();
 
-		  // Scale the points to integers, group, the rescale back to near original value
-		  var scaledPoints = pointsViewport
-			// Create scaled/original pairs
-			.Select(ToBinnedBucketAndPoint)
-			// Convert to dictionary indexed by scaled pairs
-			.ToLookup(xyp => xyp.BinnedBucket, xy => xy.Point.ToVector())
-			// Aggregate the original pairs into averages
-			.Select(g => (Point: (g.Aggregate((xy1, xy2) => xy1 + xy2) / g.Count()).ToPoint(), Count: g.Count(), Bin: BinnedBucketToRect(g.Key)))
-			// This just uses the center of the rectangle
-			//.Select(g => (Point: BinnedBucketToLocation(g.Key), Count: g.Count()))
-			// Convert to list
-			.ToList();
-
-		  // Invoke the data update event
-		  NewPointsReady?.Invoke(this,
-			new AggregatedPointsChangedArgs
-				{
-					ViewportAggregatedPoints = scaledPoints
-				});
+				// Invoke the data update event
+				NewPointsReady?.Invoke(this,
+				  new AggregatedPointsChangedArgs
+				  {
+					  ViewportAggregatedPoints = scaledPoints
+				  });
 			});
 		}
 
@@ -169,36 +169,36 @@ namespace DynamicDataDisplay.BitmapGraphs
 				{
 					try
 					{
-				// Transforms points to Binned Buckets
-				Func<Point, (int, int)> ToBucket = CalculateToBinnedBucket(transform);
+						// Transforms points to Binned Buckets
+						Func<Point, (int, int)> ToBucket = CalculateToBinnedBucket(transform);
 
 						var viewportClickLocation = transform.ScreenToViewport(clickPoint);
 						var mousePointBucket = ToBucket(viewportClickLocation);
 
-				// Convert the points, but need to also retain the original objects
-				var points =
-					pointsLatLonDeg
-					.Cast<object>()
-					.AsParallel()
-					.Where(ll => ToBucket(dataTransform.DataToViewport(_pointObjectToPointConverter(ll))).Equals(mousePointBucket))
-					.ToList();
+						// Convert the points, but need to also retain the original objects
+						var points =
+							pointsLatLonDeg
+							.Cast<object>()
+							.AsParallel()
+							.Where(ll => ToBucket(dataTransform.DataToViewport(_pointObjectToPointConverter(ll))).Equals(mousePointBucket))
+							.ToList();
 
 						_mouseClickLock.EnterWriteLock();
 						if (!token.IsCancellationRequested && points.Any())
 						{
 							var pointsLocation =
-					  points
-					  .Select(p => _pointObjectToPointConverter(p).ToVector())
-					  .Aggregate((a, b) => a + b)
-					  / points.Count;
+							points
+							.Select(p => _pointObjectToPointConverter(p).ToVector())
+							.Aggregate((a, b) => a + b)
+							/ points.Count;
 
-					// Type cast a null because type inference failed if I don't
-					return (points, pointsLocation.ToPoint());
+							// Type cast a null because type inference failed if I don't
+							return (points, pointsLocation.ToPoint());
 						}
 						else
 						{
-					// Type cast a null because type inference failed if I don't
-					return (null as List<object>, new Point(0, 0));
+							// Type cast a null because type inference failed if I don't
+							return (null as List<object>, new Point(0, 0));
 						}
 					}
 					finally

@@ -326,7 +326,8 @@ namespace DynamicDataDisplay.BitmapGraphs
 				  scalePoint(l.Point)
 				  , l.Count
 				  , new Rect(l.Bin.TopLeft, l.Bin.BottomRight)
-				));
+				))
+				.ToList();
 
 			return points;
 		}

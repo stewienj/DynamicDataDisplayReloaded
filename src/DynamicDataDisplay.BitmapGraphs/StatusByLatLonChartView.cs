@@ -108,8 +108,8 @@ namespace DynamicDataDisplay.BitmapGraphs
 								continue;
 							}
 						}
-				// The Y source coordinate will be ...
-				int sourceIndexY = (int)Math.Floor((positionY - _renderMinY) * dataToSourceHeight);
+						// The Y source coordinate will be ...
+						int sourceIndexY = (int)Math.Floor((positionY - _renderMinY) * dataToSourceHeight);
 						double pixelWidth = 1.0 / outputWidth;
 						if (sourceIndexY >= 0 && sourceIndexY < _sourceHeight)
 						{
@@ -117,11 +117,11 @@ namespace DynamicDataDisplay.BitmapGraphs
 							int destIndex = (outputHeight - 1 - y) * outputWidth;
 							for (int x = 0; x < outputWidth; ++x)
 							{
-						// Optimise the divide by precalculating the reciprocal
-						double fractionOfRectX = x * pixelWidth;
+								// Optimise the divide by precalculating the reciprocal
+								double fractionOfRectX = x * pixelWidth;
 								double positionX = fractionOfRectX * data.Width + data.XMin;
-						// The X source coordinate will be ...
-						int sourceIndexX = (int)Math.Floor((positionX - _renderMinX) * dataToSourceWidth);
+								// The X source coordinate will be ...
+								int sourceIndexX = (int)Math.Floor((positionX - _renderMinX) * dataToSourceWidth);
 								if (sourceIndexX >= 0 && sourceIndexX < _sourceWidth)
 								{
 									newPixels[destIndex] = _source[sourceIndexX + sourceIndexYOffset];
