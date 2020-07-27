@@ -286,6 +286,8 @@ namespace DynamicDataDisplay.Navigation
 					return menuItems;
 				})).ToList();
 
+				hitResults.Clear();
+
 				foreach (var item in dynamicItems)
 				{
 					dynamicMenuItems.Add(item);
