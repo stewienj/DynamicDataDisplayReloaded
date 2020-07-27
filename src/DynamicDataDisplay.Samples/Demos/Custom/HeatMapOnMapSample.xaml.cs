@@ -20,7 +20,7 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 		}
 	}
 
-	public class HeatMapOnMapSampleViewModel : NotifyPropertyChanged
+	public class HeatMapOnMapSampleViewModel : D3NotifyPropertyChanged
 	{
 		private ChartPlotter _chartPlotter;
 		private Grid _grid;

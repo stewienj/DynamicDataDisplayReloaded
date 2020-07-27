@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DynamicDataDisplay.Common.Auxiliary
 {
-	public class NotifyPropertyChanged : INotifyPropertyChanged
+	public class D3NotifyPropertyChanged : INotifyPropertyChanged
 	{
         /// <summary>
         /// Checks if the value has changed and uses the call stack to determine

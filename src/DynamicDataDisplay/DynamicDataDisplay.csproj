@@ -213,7 +213,7 @@
     <Compile Include="Common\Auxiliary\MarkupExtensions\XbapConditionalExpression.cs" />
     <Compile Include="Common\Auxiliary\MarkupExtensions\TemplateBinding.cs" />
     <Compile Include="Common\Auxiliary\MenuItemExtensions.cs" />
-    <Compile Include="Common\Auxiliary\NotifyPropertyChanged.cs" />
+    <Compile Include="Common\Auxiliary\D3NotifyPropertyChanged.cs" />
     <Compile Include="Common\Auxiliary\ObservableCollectionHelper.cs" />
     <Compile Include="Common\Auxiliary\PlotterChildrenCollectionExtensions.cs" />
     <Compile Include="Common\Auxiliary\RandomExtensions.cs" />
