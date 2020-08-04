@@ -4,3 +4,4 @@ obj/
 Publish/
 *.user
 sln/DynamicDataDisplay/packages/
+sln/DynamicDataDisplay/TestResults/
