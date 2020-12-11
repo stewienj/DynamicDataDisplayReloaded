@@ -34,26 +34,36 @@
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BaseDxInstancedTexturePrimitive.cs" />
     <Compile Include="BaseDxInstancedPrimitive.cs" />
+    <Compile Include="BaseDxTexturePrimitive.cs" />
     <Compile Include="DataTypes\DxInstancePoint.cs" />
     <Compile Include="DataTypes\DxPoint.cs" />
     <Compile Include="DataTypes\DxColor.cs" />
     <Compile Include="DataTypes\DxInstancedPointAndColor.cs" />
     <Compile Include="DataTypes\DxPointAndColor.cs" />
     <Compile Include="DataTypes\IDxPoint.cs" />
+    <Compile Include="DataTypes\DxVertex.cs" />
+    <Compile Include="DataTypes\Rectangle.cs" />
+    <Compile Include="Helpers\D3D9Helper.cs" />
+    <Compile Include="Helpers\SharpDXHelper.cs" />
     <Compile Include="Lines\DxLineMultiColor.cs" />
     <Compile Include="Lines\DxInstancedLineSingleColor.cs" />
+    <Compile Include="Markers\DxMarkerRectangleInstanced.cs" />
+    <Compile Include="Markers\DxMarkerRectangle.cs" />
     <Compile Include="Markers\DxMarkerFanColoredByInstance.cs" />
     <Compile Include="Markers\DxMarkerColoredByInstance.cs" />
     <Compile Include="Shaders\DxPointAndColorShader.cs" />
     <Compile Include="Lines\DxLineSingleColor.cs" />
     <Compile Include="Shaders\DxMarkerColoredByInstanceShader.cs" />
+    <Compile Include="Shaders\DxRectangleInstancedTexturedShader.cs" />
     <Compile Include="Shaders\DxPointInstancedSingleColorShader.cs" />
     <Compile Include="Shaders\DxPointSingleColorShader.cs" />
     <Compile Include="Lines\DxMultiLineMultiColor.cs" />
     <Compile Include="Lines\DxMultiLineSingleColor.cs" />
     <Compile Include="BaseDxChartElement.cs" />
     <Compile Include="BaseDxPrimitive.cs" />
+    <Compile Include="Shaders\DxRectangleTexturedShader.cs" />
     <Compile Include="SharpDXHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -69,12 +79,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="BaseDxTransformShader.cs" />
+    <Compile Include="Textures\DxTexture.cs" />
     <Compile Include="Triangles\DxTriangleFanMultiColor.cs" />
     <Compile Include="Triangles\DxTriangleFanSingleColor.cs" />
     <Compile Include="Triangles\DxTrianglesMultiColor.cs" />
     <Compile Include="Triangles\DxTrianglesSingleColor.cs" />
     <Compile Include="Triangles\DxTriangleStripMultiColor.cs" />
     <Compile Include="Triangles\DxTriangleStripSingleColor.cs" />
+    <Compile Include="Triangles\DxTriangleStripTextured.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -113,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Shaders\DxPointInstancedSingleColorShader.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Embeddedresource Include="Shaders\DxRectangleTexturedShader.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Shaders\DxRectangleInstancedTexturedShader.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
