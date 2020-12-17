@@ -1,4 +1,9 @@
-﻿texture2D ColorMap;
+﻿texture g_MeshTexture;
+float4x4 worldViewProj;
+float4 pointColor;
+float depth;
+float bufferWidth;
+float bufferHeight;
 
 struct VS_IN
 {
@@ -10,24 +15,15 @@ struct PS_IN
 {
 	float4 pos : POSITION;
 	float2 uv : TEXCOORD0;
-}; 
+};
 
-sampler2D ColorMapSampler = sampler_state
+sampler ColorMapSampler = sampler_state
 {
-	Texture = <ColorMap>;
+	Texture = <g_MeshTexture>;
 	MinFilter = Linear;
 	MagFilter = Linear;
 	MipFilter = Linear;
-	AddressU = Clamp;
-	AddressV = Clamp;
-	AddressW = Clamp;
 };
-
-float4x4 worldViewProj;
-float4 pointColor;
-float depth;
-float bufferWidth;
-float bufferHeight;
 
 PS_IN VS(VS_IN input)
 {
@@ -39,13 +35,17 @@ PS_IN VS(VS_IN input)
 }
 
 float4 PS(PS_IN input) : COLOR0
-{
+{ 
 	return tex2D(ColorMapSampler, input.uv);
 }
 
-
 technique Main {
 	pass P0 {
+		AlphaBlendEnable = true;
+		SrcBlend = SrcAlpha;
+		DestBlend = InvSrcAlpha;
+		BlendOp = Add;
+
 		VertexShader = compile vs_3_0 VS();
 		PixelShader = compile ps_3_0 PS();
 	}

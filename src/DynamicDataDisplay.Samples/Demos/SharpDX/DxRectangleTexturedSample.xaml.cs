@@ -48,7 +48,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 
 	public class DxRectangleTexturedSampleViewModel : INotifyPropertyChanged, IDisposable
 	{
-		private static int _pointCount = 1_000;
+		private static int _pointCount = 10000;
 		private Point[] _points = new Point[_pointCount];
 		private DxVertex[] _currentArray = new DxVertex[_pointCount*6];
 		private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
@@ -71,7 +71,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 				var point = new Point(rnd.NextDouble(), rnd.NextDouble());
 				_points[i] = point;
 
-				var vertices = MakeRectangle((float)point.X, (float)point.Y, 0.015f, 0.015f);
+				var vertices = SharpDXHelper.MakeRectangle((float)point.X, (float)point.Y, 0.05f, 0.05f);
 				for (var j=0;j<vertices.Count;j++)
                 {
 					_currentArray[i*6+j] = vertices[j];
@@ -128,7 +128,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 							}
 
 							_points[i] = new Point(newX, newY);
-							var rectangle = MakeRectangle((float)newX, (float)newY, 0.015f, 0.015f);
+							var rectangle = SharpDXHelper.MakeRectangle((float)newX, (float)newY, 0.05f, 0.05f);
 							for (var j=0;j<6;j++)
                             {
 								_currentArray[i*6 + j] = rectangle[j];
@@ -146,31 +146,6 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 				}
 			});
 		}
-
-		private List<DxVertex> MakeRectangle(float x, float y, float width, float height)
-        {
-			var geometry = new List<DxVertex>();
-			// Generate a rectangle
-			var rect = new Rectangle(x, y, width, height);
-
-			// Calculate texture coordinates
-			var uv1 = SharpDXHelper.CalculateUV(rect.Left, rect.Top, width, height);
-			var uv2 = SharpDXHelper.CalculateUV(rect.Right, rect.Top, width, height);
-			var uv3 = SharpDXHelper.CalculateUV(rect.Right, rect.Bottom, width, height);
-			var uv4 = SharpDXHelper.CalculateUV(rect.Left, rect.Bottom, width, height);
-
-            // Rectangle is made from two triangles. First is top/left half
-            geometry.Add(new DxVertex(rect.Left, rect.Top, uv1));
-            geometry.Add(new DxVertex(rect.Right, rect.Top, uv2));
-            geometry.Add(new DxVertex(rect.Left, rect.Bottom, uv4));
-
-            // Second is bottom/right half
-            geometry.Add(new DxVertex(rect.Right, rect.Bottom, uv3));
-            geometry.Add(new DxVertex(rect.Right, rect.Top, uv2));
-            geometry.Add(new DxVertex(rect.Left, rect.Bottom, uv4));
-
-            return geometry;
-        }
 
 		public void Dispose()
 		{

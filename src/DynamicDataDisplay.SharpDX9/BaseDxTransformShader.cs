@@ -17,6 +17,7 @@ namespace DynamicDataDisplay.SharpDX9
 		protected Effect _effect;
 		private EffectHandle _technique;
 		private EffectHandle _pass;
+		private Texture _texture;
 
 		public BaseDxTransformShader(Device device, [CallerFilePath] string callerFileName="")
 		{
@@ -56,7 +57,10 @@ namespace DynamicDataDisplay.SharpDX9
 			var worldViewProj = dataTransform * viewProj;
 
 			_effect.Technique = _technique;
-
+			if (_texture != null)
+            {
+				_effect.SetTexture("g_MeshTexture", _texture);
+			}
 			_effect.SetValue("bufferWidth", (float)width);
 			_effect.SetValue("bufferHeight", (float)height);
 			_effect.SetValue("pointColor", color.Float4);
@@ -71,5 +75,15 @@ namespace DynamicDataDisplay.SharpDX9
 			}
 			_effect.End();
 		}
-	}
+
+        public void SetTexture(Texture texture)
+		{
+			if (this._texture != null)
+            {
+				return;
+            }
+
+			this._texture = texture;
+		}
+    }
 }

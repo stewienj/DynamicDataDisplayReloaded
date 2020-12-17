@@ -44,7 +44,7 @@
     <Compile Include="DataTypes\DxPointAndColor.cs" />
     <Compile Include="DataTypes\IDxPoint.cs" />
     <Compile Include="DataTypes\DxVertex.cs" />
-    <Compile Include="DataTypes\Rectangle.cs" />
+    <Compile Include="DataTypes\DxRectangle.cs" />
     <Compile Include="Helpers\D3D9Helper.cs" />
     <Compile Include="Helpers\SharpDXHelper.cs" />
     <Compile Include="Lines\DxLineMultiColor.cs" />
@@ -79,7 +79,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="BaseDxTransformShader.cs" />
-    <Compile Include="Textures\DxTexture.cs" />
     <Compile Include="Triangles\DxTriangleFanMultiColor.cs" />
     <Compile Include="Triangles\DxTriangleFanSingleColor.cs" />
     <Compile Include="Triangles\DxTrianglesMultiColor.cs" />
@@ -131,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Shaders\DxRectangleInstancedTexturedShader.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Textures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

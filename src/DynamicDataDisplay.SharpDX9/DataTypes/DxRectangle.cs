@@ -1,9 +1,9 @@
 ﻿namespace DynamicDataDisplay.SharpDX9.DataTypes
 {
     // A regular quadrilateral in 2D space.
-    public class Rectangle
+    public class DxRectangle
 	{
-        public Rectangle(float x, float y, float width, float height)
+        public DxRectangle(float x, float y, float width, float height)
         {
             this.X = x;
             this.Y = y;
@@ -31,7 +31,7 @@
 
         public float Bottom
         {
-            get { return this.Y + this.Height; }
+            get { return this.Y - this.Height; }
             set { this.Y = value - this.Height; }
         }
     }

@@ -5,6 +5,7 @@ using SharpDX;
 using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace DynamicDataDisplay.SharpDX9
 		protected VertexDeclaration _vertexDeclaration;
 		protected BaseDxTransformShader _transformEffect;
 		private DxVertex[] _pointList;
+		private Texture _texture;
 		// Limit updates to 100 times per second. This also schedules updates to another thread.
 		private ThrottledAction _throttledAction = new ThrottledAction(TimeSpan.FromMilliseconds(10));
 
@@ -33,6 +35,8 @@ namespace DynamicDataDisplay.SharpDX9
 
 			// Creates and sets the Vertex Declaration
 			_vertexDeclaration = new VertexDeclaration(Device, new DxVertex().GetVertexElements());
+
+			this._texture = D3D9Helper.GetDVDImageTexture(Device);
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)
@@ -109,8 +113,10 @@ namespace DynamicDataDisplay.SharpDX9
 				return;
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
-			//var text = D3D9Helper.CreateTexture(Device, width, height);
-			//Device.SetTexture(0, text);
+			if (_texture != null)
+			{
+				_transformEffect.SetTexture(_texture);
+			}
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<DxVertex>());
 			Device.VertexDeclaration = _vertexDeclaration;
 			_transformEffect.DoMultipassEffect(width, height, this, passNo =>
