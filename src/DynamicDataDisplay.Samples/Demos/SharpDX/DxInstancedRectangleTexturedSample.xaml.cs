@@ -15,13 +15,13 @@ using System.Windows.Input;
 namespace DynamicDataDisplay.Samples.Demos.SharpDX
 {
     /// <summary>
-    /// Interaction logic for DxRectangleTexturedSample.xaml
+    /// Interaction logic for DxInstancedRectangleTexturedSample.xaml
     /// </summary>
-    public partial class DxRectangleTexturedSample : Page
+    public partial class DxInstancedRectangleTexturedSample : Page
 	{
-		public DxRectangleTexturedSample()
+		public DxInstancedRectangleTexturedSample()
 		{
-			var viewModel = new DxRectangleTexturedSampleViewModel();
+			var viewModel = new DxInstancedRectangleTexturedSampleViewModel();
 			DataContext = viewModel;
 			IsVisibleChanged += (s, e) =>
 			{
@@ -46,18 +46,18 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 	}
 
 
-	public class DxRectangleTexturedSampleViewModel : INotifyPropertyChanged, IDisposable
+	public class DxInstancedRectangleTexturedSampleViewModel : INotifyPropertyChanged, IDisposable
 	{
 		private static int _pointCount = 1000;
-		private Point[] _points = new Point[_pointCount];
-		private DxVertex[] _currentArray = new DxVertex[_pointCount*6];
+		private DxInstancePoint[] _currentArray = new DxInstancePoint[_pointCount];
 		private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 		public volatile bool _hasBeenDisposed = false;
 		public volatile bool _animationRunning = false;
 		public volatile bool _doReset = true;
 
-		public DxRectangleTexturedSampleViewModel()
+		public DxInstancedRectangleTexturedSampleViewModel()
 		{
+			Geometry = SharpDXHelper.MakeRectangle(0f, 0f, 0.05f, 0.05f);
 			StartArrayUpdate();
 		}
 
@@ -69,17 +69,10 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 			for (int i = 0; i < _pointCount; i++)
 			{
 				var point = new Point(rnd.NextDouble(), rnd.NextDouble());
-				_points[i] = point;
-
-				var vertices = SharpDXHelper.MakeRectangle((float)point.X, (float)point.Y, 0.05f, 0.05f);
-				for (var j=0;j<vertices.Count;j++)
-                {
-					_currentArray[i*6+j] = vertices[j];
-				}
+				_currentArray[i] = new DxInstancePoint(new Point(point.X, point.Y));
 			}
 			// Replace the old array of points with the new array
-			Points = _points;
-			var temp = (Positions as DxVertex[]) ?? new DxVertex[_pointCount*6];
+			var temp = (Positions as DxInstancePoint[]) ?? new DxInstancePoint[_pointCount];
 			Positions = _currentArray;
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 			_currentArray = temp;
@@ -108,11 +101,12 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 					if (_animationRunning)
 					{
 						// Update the position of every point according to its direction
-						for (int i = 0; i < Points.Count(); i++)
+						var positions = Positions as DxInstancePoint[];
+						for (int i = 0; i < _pointCount; ++i)
 						{
 							var dxdy = new Vector(directions[i].X * Width1Px, directions[i].Y * Height1Px);
-							var newX = dxdy.X + _points[i].X;
-							var newY = dxdy.Y + _points[i].Y;
+							var newX = dxdy.X + positions[i].X;
+							var newY = dxdy.Y + positions[i].Y;
 
 							// Point has hit an east or west wall. Reverse direction vector X component
 							if (newX < 0 || newX > 1)
@@ -127,17 +121,9 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 								directions[i] = new Vector(directions[i].X, -directions[i].Y);
 							}
 
-							_points[i] = new Point(newX, newY);
-							var rectangle = SharpDXHelper.MakeRectangle((float)newX, (float)newY, 0.05f, 0.05f);
-							for (var j=0;j<6;j++)
-                            {
-								_currentArray[i*6 + j] = rectangle[j];
-							}
+							_currentArray[i] = new DxInstancePoint(new Point(newX, newY));
 						}
-
-						Points = _points;
-
-						var temp = (Positions as DxVertex[]) ?? new DxVertex[_pointCount*6];
+						var temp = (Positions as DxInstancePoint[]) ?? new DxInstancePoint[_pointCount];
 						Positions = _currentArray;
 						PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 						_currentArray = temp;
@@ -157,11 +143,9 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 		// The height of 1 pixel in data space
 		public double Height1Px { get; set; }
 
-		public int PointCount { get; set; }
+		public IEnumerable<DxVertex> Geometry { get; set; }
 
-		public IEnumerable<DxVertex> Positions { get; set; }
-
-		public IEnumerable<Point> Points { get; set; }
+		public IEnumerable<DxInstancePoint> Positions { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

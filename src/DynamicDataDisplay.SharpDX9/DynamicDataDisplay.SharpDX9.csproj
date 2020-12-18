@@ -45,7 +45,7 @@
     <Compile Include="DataTypes\IDxPoint.cs" />
     <Compile Include="DataTypes\DxVertex.cs" />
     <Compile Include="DataTypes\DxRectangle.cs" />
-    <Compile Include="Helpers\D3D9Helper.cs" />
+    <Compile Include="Helpers\TextureHelper.cs" />
     <Compile Include="Helpers\SharpDXHelper.cs" />
     <Compile Include="Lines\DxLineMultiColor.cs" />
     <Compile Include="Lines\DxInstancedLineSingleColor.cs" />

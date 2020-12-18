@@ -36,7 +36,7 @@ namespace DynamicDataDisplay.SharpDX9
 			// Creates and sets the Vertex Declaration
 			_vertexDeclaration = new VertexDeclaration(Device, new DxVertex().GetVertexElements());
 
-			this._texture = D3D9Helper.GetDVDImageTexture(Device);
+			this._texture = TextureHelper.GetDVDImageTexture(Device);
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)
@@ -52,10 +52,6 @@ namespace DynamicDataDisplay.SharpDX9
 			// Vertices will be resized to the next power of 2, saves on resizing too much
 			_pointList = newPoints.ToArray();
 			var pointCount = _pointList.Length;
-
-			// There's an issue with nVidia cards that the rendering pipeline locks up if we try to reuse
-			// Vertex buffers allocated on the default pool. AMD cards seem to be ok. Work around is to use
-			// the system pool, which is slow, or lock the back buffer via the target image.
 
 			if (DxHost.LockImage())
 			{
