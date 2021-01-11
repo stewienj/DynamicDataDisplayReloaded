@@ -48,7 +48,7 @@ namespace DynamicDataDisplay.Samples.Demos.SharpDX
 
 	public class DxInstancedRectangleTexturedSampleViewModel : INotifyPropertyChanged, IDisposable
 	{
-		private static int _pointCount = 1000;
+		private static int _pointCount = 100000;
 		private DxInstancePoint[] _currentArray = new DxInstancePoint[_pointCount];
 		private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 		public volatile bool _hasBeenDisposed = false;
