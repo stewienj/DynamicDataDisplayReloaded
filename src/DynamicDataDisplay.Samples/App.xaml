@@ -52,6 +52,8 @@
                 <m:Demonstration Description="DxLineSingleColor" Uri="/Demos/SharpDX/DxLineSingleColorSample.xaml"/>
                 <m:Demonstration Description="DxInstancedLineSingleColor" Uri="/Demos/SharpDX/DxInstancedLineSingleColorSample.xaml"/>
                 <m:Demonstration Description="DxMarkerColoredByInstance" Uri="/Demos/SharpDX/DxMarkerColoredByInstanceSample.xaml"/>
+                <m:Demonstration Description="DxRectangleTextured" Uri="/Demos/SharpDX/DxRectangleTexturedSample.xaml"/>
+                <m:Demonstration Description="DxInstancedRectangleTextured" Uri="/Demos/SharpDX/DxInstancedRectangleTexturedSample.xaml"/>
             </m:ReleaseInfo>
         </m:SamplesCollection>
 

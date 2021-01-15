@@ -1,0 +1,34 @@
+﻿<Page x:Class="DynamicDataDisplay.Samples.Demos.SharpDX.DxRectangleTexturedSample"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DynamicDataDisplay.Samples.Demos.SharpDX"
+      xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DxRectangleTexturedSample">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <d3:ChartPlotter x:Name="plotter" Grid.ColumnSpan="2">
+            <d3:SharpDXHost/>
+            <d3:DxMarkerRectangle GeometrySource="{Binding Positions}" Depth="3"/>
+        </d3:ChartPlotter>
+        <StackPanel Grid.Column="1">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="8" CornerRadius="8" Background="Cornsilk">
+                <StackPanel Margin="8">
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,8">
+                        This example shows rectangles being animated. For each update, each object will be moved 1 screen pixel
+                        regardless of zoom level. The rectangles move in straight lines and bounce off the boundary.
+                    </TextBlock>
+                    <Button Command="{Binding StopAnimation}">Stop Animation</Button>
+                    <Button Command="{Binding StartAnimation}">Start Animation</Button>
+                    <Button Command="{Binding ResetCircles}">Reset Positions</Button>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

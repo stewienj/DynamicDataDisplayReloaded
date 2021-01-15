@@ -85,6 +85,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Demos\SharpDX\DxInstancedRectangleTexturedSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Demos\SharpDX\DxRectangleTexturedSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Demos\v02\AnimationSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,6 +243,12 @@
     </Compile>
     <Compile Include="Demos\SharpDX\DxMarkerColoredByInstanceSample.xaml.cs">
       <DependentUpon>DxMarkerColoredByInstanceSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\SharpDX\DxInstancedRectangleTexturedSample.xaml.cs">
+      <DependentUpon>DxInstancedRectangleTexturedSample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\SharpDX\DxRectangleTexturedSample.xaml.cs">
+      <DependentUpon>DxRectangleTexturedSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
