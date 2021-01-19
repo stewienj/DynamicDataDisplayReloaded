@@ -90,10 +90,6 @@ namespace DynamicDataDisplay.SharpDX9
 				return;
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
-			if (_texture != null)
-            {
-				_transformEffect.SetTexture(_texture);
-            }
 			Device.SetStreamSourceFrequency(0, _instanceCount, StreamSource.IndexedData);
 			Device.SetStreamSourceFrequency(1, 1, StreamSource.InstanceData);
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<DxVertex>());
@@ -101,6 +97,7 @@ namespace DynamicDataDisplay.SharpDX9
 			Device.VertexDeclaration = _vertexDeclaration;
 			Device.Indices = _indexBuffer;
 
+			_transformEffect.SetTexture(_texture);
 			_transformEffect.DoMultipassEffect(width, height, this, passNo =>
 			{
 				Device.DrawIndexedPrimitive(GetPrimitiveType(), 0, 0, 0, 0, _vertexCount - 1);

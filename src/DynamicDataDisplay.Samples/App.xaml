@@ -47,14 +47,6 @@
                 <m:Demonstration Description="Grouped Markers on Map" Uri="/Demos/Custom/GroupedMarkersOnMapSample.xaml"/>
                 <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
             </m:ReleaseInfo>
-            <m:ReleaseInfo Version="SharpDX Samples">
-                <m:Demonstration Description="DxLineMultiColor" Uri="/Demos/SharpDX/DxLineMultiColorSample.xaml"/>
-                <m:Demonstration Description="DxLineSingleColor" Uri="/Demos/SharpDX/DxLineSingleColorSample.xaml"/>
-                <m:Demonstration Description="DxInstancedLineSingleColor" Uri="/Demos/SharpDX/DxInstancedLineSingleColorSample.xaml"/>
-                <m:Demonstration Description="DxMarkerColoredByInstance" Uri="/Demos/SharpDX/DxMarkerColoredByInstanceSample.xaml"/>
-                <m:Demonstration Description="DxRectangleTextured" Uri="/Demos/SharpDX/DxRectangleTexturedSample.xaml"/>
-                <m:Demonstration Description="DxInstancedRectangleTextured" Uri="/Demos/SharpDX/DxInstancedRectangleTexturedSample.xaml"/>
-            </m:ReleaseInfo>
         </m:SamplesCollection>
 
         <local:VersionToBrushConverter x:Key="versionConverter"/>

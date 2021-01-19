@@ -69,30 +69,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Demos\SharpDX\DxInstancedLineSingleColorSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Demos\SharpDX\DxLineSingleColorSample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Demos\SharpDX\DxLineMultiColorSample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Demos\SharpDX\DxMarkerColoredByInstanceSample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Demos\SharpDX\DxInstancedRectangleTexturedSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Demos\SharpDX\DxRectangleTexturedSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Demos\v02\AnimationSample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,24 +207,6 @@
     </Compile>
     <Compile Include="Demos\Custom\StatusByLatLonOnMapSample.xaml.cs">
       <DependentUpon>StatusByLatLonOnMapSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxInstancedLineSingleColorSample.xaml.cs">
-      <DependentUpon>DxInstancedLineSingleColorSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxLineSingleColorSample.xaml.cs">
-      <DependentUpon>DxLineSingleColorSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxLineMultiColorSample.xaml.cs">
-      <DependentUpon>DxLineMultiColorSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxMarkerColoredByInstanceSample.xaml.cs">
-      <DependentUpon>DxMarkerColoredByInstanceSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxInstancedRectangleTexturedSample.xaml.cs">
-      <DependentUpon>DxInstancedRectangleTexturedSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxRectangleTexturedSample.xaml.cs">
-      <DependentUpon>DxRectangleTexturedSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -404,10 +362,6 @@
       <Project>{d99dfeac-2ac7-4349-b731-6e7b3732ffd3}</Project>
       <Name>DynamicDataDisplay.RadioBand</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj">
-      <Project>{e140351c-f359-40be-9182-120c50a45061}</Project>
-      <Name>DynamicDataDisplay.SharpDX9</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
       <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
       <Name>DynamicDataDisplay</Name>
@@ -431,17 +385,6 @@
     <EmbeddedResource Include="Demos\v03\Isolines\SampleData.txt">
     </EmbeddedResource>
     <EmbeddedResource Include="Demos\v03\Repressilator.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="SharpDX">
-      <Version>4.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="SharpDX.Direct3D9">
-      <Version>4.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="SharpDX.Mathematics">
-      <Version>4.2.0</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

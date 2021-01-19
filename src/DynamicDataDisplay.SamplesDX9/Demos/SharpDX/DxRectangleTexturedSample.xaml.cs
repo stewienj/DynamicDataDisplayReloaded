@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace DynamicDataDisplay.Samples.Demos.SharpDX
+namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 {
     /// <summary>
     /// Interaction logic for DxRectangleTexturedSample.xaml

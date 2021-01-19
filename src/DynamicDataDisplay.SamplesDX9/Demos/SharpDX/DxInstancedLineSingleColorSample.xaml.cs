@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DynamicDataDisplay.Samples.Demos.SharpDX
+namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 {
 	/// <summary>
 	/// Interaction logic for DxLineSingleColorSample.xaml
