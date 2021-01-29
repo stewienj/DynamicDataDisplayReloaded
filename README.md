@@ -1,12 +1,21 @@
 # DynamicDataDisplayReloaded
-This project is a fork of the DynamicDataDisplayReloaded project based on Microsoft's DynamicDataDisplay project for displaying graphics in a WPF display.
+This project is a fork of the DynamicDataDisplayReloaded project based on Microsoft's DynamicDataDisplay project for displaying graphics in a WPF display. If you are looking for the descendent of Microsoft's DynamicDataDisplay project, it is now called InteractiveDataDisplay and is found here https://github.com/microsoft/InteractiveDataDisplay.WPF. The base for this project is a clone of the DynamicDataDisplay Sources v0.3.4703.0 from https://archive.codeplex.com/?p=dynamicdatadisplay
 
-## Summary
+The reason why I am doing this is because I have a whole lot of old code that I want to resurrect that depends on the old DynamicDataDisplay. However not only do I want to use the old DynamicDataDisplay code, but I also want to improve on it. For example I have started adding DirectX9 rendering.
+
+Note: To build the DirectX9 code you will need to install the July 2010 DirectX SDK from Microsoft here https://www.microsoft.com/en-us/download/details.aspx?id=6812 (note this link stopped working in January 2021)
+
+Here's an example of one of the improvements I've made in the video below. Click the image to go to youtube.
+
+[<img src="https://img.youtube.com/vi/c7qLWb2EHGI/maxresdefault.jpg" width="100%">](https://www.youtube.com/watch?v=c7qLWb2EHGI "DirectX Rendering Video")
+
+## DirectX9 Additions Summary
 In the DynamicDataDisplayReloaded project, the data display was expanded to utilise DirectX 9 via SharpDX to show lines and markers for a large performance improvement.
 For this project, the DirectX component has been further extended to enable the use of textured geometry.
 Two additional demonstrations are in the current version, showing the potential for textured rectangle object performance.
 
-## Demonstrations
+## DirectX9 Demonstrations (some still need work)
+A DynamicDataDisplay.SamplesDX9 project has been created to just show DirectX9 samples. There's a memory leak issue that causes things to bog down after clicking on a few of the demos. Restart the app to stop this.
 The first demo can be found in the side menu under DxRectangleTextured.
 This demo shows 10,000 markers textured with the distinctive DVD logo.
 Pressing the *Start Animation* button animates the display by moving every icon on screen diagonally, bouncing off the defined borders.
