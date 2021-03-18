@@ -129,9 +129,9 @@ namespace DynamicDataDisplay.BitmapGraphs
 			int height = (int)Math.Ceiling(heightF) + 1;
 
 			Font font = (Font)_font.Clone();
-			Brush fontBrush = new SolidBrush(Color.FromArgb(FontColor));
-			Brush backgroundBrush = new SolidBrush(Color.FromArgb(unchecked((int)BackgroundColor)));
-			Pen backgroundPen = new Pen(Color.DarkGreen);
+			Brush fontBrush = new SolidBrush(FontColor);
+			Brush backgroundBrush = new SolidBrush(BackgroundColor);
+			Pen borderPen = new Pen(BorderColor);
 
 			using (Bitmap image = new Bitmap(width, height, PixelFormat.Format32bppArgb))
 			{
@@ -148,7 +148,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 						graphics.FillRectangle(backgroundBrush, 0, 0, textWidth, textHeight);
 						if (DrawBorder)
 						{
-							graphics.DrawRectangle(backgroundPen, 0, 0, textWidth - 1, textHeight - 1);
+							graphics.DrawRectangle(borderPen, 0, 0, textWidth - 1, textHeight - 1);
 						}
 						graphics.DrawString(text, font, fontBrush, 0f, 0f, _stringFormat);
 						return Array2FromBitmap(image, textWidth, textHeight);
@@ -162,7 +162,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 						font.Dispose();
 						fontBrush.Dispose();
 						backgroundBrush.Dispose();
-						backgroundPen.Dispose();
+						borderPen.Dispose();
 					}
 				}
 			}
@@ -352,8 +352,8 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 		private void Initialize()
 		{
-			var fontBrush = new SolidBrush(Color.FromArgb(FontColor));
-			var backgroundBrush = new SolidBrush(Color.FromArgb(unchecked((int)BackgroundColor)));
+			var fontBrush = new SolidBrush(FontColor);
+			var backgroundBrush = new SolidBrush(BackgroundColor);
 
 			int gridSize = (int)Math.Sqrt((double)_glyphs.Length);
 			while ((gridSize * gridSize) < _glyphs.Length)
@@ -450,11 +450,14 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 		public float MaxWidth { get; private set; }
 
-		public uint BackgroundColor { get; set; } = unchecked((uint)Color.LightGreen.ToArgb());
+		public Color BackgroundColor { get; set; } = Color.LightGreen;
+
+		public Color FontColor { get; set; } = Color.Black;
+
+		public Color BorderColor { get; set; } = Color.DarkGreen;
 
 		public Dictionary<char, CharacterSlot> Characters { get; } = new Dictionary<char, CharacterSlot>();
-
-		public int FontColor { get; set; } = Color.Black.ToArgb();
+	
 
 		public class CharacterSlot
 		{

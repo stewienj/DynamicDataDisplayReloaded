@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace DynamicDataDisplay.BitmapGraphs
@@ -21,7 +22,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 		/// box is rendered independently of the text inside, unlike the markers where the whole box is cached
 		/// inside the GraphicsFont object.
 		/// </summary>
-		private GraphicsFont _graphicsFontSelection = new GraphicsFont { BackgroundColor = 0, DrawBorder = false };
+		private GraphicsFont _graphicsFontSelection = new GraphicsFont { BackgroundColor = System.Drawing.Color.Transparent, DrawBorder = false };
 
 		public BitmapSource DrawImage(int imageWidth, int imageHeight, IEnumerable<(Point Point, int Count, Rect Bin)> points, RenderRequest renderRequest)
 		{
@@ -57,6 +58,16 @@ namespace DynamicDataDisplay.BitmapGraphs
 			}
 		}
 
+		private System.Windows.Media.Color ToColor(System.Drawing.Color color)
+		{
+			return System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B);
+		}
+
+		private System.Drawing.Color ToColor(System.Windows.Media.Color color)
+		{
+			return System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
+		}
+
 		private uint[,] CalculateParallel(int imageWidth, int imageHeight, IEnumerable<(System.Windows.Point Point, int Count, Rect Bin)> points, RenderRequest renderRequest)
 		{
 			// Note this needs to be y,x not x,y
@@ -71,20 +82,20 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 			Func<int, int, int, int, (int, int, int, int, int, int)> GetBoundsFromSize = (x, y, spreadX, spreadY) =>
 			{
-		  // There's a spread size border around the image for speed as we eliminate boundary testing and branching
+				// There's a spread size border around the image for speed as we eliminate boundary testing and branching
 
-		  int yCoreStart = y - spreadY / 2;
+				int yCoreStart = y - spreadY / 2;
 				int yCoreEnd = yCoreStart + spreadY;
 				int xCoreStart = x - spreadX / 2;
 				int xCoreEnd = xCoreStart + spreadX;
 
-		  // Work out the source start indicies, may be non zero if we have to modify
-		  // the start indicies to be within the dest image, see further down.
-		  int fontStartY = Math.Max(0, yCoreStart) - yCoreStart;
+				// Work out the source start indicies, may be non zero if we have to modify
+				// the start indicies to be within the dest image, see further down.
+				int fontStartY = Math.Max(0, yCoreStart) - yCoreStart;
 				int fontStartX = Math.Max(0, xCoreStart) - xCoreStart;
 
-		  // Limit the x,y to within the destination image
-		  yCoreStart = Math.Max(0, yCoreStart);
+				// Limit the x,y to within the destination image
+				yCoreStart = Math.Max(0, yCoreStart);
 				yCoreEnd = Math.Min(imageHeight, yCoreEnd);
 				xCoreStart = Math.Max(0, xCoreStart);
 				xCoreEnd = Math.Min(imageWidth, xCoreEnd);
@@ -96,11 +107,11 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 			Parallel.ForEach(batches, (batch, state, index) =>
 			{
-		  // Note the access to the pixels and alphaMap below isn't thread safe. There's
-		  // minor artifacting but it's not visible to the user, so I left the code like this.
-		  // If thread safe is required the separately compute to 4 or 8 different arrays, and
-		  // then aggregate them into one.
-		  foreach (var point in batch)
+				// Note the access to the pixels and alphaMap below isn't thread safe. There's
+				// minor artifacting but it's not visible to the user, so I left the code like this.
+				// If thread safe is required the separately compute to 4 or 8 different arrays, and
+				// then aggregate them into one.
+				foreach (var point in batch)
 				{
 					if (renderRequest.IsCancellingRequested)
 						break;
@@ -132,7 +143,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 			// Now render the selection box over the top of the markers, transparently, and render the text again over the top
 			if (LastSelection?.SelectedPoints != null)
 			{
-				uint selectionAlpha = 0xC0000000;
+				uint selectionAlpha = (uint)SelectionColor.A << 24;
 
 				// This code draws a yellow box that is a least big enough to hold the text that shows the count
 				// of selected items, but it also covers all of the selected points, so if you zoom in, the box
@@ -175,9 +186,9 @@ namespace DynamicDataDisplay.BitmapGraphs
 					for (int xCore = xCoreStart; xCore < xCoreEnd; ++xCore)
 					{
 						uint color = pixels[yCore, xCore];
-						uint red = (((color & 0xFF0000) + 0xFF0000 * 3) >> 2) & 0xFF0000;
-						uint green = (((color & 0xFF00) + 0xFF00 * 3) >> 2) & 0xFF00;
-						uint blue = (color & 0xFF) >> 2;
+						uint red = (uint)(((color & 0xFF0000) >> 2) + (SelectionColor.R << 16)) & 0xFF0000;
+						uint green = (uint)(((color & 0xFF00) >> 2) + (SelectionColor.G << 8)) & 0xFF00;
+						uint blue = (uint)(((color & 0xFF) >> 2) + (SelectionColor.B)) & 0xFF;
 
 						pixels[yCore, xCore] = selectionAlpha | red | green | blue;
 					}
@@ -220,5 +231,25 @@ namespace DynamicDataDisplay.BitmapGraphs
 		public SelectedPointsChangedArgs LastSelection { get; internal set; } = null;
 
 		public CoordinateTransform Transform { get; internal set; }
+
+		public Color BackgroundColor
+		{
+			get => ToColor(_graphicsFont.BackgroundColor);
+			set => _graphicsFont.BackgroundColor = ToColor(value);
+		}
+
+		public Color BorderColor
+		{
+			get => ToColor(_graphicsFont.BorderColor);
+			set => _graphicsFont.BorderColor = ToColor(value);
+		}
+
+		public Color FontColor
+		{
+			get => ToColor(_graphicsFont.FontColor);
+			set => _graphicsFont.FontColor = ToColor(value);
+		}
+
+		public Color SelectionColor { get; set; } = Color.FromArgb(0xC0, 0xAA, 0xAA, 0x00);
 	}
 }

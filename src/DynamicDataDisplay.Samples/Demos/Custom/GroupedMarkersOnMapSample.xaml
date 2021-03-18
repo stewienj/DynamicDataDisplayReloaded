@@ -28,7 +28,12 @@
 
       <d3:CursorCoordinateGraph/>
       <d3:AxisCursorGraph/>
-      <d3:GroupedMarkersChartView x:Name="groupedMarkers"/>
+      <d3:GroupedMarkersChartView 
+          x:Name="groupedMarkers"
+          MarkerFontColor="White"
+          MarkerBackground="Blue"
+          MarkerBorderColor="Red"/>
+        
     </d3:ChartPlotter>
     <StackPanel Orientation="Horizontal" Grid.Row="1">
       <CheckBox IsChecked="{Binding ElementName=groupedMarkers, Path=DebugModeOn}" VerticalAlignment="Center">Debug Mode</CheckBox>
