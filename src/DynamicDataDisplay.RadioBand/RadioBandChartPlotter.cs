@@ -1,8 +1,7 @@
-﻿using DynamicDataDisplay.RadioBand.ConfigLoader;
-using DynamicDataDisplay;
-using DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay.Charts;
 using DynamicDataDisplay.Charts.Navigation;
 using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.RadioBand.ConfigLoader;
 using DynamicDataDisplay.ViewportRestrictions;
 using Microsoft.Win32;
 using System;
@@ -17,9 +16,10 @@ using System.Windows.Input;
 
 namespace DynamicDataDisplay.RadioBand
 {
-	public class RadioBandChartPlotter : ChartPlotter
+    public class RadioBandChartPlotter : ChartPlotter
 	{
-		private Dictionary<IComparable, SortedSet<RadioBandLine>> _groupToRadioBandLines = new Dictionary<IComparable, SortedSet<RadioBandLine>>();
+		private Dictionary<IComparable, List<RadioBandLine>> _groupToRadioBandLines = new Dictionary<IComparable, List<RadioBandLine>>();
+		private List<RadioBandLine> _ungroupedRadioBandLines = new List<RadioBandLine>();
 
 		private RadioBandPlotConfig _radioBandPlotConfig;
 		private RadioBandGroupAxis _groupAxis;
@@ -112,8 +112,8 @@ namespace DynamicDataDisplay.RadioBand
 		private RelayCommandFactoryD3 _selectAllLinesAtFrequencyCommand = new RelayCommandFactoryD3();
 		private ICommand SelectAllLinesAtFrequencyCommand => _selectAllLinesAtFrequencyCommand.GetCommand(() =>
 		{
-		// So what frequency are we at?
-		var plotter = this;
+			// So what frequency are we at?
+			var plotter = this;
 			var mousePos = plotter.TranslatePoint(plotter.DefaultContextMenu.MousePositionOnClick, plotter.CentralGrid);
 			var coord = mousePos.ScreenToData(plotter.Transform);
 			_lineRenderer.SelectAllAt(coord.X);
@@ -122,10 +122,10 @@ namespace DynamicDataDisplay.RadioBand
 		private RelayCommandFactoryD3 _selectNearestCommand = new RelayCommandFactoryD3();
 		private ICommand SelectNearestCommand => _selectNearestCommand.GetCommand(() =>
 		{
-		// TODO make this Async and do to nearest line calc
+			// TODO make this Async and do to nearest line calc
 
-		// So what frequency are we at?
-		var plotter = this;
+			// So what frequency are we at?
+			var plotter = this;
 			var mousePos = plotter.TranslatePoint(plotter.DefaultContextMenu.MousePositionOnClick, plotter.CentralGrid);
 			var coord = mousePos.ScreenToData(plotter.Transform);
 			_lineRenderer.SelectNearest(coord);
@@ -182,69 +182,107 @@ namespace DynamicDataDisplay.RadioBand
 			// Updates are throttled to 20 times per second
 			LineLabelsSource.Clear();
 			_groupToRadioBandLines.Clear();
+			_ungroupedRadioBandLines.Clear();
 			if (_itemsSource == null)
 			{
-				_groupAxis.UpdateGroups(_groupToRadioBandLines.Keys);
+				_groupAxis.UpdateGroups(Enumerable.Empty<object>());
 				return;
 			}
 
-			if (!Dispatcher.HasShutdownStarted)
-			{
-				Dispatcher.Invoke(() =>
-				{
-					_lineRenderer.ClearLines();
+			_lineRenderer.ClearLines();
 			// build up the lines and groups
 			foreach (var item in (IEnumerable)_itemsSource)
-					{
+			{
 				// Create a RadioBandLine
 				// The style for this is in the client control, for some reason we have to set DataContext to null,
 				// add the control, and then set the DataContext to get the binding to be applied before we can
 				// read it back out.
 				RadioBandLine radioBandLine = new RadioBandLine();
-						radioBandLine.DataContext = null;
-						_lineRenderer.AddLine(radioBandLine);
-						radioBandLine.DataContext = item;
-						radioBandLine.Text = item.ToString();
-				// BAM - NOTE: If the RadioBandChartPlotter is created but not rendered (i.e. brought into view),
-				// the depedency properties on the RadioBandLines are not set. Which means this will not work as
-				// radioBandLine.Group will always return null.
-				var group = (_groupToRadioBandLines.TryGetValueOrNew(radioBandLine.Group ?? "",
-							  () => new SortedSet<RadioBandLine>(RadioBandLineComparer.Instance)));
-						group.Add(radioBandLine);
-					}
+				radioBandLine.DataContext = null;
+				_lineRenderer.AddLine(radioBandLine);
+				radioBandLine.DataContext = item;
+				radioBandLine.Text = item.ToString();
 
-					int indexMax = _groupToRadioBandLines.Count;
-					if (DataTransform is RadioBandTransform rbt)
+
+				if (radioBandLine.Group != null)
+				{
+					var group = _groupToRadioBandLines.TryGetValueOrNew(radioBandLine.Group, () => new List<RadioBandLine>());
+					group.Add(radioBandLine);
+				}
+				else
+                {
+					_ungroupedRadioBandLines.Add(radioBandLine);
+                }
+
+				// NOTE: If the RadioBandChartPlotter is created but not rendered (i.e. brought into view),
+				// the depedency properties on the RadioBandLines are not set. Which means the code after this
+				// will not work as radioBandLine.Group will always return null, so need to handle when
+				// the Group property changes.
+				radioBandLine.GroupChanged += (s, e) =>
+				{
+					if (s is RadioBandLine changingRadioBandLine)
 					{
-						rbt.GroupCount = indexMax;
+						if (e.OldGroup != null && _groupToRadioBandLines.TryGetValue(e.OldGroup, out var oldGroup))
+						{
+							oldGroup.Remove(changingRadioBandLine);
+							if (oldGroup.Count < 1)
+							{
+								_groupToRadioBandLines.Remove(e.OldGroup);
+							}
+						}
+						else if (e.OldGroup == null)
+						{
+							// Need to do this because the custom comparer doesn't ever return 0 for equal
+							_ungroupedRadioBandLines.Remove(changingRadioBandLine);
+						}
+
+						if (e.NewGroup != null)
+						{
+							var newGroup = _groupToRadioBandLines.TryGetValueOrNew(e.NewGroup, () => new List<RadioBandLine>());
+							newGroup.Add(changingRadioBandLine);
+						}
+						else
+						{
+							_ungroupedRadioBandLines.Add(changingRadioBandLine);
+
+						}
+						ResetChartFromGroups();
 					}
-
-					CalculateRadioBandYCoords();
-					foreach (var radioBandLine in _groupToRadioBandLines.Values.SelectMany(x => x))
-					{
-						LineLabelsSource.Push((new Point(radioBandLine.Start, radioBandLine.GroupAxisCoord), new Point(radioBandLine.End, radioBandLine.GroupAxisCoord), radioBandLine.ToolTip?.ToString()));
-					}
-
-					_lineRenderer.InvalidateVisual();
-
-					Restrictions.Clear();
-					if (_radioBandPlotConfig.Ticks.Any() && _groupToRadioBandLines.Count > 0)
-					{
-						var bounds = new DataRect
-				(
-				  _radioBandPlotConfig.Ticks.First(),
-				  0,
-				  _radioBandPlotConfig.Ticks.Last() - _radioBandPlotConfig.Ticks.First(),
-				  indexMax
-				);
-
-						Restrictions.Add(new MaximalDataRectRestriction(bounds));
-					}
-					_groupAxis.UpdateGroups(GetSortedGroups());
-
-					((VerticalAxis)MainVerticalAxis).TicksProvider = new GroupTicksProvider(_groupToRadioBandLines.Count);
-				});
+				};
 			}
+			ResetChartFromGroups();
+		}
+
+		private void ResetChartFromGroups()
+        {
+			int indexMax = _groupToRadioBandLines.Count;
+			if (DataTransform is RadioBandTransform rbt)
+			{
+				rbt.GroupCount = indexMax;
+			}
+
+			CalculateRadioBandYCoords();
+			foreach (var radioBandLine in _groupToRadioBandLines.Values.SelectMany(x => x))
+			{
+				LineLabelsSource.Push((new Point(radioBandLine.Start, radioBandLine.GroupAxisCoord), new Point(radioBandLine.End, radioBandLine.GroupAxisCoord), radioBandLine.ToolTip?.ToString()));
+			}
+
+			_lineRenderer.InvalidateVisual();
+
+			Restrictions.Clear();
+			if (_radioBandPlotConfig.Ticks.Any() && _groupToRadioBandLines.Count > 0)
+			{
+				var bounds = new DataRect(
+					_radioBandPlotConfig.Ticks.First(),
+					0,
+					_radioBandPlotConfig.Ticks.Last() - _radioBandPlotConfig.Ticks.First(),
+					indexMax);
+
+				Restrictions.Add(new MaximalDataRectRestriction(bounds));
+			}
+			_groupAxis.UpdateGroups(GetSortedGroups());
+
+			((VerticalAxis)MainVerticalAxis).TicksProvider = new GroupTicksProvider(_groupToRadioBandLines.Count);
 		}
 
 		private List<IComparable> GetSortedGroups() => _groupToRadioBandLines.Keys.OrderBy(x => x).ToList();
@@ -266,12 +304,16 @@ namespace DynamicDataDisplay.RadioBand
 				var scaler = 1.0 / lineCount;
 				// Have a gap at the top and bottom, so add 2 to line count, and add 1 to the index
 				int lineNo = 0;
-				foreach (var lineSpec in groupAndLines.Value)
+				foreach (var lineSpec in groupAndLines.Value.OrderBy(l=>l.Start))
 				{
 					double yCoord = index - (0.5 + lineNo) * scaler;
 					lineSpec.GroupAxisCoord = yCoord;
 					++lineNo;
 				}
+			}
+			foreach(var lines in _ungroupedRadioBandLines)
+            {
+				lines.GroupAxisCoord = 0;
 			}
 		}
 

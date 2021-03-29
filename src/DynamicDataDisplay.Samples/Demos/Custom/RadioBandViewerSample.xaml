@@ -8,34 +8,38 @@
              mc:Ignorable="d" 
              Title="Radio Band Viewer Sample"
              Background="Red">
-  <Page.Resources>
-    <HierarchicalDataTemplate DataType="{x:Type local:Group}" ItemsSource="{Binding Ranges}">
-        <TextBlock Text="{Binding Name}" Margin="0,0,8,0"/>
-    </HierarchicalDataTemplate>
-    <HierarchicalDataTemplate DataType="{x:Type local:FrequencyRange}">
-      <CheckBox Content="{Binding Description}" IsChecked="{Binding IsSelected}"/>
-    </HierarchicalDataTemplate>
-    
-    <!-- Styple to be applied to Radio Band Lines -->
-    <Style TargetType="d3:RadioBandLine">
-      <Setter Property="Start" Value="{Binding Freq.Start}"/>
-      <Setter Property="End" Value="{Binding Freq.End}"/>
-      <Setter Property="IsSelected" Value="{Binding Freq.IsSelected}"/>
-      <Setter Property="Group" Value="{Binding Group}"/>
-    </Style>
-    
-  </Page.Resources>
-  <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=RadioBandData}">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto"/>
-      <ColumnDefinition/>
-    </Grid.ColumnDefinitions>
+    <Page.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type local:Group}" ItemsSource="{Binding Ranges}">
+            <TextBlock Text="{Binding Name}" Margin="0,0,8,0"/>
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type local:FrequencyRange}">
+            <CheckBox Content="{Binding Description}" IsChecked="{Binding IsSelected}"/>
+        </HierarchicalDataTemplate>
 
-    <!-- The Radio Band Chart Control-->
-    <d3:RadioBandChartPlotter Grid.Column="1" ItemsSource="{Binding FrequencyRanges}">
-      <d3:CursorCoordinateGraph/>
-    </d3:RadioBandChartPlotter>
-    
-    <TreeView Grid.Column="0" ItemsSource="{Binding Groups}"/>
-  </Grid>
+        <!-- Styple to be applied to Radio Band Lines -->
+        <Style TargetType="d3:RadioBandLine">
+            <Setter Property="Start" Value="{Binding Freq.Start}"/>
+            <Setter Property="End" Value="{Binding Freq.End}"/>
+            <Setter Property="IsSelected" Value="{Binding Freq.IsSelected}"/>
+            <Setter Property="Group" Value="{Binding Group}"/>
+        </Style>
+
+    </Page.Resources>
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=RadioBandData}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- The Radio Band Chart Control-->
+        <d3:RadioBandChartPlotter Grid.Column="1" ItemsSource="{Binding FrequencyRanges}">
+            <d3:CursorCoordinateGraph/>
+            <!-- This doesn't seem to work very well yet-->
+            <!--
+            <d3:CursorNearestRadioBandLine/>
+            -->
+        </d3:RadioBandChartPlotter>
+
+        <TreeView Grid.Column="0" ItemsSource="{Binding Groups}"/>
+    </Grid>
 </Page>

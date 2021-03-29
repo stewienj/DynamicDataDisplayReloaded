@@ -71,7 +71,13 @@ namespace DynamicDataDisplay.RadioBand
 
 		// Using a DependencyProperty as the backing store for Group.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty GroupProperty =
-			DependencyProperty.Register("Group", typeof(IComparable), typeof(RadioBandLine), new FrameworkPropertyMetadata { DefaultValue = 0.0, AffectsParentMeasure = true });
+			DependencyProperty.Register("Group", typeof(IComparable), typeof(RadioBandLine), new FrameworkPropertyMetadata((s, e) =>
+			{
+				if (s is RadioBandLine line)
+				{
+					line.GroupChanged?.Invoke(line, (e.OldValue as IComparable, e.NewValue as IComparable));
+				}
+			}) { DefaultValue = null, AffectsParentMeasure = true });
 
 		public bool IsSelected
 		{
@@ -84,6 +90,8 @@ namespace DynamicDataDisplay.RadioBand
 			DependencyProperty.Register("IsSelected", typeof(bool), typeof(RadioBandLine), new FrameworkPropertyMetadata { DefaultValue = false, AffectsParentMeasure = true, BindsTwoWayByDefault = true });
 
 		public string Text { get; set; } = "";
+
+		public event EventHandler<(IComparable OldGroup, IComparable NewGroup)> GroupChanged;
 	}
 
 }

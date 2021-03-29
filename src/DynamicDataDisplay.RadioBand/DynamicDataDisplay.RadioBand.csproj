@@ -85,7 +85,6 @@
       <DependentUpon>RadioBandGroupLabel.xaml</DependentUpon>
     </Compile>
     <Compile Include="RadioBandLine.cs" />
-    <Compile Include="RadioBandLineComparer.cs" />
     <Compile Include="GroupTicksProvider.cs" />
     <Compile Include="RadioBandFrequencyTicksProvider.cs" />
     <Compile Include="RadioBandTransform.cs" />
