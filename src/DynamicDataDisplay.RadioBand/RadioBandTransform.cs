@@ -30,42 +30,34 @@ namespace DynamicDataDisplay.RadioBand
 
 		private double[] _ticks;
 
-		public RadioBandTransform(RadioBandPlotConfig config)
-		{
-			_ticks = config.Ticks;
-		}
+        public RadioBandTransform(RadioBandPlotConfig config) => _ticks = config.Ticks;
 
-		public double FrequencyToViewport(double frequency)
+        public double FrequencyToViewport(double frequency)
 		{
 			double viewportCoord = frequency;
 
-			viewportCoord = Math.Max(viewportCoord, _ticks.First());
-			viewportCoord = Math.Min(viewportCoord, _ticks.Last());
-
-			for (int i = 0; i < _ticks.Length - 1; ++i)
+			if (_ticks.Any())
 			{
-				if (viewportCoord >= _ticks[i] && viewportCoord <= _ticks[i + 1])
-				{
-					viewportCoord = ((viewportCoord - _ticks[i]) / (_ticks[i + 1] - _ticks[i]) + i) / (_ticks.Length - 1);
-					break;
-				}
+				viewportCoord = Math.Max(viewportCoord, _ticks.First());
+				viewportCoord = Math.Min(viewportCoord, _ticks.Last());
 
+				for (int i = 0; i < _ticks.Length - 1; ++i)
+				{
+					if (viewportCoord >= _ticks[i] && viewportCoord <= _ticks[i + 1])
+					{
+						viewportCoord = ((viewportCoord - _ticks[i]) / (_ticks[i + 1] - _ticks[i]) + i) / (_ticks.Length - 1);
+						break;
+					}
+				}
 			}
 			return viewportCoord;
 		}
 
-		public double GroupNoToViewport(double groupNo)
-		{
-			return groupNo / _groupCount;
-		}
+        public double GroupNoToViewport(double groupNo) => groupNo / _groupCount;
 
-		public double ViewportToGroupNo(double viewPort)
-		{
-			return viewPort * _groupCount;
-		}
+        public double ViewportToGroupNo(double viewPort) => viewPort * _groupCount;
 
-
-		public override Point DataToViewport(Point pt)
+        public override Point DataToViewport(Point pt)
 		{
 			if (_ticks.Length == 0)
 			{
@@ -80,15 +72,19 @@ namespace DynamicDataDisplay.RadioBand
 			frequency = Math.Max(frequency, 0);
 			frequency = Math.Min(frequency, 1);
 
-			double indexReal = frequency * (_ticks.Length - 1);
-			int index = (int)Math.Floor(indexReal);
-			if (index < (_ticks.Length - 1))
+			if (_ticks.Any())
 			{
-				frequency = _ticks[index] + (indexReal - index) * (_ticks[index + 1] - _ticks[index]);
-			}
-			else
-			{
-				frequency = _ticks.Last();
+				// Interpolate between tick points
+				double indexReal = frequency * (_ticks.Length - 1);
+				int index = (int)Math.Floor(indexReal);
+				if (index < (_ticks.Length - 1))
+				{
+					frequency = _ticks[index] + (indexReal - index) * (_ticks[index + 1] - _ticks[index]);
+				}
+				else
+				{
+					frequency = _ticks.Last();
+				}
 			}
 			return frequency;
 		}
@@ -110,12 +106,6 @@ namespace DynamicDataDisplay.RadioBand
 		}
 
 		private DataRect _dataDomain = new DataRect(0, 0, double.MaxValue, double.MaxValue);
-		public override DataRect DataDomain
-		{
-			get
-			{
-				return _dataDomain;
-			}
-		}
-	}
+        public override DataRect DataDomain => _dataDomain;
+    }
 }
