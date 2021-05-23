@@ -43,6 +43,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SpectrumBandVerticalLineRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FrequencyRangeLineRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,6 +75,10 @@
     <Compile Include="ConfigLoader\FrequencyPointLabels.cs" />
     <Compile Include="ConfigLoader\FrequencyRangeLabels.cs" />
     <Compile Include="EnumeratedTypes.cs" />
+    <Compile Include="SpectrumBandLine.cs" />
+    <Compile Include="SpectrumBandVerticalLineRenderer.xaml.cs">
+      <DependentUpon>SpectrumBandVerticalLineRenderer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrequencyRangeLineRenderer.xaml.cs">
       <DependentUpon>FrequencyRangeLineRenderer.xaml</DependentUpon>
     </Compile>
