@@ -32,16 +32,16 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 
 		public IEnumerable<object> FrequencyRanges => Groups.SelectMany(group => group.Ranges.Select(freq => new { Freq = freq, Group = group }));
 
-		public IEnumerable<object> SpectrumBars1 { get; } = SpectrumFactory.GetRandomFrequenciesAndBandwidths(50).Select(fnb => new { Freq = fnb.Frequency, BW = fnb.Bandwidth }).ToList();
+		public IEnumerable<object> SpectrumBars1 { get; } = SpectrumFactory.GetRandomFrequenciesAndBandwidths(50).ToList();
 
-		public IEnumerable<object> SpectrumBars2 { get; } = new[] { new { Freq = 10E9, BW = 15E9 } };
+		public IEnumerable<object> SpectrumBars2 { get; } = new[] { new FreqBW(10E9, 15E9) };
 
 		private bool _showSpectrumOverlay1 = true;
 		public bool ShowSpectrumOverlay1
-        {
+		{
 			get => _showSpectrumOverlay1;
 			set => SetProperty(ref _showSpectrumOverlay1, value);
-        }
+		}
 
 		private bool _showSpectrumOverlay2 = false;
 		public bool ShowSpectrumOverlay2
@@ -146,22 +146,34 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 			return frequency * 0.1 * _random.NextDouble();
         }
 
-		public static (double Frequency, double Bandwidth) GetRandomFrequencyAndBandwidth()
+		public static FreqBW GetRandomFrequencyAndBandwidth()
         {
 			var frequency = GetRandomFrequency();
 			var bandwidth = GetRandomBandwidth(frequency);
-			return (frequency, bandwidth);
+			return new FreqBW(frequency, bandwidth);
         }
 
-		public static IEnumerable<(double Frequency, double Bandwidth)> GetRandomFrequenciesAndBandwidths(int count)
+		public static IEnumerable<FreqBW> GetRandomFrequenciesAndBandwidths(int count)
         {
 			for(int i=0; i<count;++i)
             {
 				yield return GetRandomFrequencyAndBandwidth();
-
 			}
         }
 
 	}
+
+	public class FreqBW
+	{ 
+		public FreqBW(double frequency, double bandwidth)
+        {
+			Freq = frequency;
+			BW = bandwidth;
+        }
+
+		public double Freq { get; set; }
+		public double BW { get; set; }
+	}
+
 
 }
