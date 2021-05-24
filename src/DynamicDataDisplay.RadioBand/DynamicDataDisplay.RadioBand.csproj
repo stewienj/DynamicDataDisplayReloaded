@@ -35,6 +35,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpectrumBandOverlay.cs" />
     <Page Include="CursorNearestRadioBandLine.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -42,10 +43,6 @@
     <Page Include="FrequencyFilterSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SpectrumBandOverlay.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="FrequencyRangeLineRenderer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -76,9 +73,6 @@
     <Compile Include="ConfigLoader\FrequencyRangeLabels.cs" />
     <Compile Include="EnumeratedTypes.cs" />
     <Compile Include="SpectrumBandLine.cs" />
-    <Compile Include="SpectrumBandOverlay.xaml.cs">
-      <DependentUpon>SpectrumBandOverlay.xaml</DependentUpon>
-    </Compile>
     <Compile Include="FrequencyRangeLineRenderer.xaml.cs">
       <DependentUpon>FrequencyRangeLineRenderer.xaml</DependentUpon>
     </Compile>

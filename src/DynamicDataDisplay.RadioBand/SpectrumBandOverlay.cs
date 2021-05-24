@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace DynamicDataDisplay.RadioBand
@@ -13,7 +14,7 @@ namespace DynamicDataDisplay.RadioBand
 	/// <summary>
 	/// Interaction logic for SpectrumBandOverlay.xaml
 	/// </summary>
-	public partial class SpectrumBandOverlay : CanvasGraph
+	public class SpectrumBandOverlay : CanvasGraph
 	{
 		private bool _lineReassignmentRequired = true;
 
@@ -21,9 +22,10 @@ namespace DynamicDataDisplay.RadioBand
 		{
 			// Need to give each instance it's own collection of gradient stops
 			GradientStops = new List<GradientStop>();
-
+			Background = new SolidColorBrush(Colors.Transparent);
+			IsHitTestVisible = false;
+			Cursor = Cursors.None;
 			SnapsToDevicePixels = true;
-			InitializeComponent();
 		}
 
 		public void SelectAllAt(double coord)
@@ -229,8 +231,6 @@ namespace DynamicDataDisplay.RadioBand
         // Using a DependencyProperty as the backing store for GradientStops.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GradientStopsProperty =
             DependencyProperty.Register("GradientStops", typeof(List<GradientStop>), typeof(SpectrumBandOverlay), new PropertyMetadata(null));
-
-
 
     }
 }
