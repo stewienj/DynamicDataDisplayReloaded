@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DynamicDataDisplay.Samples.Demos.Custom"
+             xmlns:conv="clr-namespace:DynamicDataDisplay.Samples.Internals"
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
              mc:Ignorable="d" 
              Title="Radio Band Viewer Sample"
@@ -24,6 +25,11 @@
             <Setter Property="Group" Value="{Binding Group}"/>
         </Style>
 
+        <Style TargetType="d3:SpectrumBandLine">
+            <Setter Property="Frequency" Value="{Binding Freq}"/>
+            <Setter Property="Bandwidth" Value="{Binding BW}"/>
+        </Style>
+
     </Page.Resources>
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=RadioBandData}">
         <Grid.ColumnDefinitions>
@@ -33,6 +39,20 @@
 
         <!-- The Radio Band Chart Control-->
         <d3:RadioBandChartPlotter Grid.Column="1" ItemsSource="{Binding FrequencyRanges}">
+            <d3:SpectrumBandOverlay ItemsSource="{Binding SpectrumBars1}" Visibility="{Binding ShowSpectrumOverlay1, Converter={conv:BoolToVisibilityConverter}}">
+                <d3:SpectrumBandOverlay.GradientStops>
+                    <GradientStop Offset="0" Color="#770000FF"/>
+                    <GradientStop Offset="0.5" Color="#FF00FFFF"/>
+                    <GradientStop Offset="1" Color="#770000FF"/>
+                </d3:SpectrumBandOverlay.GradientStops>
+            </d3:SpectrumBandOverlay>
+            <d3:SpectrumBandOverlay ItemsSource="{Binding SpectrumBars2}" Visibility="{Binding ShowSpectrumOverlay2, Converter={conv:BoolToVisibilityConverter}}">
+                <d3:SpectrumBandOverlay.GradientStops>
+                    <GradientStop Offset="0" Color="#77FF0000"/>
+                    <GradientStop Offset="0.5" Color="#FF00FF00"/>
+                    <GradientStop Offset="1" Color="#77FF0000"/>
+                </d3:SpectrumBandOverlay.GradientStops>
+            </d3:SpectrumBandOverlay>
             <d3:CursorCoordinateGraph/>
             <!-- This doesn't seem to work very well yet-->
             <!--
@@ -40,6 +60,11 @@
             -->
         </d3:RadioBandChartPlotter>
 
-        <TreeView Grid.Column="0" ItemsSource="{Binding Groups}"/>
+        <DockPanel Grid.Column="0" LastChildFill="True" Background="Yellow">
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay2}" DockPanel.Dock="Bottom" Margin="2">Show Spectrum Overlay 2</CheckBox>
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay1}" DockPanel.Dock="Bottom" Margin="2">Show Spectrum Overlay 1</CheckBox>
+            <TreeView ItemsSource="{Binding Groups}"/>
+        </DockPanel>
+        
     </Grid>
 </Page>
