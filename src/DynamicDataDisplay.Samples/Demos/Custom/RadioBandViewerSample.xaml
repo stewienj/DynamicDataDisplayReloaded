@@ -60,9 +60,9 @@
             -->
         </d3:RadioBandChartPlotter>
 
-        <DockPanel Grid.Column="0" LastChildFill="True">
-            <CheckBox IsChecked="{Binding ShowSpectrumOverlay2}" DockPanel.Dock="Bottom">Show Spectrum Overlay 2</CheckBox>
-            <CheckBox IsChecked="{Binding ShowSpectrumOverlay1}" DockPanel.Dock="Bottom">Show Spectrum Overlay 1</CheckBox>
+        <DockPanel Grid.Column="0" LastChildFill="True" Background="Yellow">
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay2}" DockPanel.Dock="Bottom" Margin="2">Show Spectrum Overlay 2</CheckBox>
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay1}" DockPanel.Dock="Bottom" Margin="2">Show Spectrum Overlay 1</CheckBox>
             <TreeView ItemsSource="{Binding Groups}"/>
         </DockPanel>
         
