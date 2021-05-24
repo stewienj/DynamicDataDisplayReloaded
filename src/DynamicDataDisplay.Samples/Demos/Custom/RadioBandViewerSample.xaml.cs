@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 
 	}
 
-	public class RadioBandDemoViewModel
+	public class RadioBandDemoViewModel : D3NotifyPropertyChanged
 	{
 		public RadioBandDemoViewModel()
 		{
@@ -30,6 +31,15 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 		public List<Group> Groups { get; } = new List<Group>();
 
 		public IEnumerable<object> FrequencyRanges => Groups.SelectMany(group => group.Ranges.Select(freq => new { Freq = freq, Group = group }));
+
+		public IEnumerable<object> SpectrumBars { get; } = SpectrumFactory.GetRandomFrequenciesAndBandwidths(50).Select(fnb => new { Freq = fnb.Frequency, BW = fnb.Bandwidth }).ToList();
+
+		private bool _showSpectrumOverlay = true;
+		public bool ShowSpectrumOverlay
+        {
+			get => _showSpectrumOverlay;
+			set => SetProperty(ref _showSpectrumOverlay, value);
+        }
 	}
 
 	public class Group : IComparable
@@ -82,10 +92,6 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 
 	public static class GroupFactory
 	{
-		private const double _maximumFrequency = 1000E9;
-		private static Random _random = new Random(50000);
-		private const bool _useLogScale = true;
-
 		public static IEnumerable<Group> GroupWithRandomFrequencies()
 		{
 			for (int groupNo = 1; groupNo <= 5; ++groupNo)
@@ -96,10 +102,10 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 				// Create 10 Random frequencies
 				for (int freqNo = 0; freqNo < 10; ++freqNo)
 				{
-					double freq1 = GetRandomFrequency();
+					double freq1 = SpectrumFactory.GetRandomFrequency();
 					while (true)
 					{
-						double freq2 = GetRandomFrequency();
+						double freq2 = SpectrumFactory.GetRandomFrequency();
 						if (freq2 == freq1)
 							continue;
 						group.Ranges.Add(new FrequencyRange { Start = Math.Min(freq1, freq2), End = Math.Max(freq1, freq2) });
@@ -109,13 +115,44 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 				yield return group;
 			}
 		}
+	}
 
-		private static double GetRandomFrequency()
+	public static class SpectrumFactory
+    {
+		private const double _maximumFrequency = 1000E9;
+		private static Random _random = new Random(50000);
+		private const bool _useLogScale = true;
+
+		public static double GetRandomFrequency()
 		{
 			double freq = _useLogScale ?
 			  1E7 * Math.Exp(Math.Log(_maximumFrequency / 1E7) * _random.NextDouble()) :
 			  _maximumFrequency * _random.NextDouble();
 			return freq;
 		}
+
+		public static double GetRandomBandwidth(double frequency)
+        {
+			// Bandwidth should be less than 10% of the frequency
+			return frequency * 0.1 * _random.NextDouble();
+        }
+
+		public static (double Frequency, double Bandwidth) GetRandomFrequencyAndBandwidth()
+        {
+			var frequency = GetRandomFrequency();
+			var bandwidth = GetRandomBandwidth(frequency);
+			return (frequency, bandwidth);
+        }
+
+		public static IEnumerable<(double Frequency, double Bandwidth)> GetRandomFrequenciesAndBandwidths(int count)
+        {
+			for(int i=0; i<count;++i)
+            {
+				yield return GetRandomFrequencyAndBandwidth();
+
+			}
+        }
+
 	}
+
 }

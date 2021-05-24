@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DynamicDataDisplay.Samples.Demos.Custom"
+             xmlns:conv="clr-namespace:DynamicDataDisplay.Samples.Internals"
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
              mc:Ignorable="d" 
              Title="Radio Band Viewer Sample"
@@ -24,6 +25,11 @@
             <Setter Property="Group" Value="{Binding Group}"/>
         </Style>
 
+        <Style TargetType="d3:SpectrumBandLine">
+            <Setter Property="Frequency" Value="{Binding Freq}"/>
+            <Setter Property="Bandwidth" Value="{Binding BW}"/>
+        </Style>
+
     </Page.Resources>
     <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=Page}, Path=RadioBandData}">
         <Grid.ColumnDefinitions>
@@ -33,6 +39,7 @@
 
         <!-- The Radio Band Chart Control-->
         <d3:RadioBandChartPlotter Grid.Column="1" ItemsSource="{Binding FrequencyRanges}">
+            <d3:SpectrumBandOverlay ItemsSource="{Binding SpectrumBars}" Visibility="{Binding ShowSpectrumOverlay, Converter={conv:BoolToVisibilityConverter}}"/>
             <d3:CursorCoordinateGraph/>
             <!-- This doesn't seem to work very well yet-->
             <!--
@@ -40,6 +47,10 @@
             -->
         </d3:RadioBandChartPlotter>
 
-        <TreeView Grid.Column="0" ItemsSource="{Binding Groups}"/>
+        <DockPanel Grid.Column="0" LastChildFill="True">
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay}" DockPanel.Dock="Bottom">Show Spectrum Overlay</CheckBox>
+            <TreeView ItemsSource="{Binding Groups}"/>
+        </DockPanel>
+        
     </Grid>
 </Page>

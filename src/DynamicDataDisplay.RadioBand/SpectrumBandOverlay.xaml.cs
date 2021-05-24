@@ -11,13 +11,13 @@ using System.Windows.Media;
 namespace DynamicDataDisplay.RadioBand
 {
 	/// <summary>
-	/// Interaction logic for SpectrumBandVerticalLineRenderer.xaml
+	/// Interaction logic for SpectrumBandOverlay.xaml
 	/// </summary>
-	public partial class SpectrumBandVerticalLineRenderer : CanvasGraph
+	public partial class SpectrumBandOverlay : CanvasGraph
 	{
-		private bool _lineReassignmentRequired = false;
+		private bool _lineReassignmentRequired = true;
 
-		public SpectrumBandVerticalLineRenderer()
+		public SpectrumBandOverlay()
 		{
 			SnapsToDevicePixels = true;
 			InitializeComponent();
@@ -67,38 +67,38 @@ namespace DynamicDataDisplay.RadioBand
 				exportMode = p.ExportMode;
 			}
 
+			// Performance idea. This currently renders a whole lot of rectangles using a linear gradient brush that is
+			// calculated for each rectangle. Could just calculate 1 gradient brush that is used for 1 rectangle, where the
+			// gradient stops are precalculated alpha blended stops at the boundaries of the rectangles, and at the stops
+			// for each rectangle.
+
+			// Viewport is the range of the data normalized to 1x1 square coordinates
+			var dataMinY = new Point(0.5, 0).ViewportToData(Plotter2D.Transform).Y;
+			var dataMaxY = new Point(0.5, 1).ViewportToData(Plotter2D.Transform).Y;
+
 			foreach (var line in GetLines())
 			{
-				Point leftPoint = new Point(line.Start, line.GroupAxisCoord).DataToScreen(Plotter2D.Transform);
-				Point rightPoint = new Point(line.End, line.GroupAxisCoord).DataToScreen(Plotter2D.Transform);
-				if (leftPoint.X > rightPoint.X)
-				{
-					var temp = leftPoint;
-					leftPoint = rightPoint;
-					rightPoint = temp;
-				}
+				var transform = Plotter2D.Transform;
+				var viewPortRect = transform.ViewportRect;
+				var spectrumDataRect = new DataRect
+				(
+					new Point(line.Frequency - line.Bandwidth * 0.5, dataMinY),
+					new Point(line.Frequency + line.Bandwidth * 0.5, dataMaxY)
+				);
 
-				double minThickness = line.IsSelected ? 10.0 : 5.0;
-				var leftRightPadding = Math.Max(minThickness * 0.5 - (rightPoint.X - leftPoint.X) * minThickness, exportMode ? 10 : 0);
-				leftPoint = new Point(leftPoint.X - leftRightPadding, Math.Round(leftPoint.Y));
-				rightPoint = new Point(rightPoint.X + leftRightPadding, Math.Round(rightPoint.Y));
+				var spectrumViewRect = spectrumDataRect.DataToScreen(transform);
 
-				dc.DrawLine(line.IsSelected ? _rangePenSelected : _rangePen, leftPoint, rightPoint);
-
-				/*
-				if (exportMode)
-				{
-					var text = new FormattedText(line.Text, System.Globalization.CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black);
-
-					dc.DrawText(text, leftPoint + 0.5 * (rightPoint - leftPoint) - new Vector(0.5 * text.Width, 0.5 * text.Height));
-				}
-				*/
+				dc.DrawRectangle(new SolidColorBrush(Colors.Blue), null, spectrumViewRect);
 			}
 		}
 
         private void ReassignLines()
         {
-			var sourceLines = ItemsSource.OfType<object>().ToList();
+			var sourceLines = ItemsSource?.OfType<object>().ToList();
+			if (sourceLines==null)
+            {
+				return;
+            }
 			var chartLines = GetLines().ToList();
 
 			// Remove excess chart lines
@@ -137,8 +137,9 @@ namespace DynamicDataDisplay.RadioBand
 		/// <param name="e"></param>
 		private static void UpdateAndSubscribe(DependencyObject s, DependencyPropertyChangedEventArgs e)
 		{
-			if (s is SpectrumBandVerticalLineRenderer control)
+			if (s is SpectrumBandOverlay control)
 			{
+				control._lineReassignmentRequired = true;
 				control.InvalidateVisual();
 
 				if (e.OldValue is INotifyCollectionChanged oldCollection)
@@ -168,7 +169,7 @@ namespace DynamicDataDisplay.RadioBand
 
 		// Using a DependencyProperty as the backing store for ExternalSelectedItemsSource.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty ItemsSourceProperty =
-			DependencyProperty.Register(nameof(ItemsSource), typeof(IEnumerable), typeof(SpectrumBandVerticalLineRenderer), new PropertyMetadata(null, UpdateAndSubscribe));
+			DependencyProperty.Register(nameof(ItemsSource), typeof(IEnumerable), typeof(SpectrumBandOverlay), new PropertyMetadata(null, UpdateAndSubscribe));
 
 	}
 }
