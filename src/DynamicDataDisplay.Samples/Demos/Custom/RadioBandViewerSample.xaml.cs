@@ -32,14 +32,23 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 
 		public IEnumerable<object> FrequencyRanges => Groups.SelectMany(group => group.Ranges.Select(freq => new { Freq = freq, Group = group }));
 
-		public IEnumerable<object> SpectrumBars { get; } = SpectrumFactory.GetRandomFrequenciesAndBandwidths(50).Select(fnb => new { Freq = fnb.Frequency, BW = fnb.Bandwidth }).ToList();
+		public IEnumerable<object> SpectrumBars1 { get; } = SpectrumFactory.GetRandomFrequenciesAndBandwidths(50).Select(fnb => new { Freq = fnb.Frequency, BW = fnb.Bandwidth }).ToList();
 
-		private bool _showSpectrumOverlay = true;
-		public bool ShowSpectrumOverlay
+		public IEnumerable<object> SpectrumBars2 { get; } = new[] { new { Freq = 10E9, BW = 15E9 } };
+
+		private bool _showSpectrumOverlay1 = true;
+		public bool ShowSpectrumOverlay1
         {
-			get => _showSpectrumOverlay;
-			set => SetProperty(ref _showSpectrumOverlay, value);
+			get => _showSpectrumOverlay1;
+			set => SetProperty(ref _showSpectrumOverlay1, value);
         }
+
+		private bool _showSpectrumOverlay2 = false;
+		public bool ShowSpectrumOverlay2
+		{
+			get => _showSpectrumOverlay2;
+			set => SetProperty(ref _showSpectrumOverlay2, value);
+		}
 	}
 
 	public class Group : IComparable

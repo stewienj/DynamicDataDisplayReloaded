@@ -19,6 +19,9 @@ namespace DynamicDataDisplay.RadioBand
 
 		public SpectrumBandOverlay()
 		{
+			// Need to give each instance it's own collection of gradient stops
+			GradientStops = new List<GradientStop>();
+
 			SnapsToDevicePixels = true;
 			InitializeComponent();
 		}
@@ -76,10 +79,11 @@ namespace DynamicDataDisplay.RadioBand
 			var dataMinY = new Point(0.5, 0).ViewportToData(Plotter2D.Transform).Y;
 			var dataMaxY = new Point(0.5, 1).ViewportToData(Plotter2D.Transform).Y;
 
+			var transform = Plotter2D.Transform;
+			var viewPortRect = transform.ViewportRect;
+
 			foreach (var line in GetLines())
 			{
-				var transform = Plotter2D.Transform;
-				var viewPortRect = transform.ViewportRect;
 				var spectrumDataRect = new DataRect
 				(
 					new Point(line.Frequency - line.Bandwidth * 0.5, dataMinY),
@@ -87,12 +91,57 @@ namespace DynamicDataDisplay.RadioBand
 				);
 
 				var spectrumViewRect = spectrumDataRect.DataToScreen(transform);
+				var gradientStops = GetGradientStopsForLine(line);
 
-				dc.DrawRectangle(new SolidColorBrush(Colors.Blue), null, spectrumViewRect);
+				dc.DrawRectangle(new LinearGradientBrush(gradientStops, 0.0), null, spectrumViewRect);
 			}
 		}
 
-        private void ReassignLines()
+		/// <summary>
+		/// Because the frequency scale isn't linear, we have to adjust the gradient stops to compensate
+		/// </summary>
+		/// <param name="line"></param>
+		/// <returns></returns>
+        private GradientStopCollection GetGradientStopsForLine(SpectrumBandLine line)
+        {
+			// Gradient Stop have to go from 0 to 1, but adjusted for the x scale
+			var minStop = GradientStops.Min(gs => gs.Offset);
+			var maxStop = GradientStops.Max(gs => gs.Offset);
+
+			if (maxStop > minStop)
+			{
+				var stopWidth = maxStop - minStop;
+
+				var transform = Plotter2D.Transform;
+				var multipler = line.Bandwidth / stopWidth;
+				var bandStart = line.Frequency - line.Bandwidth * 0.5;
+
+				double GetNewOffset(double oldOffset)
+				{
+					var dataStop = (oldOffset - minStop) * multipler + bandStart;
+					return new Point(dataStop, 0).DataToViewport(transform).X;
+				}
+
+				// Gets the offsets in viewport data
+				var offsetData = GradientStops.Select(gs => GetNewOffset(gs.Offset)).ToList();
+
+				// now normalize to 0 to 1
+				var minOffsetData = offsetData.Min();
+				var maxOffsetData = offsetData.Max();
+				if (maxOffsetData>minOffsetData)
+                {
+					var offsetDataWidth = maxOffsetData - minOffsetData;
+					var offsetDataNormalized = offsetData.Select(od => (od - minOffsetData) / offsetDataWidth);
+					var gradientStopsForLine = GradientStops.Zip(offsetDataNormalized, (a, b) => new GradientStop(a.Color, b));
+					return new GradientStopCollection(gradientStopsForLine);
+				}
+
+            }
+
+			return new GradientStopCollection(GradientStops.Select(gs => new GradientStop(gs.Color, 0.5)));
+		}
+
+		private void ReassignLines()
         {
 			var sourceLines = ItemsSource?.OfType<object>().ToList();
 			if (sourceLines==null)
@@ -171,5 +220,17 @@ namespace DynamicDataDisplay.RadioBand
 		public static readonly DependencyProperty ItemsSourceProperty =
 			DependencyProperty.Register(nameof(ItemsSource), typeof(IEnumerable), typeof(SpectrumBandOverlay), new PropertyMetadata(null, UpdateAndSubscribe));
 
-	}
+        public List<GradientStop> GradientStops
+		{
+            get { return (List<GradientStop>)GetValue(GradientStopsProperty); }
+            set { SetValue(GradientStopsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for GradientStops.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GradientStopsProperty =
+            DependencyProperty.Register("GradientStops", typeof(List<GradientStop>), typeof(SpectrumBandOverlay), new PropertyMetadata(null));
+
+
+
+    }
 }
