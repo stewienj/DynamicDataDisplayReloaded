@@ -1,4 +1,5 @@
 obj/
+bin/
 .vs/
 *.suo
 Publish/

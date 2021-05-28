@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SlimDX">
@@ -13,7 +13,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
+    <Compile Include="..\..\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
     <EmbeddedResource Include="Shaders\ParticleEffect.fx" />
