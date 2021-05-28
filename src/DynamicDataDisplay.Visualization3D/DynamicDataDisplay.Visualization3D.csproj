@@ -1,93 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ProjectGuid>{849033AA-0765-49F8-B60D-D85CE5CD32EB}</ProjectGuid>
-    <OutputType>library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynamicDataDisplay.Visualization3D</RootNamespace>
-    <AssemblyName>DynamicDataDisplay.Visualization3D</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SlimDX">
       <HintPath>..\..\lib\SlimDX\x64\SlimDX.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Auxilaries\DDS.cs" />
-    <Compile Include="Auxilaries\MathHelper.cs" />
-    <Compile Include="DataSource.cs" />
-    <Compile Include="DrawableComponent.cs" />
-    <Compile Include="DrawableComponentsManager.cs" />
-    <Compile Include="MainLoops\TimeManager.cs" />
-    <Compile Include="MainLoops\TimeEntity.cs" />
-    <Compile Include="Providers\BorderCube\WiredCube.cs" />
-    <Compile Include="CameraUtilities\Camera.cs" />
-    <Compile Include="Providers\Isosurfaces\Metaball.ConstArrays.cs" />
-    <Compile Include="Providers\Isosurfaces\Metaball.cs" />
-    <Compile Include="Providers\Particles\ExplosionParticleSystem.cs" />
-    <Compile Include="Providers\Particles\Particle.cs" />
-    <Compile Include="Providers\Particles\ParticleArtillery.cs" />
-    <Compile Include="Providers\Particles\ParticleEmitter.cs" />
-    <Compile Include="Providers\Particles\ParticleSettings.cs" />
-    <Compile Include="Providers\Particles\ParticleSystem.cs" />
-    <Compile Include="Providers\Particles\ParticleSystem3D.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="DX3DHost.cs" />
-    <Compile Include="Providers\Particles\Projectile.cs" />
-    <Compile Include="Providers\Particles\ProjectileParticleSystem.cs" />
-    <Compile Include="Providers\Particles\SmokeParticleSystem.cs" />
-    <Compile Include="Providers\RayCasting\RayCastingProvider.cs" />
-    <Compile Include="Providers\SurfaceSlice\SurfaceSlice.cs" />
-    <Compile Include="ProviderValueSlider.xaml.cs">
-      <DependentUpon>ProviderValueSlider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RgbPalette.cs" />
-    <Compile Include="VertexStructures\MetaballVertex.cs" />
-    <Compile Include="VertexStructures\ParticleVertex.cs" />
-    <Compile Include="VertexStructures\TransformedColoredVertex.cs" />
-    <Compile Include="VertexStructures\Vertex.cs" />
-    <Compile Include="VertexStructures\VertexElementAttribute.cs" />
-    <Compile Include="VertexStructures\VertexPositionNormalColor.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <EmbeddedResource Include="Shaders\ParticleEffect.fx" />
     <EmbeddedResource Include="Textures\denmod.dds" />
     <EmbeddedResource Include="Shaders\RayCasting.fx"></EmbeddedResource>
@@ -95,20 +23,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ProviderValueSlider.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Textures\smoke.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
 </Project>

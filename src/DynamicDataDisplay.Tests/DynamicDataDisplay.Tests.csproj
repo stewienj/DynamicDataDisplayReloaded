@@ -1,88 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ProjectGuid>{EA2C1BAD-34E3-4EEB-80AF-CBE49BCBA48B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynamicDataDisplay.Tests</RootNamespace>
-    <AssemblyName>DynamicDataDisplay.Tests</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Common\PropertySetSystem.cs" />
-    <Compile Include="D3\AdjustablePointSelectorTest.cs" />
-    <Compile Include="D3\AssertExtensions.cs" />
-    <Compile Include="D3\AxisTest.cs" />
-    <Compile Include="D3\ChildrenTest.cs" />
-    <Compile Include="D3\D3CollectionTest.cs" />
-    <Compile Include="D3\DataRectExtensionsTest.cs" />
-    <Compile Include="D3\DataRectTest.cs" />
-    <Compile Include="D3\DegreeTest.cs" />
-    <Compile Include="D3\FrequencyFilterTest.cs" />
-    <Compile Include="D3\GenericPlotterTest.cs" />
-    <Compile Include="D3\Markers\DataSourceFactoriesTest.cs" />
-    <Compile Include="D3\Markers\DevMarkerChartTest.cs" />
-    <Compile Include="D3\PointSelectorTest.cs" />
-    <Compile Include="D3\RingArrayTest.cs" />
-    <Compile Include="D3\SplitEnumeratorTest.cs" />
-    <Compile Include="D3\ViewportShapeTest.cs" />
-    <Compile Include="D3\PlotterXamlSerializationTest.cs" />
-    <Compile Include="D3\ReflectionExtensions.cs" />
-    <Compile Include="D3\VEServerBaseTest.cs" />
-    <Compile Include="D3\ViewportRestrictionsTest.cs" />
-    <Compile Include="D3\ViewportTest.cs" />
-    <Compile Include="Maps\NetworkTileServerTest.cs" />
-    <Compile Include="Maps\RenderTileProviderTest.cs" />
-    <Compile Include="Maps\TileIndexTest.cs" />
-    <Compile Include="PaletteControl\PaletteControlTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Maps\ReadonlyTileCacheTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamicDataDisplay.Controls\DynamicDataDisplay.Controls.csproj">
-      <Project>{8AEE9DA5-83F5-401F-8C58-9BAC660A0E6E}</Project>
-      <Name>DynamicDataDisplay.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj">
-      <Project>{EB04A4CD-DDE6-49EB-8FB6-39B35482D792}</Project>
-      <Name>DynamicDataDisplay.Maps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj">
-      <Project>{A5EB794C-7C62-4A0C-A441-ACF7D4074C5D}</Project>
-      <Name>DynamicDataDisplay.Markers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
-      <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
-      <Name>DynamicDataDisplay</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\DynamicDataDisplay.Controls\DynamicDataDisplay.Controls.csproj" />
+    <ProjectReference Include="..\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj" />
+    <ProjectReference Include="..\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" />
+    <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
 </Project>
