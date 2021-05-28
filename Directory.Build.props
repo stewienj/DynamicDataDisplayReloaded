@@ -1,5 +1,12 @@
 <Project>
  <PropertyGroup>
+	<!--
+    <OutputPath>$(MSBuildThisFileDirectory)Bin\$(Configuration)_$(Platform)\</OutputPath>
+    <IntermediateOutputPath>$(MSBuildThisFileDirectory)Intermediate\$(AssemblyName)\$(Configuration)_$(Platform)\</IntermediateOutputPath>
+	-->
+	<Prefer32Bit>false</Prefer32Bit>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)PropertySheets\DynamicDataDisplay.snk</AssemblyOriginatorKeyFile>
     <TargetFramework>net461</TargetFramework>
  </PropertyGroup>
 </Project>
