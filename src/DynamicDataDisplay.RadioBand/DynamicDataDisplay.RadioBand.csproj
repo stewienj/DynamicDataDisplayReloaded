@@ -1,127 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ProjectGuid>{D99DFEAC-2AC7-4349-B731-6E7B3732FFD3}</ProjectGuid>
-    <OutputType>library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynamicDataDisplay.RadioBand</RootNamespace>
-    <AssemblyName>DynamicDataDisplay.RadioBand</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="SpectrumBandOverlay.cs" />
-    <Page Include="CursorNearestRadioBandLine.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="FrequencyFilterSlider.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FrequencyRangeLineRenderer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="RadioBandAxisControlStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ConfigLoader\FrequencyLabelSet.cs" />
-    <Compile Include="CursorNearestRadioBandLine.xaml.cs">
-      <DependentUpon>CursorNearestRadioBandLine.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FrequencyFilterSlider.xaml.cs">
-      <DependentUpon>FrequencyFilterSlider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FrequencyPointLabelsGridBuilder.cs" />
-    <Compile Include="FrequencyLabelsGridBuilder.cs" />
-    <Compile Include="FrequencyRangeLabelsGridBuilder.cs" />
-    <Compile Include="ConfigLoader\PointLabel.cs" />
-    <Compile Include="ConfigLoader\RadioBandPlotConfig.cs" />
-    <Compile Include="ConfigLoader\RangeLabel.cs" />
-    <Compile Include="ConfigLoader\FrequencyPointLabels.cs" />
-    <Compile Include="ConfigLoader\FrequencyRangeLabels.cs" />
-    <Compile Include="EnumeratedTypes.cs" />
-    <Compile Include="SpectrumBandLine.cs" />
-    <Compile Include="FrequencyRangeLineRenderer.xaml.cs">
-      <DependentUpon>FrequencyRangeLineRenderer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NearestLineSearch2D.cs" />
-    <Compile Include="NearestVisualSource.cs" />
-    <Compile Include="NearestVisualSourceCollection.cs" />
-    <Compile Include="RadioBandAxis.cs" />
-    <Compile Include="RadioBandGroupAxis.cs" />
-    <Compile Include="RadioBandFrequencyAxis.cs" />
-    <Compile Include="RadioBandChartPlotter.cs" />
-    <Compile Include="RadioBandGroupLabel.xaml.cs">
-      <DependentUpon>RadioBandGroupLabel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RadioBandLine.cs" />
-    <Compile Include="GroupTicksProvider.cs" />
-    <Compile Include="RadioBandFrequencyTicksProvider.cs" />
-    <Compile Include="RadioBandTransform.cs" />
-    <Page Include="RadioBandGroupLabel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
-      <Project>{ecd37682-df7e-409f-912d-0965634556b5}</Project>
-      <Name>DynamicDataDisplay</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
     </PackageReference>
@@ -129,12 +28,4 @@
   <ItemGroup>
     <EmbeddedResource Include="Configs\SpectrumDisplayDefault.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

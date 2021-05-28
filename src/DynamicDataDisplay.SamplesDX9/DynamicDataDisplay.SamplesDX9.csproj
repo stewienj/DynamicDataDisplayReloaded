@@ -1,183 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ProjectGuid>{16CA59CE-4664-4739-A1B1-1FCD0447596F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynamicDataDisplay.SamplesDX9</RootNamespace>
-    <AssemblyName>DynamicDataDisplay.SamplesDX9</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
     <ApplicationIcon>D3-icon.ico</ApplicationIcon>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
-    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="Demos\SharpDX\DxInstancedLineSingleColorSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Demos\SharpDX\DxLineSingleColorSample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Demos\SharpDX\DxLineMultiColorSample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Demos\SharpDX\DxMarkerColoredByInstanceSample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Demos\SharpDX\DxInstancedRectangleTexturedSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Demos\SharpDX\DxRectangleTexturedSample.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Internals\Views\DemonstrationView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Internals\Views\DetailsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Internals\Views\FlatDemonstrationsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Internals\Views\ReleaseView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Internals\Views\TreeDemonstrationView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="..\..\sln\DynamicDataDisplay\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxInstancedLineSingleColorSample.xaml.cs">
-      <DependentUpon>DxInstancedLineSingleColorSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxLineSingleColorSample.xaml.cs">
-      <DependentUpon>DxLineSingleColorSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxLineMultiColorSample.xaml.cs">
-      <DependentUpon>DxLineMultiColorSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxMarkerColoredByInstanceSample.xaml.cs">
-      <DependentUpon>DxMarkerColoredByInstanceSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxInstancedRectangleTexturedSample.xaml.cs">
-      <DependentUpon>DxInstancedRectangleTexturedSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Demos\SharpDX\DxRectangleTexturedSample.xaml.cs">
-      <DependentUpon>DxRectangleTexturedSample.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Internals\Models\ReleaseInfo.cs" />
-    <Compile Include="Internals\Models\ReleaseVersion.cs" />
-    <Compile Include="Internals\Models\Demonstration.cs" />
-    <Compile Include="Internals\Models\SamplesCollection.cs" />
-    <Compile Include="Internals\ResourceExtensions.cs" />
-    <Compile Include="Internals\VersionToBrushConverter.cs" />
-    <Compile Include="Internals\VersionTypeConverter.cs" />
-    <Compile Include="Internals\ViewModels\DemonstrationViewModel.cs" />
-    <Compile Include="Internals\ViewModels\FlatViewModel.cs" />
-    <Compile Include="Internals\ViewState.cs" />
-    <Compile Include="Internals\Views\DemonstrationView.xaml.cs">
-      <DependentUpon>DemonstrationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Internals\Views\DetailsView.xaml.cs">
-      <DependentUpon>DetailsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Internals\Views\FlatDemonstrationsView.xaml.cs">
-      <DependentUpon>FlatDemonstrationsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Internals\Views\ReleaseView.xaml.cs">
-      <DependentUpon>ReleaseView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Internals\Views\TreeDemonstrationView.xaml.cs">
-      <DependentUpon>TreeDemonstrationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Internals\Views\ViewBase.cs" />
-    <Compile Include="Internals\Views\ViewService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Strings\UIResources.ru-ru.Designer.cs">
-      <DependentUpon>UIResources.ru-ru.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Strings\UIResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UIResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Strings\UIResources.ru-ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UIResources.ru-ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Strings\UIResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UIResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="D3-icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj">
-      <Project>{e140351c-f359-40be-9182-120c50a45061}</Project>
-      <Name>DynamicDataDisplay.SharpDX9</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj">
-      <Project>{ECD37682-DF7E-409F-912D-0965634556B5}</Project>
-      <Name>DynamicDataDisplay</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" />
+    <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SharpDX">
@@ -190,12 +33,4 @@
       <Version>4.2.0</Version>
     </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
