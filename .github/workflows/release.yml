@@ -27,7 +27,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1
 
     - name: Restore NuGet Packages
-      run: msbuild -t:restore DynamicDataDisplay.sln
+      run: msbuild -t:restore DynamicDataDisplay.Pack.sln
       
     - name: Set Version
       run: PropertySheets\SetVersion.cmd ${{ github.event.release.tag_name }} >PropertySheets\BuildAssemblyInfo.cs
@@ -36,22 +36,7 @@ jobs:
       run: type PropertySheets\BuildAssemblyInfo.cs
       
     - name: Create DynamicDataDisplayReloaded nuget package
-      run: msbuild -t:pack "src\DynamicDataDisplay\DynamicDataDisplay.csproj" -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageOutputPath=../../Publish -p:IncludeSymbols=true -p:Configuration=Release -p:Platform=AnyCPU
-
-    - name: Create DynamicDataDisplayReloaded.BitmapGraphs nuget package
-      run: msbuild -t:pack "src\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageOutputPath=../../Publish -p:IncludeSymbols=true -p:Configuration=Release -p:Platform=AnyCPU
-
-    - name: Create DynamicDataDisplayReloaded.Maps nuget package
-      run: msbuild -t:pack "src\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj" -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageOutputPath=../../Publish -p:IncludeSymbols=true -p:Configuration=Release -p:Platform=AnyCPU
-
-    - name: Create DynamicDataDisplayReloaded.Markers nuget package
-      run: msbuild -t:pack "src\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageOutputPath=../../Publish -p:IncludeSymbols=true -p:Configuration=Release -p:Platform=AnyCPU
-
-    - name: Create DynamicDataDisplayReloaded.RadioBand nuget package
-      run: msbuild -t:pack "src\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj" -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageOutputPath=../../Publish -p:IncludeSymbols=true -p:Configuration=Release -p:Platform=AnyCPU
-      
-    - name: Create DynamicDataDisplayReloaded.SharpDX9 nuget package
-      run: msbuild -t:pack "src\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" -p:PackageVersion=${{ github.event.release.tag_name }} -p:PackageOutputPath=../../Publish -p:IncludeSymbols=true -p:Configuration=Release -p:Platform=AnyCPU
+      run: msbuild -t:pack DynamicDataDisplay.Pack.sln -p:PackageVersion=0.9.0 -p:Configuration=Release -p:Platform="Any CPU"
 
 #    Maybe test before doing this
 #    - name: Publish Nuget Packages
