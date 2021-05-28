@@ -25,14 +25,11 @@ jobs:
     - name: Setup msbuild
       uses: microsoft/setup-msbuild@v1
   
-    - name: Setup NuGet.exe for use with actions
-      uses: NuGet/setup-nuget@v1.0.5
-    
     - name: Restore NuGet Packages
-      run: nuget restore sln\DynamicDataDisplay\DynamicDataDisplay.sln
+      run: msbuid -t:restore DynamicDataDisplay.sln
       
     - name: Build Debug DLL
-      run: msbuild sln\DynamicDataDisplay\DynamicDataDisplay.sln /p:Configuration=Debug
+      run: msbuild DynamicDataDisplay.sln -p:Configuration=Debug
 
     - name: Build Release DLL
-      run: msbuild sln\DynamicDataDisplay\DynamicDataDisplay.sln /p:Configuration=Release
+      run: msbuild DynamicDataDisplay.sln -p:Configuration=Release

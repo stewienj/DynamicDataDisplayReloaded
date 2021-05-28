@@ -1,9 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
+    <Authors>John Stewien</Authors>
+    <PackageProjectUrl>https://github.com/stewienj/DynamicDataDisplayReloaded</PackageProjectUrl>
+    <PackageId>DynamicDataDisplayReloaded</PackageId>
+    <PackageLicenseExpression>MS-RL</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/stewienj/DynamicDataDisplayReloaded.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Chart and Mapping Control for C#/WPF</Description>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\PropertySheets\BuildAssemblyInfo.cs">
