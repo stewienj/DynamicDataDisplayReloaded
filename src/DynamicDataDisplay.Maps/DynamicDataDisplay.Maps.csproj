@@ -5,6 +5,17 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>DynamicDataDisplayReloaded.Maps</PackageId>
+    <Authors>John Stewien</Authors>
+    <PackageProjectUrl>https://github.com/stewienj/DynamicDataDisplayReloaded</PackageProjectUrl>
+    <PackageLicenseExpression>MS-RL</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/stewienj/DynamicDataDisplayReloaded.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Chart and Mapping Control for C#/WPF</Description>
+    <PackageOutputPath>../../Publish</PackageOutputPath>
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
