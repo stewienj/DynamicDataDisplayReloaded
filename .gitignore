@@ -1,8 +1,7 @@
-obj/
-bin/
-.vs/
-*.suo
-Publish/
+/.vs/
+/Bin/
+/Intermediate/
+/Publish/
 *.user
-sln/DynamicDataDisplay/packages/
-sln/DynamicDataDisplay/TestResults/
+*.suo
+
