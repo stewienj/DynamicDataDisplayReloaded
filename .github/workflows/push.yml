@@ -26,9 +26,6 @@ jobs:
     - name: Setup msbuild
       uses: microsoft/setup-msbuild@v1
 
-    - name: Restore NuGet Packages
-      run: msbuild -t:restore DynamicDataDisplay.sln
-      
     - name: Set Version
       run: PropertySheets\SetVersion.cmd 0.9.0 >PropertySheets\BuildAssemblyInfo.cs
       
@@ -36,13 +33,14 @@ jobs:
       run: type PropertySheets\BuildAssemblyInfo.cs
       
     - name: Build Debug DLL
-      run: msbuild DynamicDataDisplay.sln /p:Configuration=Debug
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Debug -p:Platform="Any CPU"
 
     - name: Build Release DLL
-      run: msbuild DynamicDataDisplay.sln /p:Configuration=Release
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Release -p:Platform="Any CPU"
 
     - name: Create DynamicDataDisplayReloaded nuget package
-      run: msbuild -t:pack DynamicDataDisplay.Pack.sln -p:PackageVersion=0.9.0 -p:Configuration=Release -p:Platform="Any CPU"
+      run: msbuild -restore -t:pack DynamicDataDisplay.Pack.sln -p:PackageVersion=0.9.0 -p:Configuration=Release -p:Platform="Any CPU"
 
-    #- name: Publish Nuget Packages
-    #  run: dotnet nuget push Publish/*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
+#    Maybe test before doing this
+#    - name: Publish Nuget Packages
+#      run: dotnet nuget push Publish\*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
