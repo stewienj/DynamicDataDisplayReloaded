@@ -35,6 +35,5 @@ jobs:
     - name: Create DynamicDataDisplayReloaded nuget package
       run: msbuild -restore -t:pack DynamicDataDisplay.Pack.sln -p:PackageVersion=${{ github.event.release.tag_name }} -p:Configuration=Release -p:Platform="Any CPU" -m
 
-#    Maybe test before doing this
-#    - name: Publish Nuget Packages
-#      run: dotnet nuget push Publish\*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
+    - name: Publish Nuget Packages
+      run: dotnet nuget push Publish\*.nupkg --api-key ${{ secrets.nuget_api_key }} --source https://api.nuget.org/v3/index.json
