@@ -39,6 +39,7 @@
 
         <!-- The Radio Band Chart Control-->
         <d3:RadioBandChartPlotter Grid.Column="1" ItemsSource="{Binding FrequencyRanges}">
+
             <d3:SpectrumBandOverlay ItemsSource="{Binding SpectrumBars1}" Visibility="{Binding ShowSpectrumOverlay1, Converter={conv:BoolToVisibilityConverter}}">
                 <d3:SpectrumBandOverlay.GradientStops>
                     <GradientStop Offset="0" Color="#770000FF"/>
@@ -46,6 +47,7 @@
                     <GradientStop Offset="1" Color="#770000FF"/>
                 </d3:SpectrumBandOverlay.GradientStops>
             </d3:SpectrumBandOverlay>
+
             <d3:SpectrumBandOverlay ItemsSource="{Binding SpectrumBars2}" Visibility="{Binding ShowSpectrumOverlay2, Converter={conv:BoolToVisibilityConverter}}">
                 <d3:SpectrumBandOverlay.GradientStops>
                     <GradientStop Offset="0" Color="#77FF0000"/>
@@ -53,6 +55,21 @@
                     <GradientStop Offset="1" Color="#77FF0000"/>
                 </d3:SpectrumBandOverlay.GradientStops>
             </d3:SpectrumBandOverlay>
+
+
+            <!-- This shows some really thin lines, they show how the minimum thickness drawn is 1 pixel. Also demonstrates databinding for the gradient stops in the visual brush.-->
+            <d3:SpectrumBandOverlay ItemsSource="{Binding SpectrumBars3}" Visibility="{Binding ShowSpectrumOverlay3, Converter={conv:BoolToVisibilityConverter}}">
+                <d3:SpectrumBandOverlay.Resources>
+                    <!-- Have to use a proxy because GradientStop isn't a FrameworkElement, so can't set DataContext -->
+                    <d3:BindingProxy x:Key="DataContextProxy" Data="{Binding}" />
+                </d3:SpectrumBandOverlay.Resources>
+                <d3:SpectrumBandOverlay.GradientStops>
+                    <GradientStop Offset="0" Color="{Binding Source={StaticResource DataContextProxy}, Path=Data.SpectrumBandEdgeColor}"/>
+                    <GradientStop Offset="0.5" Color="{Binding Source={StaticResource DataContextProxy}, Path=Data.SpectrumBandMiddleColor}"/>
+                    <GradientStop Offset="1" Color="{Binding Source={StaticResource DataContextProxy}, Path=Data.SpectrumBandEdgeColor}"/>
+                </d3:SpectrumBandOverlay.GradientStops>
+            </d3:SpectrumBandOverlay>
+
             <d3:CursorCoordinateGraph/>
             <!-- This doesn't seem to work very well yet-->
             <!--
@@ -61,8 +78,22 @@
         </d3:RadioBandChartPlotter>
 
         <DockPanel Grid.Column="0" LastChildFill="True" Background="Yellow">
-            <CheckBox IsChecked="{Binding ShowSpectrumOverlay2}" DockPanel.Dock="Bottom" Margin="2">Show Spectrum Overlay 2</CheckBox>
-            <CheckBox IsChecked="{Binding ShowSpectrumOverlay1}" DockPanel.Dock="Bottom" Margin="2">Show Spectrum Overlay 1</CheckBox>
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay3}" DockPanel.Dock="Bottom" Margin="2" Content="Show Spectrum Overlay 3">
+                <CheckBox.ToolTip>
+                    This shows some really thin lines, they show how the minimum thickness drawn is 1 pixel. Also demonstrates databinding
+                    for the gradient stops in the visual brush.
+                </CheckBox.ToolTip>
+            </CheckBox>
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay2}" DockPanel.Dock="Bottom" Margin="2" Content="Show Spectrum Overlay 2">
+                <CheckBox.ToolTip>
+                    This shows some really widewand lines, the centreline should be slightly off center.
+                </CheckBox.ToolTip>
+            </CheckBox>
+            <CheckBox IsChecked="{Binding ShowSpectrumOverlay1}" DockPanel.Dock="Bottom" Margin="2" Content="Show Spectrum Overlay 1">
+                <CheckBox.ToolTip>
+                    This shows a normal spectrum overlay.
+                </CheckBox.ToolTip>
+            </CheckBox>
             <TreeView ItemsSource="{Binding Groups}"/>
         </DockPanel>
         

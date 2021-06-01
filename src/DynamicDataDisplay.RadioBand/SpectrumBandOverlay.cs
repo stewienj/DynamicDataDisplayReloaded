@@ -95,6 +95,17 @@ namespace DynamicDataDisplay.RadioBand
 				var spectrumViewRect = spectrumDataRect.DataToScreen(transform);
 				var gradientStops = GetGradientStopsForLine(line);
 
+				// Ensure rectangle is at least 1 pixel wide
+				if (spectrumViewRect.Width<1.0)
+                {
+					// Inflate the rectangle to the desired size
+					spectrumViewRect.Inflate((1.0- spectrumViewRect.Width)*0.5, 0);
+
+					// Move rectangle to nearest pixel in the x axis so a single pixel wide line doesn't
+					// appear blurry
+					spectrumViewRect.Offset(Math.Round(spectrumViewRect.X) - spectrumViewRect.X, 0.0);
+				}
+
 				dc.DrawRectangle(new LinearGradientBrush(gradientStops, 0.0), null, spectrumViewRect);
 			}
 		}

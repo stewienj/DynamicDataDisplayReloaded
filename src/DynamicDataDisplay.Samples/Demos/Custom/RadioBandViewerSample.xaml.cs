@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DynamicDataDisplay.Samples.Demos.Custom
 {
@@ -36,6 +37,17 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 
 		public IEnumerable<object> SpectrumBars2 { get; } = new[] { new FreqBW(10E9, 15E9) };
 
+		public IEnumerable<object> SpectrumBars3 { get; } = new[]
+		{
+			new FreqBW(1.1E9, 1E5),
+			new FreqBW(1.2E9, 1E5),
+			new FreqBW(1.3E9, 1E5),
+		};
+
+		public Color SpectrumBandEdgeColor { get; } = Colors.Black;
+
+		public Color SpectrumBandMiddleColor { get; } = Colors.Red;
+
 		private bool _showSpectrumOverlay1 = true;
 		public bool ShowSpectrumOverlay1
 		{
@@ -48,6 +60,13 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 		{
 			get => _showSpectrumOverlay2;
 			set => SetProperty(ref _showSpectrumOverlay2, value);
+		}
+
+		private bool _showSpectrumOverlay3 = false;
+		public bool ShowSpectrumOverlay3
+		{
+			get => _showSpectrumOverlay3;
+			set => SetProperty(ref _showSpectrumOverlay3, value);
 		}
 	}
 
