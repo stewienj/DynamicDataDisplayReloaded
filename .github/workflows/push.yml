@@ -33,13 +33,13 @@ jobs:
       run: type PropertySheets\BuildAssemblyInfo.cs
       
     - name: Build Debug DLL
-      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Debug -p:Platform="Any CPU"
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Debug -p:Platform="Any CPU" -m
 
     - name: Build Release DLL
-      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Release -p:Platform="Any CPU"
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Release -p:Platform="Any CPU" -m
 
     - name: Create DynamicDataDisplayReloaded nuget package
-      run: msbuild -restore -t:pack DynamicDataDisplay.Pack.sln -p:PackageVersion=0.9.0 -p:Configuration=Release -p:Platform="Any CPU"
+      run: msbuild -restore -t:pack DynamicDataDisplay.Pack.sln -p:PackageVersion=0.9.0 -p:Configuration=Release -p:Platform="Any CPU" -m
 
 #    Maybe test before doing this
 #    - name: Publish Nuget Packages

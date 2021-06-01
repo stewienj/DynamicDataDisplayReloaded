@@ -26,7 +26,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1
   
     - name: Build Debug DLL
-      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Debug -p:Platform="Any CPU"
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Debug -p:Platform="Any CPU" -m
 
     - name: Build Release DLL
-      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Release -p:Platform="Any CPU"
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Release -p:Platform="Any CPU" -m
