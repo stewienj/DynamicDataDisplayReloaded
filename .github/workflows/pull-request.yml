@@ -25,11 +25,8 @@ jobs:
     - name: Setup msbuild
       uses: microsoft/setup-msbuild@v1
   
-    - name: Restore NuGet Packages
-      run: msbuid -t:restore DynamicDataDisplay.sln
-      
     - name: Build Debug DLL
-      run: msbuild DynamicDataDisplay.sln -p:Configuration=Debug
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Debug -p:Platform="Any CPU"
 
     - name: Build Release DLL
-      run: msbuild DynamicDataDisplay.sln -p:Configuration=Release
+      run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Release -p:Platform="Any CPU"
