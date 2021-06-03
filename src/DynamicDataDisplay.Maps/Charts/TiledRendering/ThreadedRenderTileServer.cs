@@ -71,10 +71,10 @@ namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 					for (int i = 0; i < plotters.Length; i++)
 					{
 						var plotter = plotters[i];
-						plotter.Dispatcher.BeginInvoke(() =>
+						plotter.Dispatcher.BeginInvoke((Action)(() =>
 						{
 							AddChildToPlotter(plotter);
-						}, DispatcherPriority.Send);
+						}), DispatcherPriority.Send);
 					}
 				}
 			}
@@ -141,7 +141,7 @@ namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 
 		private void RaiseChangedAsync()
 		{
-			Dispatcher.BeginInvoke(() => { RaiseChangedEvent(); }, DispatcherPriority.Background);
+			Dispatcher.BeginInvoke((Action)(() => { RaiseChangedEvent(); }), DispatcherPriority.Background);
 		}
 
 		int createdPlottersCount;
@@ -215,7 +215,7 @@ namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 
 			foreach (var plotter in plotters)
 			{
-				plotter.Dispatcher.BeginInvoke(() => { }, DispatcherPriority.Background);
+				plotter.Dispatcher.BeginInvoke((Action)(() => { }), DispatcherPriority.Background);
 			}
 
 			var tileBounds = GetTileBounds(id);

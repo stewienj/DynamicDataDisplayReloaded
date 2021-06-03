@@ -152,7 +152,7 @@ namespace DynamicDataDisplay.Charts.Maps
 
 		private void OnImageLoadedAsync(TileIndex id, BitmapImage bmp, Stream stream)
 		{
-			Dispatcher.BeginInvoke(() =>
+			Dispatcher.BeginInvoke((Action)(() =>
 			{
 				runningRequests--;
 				if (bmp != null)
@@ -171,7 +171,7 @@ namespace DynamicDataDisplay.Charts.Maps
 						BeginLoadImage(nextId);
 					}
 				}
-			}, DispatcherPriority.Background);
+			}), DispatcherPriority.Background);
 		}
 	}
 }

@@ -123,10 +123,10 @@ namespace DynamicDataDisplay.Charts
 				Viewport2D.SetIsContentBoundsHost(hostPanel, false);
 				hostPanel.Children.Add(this);
 
-				plotter.Dispatcher.BeginInvoke(() =>
+				plotter.Dispatcher.BeginInvoke((Action)(() =>
 				{
 					plotter.Children.Add(hostPanel);
-				}, DispatcherPriority.Send);
+				}), DispatcherPriority.Send);
 			}
 #if !old
 			Canvas hostCanvas = (Canvas)hostPanel.FindName(canvasName);
@@ -173,10 +173,10 @@ namespace DynamicDataDisplay.Charts
 			{
 				hostPanel.Children.Remove(this);
 			}
-			plotter.Dispatcher.BeginInvoke(() =>
+			plotter.Dispatcher.BeginInvoke((Action)(() =>
 			{
 				plotter.Children.Remove(hostPanel);
-			}, DispatcherPriority.Send);
+			}), DispatcherPriority.Send);
 #endif
 
 			this.plotter = null;

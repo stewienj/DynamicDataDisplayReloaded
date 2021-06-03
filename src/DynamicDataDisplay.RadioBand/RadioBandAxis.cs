@@ -269,7 +269,7 @@ namespace DynamicDataDisplay.RadioBand
 
 			UpdateAxisControl(viewport);
 
-			Dispatcher.BeginInvoke(() =>
+			Dispatcher.BeginInvoke((Action)(() =>
 			{
 				_viewportPropertyChangedEnters--;
 				if (_visibleChangedEventArgs != null)
@@ -277,7 +277,7 @@ namespace DynamicDataDisplay.RadioBand
 					OnViewportPropertyChanged(Plotter.Viewport, _visibleChangedEventArgs);
 				}
 				_visibleChangedEventArgs = null;
-			}, DispatcherPriority.Render);
+			}), DispatcherPriority.Render);
 		}
 
 

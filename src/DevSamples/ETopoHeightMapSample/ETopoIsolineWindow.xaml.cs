@@ -1,4 +1,5 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -23,11 +24,11 @@ namespace ETopoHeightMapSample
 			{
 				var dataSource = ReliefReader.ReadDataSource();
 
-				Dispatcher.BeginInvoke(() =>
+				Dispatcher.BeginInvoke((Action)(() =>
 				{
 					plotter.EndLongOperation();
 					DataContext = dataSource;
-				}, DispatcherPriority.Send);
+				}), DispatcherPriority.Send);
 			});
 		}
 	}

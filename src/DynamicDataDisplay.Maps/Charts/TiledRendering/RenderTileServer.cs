@@ -124,10 +124,10 @@ namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 
 			if (!BackgroundRenderer.GetUsesBackgroundRendering(child))
 			{
-				plotter.Dispatcher.BeginInvoke(() =>
+				plotter.Dispatcher.BeginInvoke((Action)(() =>
 				{
 					RenderToBitmapCore(id);
-				}, DispatcherPriority.Background);
+				}), DispatcherPriority.Background);
 			}
 			else
 			{
