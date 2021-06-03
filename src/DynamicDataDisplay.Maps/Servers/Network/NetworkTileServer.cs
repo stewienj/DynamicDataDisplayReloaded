@@ -209,11 +209,11 @@ namespace DynamicDataDisplay.Charts.Maps
 			if (managerType != typeof(NetworkAvailabilityManager))
 				return false;
 
-			Dispatcher.BeginInvoke(() =>
+			Dispatcher.BeginInvoke((Action)(() =>
 			{
 				isNetworkAvailable = NetworkInterface.GetIsNetworkAvailable();
 				RaiseChangedEvent();
-			});
+			}));
 
 			return true;
 		}

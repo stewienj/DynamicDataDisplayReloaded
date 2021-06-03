@@ -2,6 +2,7 @@
 using DynamicDataDisplay.Charts.Isolines;
 using DynamicDataDisplay.Charts.Maps;
 using DynamicDataDisplay.Common.Auxiliary;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -28,15 +29,15 @@ namespace ETopoHeightMapSample
 			{
 				var dataSource = ReliefReader.ReadDataSource();
 
-				Dispatcher.BeginInvoke(() =>
+				Dispatcher.BeginInvoke((Action)(() =>
 				{
 					plotter.EndLongOperation();
-				}, DispatcherPriority.Send);
+				}), DispatcherPriority.Send);
 
-				tileServer.Dispatcher.BeginInvoke(() =>
+				tileServer.Dispatcher.BeginInvoke((Action)(() =>
 				{
 					tileServer.ContentBounds = new DataRect(-180, -90, 360, 180);
-				}, DispatcherPriority.Send);
+				}), DispatcherPriority.Send);
 
 				tileServer.ChildCreateHandler = () =>
 				{

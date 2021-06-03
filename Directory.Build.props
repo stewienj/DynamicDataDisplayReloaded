@@ -1,6 +1,6 @@
 <Project>
  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
 
     <!-- Put all the generated files into single directories so they can be easily removed to do a clean build -->
 

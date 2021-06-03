@@ -135,7 +135,7 @@ namespace DynamicDataDisplay.Charts.Maps
 
 		protected void ReportSuccessAsync(Stream stream, BitmapSource bmp, TileIndex id)
 		{
-			Dispatcher.BeginInvoke(() => { ReportSuccess(stream, bmp, id); }, DispatcherPriority.Background);
+			Dispatcher.BeginInvoke((Action)(() => { ReportSuccess(stream, bmp, id); }), DispatcherPriority.Background);
 		}
 
 		protected void ReportSuccess(BitmapSource bmp, TileIndex id)

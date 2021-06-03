@@ -37,10 +37,10 @@ namespace DynamicDataDisplay.Common.Auxiliary
 		{
 			return task.ContinueWith(t =>
 			{
-				dispatcher.BeginInvoke(() =>
+				dispatcher.BeginInvoke((Action)(() =>
 				{
 					throw t.Exception;
-				}, DispatcherPriority.Send);
+				}), DispatcherPriority.Send);
 			}, TaskContinuationOptions.OnlyOnFaulted);
 		}
 	}

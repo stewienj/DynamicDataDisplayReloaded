@@ -1,6 +1,7 @@
 ﻿using SharpDX.Direct3D9;
 using System;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace DynamicDataDisplay.SharpDX9.Helpers
 {
@@ -62,10 +63,10 @@ namespace DynamicDataDisplay.SharpDX9.Helpers
             if (File.Exists(path))
             {
                 // Get the image to find its dimensions.
-                var image = System.Drawing.Image.FromFile(path);
+                var image = new BitmapImage(new Uri(path));
                 using (Stream stream = File.OpenRead(path))
                 {
-                    return TextureFromStream(device, stream, image.Width, image.Height, System.Drawing.Color.Transparent.ToArgb());
+                    return TextureFromStream(device, stream, (int)image.Width, (int)image.Height, System.Drawing.Color.Transparent.ToArgb());
                 }
             }
 

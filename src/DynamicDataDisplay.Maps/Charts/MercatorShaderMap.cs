@@ -65,7 +65,7 @@ namespace DynamicDataDisplay.Charts.Maps
 
 			if (rendering && !renderingPending)
 			{
-				Dispatcher.BeginInvoke(OnRender);
+				Dispatcher.BeginInvoke((Action)OnRender);
 				return;
 			}
 			else if (rendering)

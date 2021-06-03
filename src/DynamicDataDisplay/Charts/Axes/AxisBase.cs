@@ -253,7 +253,7 @@ namespace DynamicDataDisplay.Charts
 				axisControl.Transform = viewport.Transform;
 			}
 
-			Dispatcher.BeginInvoke(() =>
+			Dispatcher.BeginInvoke((Action)(() =>
 			{
 				viewportPropertyChangedEnters--;
 				if (visibleChangedEventArgs != null)
@@ -261,7 +261,7 @@ namespace DynamicDataDisplay.Charts
 					OnViewportPropertyChanged(Plotter.Viewport, visibleChangedEventArgs);
 				}
 				visibleChangedEventArgs = null;
-			}, DispatcherPriority.Render);
+			}), DispatcherPriority.Render);
 		}
 
 		private Func<double, T> convertFromDouble;

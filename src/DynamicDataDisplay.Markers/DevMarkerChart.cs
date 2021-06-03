@@ -89,7 +89,7 @@ namespace DynamicDataDisplay.Charts.Markers
 		protected override void DataSource_OnDataPrepaired(object sender, EventArgs e)
 		{
 			// invoking operation because this event may be raised in non-ui thread
-			Dispatcher.BeginInvoke(() => DrawAllMarkers(true, true));
+			Dispatcher.BeginInvoke((Action)(() => DrawAllMarkers(true, true)));
 		}
 
 		private bool IsReadyToDrawMarkers()
