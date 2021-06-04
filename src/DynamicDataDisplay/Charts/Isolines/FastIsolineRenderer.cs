@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -139,10 +140,14 @@ namespace DynamicDataDisplay.Charts.Isolines
 				return biggerViewport.Contains(viewportPosition);
 			});
 
+			var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
+			var dpiX = (int)dpiXProperty.GetValue(null, null);
+			var pixelsPerDip = dpiX / 96.0;
+
 			// drawing annotations
 			foreach (var annotation in annotations)
 			{
-				FormattedText text = CreateFormattedText(annotation.Value.ToString(LabelStringFormat));
+				FormattedText text = CreateFormattedText(annotation.Value.ToString(LabelStringFormat), pixelsPerDip);
 				Point position = annotation.Position.DataToScreen(transform);
 
 				var labelTransform = CreateTransform(annotation, text, position);
@@ -185,10 +190,15 @@ namespace DynamicDataDisplay.Charts.Isolines
 			return transform;
 		}
 
-		private static FormattedText CreateFormattedText(string text)
+		private static FormattedText CreateFormattedText(string text, double pixelsPerDip)
 		{
+#if NET461
 			FormattedText result = new FormattedText(text,
 				CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface("Arial"), 12, Brushes.Black);
+#else
+			FormattedText result = new FormattedText(text,
+				CultureInfo.CurrentCulture, System.Windows.FlowDirection.LeftToRight, new Typeface("Arial"), 12, Brushes.Black, pixelsPerDip);
+#endif
 			return result;
 		}
 	}

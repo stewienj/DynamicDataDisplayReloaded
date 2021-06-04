@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 
@@ -163,7 +164,15 @@ namespace DynamicDataDisplay.RadioBand
 
 				if (exportMode)
 				{
+#if NET461
 					var text = new FormattedText(line.Text, System.Globalization.CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black);
+#else
+					var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
+					var dpiX = (int)dpiXProperty.GetValue(null, null);
+					var pixelsPerDip = dpiX / 96.0;
+					var text = new FormattedText(line.Text, System.Globalization.CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black, pixelsPerDip);
+#endif
+
 
 					dc.DrawText(text, leftPoint + 0.5 * (rightPoint - leftPoint) - new Vector(0.5 * text.Width, 0.5 * text.Height));
 				}

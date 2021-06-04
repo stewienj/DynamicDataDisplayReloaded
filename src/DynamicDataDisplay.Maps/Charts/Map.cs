@@ -15,6 +15,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Reflection;
 
 namespace DynamicDataDisplay.Charts.Maps
 {
@@ -365,13 +366,23 @@ namespace DynamicDataDisplay.Charts.Maps
 
 		private FormattedText CreateText(TileIndex tileIndex)
 		{
+#if NET461
 			FormattedText text = new FormattedText(tileIndex.ToString(),
 				CultureInfo.CurrentCulture,
 				FlowDirection.LeftToRight, new Typeface("Arial"), 8, Brushes.Red);
+#else
+			var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
+			var dpiX = (int)dpiXProperty.GetValue(null, null);
+			var pixelsPerDip = dpiX / 96.0;
+
+			FormattedText text = new FormattedText(tileIndex.ToString(),
+				CultureInfo.CurrentCulture,
+				FlowDirection.LeftToRight, new Typeface("Arial"), 8, Brushes.Red, pixelsPerDip);
+#endif
 			return text;
 		}
 
-		#region ChangesTextFormat property
+#region ChangesTextFormat property
 
 		public bool ChangesTextFormat
 		{
@@ -409,7 +420,7 @@ namespace DynamicDataDisplay.Charts.Maps
 			}
 		}
 
-		#endregion
+#endregion
 
 		protected void BeginInvalidateVisual()
 		{
@@ -431,7 +442,7 @@ namespace DynamicDataDisplay.Charts.Maps
 			}
 		}
 
-		#region IPlotterElement Members
+#region IPlotterElement Members
 
 		MenuItem mapsMenu;
 		Func<double, string> prevXMapping;
@@ -679,7 +690,7 @@ namespace DynamicDataDisplay.Charts.Maps
 			get { return plotter; }
 		}
 
-		#endregion
+#endregion
 	}
 
 	/// <summary>
