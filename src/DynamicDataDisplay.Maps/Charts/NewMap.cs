@@ -323,14 +323,6 @@ namespace DynamicDataDisplay.Charts.Maps
 			return res;
 		}
 
-		private FormattedText CreateText(TileIndex tileIndex)
-		{
-			FormattedText text = new FormattedText(tileIndex.ToString(),
-				CultureInfo.CurrentCulture,
-				FlowDirection.LeftToRight, new Typeface("Arial"), 8, Brushes.Red);
-			return text;
-		}
-
 		#region ChangesTextFormat property
 
 		public bool ChangesTextFormat
