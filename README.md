@@ -3,7 +3,7 @@ This project is a fork of the DynamicDataDisplayReloaded project based on Micros
 
 The reason why I am doing this is because I have a whole lot of old code that I want to resurrect that depends on the old DynamicDataDisplay. However not only do I want to use the old DynamicDataDisplay code, but I also want to improve on it. For example I have started adding DirectX9 rendering.
 
-Note: To build the DirectX9 code you will need to install the July 2010 DirectX SDK from Microsoft here https://www.microsoft.com/en-us/download/details.aspx?id=6812 (note this link stopped working in January 2021)
+Note: To build the DirectX9 code you will need to install the July 2010 DirectX SDK from Microsoft here https://www.microsoft.com/en-us/download/details.aspx?id=6812 (note this link stopped working in January 2021, then got reinstated)
 
 Here's an example of one of the improvements I've made in the video below. Click the image to go to youtube.
 
