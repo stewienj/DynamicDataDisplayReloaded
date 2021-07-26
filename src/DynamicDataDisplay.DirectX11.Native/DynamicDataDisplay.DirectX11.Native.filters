@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Stdafx.cpp" />
+    <ClCompile Include="D3D11Image\D3D11Image.cpp">
+      <Filter>D3D11Image</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D11Image\SurfaceDevice9.cpp">
+      <Filter>D3D11Image</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D11Image\SurfaceDevice10.cpp">
+      <Filter>D3D11Image</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D11Image\SurfaceDevice11.cpp">
+      <Filter>D3D11Image</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D11Image\SurfaceQueue.cpp">
+      <Filter>D3D11Image</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D11Image\SurfaceQueueInteropHelper.cpp">
+      <Filter>D3D11Image</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="D3D11Image\D3D11Image.h">
+      <Filter>D3D11Image</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D11Image\SurfaceQueue.h">
+      <Filter>D3D11Image</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D11Image\SurfaceQueueImpl.h">
+      <Filter>D3D11Image</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D11Image\SurfaceQueueInteropHelper.h">
+      <Filter>D3D11Image</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D3D11Image\SurfaceQueue.inl">
+      <Filter>D3D11Image</Filter>
+    </None>
+    <None Include="D3D11Image\LICENSE">
+      <Filter>D3D11Image</Filter>
+    </None>
+    <None Include="D3D11Image\README.md">
+      <Filter>D3D11Image</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="D3D11Image">
+      <UniqueIdentifier>{cfdbb8b9-34f4-4343-bf82-6e90f3169328}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

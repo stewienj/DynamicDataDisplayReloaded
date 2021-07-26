@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DynamicDataDisplay.DirectX11.Native.TestApp</RootNamespace>
+    <AssemblyName>DynamicDataDisplay.DirectX11.Native.TestApp</AssemblyName>
+	  <TargetFrameworks>net461</TargetFrameworks>
+    <SignAssembly>false</SignAssembly>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Content Include="..\DynamicDataDisplay.DirectX11.Native.TestVisualization\D3DVisualization.fx" Link="D3DVisualization.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Checkbox_checked.png" />
+    <Resource Include="Images\Checkbox_unchecked.png" />
+    <Resource Include="Images\MagnifyingGlass.PNG" />
+    <Resource Include="Images\background.jpg" />
+    <Resource Include="Images\radiobutton_off.png" />
+    <Resource Include="Images\radiobutton_on.png" />
+    <Resource Include="Images\Slider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DynamicDataDisplay.DirectX11.Native\DynamicDataDisplay.DirectX11.Native.vcxproj" />
+    <ProjectReference Include="..\DynamicDataDisplay.DirectX11.Native.TestVisualization\D3DVisualization.vcxproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <!--
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+  -->
+</Project>
