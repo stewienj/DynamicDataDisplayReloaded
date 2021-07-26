@@ -1,4 +1,4 @@
-﻿namespace DynamicDataDisplay.SharpDX9.DataTypes
+﻿namespace DynamicDataDisplay.SharpDX11.DataTypes
 {
     // A regular quadrilateral in 2D space.
     public class DxRectangle

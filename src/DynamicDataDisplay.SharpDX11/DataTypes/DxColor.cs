@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicDataDisplay.SharpDX9.DataTypes
+namespace DynamicDataDisplay.SharpDX11.DataTypes
 {
 	/// <summary>
 	/// Dx color, converts a color to 4 floats

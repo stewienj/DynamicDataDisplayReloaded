@@ -1,23 +1,30 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
 using SharpDX;
-using SharpDX.Direct3D9;
+using SharpDX.Direct3D;
+using SharpDX.Direct3D11;
+using SharpDX.DXGI;
 using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Interop;
+using Device = SharpDX.Direct3D11.Device;
+using Resource = SharpDX.Direct3D11.Resource;
 
-namespace DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX11
 {
 	public class SharpDXHost : FrameworkElement, IPlotterElement
 	{
+		private Texture2D _backBuffer;
+		private RenderTargetView _renderTargetView;
+		private Device _device;
+		private SwapChain _swapChain;
+
 		private D3DImage _image = new D3DImage();
 		private bool _sizeChanged;
-		private PresentParameters _pp = new PresentParameters();
+
 		private ThrottledAction _resizeAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000));
 
-		public Device Device { get; private set; }
-
-		public Direct3D Direct3D { get; private set; }
+		public Device Device => _device;
 
 		protected override void OnInitialized(EventArgs e)
 		{
@@ -48,26 +55,40 @@ namespace DynamicDataDisplay.SharpDX9
 		{
 			HwndSource hwnd = new HwndSource(0, 0, 0, 0, 0, "D3", IntPtr.Zero);
 
-			_pp.SwapEffect = SwapEffect.Discard;
-			_pp.DeviceWindowHandle = hwnd.Handle;
-			_pp.Windowed = true;
-			_pp.EnableAutoDepthStencil = true;
-			_pp.BackBufferWidth = Math.Max(100, (int)ActualWidth);
-			_pp.BackBufferHeight = Math.Max(100, (int)ActualHeight);
-			_pp.BackBufferFormat = Format.A8R8G8B8;
-			_pp.AutoDepthStencilFormat = Format.D32SingleLockable;
-			_pp.BackBufferCount = 1;
+			SwapChainDescription swapChainDescription = new SwapChainDescription
+			{
+
+				SwapEffect = SwapEffect.Discard,
+				OutputHandle = hwnd.Handle,
+				IsWindowed = true,
+				Flags = SwapChainFlags.None,
+				BufferCount = 1,
+				Usage = Usage.RenderTargetOutput | Usage.Shared,
+				ModeDescription = new ModeDescription(Math.Max(100, (int)ActualWidth), Math.Max(100, (int)ActualHeight), new Rational(60, 1), Format.B8G8R8A8_UNorm),
+				SampleDescription = new SampleDescription(1, 0)
+			};
+
 			try
 			{
-				var direct3DEx = new Direct3DEx();
-				Direct3D = direct3DEx;
-				Device = new DeviceEx(direct3DEx, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, _pp);
+				SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.BgraSupport, swapChainDescription, out _device, out _swapChain);
+
+				// Ignore all windows events
+				using (var factory = _swapChain.GetParent<Factory>())
+				{
+					factory.MakeWindowAssociation(hwnd.Handle, WindowAssociationFlags.IgnoreAll);
+				}
+
+				// New RenderTargetView from the backbuffer
+				_backBuffer = Resource.FromSwapChain<Texture2D>(_swapChain, 0);
+				_renderTargetView = new RenderTargetView(_device, _backBuffer);
 			}
 			catch
 			{
 				// At this point we are pretty much screwed, require DeviceEx for the reset capability
 				MessageBox.Show("Can't start DirectX, so that pretty much discounts doing anything else");
 			}
+
+
 			System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
 		}
 
@@ -90,11 +111,8 @@ namespace DynamicDataDisplay.SharpDX9
 				{
 					try
 					{
-						HwndSource hwnd = new HwndSource(0, 0, 0, 0, 0, "D3", IntPtr.Zero);
-						_pp.DeviceWindowHandle = hwnd.Handle;
-						_pp.BackBufferWidth = Math.Max(100, (int)ActualWidth);
-						_pp.BackBufferHeight = Math.Max(100, (int)ActualHeight);
-						Device.Reset(_pp);
+						var modeDescription = new ModeDescription(Math.Max(100, (int)ActualWidth), Math.Max(100, (int)ActualHeight), new Rational(60, 1), Format.B8G8R8A8_UNorm);
+						_swapChain.ResizeTarget(ref modeDescription);
 						_sizeChanged = false;
 					}
 					finally
@@ -110,22 +128,25 @@ namespace DynamicDataDisplay.SharpDX9
 					{
 						return;
 					}
-					Result result = Device.TestCooperativeLevel();
+					Result result = _swapChain.Present(0, PresentFlags.Test);// Device.TestCooperativeLevel();
 					if (result.Failure)
 					{
 						throw new SharpDXException();
 					}
 					try
 					{
-						Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
+						/*
+						Device.SetRenderState(global::SharpDX.Direct3D11.RenderState.CullMode, Cull.None);
 						Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.ZEnable, true);
 						Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, float.MaxValue, 0);
 						Device.BeginScene();
-						Render.Raise(this, new RenderEventArgs(_pp.BackBufferWidth, _pp.BackBufferHeight));
+						Render.Raise(this, new RenderEventArgs(_swapChain.get, _pp.BackBufferHeight));
 						Device.EndScene();
 						Device.Present();
+						_swapChain.Present()
+						*/
 
-						_image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, Device.GetBackBuffer(0, 0).NativePointer);
+						_image.SetBackBuffer(D3DResourceType.IDirect3DSurface9, _backBuffer.NativePointer);
 						_image.AddDirtyRect(new Int32Rect(0, 0, _image.PixelWidth, _image.PixelHeight));
 					}
 					catch (Exception exc)

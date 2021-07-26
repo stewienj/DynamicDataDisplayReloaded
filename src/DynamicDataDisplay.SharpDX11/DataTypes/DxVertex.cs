@@ -1,7 +1,7 @@
 ﻿using SharpDX;
-using SharpDX.Direct3D9;
+using SharpDX.Direct3D11;
 
-namespace DynamicDataDisplay.SharpDX9.DataTypes
+namespace DynamicDataDisplay.SharpDX11.DataTypes
 {
     // A 2D data type containing x and y coordinates and texture coordinates.
     public struct DxVertex : IDxPoint

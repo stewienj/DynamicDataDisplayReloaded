@@ -1,8 +1,8 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.SharpDX11.DataTypes;
 using SharpDX;
 using System.Collections.Generic;
 
-namespace DynamicDataDisplay.SharpDX9.Helpers
+namespace DynamicDataDisplay.SharpDX11.Helpers
 {
     public static class SharpDXHelper
     {

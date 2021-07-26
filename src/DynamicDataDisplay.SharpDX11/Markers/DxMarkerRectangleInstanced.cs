@@ -1,8 +1,8 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
-using DynamicDataDisplay.SharpDX9.Shaders;
-using SharpDX.Direct3D9;
+﻿using DynamicDataDisplay.SharpDX11.DataTypes;
+using DynamicDataDisplay.SharpDX11.Shaders;
+using SharpDX.Direct3D11;
 
-namespace DynamicDataDisplay.SharpDX9.Markers
+namespace DynamicDataDisplay.SharpDX11.Markers
 {
     /// <summary>
     /// This takes a collection of points and vertices and renders rectangles.
