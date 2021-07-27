@@ -4,6 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+#include "Stdafx.h"
 #include "DX11Utils.h"
 
 #ifdef DIRECTX_SDK  // requires DirectX SDK June 2010

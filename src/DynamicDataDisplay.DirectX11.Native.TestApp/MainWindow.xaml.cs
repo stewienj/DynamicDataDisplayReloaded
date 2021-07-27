@@ -1,5 +1,6 @@
 ﻿namespace Microsoft.Samples.Wpf.D3D11Interop
 {
+    using DynamicDataDisplay.DirectX11.Native;
     using System;
     using System.Runtime.InteropServices;
     using System.Windows;
@@ -38,7 +39,7 @@
         private static bool Init()
         {
             
-            bool initSucceeded = NativeMethods.InvokeWithDllProtection(() => NativeMethods.Init()) >= 0;
+            bool initSucceeded = NativeMethods2.Init() >= 0;
             
             if (!initSucceeded)
             {
@@ -55,27 +56,27 @@
 
         private static void Cleanup()
         {
-            NativeMethods.InvokeWithDllProtection(NativeMethods.Cleanup);
+            NativeMethods2.Cleanup();
         }
 
         private static int Render(IntPtr resourcePointer, bool isNewSurface)
         {
-            return NativeMethods.InvokeWithDllProtection(() => NativeMethods.Render(resourcePointer, isNewSurface));      
+            return NativeMethods2.Render(resourcePointer, isNewSurface);      
         }
 
         private static int SetCameraRadius(float radius)
         {
-            return NativeMethods.InvokeWithDllProtection(() => NativeMethods.SetCameraRadius(radius));
+            return NativeMethods2.SetCameraRadius(radius);
         }
 
         private static int SetCameraTheta(float theta)
         {
-            return NativeMethods.InvokeWithDllProtection(() => NativeMethods.SetCameraTheta(theta));    
+            return NativeMethods2.SetCameraTheta(theta);    
         }
 
         private static int SetCameraPhi(float phi)
         {
-            return NativeMethods.InvokeWithDllProtection(() => NativeMethods.SetCameraPhi(phi));
+            return NativeMethods2.SetCameraPhi(phi);
         }
 
         #region Callbacks
@@ -283,7 +284,7 @@
             MagBox.Checked -= this.MagBox_Checked;
             MagBox.Unchecked -= this.MagBox_Unchecked;
         }
-
+        /*
         private static class NativeMethods
         {
             /// <summary>
@@ -356,5 +357,6 @@
                 return default(T);
             }
         }
+        */
     }
 }

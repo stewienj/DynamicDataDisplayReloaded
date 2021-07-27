@@ -9,43 +9,34 @@
 #include <windows.h>
 #include <d3d11.h>
 
-#ifdef DIRECTX_SDK  // requires DirectX SDK June 2010
-    #include <xnamath.h>
-    #define DirectX_NS                 // DirectX SDK requires a blank namespace for several types
-#else // Windows SDK
-    #include <DirectXMath.h>
-    #include <DirectXPackedVector.h>
-    #define DirectX_NS DirectX         // Windows SDK requires a DirectX namespace for several types
-#endif 
+// Windows SDK
+#include <DirectXMath.h>
+#include <DirectXPackedVector.h>
+#define DirectX_NS DirectX         // Windows SDK requires a DirectX namespace for several types
 
 #include "OrbitCamera.h"
 #include "DX11Utils.h"
-#include "resource.h"
 
+using namespace System;
 
-extern "C" {
-    __declspec(dllexport) HRESULT __cdecl Init();
+namespace DynamicDataDisplay {
+    namespace DirectX11 {
+        namespace Native {
+        
+            public ref class NativeMethods2
+            {
+            public:
+                static long Init();
+                static void Cleanup();
+                static long Render(IntPtr pResource, bool isNewSurface);
+                static long SetCameraRadius(float r);
+                static long SetCameraTheta(float theta);
+                static long SetCameraPhi(float phi);
+            };
+        }
+    }
 }
 
-extern "C" {
-    __declspec(dllexport) void __cdecl Cleanup();
-}
-
-extern "C" {
-    __declspec(dllexport) HRESULT __cdecl Render(void * pResource, bool isNewSurface);
-}
-
-extern "C" {
-    __declspec(dllexport) HRESULT __cdecl SetCameraRadius(float r);
-}
-
-extern "C" {
-    __declspec(dllexport) HRESULT __cdecl SetCameraTheta(float theta);
-}
-
-extern "C" {
-    __declspec(dllexport) HRESULT __cdecl SetCameraPhi(float phi);
-}
 
 class CCube
 {
