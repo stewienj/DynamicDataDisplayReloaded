@@ -4,6 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+#include "Stdafx.h"
 #include "OrbitCamera.h"
 
 #ifndef DIRECTX_SDK  // Windows SDK

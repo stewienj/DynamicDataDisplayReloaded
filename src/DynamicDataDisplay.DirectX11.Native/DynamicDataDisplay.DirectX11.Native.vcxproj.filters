@@ -21,6 +21,15 @@
     <ClCompile Include="D3D11Image\SurfaceQueueInteropHelper.cpp">
       <Filter>D3D11Image</Filter>
     </ClCompile>
+    <ClCompile Include="TestVisualization\D3DVisualization.cpp">
+      <Filter>TestVisualization</Filter>
+    </ClCompile>
+    <ClCompile Include="TestVisualization\DX11Utils.cpp">
+      <Filter>TestVisualization</Filter>
+    </ClCompile>
+    <ClCompile Include="TestVisualization\OrbitCamera.cpp">
+      <Filter>TestVisualization</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stdafx.h" />
@@ -35,6 +44,15 @@
     </ClInclude>
     <ClInclude Include="D3D11Image\SurfaceQueueInteropHelper.h">
       <Filter>D3D11Image</Filter>
+    </ClInclude>
+    <ClInclude Include="TestVisualization\D3DVisualization.h">
+      <Filter>TestVisualization</Filter>
+    </ClInclude>
+    <ClInclude Include="TestVisualization\DX11Utils.h">
+      <Filter>TestVisualization</Filter>
+    </ClInclude>
+    <ClInclude Include="TestVisualization\OrbitCamera.h">
+      <Filter>TestVisualization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +69,9 @@
   <ItemGroup>
     <Filter Include="D3D11Image">
       <UniqueIdentifier>{e5488bec-6c60-4082-bf53-f7649c5145d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestVisualization">
+      <UniqueIdentifier>{13344cc9-ce84-4700-844a-96352f7646a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

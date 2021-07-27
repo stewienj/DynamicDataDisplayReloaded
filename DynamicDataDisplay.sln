@@ -220,8 +220,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DynamicDataDisplay.DirectX1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.DirectX11.Native.TestApp", "src\DynamicDataDisplay.DirectX11.Native.TestApp\DynamicDataDisplay.DirectX11.Native.TestApp.csproj", "{16BE4BF2-5494-48AF-9CBD-A6BACF34303F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DynamicDataDisplay.DirectX11.Native.TestVisualization", "src\DynamicDataDisplay.DirectX11.Native.TestVisualization\D3DVisualization.vcxproj", "{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1347,17 +1345,6 @@ Global
 		{16BE4BF2-5494-48AF-9CBD-A6BACF34303F}.Release|x64.Build.0 = Release|Any CPU
 		{16BE4BF2-5494-48AF-9CBD-A6BACF34303F}.Release|x86.ActiveCfg = Release|Any CPU
 		{16BE4BF2-5494-48AF-9CBD-A6BACF34303F}.Release|x86.Build.0 = Release|Any CPU
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Debug|Any CPU.Build.0 = Debug|x64
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Debug|x64.ActiveCfg = Debug|x64
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Debug|x64.Build.0 = Debug|x64
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Debug|x86.ActiveCfg = Debug|Win32
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Debug|x86.Build.0 = Debug|Win32
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Release|Any CPU.ActiveCfg = Release|Win32
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Release|x64.ActiveCfg = Release|x64
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Release|x64.Build.0 = Release|x64
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Release|x86.ActiveCfg = Release|Win32
-		{D73DCE48-0DBC-40FE-AC89-2C06AF01060B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Content Include="..\DynamicDataDisplay.DirectX11.Native.TestVisualization\D3DVisualization.fx" Link="D3DVisualization.fx">
+    <Content Include="..\DynamicDataDisplay.DirectX11.Native\TestVisualization\D3DVisualization.fx" Link="D3DVisualization.fx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -24,11 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DynamicDataDisplay.DirectX11.Native\DynamicDataDisplay.DirectX11.Native.vcxproj" />
-    <ProjectReference Include="..\DynamicDataDisplay.DirectX11.Native.TestVisualization\D3DVisualization.vcxproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <OutputItemType>Content</OutputItemType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </ProjectReference>
   </ItemGroup>
   <!--
   <ItemGroup>

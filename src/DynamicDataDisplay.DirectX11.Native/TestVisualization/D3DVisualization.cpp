@@ -4,12 +4,11 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+#include "Stdafx.h"
 #include "D3DVisualization.h"
-
-#ifndef DIRECTX_SDK
-    using namespace DirectX;
-    using namespace DirectX::PackedVector;
-#endif
+using namespace DirectX;
+using namespace DirectX::PackedVector;
+using namespace System;
 
 // Global Variables
 CCube * pApplication;  // Application class
@@ -30,15 +29,13 @@ struct ConstantBuffer
     XMMATRIX mProjection;
 };
 
-BOOL WINAPI DllMain(HINSTANCE hInstance,DWORD fwdReason, LPVOID lpvReserved) 
-{
-    return TRUE;
-}
-
+namespace DynamicDataDisplay {
+    namespace DirectX11 {
+        namespace Native {
 /// <summary>
 /// Init global class instance
 /// </summary>
-extern HRESULT __cdecl Init()
+long NativeMethods2::Init()
 {
 	pApplication = new CCube();
 
@@ -55,7 +52,7 @@ extern HRESULT __cdecl Init()
 /// <summary>
 /// Cleanup global class instance
 /// </summary>
-extern void __cdecl Cleanup()
+void NativeMethods2::Cleanup()
 {
     delete pApplication;
     pApplication = NULL;
@@ -64,20 +61,20 @@ extern void __cdecl Cleanup()
 /// <summary>
 /// Render for global class instance
 /// </summary>
-extern HRESULT __cdecl Render(void * pResource, bool isNewSurface)
+long NativeMethods2::Render(IntPtr pResource, bool isNewSurface)
 {
     if ( NULL == pApplication )
     {
         return E_FAIL;
     }
 
-    return pApplication->Render(pResource, isNewSurface);
+    return pApplication->Render(pResource.ToPointer(), isNewSurface);
 }
 
 /// <summary>
 /// Sets the Radius value of the camera
 /// </summary>
-extern HRESULT _cdecl SetCameraRadius(float r)
+long NativeMethods2::SetCameraRadius(float r)
 {
     if ( NULL == pApplication )
     {
@@ -93,7 +90,7 @@ extern HRESULT _cdecl SetCameraRadius(float r)
 /// Theta represents the angle (in radians) of the camera around the 
 /// center in the x-y plane
 /// </summary>
-extern HRESULT _cdecl SetCameraTheta(float theta)
+long NativeMethods2::SetCameraTheta(float theta)
 {
     if ( NULL == pApplication )
     {
@@ -109,7 +106,7 @@ extern HRESULT _cdecl SetCameraTheta(float theta)
 /// Phi represents angle (in radians) of the camera around the center 
 /// in the y-z plane (over the top and below the scene)
 /// </summary>
-extern HRESULT _cdecl SetCameraPhi(float phi)
+long NativeMethods2::SetCameraPhi(float phi)
 {
     if ( NULL == pApplication )
     {
@@ -119,6 +116,12 @@ extern HRESULT _cdecl SetCameraPhi(float phi)
     pApplication->GetCamera()->SetPhi(phi);
     return 0;
 }
+
+
+        }
+    }
+}
+
 
 /// <summary>
 /// Constructor
