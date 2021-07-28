@@ -25,13 +25,13 @@ namespace DynamicDataDisplay.SharpDX11
 			base.OnPlotterAttached(plotter);
 
 			var tdx = new DxVertex();
-			var vel = tdx.GetVertexElements();
+			var vel = tdx.GetInputElements();
 			var vee = vel.Where(v => (!v.Equals(VertexElement.VertexDeclarationEnd)));
-			var tdxve = new TDxInstance().GetVertexElements();
+			var tdxve = new TDxInstance().GetInputElements();
 
 			var vertexElements =
-				new DxVertex().GetVertexElements().Where(ve => (!ve.Equals(VertexElement.VertexDeclarationEnd)))
-				.Concat(new TDxInstance().GetVertexElements())
+				new DxVertex().GetInputElements().Where(ve => (!ve.Equals(VertexElement.VertexDeclarationEnd)))
+				.Concat(new TDxInstance().GetInputElements())
 				.ToArray();
 			_vertexDeclaration = new VertexDeclaration(Device, vertexElements);
 			this._texture = TextureHelper.GetDVDImageTexture(Device);

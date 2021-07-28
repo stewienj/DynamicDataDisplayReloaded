@@ -1,5 +1,6 @@
 ﻿using DynamicDataDisplay.SharpDX11.DataTypes;
 using SharpDX;
+using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,29 @@ using System.Threading.Tasks;
 
 namespace DynamicDataDisplay.SharpDX11
 {
-	public class BaseDxTransformShader
+	public class BaseDxTransformShader : IDisposable
 	{
 		protected Effect _effect;
-		private EffectHandle _technique;
-		private EffectHandle _pass;
+		private EffectTechnique _technique;
+		private EffectPass _pass;
+		private CompilationResult _effectByteCode;
+		private DeviceContext _deviceContext;
 
-		public BaseDxTransformShader(Device device, [CallerFilePath] string callerFileName="")
+		public BaseDxTransformShader(Device device, [CallerFilePath] string callerFileName = "")
 		{
 			string effectName = Path.GetFileNameWithoutExtension(callerFileName);
-			_effect = Effect.FromString(device, GetResourceText($"{effectName}.fx"), ShaderFlags.None);
-			_technique = _effect.GetTechnique(0);
-			_pass = _effect.GetPass(_technique, 0);
+
+			_effectByteCode = ShaderBytecode.Compile(GetResourceText($"{effectName}.fx"), "fx_5_0");
+
+			_effect = new Effect(device, _effectByteCode);
+			_technique = _effect.GetTechniqueByIndex(0);
+			_pass = _technique.GetPassByIndex(0);
+			_deviceContext = device.ImmediateContext;
+		}
+
+		public void Dispose()
+		{
+			_deviceContext.Dispose();
 		}
 
 		public string GetResourceText(string name)
@@ -45,6 +57,8 @@ namespace DynamicDataDisplay.SharpDX11
 			DoMultipassEffect(width, height, chart.VisibleRect, chart.DxDepth, chart.DxColor, chart.DxDataTransform, processPass);
 		}
 
+		internal byte[] GetShaderByteCode() => _effectByteCode;
+
 		protected virtual void DoMultipassEffect(int width, int height, DataRect dataRect, float depth, DxColor color, Matrix dataTransform, Action<int> processPass)
 		{
 			// Todo move the centre point
@@ -55,20 +69,16 @@ namespace DynamicDataDisplay.SharpDX11
 			// Can do any rotations etc here
 			var worldViewProj = dataTransform * viewProj;
 
-			_effect.Technique = _technique;
-			_effect.SetValue("bufferWidth", (float)width);
-			_effect.SetValue("bufferHeight", (float)height);
-			_effect.SetValue("pointColor", color.Float4);
-			_effect.SetValue("depth", depth);
-			_effect.SetValue("worldViewProj", worldViewProj);
-			var passCount = _effect.Begin();
-			for (int passNo = 0; passNo < passCount; ++passNo)
+			_effect.GetConstantBufferByName("bufferWidth").AsScalar().Set((float)width);
+			_effect.GetConstantBufferByName("bufferHeight").AsScalar().Set((float)height);
+			_effect.GetConstantBufferByName("depth").AsScalar().Set(depth);
+			_effect.GetConstantBufferByName("pointColor").AsVector().Set(color.Float4);
+			_effect.GetConstantBufferByName("worldViewProj").AsMatrix().SetMatrix(worldViewProj);
+			for (int passNo = 0; passNo < _technique.Description.PassCount; ++passNo)
 			{
-				_effect.BeginPass(passNo);
+				_pass.Apply(_deviceContext);
 				processPass(passNo);
-				_effect.EndPass();
 			}
-			_effect.End();
 		}
-    }
+	}
 }

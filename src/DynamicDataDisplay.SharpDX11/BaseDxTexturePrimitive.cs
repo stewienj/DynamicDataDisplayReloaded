@@ -35,7 +35,7 @@ namespace DynamicDataDisplay.SharpDX11
 			_transformEffect = GetTransformEffect(Device) as DxRectangleTexturedShader;
 
 			// Creates and sets the Vertex Declaration
-			_vertexDeclaration = new VertexDeclaration(Device, new DxVertex().GetVertexElements());
+			_vertexDeclaration = new VertexDeclaration(Device, new DxVertex().GetInputElements());
 
 			_texture = TextureHelper.GetDVDImageTexture(Device);
 		}
