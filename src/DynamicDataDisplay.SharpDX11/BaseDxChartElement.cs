@@ -11,15 +11,11 @@ namespace DynamicDataDisplay.SharpDX11
 	{
 		private SharpDXHost dxHost;
 
-		protected SharpDXHost DxHost
-		{
-			get { return dxHost; }
-		}
+		protected SharpDXHost DxHost => dxHost;
 
-		protected Device Device
-		{
-			get { return dxHost != null ? dxHost.Device : null; }
-		}
+		protected Device Device => dxHost?.Device;
+
+		protected DeviceContext DeviceContext => dxHost?.DeviceContext;
 
 		private void OnDirectXRender(object sender, RenderEventArgs e)
 		{

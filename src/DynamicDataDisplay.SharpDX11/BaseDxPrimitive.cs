@@ -1,6 +1,7 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
 using DynamicDataDisplay.SharpDX11.DataTypes;
 using SharpDX;
+using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,17 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Buffer = SharpDX.Direct3D11.Buffer;
 
 namespace DynamicDataDisplay.SharpDX11
 {
 	public abstract class BaseDxPrimitive<TDxPoint> : BaseDxChartElement where TDxPoint : struct, IDxPoint
 	{
-		protected VertexBuffer _vertexBuffer = null;
+		protected Buffer _vertexBuffer = null;
 		protected int _vertexBufferAllocated = 0;
 		protected int _vertexCount = 0;
 		private SynchronizationContext _syncContext = null;
-		protected VertexDeclaration _vertexDeclaration;
+		protected InputLayout _inputLayout;
 		protected BaseDxTransformShader _transformEffect;
 		private TDxPoint[] _pointList;
 		// Limit updates to 100 times per second. This also schedules updates to another thread.
@@ -33,7 +35,7 @@ namespace DynamicDataDisplay.SharpDX11
 			_transformEffect = GetTransformEffect(Device);
 
 			// Creates and sets the Vertex Declaration
-			_vertexDeclaration = new VertexDeclaration(Device, new TDxPoint().GetVertexElements());
+			_inputLayout = new InputLayout(Device, _transformEffect.GetShaderByteCode(), new TDxPoint().GetInputElements());
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)
@@ -60,14 +62,10 @@ namespace DynamicDataDisplay.SharpDX11
 				{
 					_vertexBuffer?.Dispose();
 					var newSize = MathHelper.CeilingPow2(pointCount);
-					_vertexBuffer = new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
+					_vertexBuffer = Buffer.Create<TDxPoint>(Device, BindFlags.VertexBuffer, _pointList, Utilities.SizeOf<TDxPoint>() * newSize, ResourceUsage.Immutable);
 					_vertexBufferAllocated = newSize;
 					vertexBufferSizeChanged = true;
 				}
-				// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
-				var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
-				vertexStream.WriteRange(_pointList);
-				_vertexBuffer.Unlock();
 				DxHost.UnlockImage();
 			}
 			_vertexCount = pointCount;
@@ -104,22 +102,29 @@ namespace DynamicDataDisplay.SharpDX11
 
 		protected override void OnDirectXRender(int width, int height)
 		{
-			var test = Utilities.SizeOf<TDxPoint>();
 			if (_vertexCount <= 0)
 				return;
+			/*
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.AntialiasedLineEnable, true);
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<TDxPoint>());
-			Device.VertexDeclaration = _vertexDeclaration;
+			Device.VertexDeclaration = _inputLayout;
+			*/
+			DeviceContext.InputAssembler.InputLayout = _inputLayout;
+			DeviceContext.InputAssembler.PrimitiveTopology = GetPrimitiveTopology();
+			DeviceContext.InputAssembler.SetVertexBuffers(0, new VertexBufferBinding(_vertexBuffer, Utilities.SizeOf<TDxPoint>(), 0));
+			DeviceContext.VertexShader.Set(vertexShader);
+			DeviceContext.Rasterizer.SetViewport(0, 0, form.ClientSize.Width, form.ClientSize.Height);
+			//renderingContext.PixelShader.Set(pixelShader);
 			_transformEffect.DoMultipassEffect(width, height, this, passNo =>
 			{
-				Device.DrawPrimitives(GetPrimitiveType(), 0, _vertexCount - 1);
+				DeviceContext.Draw(_vertexCount - 1, 0);
 			});
 		}
 
 		protected abstract BaseDxTransformShader GetTransformEffect(Device device);
 
-		protected abstract PrimitiveType GetPrimitiveType();
+		protected abstract PrimitiveTopology GetPrimitiveTopology();
 
 		public IEnumerable<TDxPoint> GeometrySource
 		{

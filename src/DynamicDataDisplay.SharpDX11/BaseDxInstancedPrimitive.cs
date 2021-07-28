@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Buffer = SharpDX.Direct3D11.Buffer;
 
 namespace DynamicDataDisplay.SharpDX11
 {
@@ -21,8 +22,8 @@ namespace DynamicDataDisplay.SharpDX11
 	/// <typeparam name="TDxInstance"></typeparam>
 	public abstract class BaseDxInstancedPrimitive<TDxPoint, TDxInstance> : BaseDxPrimitive<TDxPoint> where TDxPoint : struct, IDxPoint where TDxInstance : struct, IDxPoint
 	{
-		private IndexBuffer _indexBuffer = null; 
-		private VertexBuffer _instanceBuffer = null;
+		private Buffer _indexBuffer = null; 
+		private Buffer _instanceBuffer = null;
 		private int _instanceBufferAllocated = 0;
 		private int _instanceCount = 0;
 		private TDxInstance[] _instanceList;
@@ -32,10 +33,10 @@ namespace DynamicDataDisplay.SharpDX11
 			base.OnPlotterAttached(plotter);
 
 			var vertexElements =
-				new TDxPoint().GetVertexElements().Where(ve => (!ve.Equals(VertexElement.VertexDeclarationEnd)))
-				.Concat(new TDxInstance().GetVertexElements())
+				new TDxPoint().GetInputElements().Where(ve => (!ve.Equals(VertexElement.VertexDeclarationEnd)))
+				.Concat(new TDxInstance().GetInputElements())
 				.ToArray();
-			_vertexDeclaration = new VertexDeclaration(Device, vertexElements);
+			_inputLayout = new VertexDeclaration(Device, vertexElements);
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)
@@ -95,7 +96,7 @@ namespace DynamicDataDisplay.SharpDX11
 			Device.SetStreamSourceFrequency(1, 1, StreamSource.InstanceData);
 			Device.SetStreamSource(0, _vertexBuffer, 0, Utilities.SizeOf<TDxPoint>());
 			Device.SetStreamSource(1, _instanceBuffer, 0, Utilities.SizeOf<TDxInstance>());
-			Device.VertexDeclaration = _vertexDeclaration;
+			Device.VertexDeclaration = _inputLayout;
 			Device.Indices = _indexBuffer;
 
 			_transformEffect.DoMultipassEffect(width, height, this, passNo =>

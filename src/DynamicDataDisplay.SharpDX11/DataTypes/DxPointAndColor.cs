@@ -31,7 +31,7 @@ namespace DynamicDataDisplay.SharpDX11.DataTypes
 			_color = color;
 		}
 
-		public VertexElement[] GetVertexElements()
+		public InputElement[] GetInputElements()
 		{
 			// Allocate Vertex Elements
 			var vertexElems = new[] {

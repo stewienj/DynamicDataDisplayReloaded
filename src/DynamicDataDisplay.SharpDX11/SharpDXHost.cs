@@ -17,6 +17,7 @@ namespace DynamicDataDisplay.SharpDX11
 		private Texture2D _backBuffer;
 		private RenderTargetView _renderTargetView;
 		private Device _device;
+		private DeviceContext _deviceContext;
 		private SwapChain _swapChain;
 
 		private D3DImage _image = new D3DImage();
@@ -25,6 +26,8 @@ namespace DynamicDataDisplay.SharpDX11
 		private ThrottledAction _resizeAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000));
 
 		public Device Device => _device;
+
+		public DeviceContext DeviceContext => _deviceContext;
 
 		protected override void OnInitialized(EventArgs e)
 		{
@@ -81,6 +84,7 @@ namespace DynamicDataDisplay.SharpDX11
 				// New RenderTargetView from the backbuffer
 				_backBuffer = Resource.FromSwapChain<Texture2D>(_swapChain, 0);
 				_renderTargetView = new RenderTargetView(_device, _backBuffer);
+				_deviceContext = _device.ImmediateContext;
 			}
 			catch
 			{
@@ -88,8 +92,8 @@ namespace DynamicDataDisplay.SharpDX11
 				MessageBox.Show("Can't start DirectX, so that pretty much discounts doing anything else");
 			}
 
-
-			System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
+			//System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
+			CompositionTargetRenderingEventManager.AddHandler(CompositionTarget_Rendering);
 		}
 
 		bool renderNext = true;
@@ -161,7 +165,6 @@ namespace DynamicDataDisplay.SharpDX11
 			}
 			catch (SharpDXException exc)
 			{
-				Device.Reset(_pp);
 				Debug.WriteLine("Exception in main render loop: " + exc.Message);
 			}
 		}
@@ -200,8 +203,8 @@ namespace DynamicDataDisplay.SharpDX11
 			_plotter.Viewport.PropertyChanged -= Viewport_PropertyChanged;
 			_plotter.CentralGrid.Children.Remove(this);
 			_plotter = null;
-			Device.Dispose();
-			Direct3D.Dispose();
+			_deviceContext.Dispose();
+			_device.Dispose();
 		}
 
 		public Plotter Plotter => _plotter;

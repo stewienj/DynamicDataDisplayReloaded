@@ -9,7 +9,7 @@ namespace DynamicDataDisplay.SharpDX11.DataTypes
 {
 	public interface IDxPoint
 	{
-		VertexElement[] GetVertexElements();
+		InputElement[] GetInputElements();
 
 		float X { get; }
 
