@@ -14,10 +14,9 @@ namespace DynamicDataDisplay.SharpDX9
 		private bool _sizeChanged;
 		private PresentParameters _pp = new PresentParameters();
 		private ThrottledAction _resizeAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000));
+		private Direct3DEx _direct3D;
 
 		public Device Device { get; private set; }
-
-		public Direct3D Direct3D { get; private set; }
 
 		protected override void OnInitialized(EventArgs e)
 		{
@@ -59,16 +58,17 @@ namespace DynamicDataDisplay.SharpDX9
 			_pp.BackBufferCount = 1;
 			try
 			{
-				var direct3DEx = new Direct3DEx();
-				Direct3D = direct3DEx;
-				Device = new DeviceEx(direct3DEx, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, _pp);
+				_direct3D = new Direct3DEx();
+				Device = new DeviceEx(_direct3D, 0, DeviceType.Hardware, hwnd.Handle, CreateFlags.HardwareVertexProcessing, _pp);
 			}
 			catch
 			{
 				// At this point we are pretty much screwed, require DeviceEx for the reset capability
 				MessageBox.Show("Can't start DirectX, so that pretty much discounts doing anything else");
 			}
-			System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
+
+			//System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
+			CompositionTargetRenderingEventManager.AddHandler(CompositionTarget_Rendering);
 		}
 
 		bool renderNext = true;
@@ -180,7 +180,7 @@ namespace DynamicDataDisplay.SharpDX9
 			_plotter.CentralGrid.Children.Remove(this);
 			_plotter = null;
 			Device.Dispose();
-			Direct3D.Dispose();
+			_direct3D.Dispose();
 		}
 
 		public Plotter Plotter => _plotter;

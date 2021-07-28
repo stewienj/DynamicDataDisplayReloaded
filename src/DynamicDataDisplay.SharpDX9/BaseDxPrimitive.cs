@@ -104,7 +104,6 @@ namespace DynamicDataDisplay.SharpDX9
 
 		protected override void OnDirectXRender(int width, int height)
 		{
-			var test = Utilities.SizeOf<TDxPoint>();
 			if (_vertexCount <= 0)
 				return;
 			Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.Lighting, false);
