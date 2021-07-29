@@ -1,5 +1,6 @@
 ﻿using SharpDX;
 using SharpDX.Direct3D11;
+using SharpDX.DXGI;
 
 namespace DynamicDataDisplay.SharpDX11.DataTypes
 {
@@ -22,12 +23,13 @@ namespace DynamicDataDisplay.SharpDX11.DataTypes
         public InputElement[] GetInputElements()
         {
             // Allocate Vertex Elements
-            var vertexElems = new[] {
-                new VertexElement(0, 0, DeclarationType.Float2, DeclarationMethod.Default, DeclarationUsage.Position, 0),
-                new VertexElement(0, 8, DeclarationType.Float2, DeclarationMethod.Default, DeclarationUsage.TextureCoordinate, 0),
-                VertexElement.VertexDeclarationEnd
+            var inputElements = new[]
+            {
+				// TODO check names below correspond to names in the shader file
+				new InputElement("POSITION", 0, Format.R32G32_Float, 0, 0),
+                new InputElement("TEXCOORD", 0, Format.R32G32_Float, 8, 0)
             };
-            return vertexElems;
+            return inputElements;
         }
 
         public float X => x;

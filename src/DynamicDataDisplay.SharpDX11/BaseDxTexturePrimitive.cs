@@ -3,6 +3,7 @@ using DynamicDataDisplay.SharpDX11.DataTypes;
 using DynamicDataDisplay.SharpDX11.Helpers;
 using DynamicDataDisplay.SharpDX11.Shaders;
 using SharpDX;
+using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
@@ -122,7 +123,7 @@ namespace DynamicDataDisplay.SharpDX11
 
 		protected abstract BaseDxTransformShader GetTransformEffect(Device device);
 
-		protected abstract PrimitiveType GetPrimitiveType();
+		protected abstract PrimitiveTopology GetPrimitiveTopology();
 
 		public IEnumerable<DxVertex> GeometrySource
 		{

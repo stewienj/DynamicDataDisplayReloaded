@@ -16,7 +16,7 @@ namespace DynamicDataDisplay.SharpDX11.Triangles
 			return new DxPointAndColorShader(device);
 		}
 
-		protected override PrimitiveType GetPrimitiveType()
+		protected override PrimitiveTopology GetPrimitiveTopology()
 		{
 			return PrimitiveType.TriangleFan;
 		}

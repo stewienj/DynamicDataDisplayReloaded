@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 namespace DynamicDataDisplay.SharpDX11.Helpers
 {
     // Using managed pool may cause textures not to appear.
+    /*
     public static class TextureHelper
     {
         // Create a blank texture.
@@ -73,4 +74,5 @@ namespace DynamicDataDisplay.SharpDX11.Helpers
             return null;
         }
     }
+    */
 }
