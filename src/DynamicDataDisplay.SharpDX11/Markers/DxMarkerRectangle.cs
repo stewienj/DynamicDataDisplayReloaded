@@ -1,5 +1,6 @@
 ﻿using DynamicDataDisplay.SharpDX11.DataTypes;
 using DynamicDataDisplay.SharpDX11.Shaders;
+using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 
 namespace DynamicDataDisplay.SharpDX11.Markers
@@ -14,9 +15,9 @@ namespace DynamicDataDisplay.SharpDX11.Markers
 			return new DxRectangleTexturedShader(Device);
 		}
 
-		protected override PrimitiveType GetPrimitiveType()
+		protected override PrimitiveTopology GetPrimitiveTopology()
 		{
-			return PrimitiveType.TriangleList;
+			return PrimitiveTopology.TriangleList;
 		}
 	}
 }

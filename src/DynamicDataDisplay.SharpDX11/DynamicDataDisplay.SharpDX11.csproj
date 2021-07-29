@@ -17,6 +17,12 @@
     <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Textures\**" />
+    <EmbeddedResource Remove="Textures\**" />
+    <None Remove="Textures\**" />
+    <Page Remove="Textures\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\..\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
@@ -56,9 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Shaders\DxRectangleInstancedTexturedShader.fx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Textures\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Properties\Resources.resx" />

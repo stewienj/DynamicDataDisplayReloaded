@@ -2,6 +2,7 @@
 using DynamicDataDisplay.SharpDX11.DataTypes;
 using DynamicDataDisplay.SharpDX11.Shaders;
 using SharpDX;
+using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,9 @@ namespace DynamicDataDisplay.SharpDX11.Lines
 			return new DxPointSingleColorShader(Device);
 		}
 
-		protected override PrimitiveType GetPrimitiveType()
+		protected override PrimitiveTopology GetPrimitiveTopology()
 		{
-			return PrimitiveType.LineStrip;
+			return PrimitiveTopology.LineStrip;
 		}
 	}
 }
