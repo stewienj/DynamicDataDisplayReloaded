@@ -18,6 +18,7 @@
     <Resource Include="D3-icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DirectXSDK2010DLLs\DirectXDLLs.csproj" />
     <ProjectReference Include="..\DynamicDataDisplay.SharpDX9\DynamicDataDisplay.SharpDX9.csproj" />
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj" />
   </ItemGroup>

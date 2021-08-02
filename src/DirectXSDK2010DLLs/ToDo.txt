@@ -1,0 +1,2 @@
+Get the missing x86 DLLs
+Workout out how to set a dll search path depending on whether running 32 bit or 64 bit
