@@ -212,6 +212,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.SharpDX9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.SamplesDX9", "src\DynamicDataDisplay.SamplesDX9\DynamicDataDisplay.SamplesDX9.csproj", "{16CA59CE-4664-4739-A1B1-1FCD0447596F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectXDLLs", "src\DirectXSDK2010DLLs\DirectXDLLs.csproj", "{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1290,6 +1292,18 @@ Global
 		{16CA59CE-4664-4739-A1B1-1FCD0447596F}.Release|x64.Build.0 = Release|x64
 		{16CA59CE-4664-4739-A1B1-1FCD0447596F}.Release|x86.ActiveCfg = Release|x86
 		{16CA59CE-4664-4739-A1B1-1FCD0447596F}.Release|x86.Build.0 = Release|x86
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Debug|x64.Build.0 = Debug|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Debug|x86.Build.0 = Debug|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x64.ActiveCfg = Release|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x64.Build.0 = Release|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x86.ActiveCfg = Release|Any CPU
+		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

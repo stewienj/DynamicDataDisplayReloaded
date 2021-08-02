@@ -1,0 +1,17 @@
+﻿<!-- When using NuGet SDK targets you have to include the version number -->
+<Project Sdk="Microsoft.Build.NoTargets/2.0.1">
+  <ItemGroup>
+    <Content Condition="'$(Platform)'=='AnyCPU'" Include="x64\*.dll">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Condition="'$(Platform)'=='x64'" Include="x64\*.dll">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Condition="'$(Platform)'=='x86'" Include="x86\*.dll">
+      <Link>%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
