@@ -8,7 +8,9 @@ namespace DynamicDataDisplay.RadioBand
 {
 	public class RadioBandTransform : DataTransform
 	{
-		//  private static double[] _ticks = new[] {
+		//  Example of the data that can be used in ticks, below maps 0/16 to 16/16 to a non linear 0 to 1000
+		//
+		//  double[] _ticks = new[] {
 		//      0.0, // at position 0
 		//      0.1, // at 0.0625
 		//      0.3, // at 0.125
@@ -28,7 +30,7 @@ namespace DynamicDataDisplay.RadioBand
 		//      1000.0 // at 1.0
 		//  }; // Length = 17
 
-		private double[] _ticks;
+		private readonly double[] _ticks;
 
         public RadioBandTransform(RadioBandPlotConfig config) => _ticks = config.Ticks;
 
@@ -77,7 +79,14 @@ namespace DynamicDataDisplay.RadioBand
 				// Interpolate between tick points
 				double indexReal = frequency * (_ticks.Length - 1);
 				int index = (int)Math.Floor(indexReal);
-				if (index < (_ticks.Length - 1))
+
+				// Check if index is unflow, in the expected range, or overflow
+				// Could use switch expression, but this seemed more readable
+				if (index < 0)
+				{
+					frequency = _ticks.First();
+				}
+				else if (index < (_ticks.Length - 1))
 				{
 					frequency = _ticks[index] + (indexReal - index) * (_ticks[index + 1] - _ticks[index]);
 				}
