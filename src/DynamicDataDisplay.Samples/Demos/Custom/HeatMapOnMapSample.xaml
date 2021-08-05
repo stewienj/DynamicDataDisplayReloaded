@@ -13,6 +13,10 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <d3:ChartPlotter Visible="-180,-90,360,180" x:Name="chartPlotter">
             <d3:ChartPlotter.DataTransform>
                 <d3:MercatorTransform/>
@@ -32,5 +36,10 @@
             <TextBlock>Spread:</TextBlock>
             <Slider Minimum="3" Maximum="64" Value="{Binding Heatmap.DotSpread}" Width="255"/>
         </StackPanel>
+
+        <GroupBox Grid.Column="1" Grid.RowSpan="2" Header="Selected Items">
+            <ListView ItemsSource="{Binding SelectedPoints}"/>
+        </GroupBox>
+        
     </Grid>
 </Page>
