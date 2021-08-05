@@ -343,6 +343,11 @@ namespace DynamicDataDisplay.BitmapGraphs
 			return points;
 		}
 
+		protected void DrawSelectionArea(ArrayBitmapSource<uint> bitmap, Color color, DataRect data, Rect output)
+        {
+			_pointsCalculator.DrawSelectionArea(bitmap, color, data, output);
+		}
+
 		public ArrayBitmapSource<uint> EmptyBitmap => _emptyBitmap;
 
 		protected SelectedPointsChangedArgs LastSelectionArgs => _lastSelectionArgs;

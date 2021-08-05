@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace DynamicDataDisplay.BitmapGraphs
@@ -13,6 +14,24 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 		public HeatmapChartView() : base(5, 5)
 		{
+		}
+
+		protected override BitmapSource RenderDataFrame(DataRect data, Rect output, RenderRequest renderRequest)
+		{
+			var points = GetLastPointsInDataRect(data);
+			if (points == null)
+			{
+				return EmptyBitmap;
+			}
+			else
+			{
+				var bitmapSource = Heatmap.DrawImage((int)output.Width, (int)output.Height, (int)Math.Round(_spread), points.Select(p => (p.Point, p.Count)), _colors.ColorMap, renderRequest);
+				if (_selectedAreaColor != Colors.Transparent && _selectedPoints.OfType<object>().Any())
+				{
+					DrawSelectionArea(bitmapSource, _selectedAreaColor, data, output);
+				}
+				return bitmapSource;
+			}
 		}
 
 		public string[] ColorScalesAvailable => HeatmapColors.ColorScalesAvailable;
@@ -52,18 +71,25 @@ namespace DynamicDataDisplay.BitmapGraphs
 				}
 			}));
 
+		protected Color _selectedAreaColor = Color.FromArgb(0xC0, 0xAA, 0xAA, 0x00);
 
-		protected override BitmapSource RenderDataFrame(DataRect data, Rect output, RenderRequest renderRequest)
-		{
-			var points = GetLastPointsInDataRect(data);
-			if (points == null)
-			{
-				return EmptyBitmap;
-			}
-			else
-			{
-				return Heatmap.DrawImage((int)output.Width, (int)output.Height, (int)Math.Round(_spread), points.Select(p => (p.Point, p.Count)), _colors.ColorMap, renderRequest);
-			}
-		}
-	}
+		public Color SelectedAreaColor
+        {
+            get { return (Color)GetValue(SelectedAreaColorProperty); }
+            set { SetValue(SelectedAreaColorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedAreaColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedAreaColorProperty =
+            DependencyProperty.Register("SelectedAreaColor", typeof(Color), typeof(HeatmapChartView), new PropertyMetadata(Color.FromArgb(0xC0, 0xAA, 0xAA, 0x00), (s,e)=> 
+			{ 
+				if (s is HeatmapChartView control && e.NewValue is Color newColor)
+                {
+					control._selectedAreaColor = newColor;
+				}
+			}));
+
+
+
+    }
 }

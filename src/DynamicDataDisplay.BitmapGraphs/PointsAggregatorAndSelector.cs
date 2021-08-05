@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace DynamicDataDisplay.BitmapGraphs
@@ -370,12 +371,18 @@ namespace DynamicDataDisplay.BitmapGraphs
 			return (scalerX, scalerY);
 		}
 
+		internal void DrawSelectionArea(ArrayBitmapSource<uint> bitmap, Color color, DataRect data, Rect output)
+		{
+			throw new NotImplementedException();
+		}
+
+
 		public double AggregatedBlockPixelWidth { get; set; } = 1.0;
 		public double AggregatedBlockPixelHeight { get; set; } = 1.0;
 
 		public event EventHandler<AggregatedPointsChangedArgs> NewPointsReady;
 		public event EventHandler<SelectedPointsChangedArgs> SelectedPointsChanged;
-	}
+    }
 
 	public class AggregatedPointsChangedArgs : EventArgs
 	{
