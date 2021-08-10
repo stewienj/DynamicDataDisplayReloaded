@@ -225,7 +225,6 @@ namespace DynamicDataDisplay.BitmapGraphs
 			}
 			_mouseClickLock.ExitWriteLock();
 			_mouseClickCancellationSource = renewToken ? new CancellationTokenSource() : null;
-
 		}
 
 		public void Mouse_CancelLeftSingleClick(object sender, Point clickPoint)

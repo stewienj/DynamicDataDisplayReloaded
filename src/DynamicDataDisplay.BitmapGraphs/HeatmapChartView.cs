@@ -26,9 +26,9 @@ namespace DynamicDataDisplay.BitmapGraphs
 			else
 			{
 				var bitmapSource = Heatmap.DrawImage((int)output.Width, (int)output.Height, (int)Math.Round(_spread), points.Select(p => (p.Point, p.Count)), _colors.ColorMap, renderRequest);
-				if (SelectedAreaColor != Colors.Transparent && SelectedPoints.OfType<object>().Any())
+				if (_selectedAreaColor != Colors.Transparent && _selectedPoints.OfType<object>().Any())
 				{
-					DrawSelectionArea(bitmapSource, SelectedAreaColor, data, output);
+					DrawSelectionArea(bitmapSource, _selectedAreaColor, data, output);
 				}
 				return bitmapSource;
 			}
@@ -71,7 +71,9 @@ namespace DynamicDataDisplay.BitmapGraphs
 				}
 			}));
 
-        public Color SelectedAreaColor
+		protected Color _selectedAreaColor = Color.FromArgb(0xC0, 0xAA, 0xAA, 0x00);
+
+		public Color SelectedAreaColor
         {
             get { return (Color)GetValue(SelectedAreaColorProperty); }
             set { SetValue(SelectedAreaColorProperty, value); }
@@ -79,7 +81,13 @@ namespace DynamicDataDisplay.BitmapGraphs
 
         // Using a DependencyProperty as the backing store for SelectedAreaColor.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedAreaColorProperty =
-            DependencyProperty.Register("SelectedAreaColor", typeof(Color), typeof(HeatmapChartView), new PropertyMetadata(Color.FromArgb(0xC0, 0xAA, 0xAA, 0x00)));
+            DependencyProperty.Register("SelectedAreaColor", typeof(Color), typeof(HeatmapChartView), new PropertyMetadata(Color.FromArgb(0xC0, 0xAA, 0xAA, 0x00), (s,e)=> 
+			{ 
+				if (s is HeatmapChartView control && e.NewValue is Color newColor)
+                {
+					control._selectedAreaColor = newColor;
+				}
+			}));
 
 
 
