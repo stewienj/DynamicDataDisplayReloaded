@@ -8,34 +8,67 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Heat Map On Map Sample">
 
-  <Grid x:Name="theGrid">
-    <Grid.RowDefinitions>
-      <RowDefinition/>
-      <RowDefinition Height="Auto"/>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition/>
-      <ColumnDefinition Width="Auto"/>
-    </Grid.ColumnDefinitions>
-    <d3:ChartPlotter Visible="-180,-90,360,180" x:Name="chartPlotter">
-      <d3:ChartPlotter.DataTransform>
-        <d3:MercatorTransform/>
-      </d3:ChartPlotter.DataTransform>
+    <Grid x:Name="theGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <GroupBox Header="Show Heatmap" Background="Cornsilk">
+                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding HeatmapVisible}"/>
+            </GroupBox>
+            <GroupBox  Header="Number Of Points" Background="Cornsilk">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="RadioButton">
+                            <Setter Property="Margin" Value="8,0"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Grid.Column="0">1</RadioButton>
+                    <RadioButton Grid.Column="1">10</RadioButton>
+                    <RadioButton Grid.Column="2">100</RadioButton>
+                    <RadioButton Grid.Column="3">1,000</RadioButton>
+                    <RadioButton Grid.Column="4">10,000</RadioButton>
+                    <RadioButton Grid.Column="5">100,000</RadioButton>
+                    <RadioButton Grid.Column="6">1,000,000</RadioButton>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Color Scale" Background="Cornsilk">
+                <ComboBox ItemsSource="{Binding Heatmap.ColorScalesAvailable}" SelectedItem="{Binding Heatmap.SelectedColorScale}"/>
+            </GroupBox>
+            <GroupBox Header="Dot Spread" Background="Cornsilk">
+                <Slider Minimum="3" Maximum="64" Value="{Binding Heatmap.DotSpread}" Width="255"/>
+            </GroupBox>
+            <GroupBox Header="Debug Mode (Slow)">
+                <CheckBox IsChecked="{Binding Heatmap.DebugModeOn}">Debug Mode</CheckBox>
+            </GroupBox>
+        </StackPanel>
+        <d3:ChartPlotter Visible="-180,-90,360,180" x:Name="chartPlotter" Grid.Row="1">
+            <d3:ChartPlotter.DataTransform>
+                <d3:MercatorTransform/>
+            </d3:ChartPlotter.DataTransform>
 
       <d3:Map Name="map">
         <d3:OpenStreetMapServer/>
       </d3:Map>
 
-      <d3:CursorCoordinateGraph/>
-      <d3:AxisCursorGraph/>
-    </d3:ChartPlotter>
-    <StackPanel Orientation="Horizontal" Grid.Row="1">
-      <CheckBox IsChecked="{Binding HeatmapVisible}">Show Heatmap</CheckBox>
-      <CheckBox IsChecked="{Binding Heatmap.DebugModeOn}">Debug Mode</CheckBox>
-      <ComboBox ItemsSource="{Binding Heatmap.ColorScalesAvailable}" SelectedItem="{Binding Heatmap.SelectedColorScale}"/>
-      <TextBlock>Spread:</TextBlock>
-      <Slider Minimum="3" Maximum="64" Value="{Binding Heatmap.DotSpread}" Width="255"/>
-    </StackPanel>
+            <d3:CursorCoordinateGraph/>
+            <d3:AxisCursorGraph/>
+        </d3:ChartPlotter>
 
     <GroupBox Grid.Column="1" Grid.RowSpan="2" Header="Selected Items">
       <ListView ItemsSource="{Binding SelectedPoints}"/>
