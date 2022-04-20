@@ -155,8 +155,9 @@ namespace DynamicDataDisplay.RadioBand
 					rightPoint = temp;
 				}
 
-				double minThickness = line.IsSelected ? 10.0 : 5.0;
-				var leftRightPadding = Math.Max(minThickness * 0.5 - (rightPoint.X - leftPoint.X) * minThickness, exportMode ? 10 : 0);
+				double minThickness = line.IsSelected ? 5.0 : 2.5;
+				var leftRightPadding = Math.Max(0.5 * (minThickness - (rightPoint.X - leftPoint.X)), 0);
+
 				leftPoint = new Point(leftPoint.X - leftRightPadding, Math.Round(leftPoint.Y));
 				rightPoint = new Point(rightPoint.X + leftRightPadding, Math.Round(rightPoint.Y));
 

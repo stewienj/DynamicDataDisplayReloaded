@@ -140,6 +140,10 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 						break;
 					}
 				}
+				if (groupNo == 5)
+				{
+					group.Ranges.Add(new FrequencyRange { Start = 205E6, End = 205.001E6});
+				}
 				yield return group;
 			}
 		}
