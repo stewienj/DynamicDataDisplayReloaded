@@ -10,27 +10,71 @@ namespace DynamicDataDisplay.SharpDX9
 {
     public class SharpDXHost : FrameworkElement, IPlotterElement
     {
-        private D3DImage _image = new D3DImage();
-        private bool _sizeChanged;
-        private PresentParameters _pp = new PresentParameters();
-        private ThrottledAction _resizeAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000));
-        private Direct3DEx _direct3D;
+        // ********************************************************************
+        // Private Fields
+        // ********************************************************************
+        #region Private Fields
 
+        /// <summary>
+        /// Flag indicating an event handler has been added to the Composition Target for WPF
+        /// </summary>
         private bool _compositionTargetRenderingHandlerAdded = false;
 
+        /// <summary>
+        /// A toggle so we only render on each alternate frame. If we don't do this it freezes.
+        /// </summary>
+        private bool _renderNextFrame = true;
+
+        /// <summary>
+        /// Amount of time we'll stall the renderer
+        /// Note that if you exceed 2 seconds per frame render, then it will stop updating.
+        /// </summary>
+        private Duration _timeOutDuration = new Duration(TimeSpan.FromMilliseconds(2000));
+
+        /// <summary>
+        /// Intermediate image that DirectX9 renders to. This is then drawn on the WPF surface.
+        /// </summary>
+        private D3DImage _image = new D3DImage();
+
+        /// <summary>
+        /// Flag indicating that the back buffer needs to be resized to match the display surface size
+        /// </summary>
+        private volatile bool _sizeChanged;
+
+        /// <summary>
+        /// Presentation parameters for the DirectX9 device
+        /// </summary>
+        private PresentParameters _pp = new PresentParameters();
+
+        /// <summary>
+        /// Resize action that limits the number of times a resize can be acted upon to
+        /// once per second.
+        /// </summary>
+        private ThrottledAction _resizeAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000));
+
+        /// <summary>
+        /// Microsoft Direct3D 9Ex render environment
+        /// </summary>
+        private Direct3DEx _direct3D;
+
+        #endregion Private Fields
+
+        // ********************************************************************
+        // Properties
+        // ********************************************************************
+        #region Properties
+
+        /// <summary>
+        /// The DirectX9 device
+        /// </summary>
         public Device Device { get; private set; }
 
-        protected override void OnInitialized(EventArgs e)
-        {
-            base.OnInitialized(e);
-        }
+        #endregion Properties
 
-        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
-        {
-            _resizeAction.InvokeAction(() => _sizeChanged = true);
-            base.OnRenderSizeChanged(sizeInfo);
-        }
-
+        // ********************************************************************
+        // Public Methods
+        // ********************************************************************
+        #region Public Methods
 
         public bool LockImage()
         {
@@ -45,6 +89,38 @@ namespace DynamicDataDisplay.SharpDX9
         public void AddChild(object child) => AddLogicalChild(child);
 
         public void RemoveChild(object child) => RemoveLogicalChild(child);
+
+
+        #endregion Public Methods
+
+        // ********************************************************************
+        // Protected Overrides
+        // ********************************************************************
+        #region Protected Methods
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            _resizeAction.InvokeAction(() => _sizeChanged = true);
+            base.OnRenderSizeChanged(sizeInfo);
+        }
+
+
+        protected override void OnRender(System.Windows.Media.DrawingContext drawingContext)
+        {
+            drawingContext.DrawImage(_image, new Rect(RenderSize));
+        }
+
+        #endregion Protected Methods
+
+        // ********************************************************************
+        // Private Methods
+        // ********************************************************************
+        #region Private Methods
 
         private void Initialize3D()
         {
@@ -71,13 +147,10 @@ namespace DynamicDataDisplay.SharpDX9
             }
         }
 
-        bool renderNext = true;
-        // Note that if you exceed 2 seconds per frame render, then it will stop updating.
-        Duration _timeOutDuration = new Duration(TimeSpan.FromMilliseconds(2000));
         private void CompositionTarget_Rendering(object sender, EventArgs e)
         {
-            renderNext = !renderNext;
-            if (renderNext)
+            _renderNextFrame = !_renderNextFrame;
+            if (_renderNextFrame)
             {
                 return;
             }
@@ -145,13 +218,11 @@ namespace DynamicDataDisplay.SharpDX9
             }
         }
 
-        public event EventHandler<RenderEventArgs> Render;
+        #endregion Private Methods
 
-        protected override void OnRender(System.Windows.Media.DrawingContext drawingContext)
-        {
-            drawingContext.DrawImage(_image, new Rect(RenderSize));
-        }
-
+        // ********************************************************************
+        // IPlotterElement Members
+        // ********************************************************************
         #region IPlotterElement Members
 
         private Plotter2D _plotter;
@@ -165,7 +236,7 @@ namespace DynamicDataDisplay.SharpDX9
 
             if (_plotter.IsVisible && !_compositionTargetRenderingHandlerAdded)
             {
-                //System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
+                // Weak event handler for CompositionTarget_Rendering
                 CompositionTargetRenderingEventManager.AddHandler(CompositionTarget_Rendering);
                 _compositionTargetRenderingHandlerAdded = true;
             }
@@ -173,7 +244,7 @@ namespace DynamicDataDisplay.SharpDX9
             {
                 if (_plotter.IsVisible && !_compositionTargetRenderingHandlerAdded)
                 {
-                    //System.Windows.Media.CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
+                    // Weak event handler for CompositionTarget_Rendering
                     CompositionTargetRenderingEventManager.AddHandler(CompositionTarget_Rendering);
                     _compositionTargetRenderingHandlerAdded = true;
                 }
@@ -215,6 +286,14 @@ namespace DynamicDataDisplay.SharpDX9
 
         #endregion
 
+        // ********************************************************************
+        // IPlotterElement Members
+        // ********************************************************************
+        #region Events
+
+        public event EventHandler<RenderEventArgs> Render;
+
+        #endregion Events
     }
 
     public class RenderEventArgs : EventArgs
