@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
-using DynamicDataDisplay.SharpDX9.DataTypes;
+using DynamicDataDisplay.ViewModelTypes;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace DynamicDataDisplay.SharpDX9
 {
-	public abstract class BaseDxPrimitive<TDxPoint> : BaseDxChartElement where TDxPoint : struct, IDxPoint
+	public abstract class BaseDxPrimitive<TDxPoint> : BaseDxChartElement where TDxPoint : struct, ID3Point
 	{
 		protected VertexBuffer _vertexBuffer = null;
 		protected int _vertexBufferAllocated = 0;

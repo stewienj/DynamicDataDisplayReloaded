@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -14,7 +14,7 @@ namespace DynamicDataDisplay.SharpDX9.Shaders
         }
 
 
-        protected override void DoMultipassEffect(int width, int height, DataRect dataRect, float depth, DxColor color, Matrix dataTransform, Action<int> processPass)
+        protected override void DoMultipassEffect(int width, int height, DataRect dataRect, float depth, D3Color color, Matrix dataTransform, Action<int> processPass)
         {
             _effect.SetTexture("g_MeshTexture", _texture);
             base.DoMultipassEffect(width, height, dataRect, depth, color, dataTransform, processPass);

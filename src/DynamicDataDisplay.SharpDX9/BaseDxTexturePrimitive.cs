@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
-using DynamicDataDisplay.SharpDX9.DataTypes;
+using DynamicDataDisplay.ViewModelTypes;
 using DynamicDataDisplay.SharpDX9.Helpers;
 using DynamicDataDisplay.SharpDX9.Shaders;
 using SharpDX;
@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace DynamicDataDisplay.SharpDX9
 {
-    public abstract class BaseDxTexturePrimitive<DxVertex> : BaseDxChartElement where DxVertex : struct, IDxPoint
+    public abstract class BaseDxTexturePrimitive<DxVertex> : BaseDxChartElement where DxVertex : struct, ID3Point
 	{
 		protected VertexBuffer _vertexBuffer = null;
 		protected int _vertexBufferAllocated = 0;
@@ -37,7 +37,7 @@ namespace DynamicDataDisplay.SharpDX9
 			// Creates and sets the Vertex Declaration
 			_vertexDeclaration = new VertexDeclaration(Device, new DxVertex().GetVertexElements());
 
-			_texture = TextureHelper.GetDVDImageTexture(Device);
+			_texture = BaseDxHelpers.GetDVDImageTexture(Device);
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)

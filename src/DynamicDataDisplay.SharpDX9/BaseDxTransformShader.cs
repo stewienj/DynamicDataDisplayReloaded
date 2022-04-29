@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -45,7 +45,7 @@ namespace DynamicDataDisplay.SharpDX9
 			DoMultipassEffect(width, height, chart.VisibleRect, chart.DxDepth, chart.DxColor, chart.DxDataTransform, processPass);
 		}
 
-		protected virtual void DoMultipassEffect(int width, int height, DataRect dataRect, float depth, DxColor color, Matrix dataTransform, Action<int> processPass)
+		protected virtual void DoMultipassEffect(int width, int height, DataRect dataRect, float depth, D3Color color, Matrix dataTransform, Action<int> processPass)
 		{
 			// Todo move the centre point
 			var view = Matrix.LookAtLH(new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, -1f), new Vector3((float)dataRect.CenterX, (float)dataRect.CenterY, 0), Vector3.UnitY);

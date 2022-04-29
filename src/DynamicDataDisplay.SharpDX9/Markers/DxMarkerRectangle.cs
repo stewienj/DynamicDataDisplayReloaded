@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using DynamicDataDisplay.SharpDX9.Shaders;
 using SharpDX.Direct3D9;
 
@@ -7,7 +7,7 @@ namespace DynamicDataDisplay.SharpDX9.Markers
     /// <summary>
     /// This takes a collection of vertices and renders a textured rectangle.
     /// </summary>
-    public class DxMarkerRectangle : BaseDxTexturePrimitive<DxVertex>
+    public class DxMarkerRectangle : BaseDxTexturePrimitive<D3Vertex>
 	{
 		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{

@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -19,7 +19,7 @@ namespace DynamicDataDisplay.SharpDX9
 	/// </summary>
 	/// <typeparam name="TDxPoint"></typeparam>
 	/// <typeparam name="TDxInstance"></typeparam>
-	public abstract class BaseDxInstancedPrimitive<TDxPoint, TDxInstance> : BaseDxPrimitive<TDxPoint> where TDxPoint : struct, IDxPoint where TDxInstance : struct, IDxPoint
+	public abstract class BaseDxInstancedPrimitive<TDxPoint, TDxInstance> : BaseDxPrimitive<TDxPoint> where TDxPoint : struct, ID3Point where TDxInstance : struct, ID3Point
 	{
 		private IndexBuffer _indexBuffer = null; 
 		private VertexBuffer _instanceBuffer = null;

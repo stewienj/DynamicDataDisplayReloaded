@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -61,7 +61,7 @@ namespace DynamicDataDisplay.SharpDX9
 				}
 			}));
 
-		public DxColor DxColor { get; private set; }
+		public D3Color DxColor { get; private set; }
 
 		public System.Windows.Media.Color Color
         {
@@ -75,7 +75,7 @@ namespace DynamicDataDisplay.SharpDX9
 			{
 				if (s is BaseDxChartElement control && e.NewValue is System.Windows.Media.Color newColor)
 				{
-					control.DxColor = new DxColor(newColor);
+					control.DxColor = new D3Color(newColor);
 				}
 			}));
 

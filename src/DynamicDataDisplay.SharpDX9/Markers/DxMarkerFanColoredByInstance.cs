@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
-using DynamicDataDisplay.SharpDX9.DataTypes;
+using DynamicDataDisplay.ViewModelTypes;
 using DynamicDataDisplay.SharpDX9.Shaders;
 using SharpDX;
 using SharpDX.Direct3D9;
@@ -17,7 +17,7 @@ namespace DynamicDataDisplay.SharpDX9.Markers
 	/// This takes a collection of points and renders a continous line in a single color, then reproduces that line
 	/// multiple times in the positions specified by the instance point locations.
 	/// </summary>
-	public class DxMarkerFanColoredByInstance : BaseDxInstancedPrimitive<DxPoint, DxInstancedPointAndColor>
+	public class DxMarkerFanColoredByInstance : BaseDxInstancedPrimitive<D3Point, D3InstancedPointAndColor>
 	{
 		public override void OnPlotterAttached(Plotter plotter)
 		{

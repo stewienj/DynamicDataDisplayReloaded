@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using DynamicDataDisplay.SharpDX9.Helpers;
 using SharpDX;
 using SharpDX.Direct3D9;
@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace DynamicDataDisplay.SharpDX9
 {
-	public abstract class BaseDxInstancedTexturePrimitive<DxVertex, TDxInstance> : BaseDxTexturePrimitive<DxVertex> where DxVertex : struct, IDxPoint where TDxInstance : struct, IDxPoint
+	public abstract class BaseDxInstancedTexturePrimitive<DxVertex, TDxInstance> : BaseDxTexturePrimitive<DxVertex> where DxVertex : struct, ID3Point where TDxInstance : struct, ID3Point
 	{
 		private IndexBuffer _indexBuffer = null; 
 		private VertexBuffer _instanceBuffer = null;
@@ -34,7 +34,7 @@ namespace DynamicDataDisplay.SharpDX9
 				.Concat(new TDxInstance().GetVertexElements())
 				.ToArray();
 			_vertexDeclaration = new VertexDeclaration(Device, vertexElements);
-			this._texture = TextureHelper.GetDVDImageTexture(Device);
+			this._texture = BaseDxHelpers.GetDVDImageTexture(Device);
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)

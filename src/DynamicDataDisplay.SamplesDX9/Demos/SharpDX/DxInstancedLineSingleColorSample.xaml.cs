@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,16 +48,16 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 
 		public DxInstancedLineSingleColorViewModel()
 		{
-			Positions = new DxInstancePoint[]
+			Positions = new D3InstancePoint[]
 			{
-				new DxInstancePoint(0, 0.2f),
-				new DxInstancePoint(0,    0),
-				new DxInstancePoint(0,-0.2f)
+				new D3InstancePoint(0, 0.2f),
+				new D3InstancePoint(0,    0),
+				new D3InstancePoint(0,-0.2f)
 			};
 			StartCalculatingPoints1();
 		}
 
-		private DxPoint[] UpdateQueue(Queue<float> queue, float offset)
+		private D3Point[] UpdateQueue(Queue<float> queue, float offset)
 		{
 			Thread.Sleep(10);
 			while (queue.Count > pointCount - 1)
@@ -69,7 +69,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 				queue.Enqueue((float)(Math.Sin(Math.PI * 2 * counter / pointCount)));
 				++counter;
 			}
-			return queue.Select((v, i) => new DxPoint((float)i, v)).ToArray();
+			return queue.Select((v, i) => new D3Point((float)i, v)).ToArray();
 		}
 
 		private void StartCalculatingPoints1()
@@ -90,9 +90,9 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 			_hasBeenDisposed = true;
 		}
 
-		public IEnumerable<DxPoint> Points1 { get; set; }
+		public IEnumerable<D3Point> Points1 { get; set; }
 
-		public IEnumerable<DxInstancePoint> Positions { get; set; }
+		public IEnumerable<D3InstancePoint> Positions { get; set; }
 
 		public Color Color1 => Colors.Red;
 

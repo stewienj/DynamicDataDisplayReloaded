@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
-using DynamicDataDisplay.SharpDX9.DataTypes;
+using DynamicDataDisplay.ViewModelTypes;
 using DynamicDataDisplay.SharpDX9.Shaders;
 using SharpDX;
 using SharpDX.Direct3D9;
@@ -16,7 +16,7 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 	/// <summary>
 	/// This takes a collection of points and renders a continous line in a single color
 	/// </summary>
-	public class DxMultiLineSingleColor : BaseDxPrimitive<DxPoint>
+	public class DxMultiLineSingleColor : BaseDxPrimitive<D3Point>
 	{
 		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{

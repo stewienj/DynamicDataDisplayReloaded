@@ -1,6 +1,6 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
 using DynamicDataDisplay.Common.Palettes;
-using DynamicDataDisplay.SharpDX9.DataTypes;
+using DynamicDataDisplay.ViewModelTypes;
 using DynamicDataDisplay.SharpDX9.Helpers;
 using System;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 	{
 		private static int _pointCount = 10000;
 		private Point[] _points = new Point[_pointCount];
-		private DxVertex[] _currentArray = new DxVertex[_pointCount*6];
+		private D3Vertex[] _currentArray = new D3Vertex[_pointCount*6];
 		private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 		public volatile bool _hasBeenDisposed = false;
 		public volatile bool _animationRunning = false;
@@ -71,7 +71,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 				var point = new Point(rnd.NextDouble(), rnd.NextDouble());
 				_points[i] = point;
 
-				var vertices = SharpDXHelper.MakeRectangle((float)point.X, (float)point.Y, 0.05f, 0.05f);
+				var vertices = ViewModelHelpers.MakeRectangle((float)point.X, (float)point.Y, 0.05f, 0.05f);
 				for (var j=0;j<vertices.Count;j++)
                 {
 					_currentArray[i*6+j] = vertices[j];
@@ -79,7 +79,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 			}
 			// Replace the old array of points with the new array
 			Points = _points;
-			var temp = (Positions as DxVertex[]) ?? new DxVertex[_pointCount*6];
+			var temp = (Positions as D3Vertex[]) ?? new D3Vertex[_pointCount*6];
 			Positions = _currentArray;
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 			_currentArray = temp;
@@ -128,7 +128,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 							}
 
 							_points[i] = new Point(newX, newY);
-							var rectangle = SharpDXHelper.MakeRectangle((float)newX, (float)newY, 0.05f, 0.05f);
+							var rectangle = ViewModelHelpers.MakeRectangle((float)newX, (float)newY, 0.05f, 0.05f);
 							for (var j=0;j<6;j++)
                             {
 								_currentArray[i*6 + j] = rectangle[j];
@@ -137,7 +137,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 
 						Points = _points;
 
-						var temp = (Positions as DxVertex[]) ?? new DxVertex[_pointCount*6];
+						var temp = (Positions as D3Vertex[]) ?? new D3Vertex[_pointCount*6];
 						Positions = _currentArray;
 						PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 						_currentArray = temp;
@@ -159,7 +159,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 
 		public int PointCount { get; set; }
 
-		public IEnumerable<DxVertex> Positions { get; set; }
+		public IEnumerable<D3Vertex> Positions { get; set; }
 
 		public IEnumerable<Point> Points { get; set; }
 

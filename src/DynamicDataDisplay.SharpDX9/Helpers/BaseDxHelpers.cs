@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 namespace DynamicDataDisplay.SharpDX9.Helpers
 {
     // Using managed pool may cause textures not to appear.
-    public static class TextureHelper
+    public static class BaseDxHelpers
     {
         // Create a blank texture.
         public static Texture CreateTexture(Device device, int width, int height)
