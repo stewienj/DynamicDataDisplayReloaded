@@ -48,11 +48,11 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 
 		public DxInstancedLineSingleColorViewModel()
 		{
-			Positions = new D3InstancePoint[]
+			Positions = new D3InstancedPoint[]
 			{
-				new D3InstancePoint(0, 0.2f),
-				new D3InstancePoint(0,    0),
-				new D3InstancePoint(0,-0.2f)
+				new D3InstancedPoint(0, 0.2f),
+				new D3InstancedPoint(0,    0),
+				new D3InstancedPoint(0,-0.2f)
 			};
 			StartCalculatingPoints1();
 		}
@@ -92,7 +92,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 
 		public IEnumerable<D3Point> Points1 { get; set; }
 
-		public IEnumerable<D3InstancePoint> Positions { get; set; }
+		public IEnumerable<D3InstancedPoint> Positions { get; set; }
 
 		public Color Color1 => Colors.Red;
 

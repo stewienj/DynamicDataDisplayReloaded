@@ -7,7 +7,7 @@ namespace DynamicDataDisplay.SharpDX9.Markers
     /// <summary>
     /// This takes a collection of points and vertices and renders rectangles.
     /// </summary>
-    public class DxMarkerRectangleInstanced : BaseDxInstancedTexturePrimitive<D3Vertex, D3InstancePoint>
+    public class DxMarkerRectangleInstanced : BaseDxInstancedTexturePrimitive<D3Vertex, D3InstancedPoint>
 	{
 		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{

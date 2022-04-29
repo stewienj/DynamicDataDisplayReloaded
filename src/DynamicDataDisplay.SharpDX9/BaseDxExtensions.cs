@@ -21,7 +21,7 @@ namespace DynamicDataDisplay.SharpDX9
                     VertexElement.VertexDeclarationEnd
                 },
 
-                D3InstancePoint => new[] {
+                D3InstancedPoint => new[] {
                     new VertexElement(1, 0, DeclarationType.Float2, DeclarationMethod.Default, DeclarationUsage.Position, 1),
                     VertexElement.VertexDeclarationEnd
                 },

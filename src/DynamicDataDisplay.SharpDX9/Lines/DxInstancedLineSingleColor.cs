@@ -17,7 +17,7 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 	/// This takes a collection of points and renders a continous line in a single color, then reproduces that line
 	/// multiple times in the positions specified by the instance point locations.
 	/// </summary>
-	public class DxInstancedLineSingleColor : BaseDxInstancedPrimitive<D3Point, D3InstancePoint>
+	public class DxInstancedLineSingleColor : BaseDxInstancedPrimitive<D3Point, D3InstancedPoint>
 	{
 		public override void OnPlotterAttached(Plotter plotter)
 		{

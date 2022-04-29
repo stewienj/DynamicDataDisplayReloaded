@@ -49,7 +49,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 	public class DxInstancedRectangleTexturedSampleViewModel : INotifyPropertyChanged, IDisposable
 	{
 		private static int _pointCount = 100000;
-		private D3InstancePoint[] _currentArray = new D3InstancePoint[_pointCount];
+		private D3InstancedPoint[] _currentArray = new D3InstancedPoint[_pointCount];
 		private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 		public volatile bool _hasBeenDisposed = false;
 		public volatile bool _animationRunning = false;
@@ -69,10 +69,10 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 			for (int i = 0; i < _pointCount; i++)
 			{
 				var point = new Point(rnd.NextDouble(), rnd.NextDouble());
-				_currentArray[i] = new D3InstancePoint(new Point(point.X, point.Y));
+				_currentArray[i] = new D3InstancedPoint(new Point(point.X, point.Y));
 			}
 			// Replace the old array of points with the new array
-			var temp = (Positions as D3InstancePoint[]) ?? new D3InstancePoint[_pointCount];
+			var temp = (Positions as D3InstancedPoint[]) ?? new D3InstancedPoint[_pointCount];
 			Positions = _currentArray;
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 			_currentArray = temp;
@@ -101,7 +101,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 					if (_animationRunning)
 					{
 						// Update the position of every point according to its direction
-						var positions = Positions as D3InstancePoint[];
+						var positions = Positions as D3InstancedPoint[];
 						for (int i = 0; i < _pointCount; ++i)
 						{
 							var dxdy = new Vector(directions[i].X * Width1Px, directions[i].Y * Height1Px);
@@ -121,9 +121,9 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 								directions[i] = new Vector(directions[i].X, -directions[i].Y);
 							}
 
-							_currentArray[i] = new D3InstancePoint(new Point(newX, newY));
+							_currentArray[i] = new D3InstancedPoint(new Point(newX, newY));
 						}
-						var temp = (Positions as D3InstancePoint[]) ?? new D3InstancePoint[_pointCount];
+						var temp = (Positions as D3InstancedPoint[]) ?? new D3InstancedPoint[_pointCount];
 						Positions = _currentArray;
 						PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 						_currentArray = temp;
@@ -145,7 +145,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 
 		public IEnumerable<D3Vertex> Geometry { get; set; }
 
-		public IEnumerable<D3InstancePoint> Positions { get; set; }
+		public IEnumerable<D3InstancedPoint> Positions { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
