@@ -5,13 +5,13 @@ using SharpDX.Direct3D9;
 namespace DynamicDataDisplay.SharpDX9.Markers
 {
     /// <summary>
-    /// This takes a collection of vertices and renders a textured rectangle.
+    /// This takes a collection of points and vertices and renders rectangles.
     /// </summary>
-    public class DxMarkerRectangle : BaseDxTexturePrimitive<D3Vertex>
+    public class DxMarkerRectangleTexturedByInstance : BaseDxInstancedTexturePrimitive<D3Vertex, D3InstancedPoint>
 	{
 		protected override BaseDxTransformShader GetTransformEffect(Device device)
 		{
-			return new DxRectangleTexturedShader(Device);
+			return new DxRectangleTexturedInstanceShader(Device);
 		}
 
 		protected override PrimitiveType GetPrimitiveType()

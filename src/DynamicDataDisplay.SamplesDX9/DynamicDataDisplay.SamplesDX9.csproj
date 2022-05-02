@@ -7,6 +7,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Demos\SharpDX\dvdreduced.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\..\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
@@ -16,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="D3-icon.ico" />
+    <Resource Include="Demos\SharpDX\dvdreduced.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DirectXSDK2010DLLs\DirectXDLLs.csproj" />

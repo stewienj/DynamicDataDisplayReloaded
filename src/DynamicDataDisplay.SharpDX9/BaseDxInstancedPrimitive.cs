@@ -47,6 +47,12 @@ namespace DynamicDataDisplay.SharpDX9
 		protected override bool UpdateVertexBufferFromGeometrySource(IEnumerable<TDxPoint> newPoints)
 		{
 			var vertexBufferSizeChanged = base.UpdateVertexBufferFromGeometrySource(newPoints);
+
+			if (DxHost == null)
+			{
+				return vertexBufferSizeChanged;
+			}
+
 			if(DxHost.LockImage())
 			{
 				if (vertexBufferSizeChanged)

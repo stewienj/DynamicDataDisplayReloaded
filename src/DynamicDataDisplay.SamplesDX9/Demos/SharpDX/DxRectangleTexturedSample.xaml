@@ -8,6 +8,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DxRectangleTexturedSample">
+    <Page.Resources>
+        <d3:DxSharedTexture TextureSource="/DynamicDataDisplay.SamplesDX9;component/Demos/SharpDX/dvdreduced.png" x:Key="SharedTexture"/>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <d3:ChartPlotter x:Name="plotter" Grid.ColumnSpan="2">
             <d3:SharpDXHost/>
-            <d3:DxMarkerRectangle GeometrySource="{Binding Positions}" Depth="3"/>
+            <d3:DxMarkerRectangleTextured GeometrySource="{Binding Positions}" Depth="3" SharedTexture="{StaticResource SharedTexture}"/>
         </d3:ChartPlotter>
         <StackPanel Grid.Column="1">
             <Border BorderBrush="Black" BorderThickness="1" Margin="8" CornerRadius="8" Background="Cornsilk">

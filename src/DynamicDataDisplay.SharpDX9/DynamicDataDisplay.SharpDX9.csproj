@@ -53,10 +53,7 @@
     <Embeddedresource Include="Shaders\DxRectangleTexturedShader.fx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Shaders\DxRectangleInstancedTexturedShader.fx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Textures\" />
+    <EmbeddedResource Include="Shaders\DxRectangleTexturedInstanceShader.fx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Properties\Resources.resx" />
