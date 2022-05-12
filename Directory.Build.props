@@ -1,10 +1,10 @@
 <Project>
- <PropertyGroup>
+  <PropertyGroup>
     <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
 
     <!-- Put all the generated files into single directories so they can be easily removed to do a clean build -->
 
-	<OutDir>$(MSBuildThisFileDirectory)Bin\$(Configuration)_$(Platform)_$(TargetFramework)\$(MSBuildProjectName)\</OutDir>
+    <OutDir>$(MSBuildThisFileDirectory)Bin\$(Configuration)_$(Platform)_$(TargetFramework)\$(MSBuildProjectName)\</OutDir>
 
     <!-- See the bottom of https://github.com/Microsoft/msbuild/issues/1603 -->
     <!-- Output paths - Old Style -->
@@ -14,8 +14,9 @@
     <!-- This gets rid of MSB3270 which warns about mixing AnyCPU with x86 or x64 -->
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 
-	<Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>false</Prefer32Bit>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)PropertySheets\DynamicDataDisplay.snk</AssemblyOriginatorKeyFile>
- </PropertyGroup>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
 </Project>

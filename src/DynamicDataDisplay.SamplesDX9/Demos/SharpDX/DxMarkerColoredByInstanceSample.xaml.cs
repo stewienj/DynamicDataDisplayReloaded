@@ -1,6 +1,6 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
 using DynamicDataDisplay.Common.Palettes;
-using DynamicDataDisplay.SharpDX9.DataTypes;
+using DynamicDataDisplay.ViewModelTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,7 +55,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 	public class DxMarkerColoredByInstanceViewModel : INotifyPropertyChanged, IDisposable
 	{
 		private static int _pointCount = 1_000_000;
-		private DxInstancedPointAndColor[] _currentArray = new DxInstancedPointAndColor[_pointCount];
+		private D3InstancedPointAndColor[] _currentArray = new D3InstancedPointAndColor[_pointCount];
 		private ThreadLocal<Random> random = new ThreadLocal<Random>(() => new Random());
 		public volatile bool _hasBeenDisposed = false;
 		public volatile bool _animationRunning = false;
@@ -65,14 +65,14 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 		{
 			int sideCount = 10;
 			// Start and end are the same, and need centre as this is a triangle fan
-			var geometry = new List<DxPoint>();
-			geometry.Add(new DxPoint(0, 0));
+			var geometry = new List<D3Point>();
+			geometry.Add(new D3Point(0, 0));
 			var multiplier = Math.PI * 2.0 / sideCount;
 			for(int i=0; i<=sideCount;++i)
 			{
 				var x = 20.0 * Math.Sin(i * multiplier);
 				var y = 20.0 * Math.Cos(i * multiplier);
-				geometry.Add(new DxPoint(x, y));
+				geometry.Add(new D3Point(x, y));
 			}
 			Geometry = geometry;
 			StartArrayUpdate();
@@ -87,9 +87,9 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 				var point = new Point(rnd.NextDouble(), rnd.NextDouble());
 				var length = Math.Sqrt(point.X * point.X + point.Y * point.Y) / Math.Sqrt(2);
 				var color = palette.GetColor(length);
-				_currentArray[i] = new DxInstancedPointAndColor(point, color);
+				_currentArray[i] = new D3InstancedPointAndColor(point, color);
 			}
-			var temp = (Positions as DxInstancedPointAndColor[]) ?? new DxInstancedPointAndColor[_pointCount];
+			var temp = (Positions as D3InstancedPointAndColor[]) ?? new D3InstancedPointAndColor[_pointCount];
 			Positions = _currentArray;
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 			_currentArray = temp;
@@ -118,7 +118,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 					if (_animationRunning)
 					{
 
-						var positions = Positions as DxInstancedPointAndColor[];
+						var positions = Positions as D3InstancedPointAndColor[];
 						for (int i = 0; i < _pointCount; ++i)
 						{
 							var dxdy = new Vector(directions[i].X * Width1Px, directions[i].Y * Height1Px);
@@ -135,9 +135,9 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 								directions[i] = new Vector(directions[i].X, -directions[i].Y);
 							}
 
-							_currentArray[i] = new DxInstancedPointAndColor(newX, newY, positions[i].Color);
+							_currentArray[i] = new D3InstancedPointAndColor(newX, newY, positions[i].Color);
 						}
-						var temp = (Positions as DxInstancedPointAndColor[]) ?? new DxInstancedPointAndColor[_pointCount];
+						var temp = (Positions as D3InstancedPointAndColor[]) ?? new D3InstancedPointAndColor[_pointCount];
 						Positions = _currentArray;
 						PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
 						_currentArray = temp;
@@ -157,9 +157,9 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 		// The height of 1 pixel in data space
 		public double Height1Px { get; set; }
 
-		public IEnumerable<DxPoint> Geometry { get; set; }
+		public IEnumerable<D3Point> Geometry { get; set; }
 
-		public IEnumerable<DxInstancedPointAndColor> Positions { get; set; }
+		public IEnumerable<D3InstancedPointAndColor> Positions { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

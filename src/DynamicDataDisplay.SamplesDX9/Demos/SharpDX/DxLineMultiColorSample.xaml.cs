@@ -1,4 +1,4 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.ViewModelTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,7 +70,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 							float y = (float)(15 * Math.Sin(x + phase) * Math.Sin(x * 101.0));
 							float colorIndex = (y + 15f) / 5f % 1f;
 							byte colorIndexByte = (byte)(Math.Round(colorIndex * 255));
-							return new DxPointAndColor(x, y, Color.FromRgb(0, colorIndexByte, (byte)(255- colorIndexByte)));
+							return new D3PointAndColor(x, y, Color.FromRgb(0, colorIndexByte, (byte)(255- colorIndexByte)));
 						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points1)));
 					Thread.Sleep(10);
@@ -96,7 +96,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 							float y = (float)(10*Math.Sin(x + phase) * Math.Sin(x * 102.0));
 							float colorIndex = (y + 10f) / 5f % 1f;
 							byte colorIndexByte = (byte)(Math.Round(colorIndex * 255));
-							return new DxPointAndColor(x, y, Color.FromRgb(colorIndexByte, (byte)(255 - colorIndexByte), 0));
+							return new D3PointAndColor(x, y, Color.FromRgb(colorIndexByte, (byte)(255 - colorIndexByte), 0));
 						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points2)));
 					Thread.Sleep(10);
@@ -121,7 +121,7 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 							float y = (float)(20.0 * Math.Sin(x) * Math.Sin(x * 103.0) * Math.Sin(phase));
 							float colorIndex = (y + 20f) / 5f % 1f;
 							byte colorIndexByte = (byte)(Math.Round(colorIndex * 255));
-							return new DxPointAndColor(x, y, Color.FromRgb((byte)(255 - colorIndexByte), 0, colorIndexByte));
+							return new D3PointAndColor(x, y, Color.FromRgb((byte)(255 - colorIndexByte), 0, colorIndexByte));
 						}).ToArray();
 					PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Points3)));
 					Thread.Sleep(10);
@@ -133,9 +133,9 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 			_hasBeenDisposed = true;
 		}
 
-		public IEnumerable<DxPointAndColor> Points1 { get; set; }
-		public IEnumerable<DxPointAndColor> Points2 { get; set; }
-		public IEnumerable<DxPointAndColor> Points3 { get; set; }
+		public IEnumerable<D3PointAndColor> Points1 { get; set; }
+		public IEnumerable<D3PointAndColor> Points2 { get; set; }
+		public IEnumerable<D3PointAndColor> Points3 { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
 	}

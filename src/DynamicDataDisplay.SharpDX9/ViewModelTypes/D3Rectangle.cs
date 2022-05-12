@@ -1,9 +1,9 @@
-﻿namespace DynamicDataDisplay.SharpDX9.DataTypes
+﻿namespace DynamicDataDisplay.ViewModelTypes
 {
     // A regular quadrilateral in 2D space.
-    public class DxRectangle
+    public class D3Rectangle
 	{
-        public DxRectangle(float x, float y, float width, float height)
+        public D3Rectangle(float x, float y, float width, float height)
         {
             this.X = x;
             this.Y = y;

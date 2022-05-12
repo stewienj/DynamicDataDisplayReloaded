@@ -1,5 +1,5 @@
 ﻿using DynamicDataDisplay.Common.Auxiliary;
-using DynamicDataDisplay.SharpDX9.DataTypes;
+using DynamicDataDisplay.ViewModelTypes;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace DynamicDataDisplay.SharpDX9
 {
-	public abstract class BaseDxPrimitive<TDxPoint> : BaseDxChartElement where TDxPoint : struct, IDxPoint
+	public abstract class BaseDxPrimitive<TDxPoint> : BaseDxChartElement where TDxPoint : struct, ID3Point
 	{
 		protected VertexBuffer _vertexBuffer = null;
 		protected int _vertexBufferAllocated = 0;
@@ -20,7 +20,7 @@ namespace DynamicDataDisplay.SharpDX9
 		private SynchronizationContext _syncContext = null;
 		protected VertexDeclaration _vertexDeclaration;
 		protected BaseDxTransformShader _transformEffect;
-		private TDxPoint[] _pointList;
+		private TDxPoint[] _pointList = null;
 		// Limit updates to 100 times per second. This also schedules updates to another thread.
 		private ThrottledAction _throttledAction = new ThrottledAction(TimeSpan.FromMilliseconds(10));
 
@@ -34,6 +34,14 @@ namespace DynamicDataDisplay.SharpDX9
 
 			// Creates and sets the Vertex Declaration
 			_vertexDeclaration = new VertexDeclaration(Device, new TDxPoint().GetVertexElements());
+
+			// DxHost gets set in the base class.
+			// Check if PointsList has been updated before the DxHost was set.
+			// If PointsList is set then update the VertexBuffer from the current points.
+			if (_pointList != null)
+			{
+				UpdateVertexBufferFromGeometrySource(_pointList);
+			}
 		}
 
 		public override void OnPlotterDetaching(Plotter plotter)
@@ -47,8 +55,13 @@ namespace DynamicDataDisplay.SharpDX9
 			bool vertexBufferSizeChanged = false;
 
 			// Vertices will be resized to the next power of 2, saves on resizing too much
-			_pointList = newPoints.ToArray();
+			_pointList = (newPoints ?? Enumerable.Empty<TDxPoint>()).ToArray();
 			var pointCount = _pointList.Length;
+
+			if (DxHost == null)
+			{
+				return vertexBufferSizeChanged;
+			}
 
 			// There's an issue with nVidia cards that the rendering pipeline locks up if we try to reuse
 			// Vertex buffers allocated on the default pool. AMD cards seem to be ok. Work around is to use
