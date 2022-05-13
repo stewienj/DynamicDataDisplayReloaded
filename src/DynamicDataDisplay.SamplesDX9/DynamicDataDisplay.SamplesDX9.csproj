@@ -7,6 +7,7 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Demos\SharpDX\DashedTexture.png" />
     <None Remove="Demos\SharpDX\dvdreduced.png" />
   </ItemGroup>
   <ItemGroup>
@@ -19,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="D3-icon.ico" />
+    <Resource Include="Demos\SharpDX\DashedTexture.png" />
     <Resource Include="Demos\SharpDX\dvdreduced.png" />
   </ItemGroup>
   <ItemGroup>

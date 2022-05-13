@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:DynamicDataDisplay.SamplesDX9.Internals"
              xmlns:m="clr-namespace:DynamicDataDisplay.SamplesDX9.Internals.Models"
              StartupUri="MainWindow.xaml">
-	<Application.Resources>
+    <Application.Resources>
 
         <m:SamplesCollection x:Key="samples">
             <m:ReleaseInfo Version="SharpDX Samples">
@@ -14,41 +14,42 @@
                 <m:Demonstration Description="DxMarkerColoredByInstance" Uri="/Demos/SharpDX/DxMarkerColoredByInstanceSample.xaml"/>
                 <m:Demonstration Description="DxRectangleTextured" Uri="/Demos/SharpDX/DxRectangleTexturedSample.xaml"/>
                 <m:Demonstration Description="DxInstancedRectangleTextured" Uri="/Demos/SharpDX/DxInstancedRectangleTexturedSample.xaml"/>
+                <m:Demonstration Description="DxMultiThickLineTextured" Uri="/Demos/SharpDX/DxMultiThickLineTexturedSample.xaml"/>
             </m:ReleaseInfo>
         </m:SamplesCollection>
 
         <local:VersionToBrushConverter x:Key="versionConverter"/>
-		
-		<Style TargetType="{x:Type TextBlock}" x:Key="TextStyle">
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="Margin" Value="2,0,2,0"/>
-			<Setter Property="FontSize" Value="10"/>
-		</Style>
+        
+        <Style TargetType="{x:Type TextBlock}" x:Key="TextStyle">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="2,0,2,0"/>
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
 
-		<Style TargetType="{x:Type Rectangle}" x:Key="RectangleStyle">
-			<Setter Property="RadiusX" Value="3"/>
-			<Setter Property="RadiusY" Value="3"/>
-			<Setter Property="Fill" Value="{Binding Version, Converter={StaticResource versionConverter}}"/>
-		</Style>
+        <Style TargetType="{x:Type Rectangle}" x:Key="RectangleStyle">
+            <Setter Property="RadiusX" Value="3"/>
+            <Setter Property="RadiusY" Value="3"/>
+            <Setter Property="Fill" Value="{Binding Version, Converter={StaticResource versionConverter}}"/>
+        </Style>
 
-		<Style TargetType="{x:Type Grid}" x:Key="GridStyle">
-			<Setter Property="HorizontalAlignment" Value="Center"/>
-			<Setter Property="VerticalAlignment" Value="Center"/>
-			<Setter Property="ClipToBounds" Value="True"/>
-		</Style>
+        <Style TargetType="{x:Type Grid}" x:Key="GridStyle">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ClipToBounds" Value="True"/>
+        </Style>
 
-		<HierarchicalDataTemplate DataType="{x:Type m:ReleaseInfo}" ItemsSource="{Binding Demonstrations}">
-			<StackPanel Orientation="Horizontal">
-				<TextBlock>Release</TextBlock>
-				<Grid Style="{StaticResource GridStyle}">
-					<Rectangle Style="{StaticResource RectangleStyle}"/>
-					<TextBlock Text="{Binding Version}" Style="{StaticResource TextStyle}"/>
-				</Grid>
-			</StackPanel>
-		</HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type m:ReleaseInfo}" ItemsSource="{Binding Demonstrations}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>Release</TextBlock>
+                <Grid Style="{StaticResource GridStyle}">
+                    <Rectangle Style="{StaticResource RectangleStyle}"/>
+                    <TextBlock Text="{Binding Version}" Style="{StaticResource TextStyle}"/>
+                </Grid>
+            </StackPanel>
+        </HierarchicalDataTemplate>
 
     <HierarchicalDataTemplate DataType="{x:Type m:Demonstration}" ItemsSource="{Binding Demonstrations}">
-			<TextBlock Text="{Binding Description}"/>
-		</HierarchicalDataTemplate>
-	</Application.Resources>
+            <TextBlock Text="{Binding Description}"/>
+        </HierarchicalDataTemplate>
+    </Application.Resources>
 </Application>

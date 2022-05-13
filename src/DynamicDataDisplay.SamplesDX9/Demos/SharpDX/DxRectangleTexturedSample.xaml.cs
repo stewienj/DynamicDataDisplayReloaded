@@ -78,10 +78,11 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
             }
             // Replace the old array of points with the new array
             Points = _points;
+            // Double buffer the current array
             var temp = (Positions as D3Vertex[]) ?? new D3Vertex[_pointCount*6];
             Positions = _currentArray;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
             _currentArray = temp;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
         }
 
         private void StartArrayUpdate()
@@ -89,20 +90,23 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
             Task.Factory.StartNew(() =>
             {
                 // Create the random directions
-                var rnd = random.Value;
-                Vector[] directions = Enumerable.Range(0, _pointCount).Select(i =>
-                {
-                    var angle = rnd.NextDouble() * Math.PI * 2;
-                    Vector dxdy = new Vector(Math.Sin(angle), Math.Cos(angle));
-                    return dxdy;
-                }).ToArray();
+                Vector[] directions = null;
 
                 while (!_hasBeenDisposed)
                 {
-                    if (_doReset)
+                    if (_doReset || directions == null)
                     {
                         DoReset();
                         _doReset = false;
+
+                        var rnd = random.Value;
+                        directions = Enumerable.Range(0, _pointCount).Select(i =>
+                        {
+                            var angle = rnd.NextDouble() * Math.PI * 2;
+                            Vector dxdy = new Vector(Math.Sin(angle), Math.Cos(angle));
+                            return dxdy;
+                        }).ToArray();
+
                     }
                     if (_animationRunning)
                     {
@@ -136,10 +140,11 @@ namespace DynamicDataDisplay.SamplesDX9.Demos.SharpDX
 
                         Points = _points;
 
+                        // Double buffer the current array
                         var temp = (Positions as D3Vertex[]) ?? new D3Vertex[_pointCount*6];
                         Positions = _currentArray;
-                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
                         _currentArray = temp;
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Positions)));
                     }
                     Thread.Sleep(10);
                 }
