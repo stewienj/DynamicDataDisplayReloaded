@@ -15,6 +15,7 @@
     <Description>Chart and Mapping Control for C#/WPF</Description>
     <PackageOutputPath>../../Publish</PackageOutputPath>
     <IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\PropertySheets\BuildAssemblyInfo.cs">
