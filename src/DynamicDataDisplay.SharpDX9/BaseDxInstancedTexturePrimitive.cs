@@ -50,20 +50,26 @@ namespace DynamicDataDisplay.SharpDX9
 
             if(DxHost.LockImage())
             {
-                if (vertexBufferSizeChanged)
+                try
                 {
-                    _indexBuffer?.Dispose();
-                    // Create a 16 bit index buffer
-                    _indexBuffer = new IndexBuffer(Device, Utilities.SizeOf<int>() * _vertexBufferAllocated, Usage.WriteOnly, Pool.Default, false);
-                }
-                // Now set the index buffer to match
+                    if (vertexBufferSizeChanged)
+                    {
+                        _indexBuffer?.Dispose();
+                        // Create a 16 bit index buffer
+                        _indexBuffer = new IndexBuffer(Device, Utilities.SizeOf<int>() * _vertexBufferAllocated, Usage.WriteOnly, Pool.Default, false);
+                    }
+                    // Now set the index buffer to match
 
-                // Lock the buffer, so that we can access the data.
-                DataStream indexStream = _indexBuffer.Lock(0, 0, LockFlags.Discard);
-                indexStream.WriteRange(Enumerable.Range(0, _vertexBufferAllocated).ToArray());
-                // Unlock the stream again, committing all changes.
-                _indexBuffer.Unlock();
-                DxHost.UnlockImage();
+                    // Lock the buffer, so that we can access the data.
+                    DataStream indexStream = _indexBuffer.Lock(0, 0, LockFlags.Discard);
+                    indexStream.WriteRange(Enumerable.Range(0, _vertexBufferAllocated).ToArray());
+                    // Unlock the stream again, committing all changes.
+                    _indexBuffer.Unlock();
+                }
+                finally
+                {
+                    DxHost.UnlockImage();
+                }
             }
             return vertexBufferSizeChanged;
         }

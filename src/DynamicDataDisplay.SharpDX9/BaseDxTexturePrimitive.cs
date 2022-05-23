@@ -68,20 +68,26 @@ namespace DynamicDataDisplay.SharpDX9
 
             if (DxHost.LockImage())
             {
-                if (_vertexBuffer == null || pointCount > _vertexBufferAllocated || pointCount < (_vertexBufferAllocated >> 1))
+                try
                 {
-                    _vertexBuffer?.Dispose();
-                    var newSize = MathHelper.CeilingPow2(pointCount);
-                    var size = Utilities.SizeOf<DxVertex>();
-                    _vertexBuffer = new VertexBuffer(Device, size * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
-                    _vertexBufferAllocated = newSize;
-                    vertexBufferSizeChanged = true;
+                    if (_vertexBuffer == null || pointCount > _vertexBufferAllocated || pointCount < (_vertexBufferAllocated >> 1))
+                    {
+                        _vertexBuffer?.Dispose();
+                        var newSize = MathHelper.CeilingPow2(pointCount);
+                        var size = Utilities.SizeOf<DxVertex>();
+                        _vertexBuffer = new VertexBuffer(Device, size * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
+                        _vertexBufferAllocated = newSize;
+                        vertexBufferSizeChanged = true;
+                    }
+                    // Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
+                    var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
+                    vertexStream.WriteRange(_pointList);
+                    _vertexBuffer.Unlock();
                 }
-                // Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
-                var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
-                vertexStream.WriteRange(_pointList);
-                _vertexBuffer.Unlock();
-                DxHost.UnlockImage();
+                finally
+                {
+                    DxHost.UnlockImage();
+                }
             }
             _vertexCount = pointCount;
 

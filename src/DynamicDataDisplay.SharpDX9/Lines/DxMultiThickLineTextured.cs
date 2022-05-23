@@ -45,7 +45,7 @@ namespace DynamicDataDisplay.SharpDX9.Lines
         public override void OnPlotterAttached(Plotter plotter)
         {
             base.OnPlotterAttached(plotter);
-            if (_dxLeftMouseButtonDownHandlerCount > 0)
+            if (_dxLeftMouseButtonDownHandlerCount > 0 && Plotter != null)
             {
                 Plotter.MouseLeftButtonDown += Plotter_MouseLeftButtonDown;
             }
@@ -53,11 +53,11 @@ namespace DynamicDataDisplay.SharpDX9.Lines
 
         public override void OnPlotterDetaching(Plotter plotter)
         {
-            base.OnPlotterDetaching(plotter);
-            if (_dxLeftMouseButtonDownHandlerCount > 0)
+            if (_dxLeftMouseButtonDownHandlerCount > 0 && Plotter != null)
             {
                 Plotter.MouseLeftButtonDown -= Plotter_MouseLeftButtonDown;
             }
+            base.OnPlotterDetaching(plotter);
         }
 
 
@@ -123,12 +123,12 @@ namespace DynamicDataDisplay.SharpDX9.Lines
         // so this keep tabs on whether we have a listener or not
 
         private int _dxLeftMouseButtonDownHandlerCount = 0;
-        private event MouseButtonEventHandler _dxLeftMouseButtonDown;
-        public event MouseButtonEventHandler DxLeftMouseButtonDown
+        private event MouseButtonEventHandler _dxMouseLeftButtonDown;
+        public event MouseButtonEventHandler DxMouseLeftButtonDown
         {
             add
             {
-                _dxLeftMouseButtonDown += value;
+                _dxMouseLeftButtonDown += value;
                 if (Interlocked.Increment(ref _dxLeftMouseButtonDownHandlerCount) == 1)
                 {
                     if (Plotter != null)
@@ -139,7 +139,7 @@ namespace DynamicDataDisplay.SharpDX9.Lines
             }
             remove
             {
-                _dxLeftMouseButtonDown -= value;
+                _dxMouseLeftButtonDown -= value;
 
                 if (Interlocked.Decrement(ref _dxLeftMouseButtonDownHandlerCount) == 0)
                 {

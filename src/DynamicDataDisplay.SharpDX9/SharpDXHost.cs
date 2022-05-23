@@ -183,13 +183,13 @@ namespace DynamicDataDisplay.SharpDX9
                     {
                         return;
                     }
-                    Result result = Device.TestCooperativeLevel();
-                    if (result.Failure)
-                    {
-                        throw new SharpDXException();
-                    }
                     try
                     {
+                        Result result = Device.TestCooperativeLevel();
+                        if (result.Failure)
+                        {
+                            throw new SharpDXException();
+                        }
                         Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.CullMode, Cull.None);
                         Device.SetRenderState(global::SharpDX.Direct3D9.RenderState.ZEnable, true);
                         Device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, Color.Transparent, float.MaxValue, 0);

@@ -67,28 +67,39 @@ namespace DynamicDataDisplay.SharpDX9
 			// Vertex buffers allocated on the default pool. AMD cards seem to be ok. Work around is to use
 			// the system pool, which is slow, or lock the back buffer via the target image.
 
+			// Order is important here
 			if (DxHost.LockImage())
 			{
-				if (_vertexBuffer == null || pointCount > _vertexBufferAllocated || pointCount < (_vertexBufferAllocated >> 1))
+				try
 				{
-					_vertexBuffer?.Dispose();
-					var newSize = MathHelper.CeilingPow2(pointCount);
-					_vertexBuffer = new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default);
-					_vertexBufferAllocated = newSize;
-					vertexBufferSizeChanged = true;
+					if (_vertexBuffer == null || pointCount > _vertexBufferAllocated || pointCount < (_vertexBufferAllocated >> 1))
+					{
+						_vertexBuffer?.Dispose();
+						var newSize = MathHelper.CeilingPow2(pointCount);
+						_vertexBuffer = newSize > 0 ? new VertexBuffer(Device, Utilities.SizeOf<TDxPoint>() * newSize, Usage.WriteOnly, VertexFormat.None, Pool.Default) : null;
+						_vertexBufferAllocated = newSize;
+						vertexBufferSizeChanged = true;
+					}
+					if (_vertexBuffer != null)
+					{
+						// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
+						var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.None);
+						vertexStream.WriteRange(_pointList);
+						_vertexBuffer.Unlock();
+					}
 				}
-				// Lock the entire buffer by specifying 0 for the offset and size, throw away it's current contents
-				var vertexStream = _vertexBuffer.Lock(0, 0, LockFlags.Discard);
-				vertexStream.WriteRange(_pointList);
-				_vertexBuffer.Unlock();
-				DxHost.UnlockImage();
+				finally
+				{
+					DxHost.UnlockImage();
+				}
+
 			}
 			_vertexCount = pointCount;
 
 			// Calculate the bounds of the list on a background thread
 			var localPointList = _pointList;
-			var dataTransform = Plotter.Viewport.Transform.DataTransform;
-			if (localPointList.Any())
+			var dataTransform = Plotter?.Viewport?.Transform?.DataTransform;
+			if (dataTransform!=null && localPointList.Any())
 			{
 				Action resizeAction = () =>
 				{
