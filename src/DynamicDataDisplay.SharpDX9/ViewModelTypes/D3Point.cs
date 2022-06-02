@@ -35,8 +35,16 @@ namespace DynamicDataDisplay.ViewModelTypes
             _point += new Vector2(offsetX, offsetY);
         }
 
-        public float X => _point.X;
+        public float X
+        {
+            get => _point.X;
+            set => _point.X = value;
+        }
 
-        public float Y => _point.Y;
+        public float Y
+        {
+            get => _point.Y;
+            set => _point.Y = value;
+        }
     }
 }
