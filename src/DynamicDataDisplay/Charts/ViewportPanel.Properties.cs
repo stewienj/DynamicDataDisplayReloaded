@@ -258,6 +258,27 @@ namespace DynamicDataDisplay.Charts
 
 		#endregion // end of MinScreenWidth
 
+		#region MinScreenHeight
+
+		public static double GetMinScreenHeight(DependencyObject obj)
+		{
+			return (double)obj.GetValue(MinScreenHeightProperty);
+		}
+
+		public static void SetMinScreenHeight(DependencyObject obj, double value)
+		{
+			obj.SetValue(MinScreenHeightProperty, value);
+		}
+
+		public static readonly DependencyProperty MinScreenHeightProperty = DependencyProperty.RegisterAttached(
+		  "MinScreenHeight",
+		  typeof(double),
+		  typeof(ViewportPanel),
+		  new FrameworkPropertyMetadata(double.NaN, OnLayoutPropertyChanged));
+
+		#endregion // end of MinScreenHeight
+
+
 		protected static void OnLayoutPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			FrameworkElement uiElement = d as FrameworkElement;

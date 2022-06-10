@@ -113,6 +113,9 @@ namespace DynamicDataDisplay.Charts
 				double minScreenWidth = GetMinScreenWidth(child);
 				bool hasMinScreenWidth = minScreenWidth.IsNotNaN();
 
+				double minScreenHeight = GetMinScreenHeight(child);
+				bool hasMinScreenHeight = minScreenHeight.IsNotNaN();
+
 				double selfWidth = child.Width.IsNotNaN() ? child.Width : availableSize.Width;
 				double width = hasViewportWidth ? viewportWidth : selfWidth;
 
@@ -132,6 +135,12 @@ namespace DynamicDataDisplay.Charts
 				{
 					res.Width = minScreenWidth;
 				}
+
+				if (hasMinScreenHeight && res.Height < minScreenHeight)
+				{
+					res.Height = minScreenHeight;
+				}
+
 			}
 
 			if (res.Width.IsNaN()) res.Width = 0;
@@ -190,10 +199,18 @@ namespace DynamicDataDisplay.Charts
 				double screenHeight = hasViewportHeight ? r.Height : child.DesiredSize.Height;
 
 				double minScreenWidth = GetMinScreenWidth(child);
-				bool hasMinScreemWidth = minScreenWidth.IsNotNaN();
+				bool hasMinScreenWidth = minScreenWidth.IsNotNaN();
 
-				if (hasViewportWidth && screenWidth < minScreenWidth)
+				double minScreenHeight = GetMinScreenHeight(child);
+				bool hasMinScreenHeight = minScreenHeight.IsNotNaN();
+
+
+				if (hasMinScreenWidth && screenWidth < minScreenWidth)
 					screenWidth = minScreenWidth;
+
+				if (hasMinScreenHeight && screenHeight < minScreenHeight)
+					screenHeight = minScreenHeight;
+
 
 				Point location = new Point(viewportX, viewportY).ViewportToScreen(transform);
 
