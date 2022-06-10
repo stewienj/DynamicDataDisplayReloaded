@@ -46,6 +46,7 @@
                 <m:Demonstration Description="Heatmap on Map" Uri="/Demos/Custom/HeatMapOnMapSample.xaml"/>
                 <m:Demonstration Description="Grouped Markers on Map" Uri="/Demos/Custom/GroupedMarkersOnMapSample.xaml"/>
                 <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
+                <m:Demonstration Description="Marker Samples Log" Uri="/Demos/v04/Markers/DifferentBuildInMarkersPageLog.xaml"/>
             </m:ReleaseInfo>
         </m:SamplesCollection>
 

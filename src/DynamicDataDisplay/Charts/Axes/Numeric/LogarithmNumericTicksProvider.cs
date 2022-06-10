@@ -77,6 +77,11 @@ namespace DynamicDataDisplay.Charts.Axes.Numeric
 			double min = LogByBase(range.Min);
 			double max = LogByBase(range.Max);
 
+			if (double.IsNaN(min) || double.IsNaN(max))
+			{
+				return new double[0];
+			}
+
 			double minDown = Math.Floor(min);
 			double maxUp = Math.Ceiling(max);
 
