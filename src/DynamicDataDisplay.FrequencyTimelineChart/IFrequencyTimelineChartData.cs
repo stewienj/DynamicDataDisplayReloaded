@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace DynamicDataDisplay.TimelineChart
 {
-  public interface ITimelineChartDataObject
+  public interface IFrequencyTimelineChartData
   {
     public double X { get; }
     public double Y { get; }

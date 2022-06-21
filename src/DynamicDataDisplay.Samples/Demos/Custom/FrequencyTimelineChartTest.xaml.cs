@@ -20,9 +20,9 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
     /// <summary>
     /// Interaction logic for TimelineChartTest.xaml
     /// </summary>
-    public partial class TimelineChartTest : Page
+    public partial class FrequencyTimelineChartTest : Page
     {
-        public TimelineChartTest()
+        public FrequencyTimelineChartTest()
         {
             this.DataContext = new TimelineChartTestViewModel();
             InitializeComponent();
@@ -33,11 +33,11 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
     {
         public TimelineChartTestViewModel()
         {
-            var baseTime = DateTime.Now.ToUniversalTime();
-            var timelines = new List<ITimelineChartDataObject>();
+            var baseTime = DateTime.Now;
+            var timelines = new List<IFrequencyTimelineChartData>();
             for (int i = 1; i < 20; ++i)
             {
-                timelines.Add(new TimelineChartDataObject
+                timelines.Add(new FrequencyTimelineChartData
                 {
                     Id = $"Object No {i}",
                     LowerFrequency = Math.Pow(10.0, i * 0.5 - 0.05),
@@ -50,7 +50,7 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
             Timelines = timelines;
         }
 
-        public IEnumerable<ITimelineChartDataObject> Timelines
+        public IEnumerable<IFrequencyTimelineChartData> Timelines
         {
             get;
         }

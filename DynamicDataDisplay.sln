@@ -214,7 +214,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.SamplesD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectXDLLs", "src\DirectXSDK2010DLLs\DirectXDLLs.csproj", "{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.TimelineChart", "src\DynamicDataDisplay.TimelineChart\DynamicDataDisplay.TimelineChart.csproj", "{05FC6ADB-4578-4C29-BECE-7797CE78780D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.FrequencyTimelineChart", "src\DynamicDataDisplay.FrequencyTimelineChart\DynamicDataDisplay.FrequencyTimelineChart.csproj", "{C7BAE217-47B1-437D-AA71-F9350D15C4C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1306,18 +1306,18 @@ Global
 		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x64.Build.0 = Release|Any CPU
 		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x86.ActiveCfg = Release|Any CPU
 		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x86.Build.0 = Release|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x64.Build.0 = Debug|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x86.Build.0 = Debug|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x64.ActiveCfg = Release|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x64.Build.0 = Release|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x86.ActiveCfg = Release|Any CPU
-		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x86.Build.0 = Release|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Release|x64.Build.0 = Release|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7BAE217-47B1-437D-AA71-F9350D15C4C1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

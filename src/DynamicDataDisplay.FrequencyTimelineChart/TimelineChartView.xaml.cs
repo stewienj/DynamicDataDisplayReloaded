@@ -20,7 +20,7 @@ namespace DynamicDataDisplay.TimelineChart
     /// <summary>
     /// Interaction logic for TimelineChartView.xaml
     /// </summary>
-    public partial class TimelineChartView : UserControl
+    public partial class TimelineChartView : ChartPlotter
     {
         public TimelineChartView()
         {
@@ -33,42 +33,33 @@ namespace DynamicDataDisplay.TimelineChart
 
         private void RemoveOldAxii()
         {
-            var oldAxii = _chartPlotter.Children.OfType<NumericAxis>().ToList();
+            var oldAxii = Children.OfType<NumericAxis>().ToList();
             foreach (var oldAxis in oldAxii)
             {
-                _chartPlotter.Children.Remove(oldAxis);
+                Children.Remove(oldAxis);
             }
         }
 
         private void SetupHorizontalHourAxis()
         {
-            /*
-      var axis = new HorizontalAxis
-      {
-        TicksProvider = new CustomBaseNumericTicksProvider(60),
-        LabelProvider = new CustomBaseNumericLabelProvider(60, " "),
-        Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#667E9F")),
-        Foreground = Brushes.White,
-      };
-      axis.AxisControl.TicksPath.Stroke = Brushes.White;
-
-      _chartPlotter.Children.Add(axis);
-            */
-
-            _chartPlotter.Children.Add(new HorizontalAxis
+            var utcAxis = new HorizontalAxis
             {
-                LabelProvider = new TimelineChartDateTimeLabelProvider()
-            });
+                TicksProvider = new CustomBaseNumericTicksProvider(60),
+                LabelProvider = new UtcDateTimeLabelProvider(),
+                Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#667E9F")),
+                Foreground = Brushes.White,
+            };
+            utcAxis.AxisControl.TicksPath.Stroke = Brushes.White;
 
-            _chartPlotter.Children.Add(new HorizontalAxisTitle
+            Children.Add(utcAxis);
+
+            Children.Add(new HorizontalAxisTitle
             {
                 Margin = new Thickness(0, 5, 0, 2),
                 FontFamily = new FontFamily("Georgia"),
                 FontSize = 14,
                 Content = "UTC Time"
             });
-
-
         }
 
         private void SetupVerticalFrequencyAxis()
@@ -99,9 +90,9 @@ namespace DynamicDataDisplay.TimelineChart
                 text.FontWeight = FontWeights.Bold;
             });
 
-            _chartPlotter.Children.Add(verticalAxis);
+            Children.Add(verticalAxis);
 
-            _chartPlotter.Children.Add(new VerticalAxisTitle
+            Children.Add(new VerticalAxisTitle
             {
                 Margin = new Thickness(5, 0, 5, 0),
                 FontFamily = new FontFamily("Georgia"),
@@ -110,14 +101,14 @@ namespace DynamicDataDisplay.TimelineChart
             });
         }
 
-        public IEnumerable<ITimelineChartDataObject> ItemsSource
+        public IEnumerable<IFrequencyTimelineChartData> ItemsSource
         {
-            get { return (IEnumerable<ITimelineChartDataObject>)GetValue(ItemsSourceProperty); }
+            get { return (IEnumerable<IFrequencyTimelineChartData>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<ITimelineChartDataObject>), typeof(TimelineChartView), new PropertyMetadata(null));
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<IFrequencyTimelineChartData>), typeof(TimelineChartView), new PropertyMetadata(null));
     }
 }

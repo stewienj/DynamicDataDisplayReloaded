@@ -47,7 +47,7 @@
                 <m:Demonstration Description="Grouped Markers on Map" Uri="/Demos/Custom/GroupedMarkersOnMapSample.xaml"/>
                 <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
                 <m:Demonstration Description="Marker Samples Log" Uri="/Demos/v04/Markers/DifferentBuildInMarkersPageLog.xaml"/>
-                <m:Demonstration Description="Timeline Chart Test" Uri="/Demos/Custom/TimelineChartTest.xaml"/>
+                <m:Demonstration Description="Frequency Timeline Chart" Uri="/Demos/Custom/FrequencyTimelineChartTest.xaml"/>
             </m:ReleaseInfo>
         </m:SamplesCollection>
 

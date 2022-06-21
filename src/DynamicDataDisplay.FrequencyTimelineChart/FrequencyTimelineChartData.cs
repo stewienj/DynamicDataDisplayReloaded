@@ -11,7 +11,7 @@ namespace DynamicDataDisplay.TimelineChart
     /// <summary>
     /// A sample implementation of the ITimelineChartDataObject inteface
     /// </summary>
-    public class TimelineChartDataObject : D3NotifyPropertyChanged, ITimelineChartDataObject
+    public class FrequencyTimelineChartData : D3NotifyPropertyChanged, IFrequencyTimelineChartData
     {
         private string _id;
         public string Id

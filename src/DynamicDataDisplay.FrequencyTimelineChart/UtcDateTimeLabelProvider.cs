@@ -10,27 +10,13 @@ using System.Windows.Controls;
 
 namespace DynamicDataDisplay.TimelineChart
 {
-    public class TimelineChartDateTimeLabelProvider : LabelProviderBase<double>
+    public class UtcDateTimeLabelProvider : LabelProviderBase<double>
     {
         private DateTime _startDateTime = new DateTime();
 
-        public TimelineChartDateTimeLabelProvider()
+        public UtcDateTimeLabelProvider()
         {
         }
-
-        /*
-    public void SetDateAndTime(string scenarioStartDate, int startHour, int startMinute)
-    {
-      startOffsetMins = startHour * 60 + startMinute;
-
-      if (!System.DateTime.TryParse(scenarioStartDate, out startDateTime))
-      {
-        // If no scenario start time use today's date (but start at 0 hour).
-        System.DateTime utcNow = System.DateTime.UtcNow;
-        startDateTime = new System.DateTime(utcNow.Year, utcNow.Month, utcNow.Day);
-      }
-    }
-        */
 
         public override UIElement[] CreateLabels(ITicksInfo<double> ticksInfo)
         {
@@ -49,7 +35,7 @@ namespace DynamicDataDisplay.TimelineChart
                 if (tickInfo.Tick > 0)
                 {
                     // We add the base scenario time and start hour and minutes to generate scenario time of day for the X-axis.                
-                    labelText = _startDateTime.AddMinutes(tickInfo.Tick).ToString("dd/MM/yyyy HH:mm UTC");
+                    labelText = _startDateTime.AddMinutes(tickInfo.Tick).ToUniversalTime().ToString("dd/MM/yyyy HH:mm UTC");
                 }
                 TextBlock label = (TextBlock)GetResourceFromPool();
                 if (label == null)

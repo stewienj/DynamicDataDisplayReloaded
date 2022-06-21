@@ -19,10 +19,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DynamicDataDisplay.BitmapGraphs\DynamicDataDisplay.BitmapGraphs.csproj" />
+    <ProjectReference Include="..\DynamicDataDisplay.FrequencyTimelineChart\DynamicDataDisplay.FrequencyTimelineChart.csproj" />
     <ProjectReference Include="..\DynamicDataDisplay.Maps\DynamicDataDisplay.Maps.csproj" />
     <ProjectReference Include="..\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" />
     <ProjectReference Include="..\DynamicDataDisplay.RadioBand\DynamicDataDisplay.RadioBand.csproj" />
-    <ProjectReference Include="..\DynamicDataDisplay.TimelineChart\DynamicDataDisplay.TimelineChart.csproj" />
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj" />
   </ItemGroup>
   <ItemGroup>
