@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29911.84
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{5887496D-7DE1-4477-9040-8A27F5A97DD2}"
 EndProject
@@ -213,6 +213,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.SamplesDX9", "src\DynamicDataDisplay.SamplesDX9\DynamicDataDisplay.SamplesDX9.csproj", "{16CA59CE-4664-4739-A1B1-1FCD0447596F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectXDLLs", "src\DirectXSDK2010DLLs\DirectXDLLs.csproj", "{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicDataDisplay.TimelineChart", "src\DynamicDataDisplay.TimelineChart\DynamicDataDisplay.TimelineChart.csproj", "{05FC6ADB-4578-4C29-BECE-7797CE78780D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1304,6 +1306,18 @@ Global
 		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x64.Build.0 = Release|Any CPU
 		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x86.ActiveCfg = Release|Any CPU
 		{35E3A3BA-E929-4CB0-AF02-055AA210B3B4}.Release|x86.Build.0 = Release|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x64.Build.0 = Debug|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Debug|x86.Build.0 = Debug|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x64.ActiveCfg = Release|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x64.Build.0 = Release|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x86.ActiveCfg = Release|Any CPU
+		{05FC6ADB-4578-4C29-BECE-7797CE78780D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

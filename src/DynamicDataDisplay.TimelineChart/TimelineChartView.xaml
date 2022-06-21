@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="DynamicDataDisplay.TimelineChart.TimelineChartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             xmlns:local="clr-namespace:DynamicDataDisplay.TimelineChart"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Grid>
+    <d3:ChartPlotter x:Name="_chartPlotter">
+      <d3:ChartPlotter.DataTransform>
+        <d3:Log10YTransform/>
+      </d3:ChartPlotter.DataTransform>
+
+      <d3:DevMarkerChart ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ItemsSource}">
+        <d3:DevMarkerChart.MarkerBuilder>
+          <d3:TemplateMarkerGenerator>
+            <DataTemplate>
+              <Grid d3:ViewportPanel.X="{Binding X}"
+                    d3:ViewportPanel.Y="{Binding Y}"
+                    d3:ViewportPanel.ViewportWidth="{Binding Width}"
+                    d3:ViewportPanel.ViewportHeight="{Binding Height}"
+                    d3:ViewportPanel.MinScreenWidth="3"
+                    d3:ViewportPanel.MinScreenHeight="3"
+                    d3:ViewportPanel.ViewportHorizontalAlignment="Left"
+                    d3:ViewportPanel.ViewportVerticalAlignment="Center">
+
+                <Path Stroke="Green" Fill="LightGreen" StrokeThickness="1" Stretch="Fill">
+                  <Path.Data>
+                    <RectangleGeometry RadiusX="0" RadiusY="0" Rect="0,0,1,1"/>
+                  </Path.Data>
+                </Path>
+
+              </Grid>
+            </DataTemplate>
+          </d3:TemplateMarkerGenerator>
+        </d3:DevMarkerChart.MarkerBuilder>
+      </d3:DevMarkerChart>
+
+      <!-- Marker chart for the labels -->
+
+      <d3:DevMarkerChart ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=ItemsSource}">
+        <d3:DevMarkerChart.MarkerBuilder>
+          <d3:TemplateMarkerGenerator>
+            <DataTemplate>
+              <Grid d3:ViewportPanel.X="{Binding X}"
+                    d3:ViewportPanel.Y="{Binding Y}"
+                    d3:ViewportPanel.ViewportWidth="{Binding Width}"
+                    d3:ViewportPanel.ViewportHeight="{Binding Height}"
+                    d3:ViewportPanel.MinScreenWidth="3"
+                    d3:ViewportPanel.MinScreenHeight="24"
+                    d3:ViewportPanel.ViewportHorizontalAlignment="Left"
+                    d3:ViewportPanel.ViewportVerticalAlignment="Center"
+                    Background="Transparent">
+
+                <Border BorderBrush="Black" CornerRadius="4" BorderThickness="1" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="2,0,2,1" >
+                  <TextBlock Text="{Binding Id}"/>
+                </Border>
+
+              </Grid>
+            </DataTemplate>
+          </d3:TemplateMarkerGenerator>
+        </d3:DevMarkerChart.MarkerBuilder>
+      </d3:DevMarkerChart>
+
+    </d3:ChartPlotter>
+  </Grid>
+</UserControl>
