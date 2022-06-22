@@ -1,4 +1,4 @@
-﻿<d3:ChartPlotter x:Class="DynamicDataDisplay.TimelineChart.TimelineChartView"
+﻿<d3:ChartPlotter x:Class="DynamicDataDisplay.TimelineChart.FrequencyTimelineChart"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,7 +10,8 @@
         <d3:Log10YTransform/>
     </d3:ChartPlotter.DataTransform>
 
-    <d3:DevMarkerChart ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=d3:ChartPlotter}, Path=ItemsSource}">
+    <!-- Using ElementName for binding because RelativeSource randomly fails for some reason -->
+    <d3:DevMarkerChart ItemsSource="{Binding ElementName=_chartPlotter, Path=ItemsSource}">
         <d3:DevMarkerChart.MarkerBuilder>
             <d3:TemplateMarkerGenerator>
                 <DataTemplate>
@@ -37,7 +38,8 @@
 
     <!-- Marker chart for the labels -->
 
-    <d3:DevMarkerChart ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=d3:ChartPlotter}, Path=ItemsSource}">
+    <!-- Using ElementName for binding because RelativeSource randomly fails for some reason -->
+    <d3:DevMarkerChart ItemsSource="{Binding ElementName=_chartPlotter, Path=ItemsSource}">
         <d3:DevMarkerChart.MarkerBuilder>
             <d3:TemplateMarkerGenerator>
                 <DataTemplate>

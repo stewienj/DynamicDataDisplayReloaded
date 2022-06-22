@@ -20,9 +20,9 @@ namespace DynamicDataDisplay.TimelineChart
     /// <summary>
     /// Interaction logic for TimelineChartView.xaml
     /// </summary>
-    public partial class TimelineChartView : ChartPlotter
+    public partial class FrequencyTimelineChart : ChartPlotter
     {
-        public TimelineChartView()
+        public FrequencyTimelineChart()
         {
             InitializeComponent();
 
@@ -109,6 +109,6 @@ namespace DynamicDataDisplay.TimelineChart
 
         // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<IFrequencyTimelineChartData>), typeof(TimelineChartView), new PropertyMetadata(null));
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<IFrequencyTimelineChartData>), typeof(FrequencyTimelineChart), new PropertyMetadata(null));
     }
 }
