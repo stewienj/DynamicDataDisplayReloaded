@@ -8,8 +8,8 @@
 
     <!-- See the bottom of https://github.com/Microsoft/msbuild/issues/1603 -->
     <!-- Output paths - Old Style -->
-    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)Intermediate\Base\$(Platform)_$(Configuration)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(MSBuildThisFileDirectory)Intermediate\Build\$(Platform)_$(Configuration)_$(TargetFramework)\$(MSBuildProjectName)\</IntermediateOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)Bin\Base\$(Platform)_$(Configuration)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(MSBuildThisFileDirectory)Bin\Build\$(Platform)_$(Configuration)_$(TargetFramework)\$(MSBuildProjectName)\</IntermediateOutputPath>
 
     <!-- This gets rid of MSB3270 which warns about mixing AnyCPU with x86 or x64 -->
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>

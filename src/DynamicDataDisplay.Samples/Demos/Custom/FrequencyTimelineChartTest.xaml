@@ -8,6 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <d3:TimelineChartView ItemsSource="{Binding Timelines}" Margin="24"/>
+        <d3:FrequencyTimelineChart ItemsSource="{Binding Timelines}" Margin="24"/>
     </Grid>
 </Page>

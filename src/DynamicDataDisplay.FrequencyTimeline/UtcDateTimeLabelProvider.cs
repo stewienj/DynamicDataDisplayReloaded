@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DynamicDataDisplay.TimelineChart
+namespace DynamicDataDisplay.FrequencyTimeline
 {
     public class UtcDateTimeLabelProvider : LabelProviderBase<double>
     {

@@ -25,5 +25,5 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Markup;
 
-[assembly: XmlnsDefinition("http://research.microsoft.com/DynamicDataDisplay/1.0", "DynamicDataDisplay.TimelineChart")]
+[assembly: XmlnsDefinition("http://research.microsoft.com/DynamicDataDisplay/1.0", "DynamicDataDisplay.FrequencyTimeline")]
 

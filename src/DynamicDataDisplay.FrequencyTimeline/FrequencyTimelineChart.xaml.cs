@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DynamicDataDisplay.TimelineChart
+namespace DynamicDataDisplay.FrequencyTimeline
 {
     /// <summary>
     /// Interaction logic for TimelineChartView.xaml
