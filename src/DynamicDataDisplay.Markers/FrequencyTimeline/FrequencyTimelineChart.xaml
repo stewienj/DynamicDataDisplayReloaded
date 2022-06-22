@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local1="clr-namespace:DynamicDataDisplay.Markers"
+             xmlns:local2="clr-namespace:DynamicDataDisplay.Charts.Markers"
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
              xmlns:local="clr-namespace:DynamicDataDisplay.FrequencyTimeline"
              x:Name="_chartPlotter">
@@ -13,9 +15,9 @@
     <!-- Marker chart for the Horizontal Bars -->
 
     <!-- Using ElementName for binding because RelativeSource randomly fails for some reason -->
-    <d3:DevMarkerChart ItemsSource="{Binding ElementName=_chartPlotter, Path=ItemsSource}">
-        <d3:DevMarkerChart.MarkerBuilder>
-            <d3:TemplateMarkerGenerator>
+    <local2:DevMarkerChart ItemsSource="{Binding ElementName=_chartPlotter, Path=ItemsSource}">
+        <local2:DevMarkerChart.MarkerBuilder>
+            <local1:TemplateMarkerGenerator>
                 <DataTemplate>
                     <Grid d3:ViewportPanel.X="{Binding StartTime, Converter={x:Static local:DateTimeToMinutesConverter.Instance}}"
                           d3:ViewportPanel.Y="{Binding LowerFrequency, Converter={x:Static local:DoubleToLog10Converter.Instance}}"
@@ -47,16 +49,16 @@
 
                     </Grid>
                 </DataTemplate>
-            </d3:TemplateMarkerGenerator>
-        </d3:DevMarkerChart.MarkerBuilder>
-    </d3:DevMarkerChart>
+            </local1:TemplateMarkerGenerator>
+        </local2:DevMarkerChart.MarkerBuilder>
+    </local2:DevMarkerChart>
 
     <!-- Marker chart for the labels -->
 
     <!-- Using ElementName for binding because RelativeSource randomly fails for some reason -->
-    <d3:DevMarkerChart ItemsSource="{Binding ElementName=_chartPlotter, Path=ItemsSource}">
-        <d3:DevMarkerChart.MarkerBuilder>
-            <d3:TemplateMarkerGenerator>
+    <local2:DevMarkerChart ItemsSource="{Binding ElementName=_chartPlotter, Path=ItemsSource}">
+        <local2:DevMarkerChart.MarkerBuilder>
+            <local1:TemplateMarkerGenerator>
                 <DataTemplate>
                     <Grid d3:ViewportPanel.X="{Binding StartTime, Converter={x:Static local:DateTimeToMinutesConverter.Instance}}"
                           d3:ViewportPanel.Y="{Binding LowerFrequency, Converter={x:Static local:DoubleToLog10Converter.Instance}}"
@@ -83,8 +85,8 @@
 
                     </Grid>
                 </DataTemplate>
-            </d3:TemplateMarkerGenerator>
-        </d3:DevMarkerChart.MarkerBuilder>
-    </d3:DevMarkerChart>
+            </local1:TemplateMarkerGenerator>
+        </local2:DevMarkerChart.MarkerBuilder>
+    </local2:DevMarkerChart>
 </d3:ChartPlotter>
  

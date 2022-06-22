@@ -9,6 +9,8 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.Charts.NewLine")]
 [assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.Charts.Selectors")]
 [assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.Markers.MarkerGenerators.Rendering")]
+[assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.Charts.Selectors")]
+[assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.FrequencyTimeline")]
 
 [assembly: AllowPartiallyTrustedCallers]
 

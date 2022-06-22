@@ -1,9 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DynamicDataDisplay.Markers\DynamicDataDisplay.Markers.csproj" />
-  </ItemGroup>
-</Project>
