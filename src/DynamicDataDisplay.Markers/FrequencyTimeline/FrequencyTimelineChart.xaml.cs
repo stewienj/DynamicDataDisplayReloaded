@@ -109,6 +109,14 @@ namespace DynamicDataDisplay.FrequencyTimeline
 
         // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<IFrequencyTimelineChartData>), typeof(FrequencyTimelineChart), new PropertyMetadata(null));
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<IFrequencyTimelineChartData>), typeof(FrequencyTimelineChart), new PropertyMetadata(null, (s,e)=>
+            {
+                // For some reason data binding was failing internally on this, so just push it from code behind
+                if (s is FrequencyTimelineChart chart)
+                {
+                    chart._horizontalBarsMarkers.ItemsSource = e.NewValue;
+                    chart._labelsMarkers.ItemsSource = e.NewValue;
+                }
+            }));
     }
 }
