@@ -1,4 +1,5 @@
 ﻿using DynamicDataDisplay.Charts.Maps;
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,9 +8,8 @@ using Wms.Client;
 
 namespace DynamicDataDisplay.Maps.Servers.Network
 {
-	public class WMSTileServer : NetworkTileServer
+    public class WMSTileServer : NetworkTileServer
 	{
-
 		private static string mCachePath = null;
 		//-------------------------------------------------------------------------
 		// Set in static constructor to be %TEMP%/<AssemblyID>/
@@ -75,8 +75,8 @@ namespace DynamicDataDisplay.Maps.Servers.Network
 		{
 			get
 			{
-				int ServiceHash = Service.Uri.AbsolutePath.GetHashCode();
-				return string.Format("WMS-{0}-{1}", ServiceHash, Layer == null ? "" : Layer.Name);
+				int ServiceHash = Service.Uri.AbsolutePath.GetDeterministicHashCode();
+				return string.Format("WMS-{0}-{1}", ServiceHash, Layer?.Name ?? String.Empty);
 			}
 		}
 
@@ -382,8 +382,8 @@ namespace DynamicDataDisplay.Maps.Servers.Network
 		//-------------------------------------------------------------------------
 		public override int GetHashCode()
 		{
-			return ServerName.GetHashCode()
-			  + 3 * Service.Uri.GetHashCode();
+			return ServerName.GetDeterministicHashCode()
+			  + 3 * Service.Uri.ToString().GetDeterministicHashCode();
 		}
 	}
 }

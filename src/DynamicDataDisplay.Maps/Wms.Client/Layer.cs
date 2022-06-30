@@ -93,7 +93,7 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode();
+				return (Uri, Format).GetHashCode();
 			}
 
 			public bool IsEmpty
@@ -700,7 +700,7 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode();
+				return (Name, Units, UnitSymbol).GetHashCode();
 			}
 
 			public override string ToString()
@@ -804,7 +804,7 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode();
+				return (Name, Uri).GetHashCode();
 			}
 		}
 
@@ -882,7 +882,7 @@ namespace Wms.Client
 
 			public override int GetHashCode()
 			{
-				return base.GetHashCode();
+				return (Name, Title, Abstract, StyleUri, StyleSheetUri, LegendUri).GetHashCode();
 			}
 		}
 
