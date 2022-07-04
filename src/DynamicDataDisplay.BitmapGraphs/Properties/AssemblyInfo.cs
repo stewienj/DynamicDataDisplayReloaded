@@ -22,8 +22,7 @@ using System.Windows.Markup;
 //the NeutralResourceLanguage attribute below.  Update the "en-US" in
 //the line below to match the UICulture setting in the project file.
 
-
-
+[assembly: NeutralResourcesLanguage("en-US")]
 
 [assembly: ThemeInfo(
 	ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
