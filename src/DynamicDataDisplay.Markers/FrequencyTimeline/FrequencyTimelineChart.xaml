@@ -78,7 +78,13 @@
                             </MultiBinding>
                         </d3:ViewportPanel.ViewportHeight>
 
-                        <Border x:Name="_textBlock" BorderBrush="Black" CornerRadius="4" BorderThickness="1" Background="GhostWhite" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="2,0,2,1" >
+                        <Border x:Name="_textBlock"  CornerRadius="4" BorderThickness="1" Background="GhostWhite" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="2,0,2,1" Margin="0,0,0,2">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="Black" Offset="0.05"/>
+                                    <GradientStop Color="#20000000" Offset="0.95"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
                             <TextBlock Text="{Binding Id}"/>
                         </Border>
 
