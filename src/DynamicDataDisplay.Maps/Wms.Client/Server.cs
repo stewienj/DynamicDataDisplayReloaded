@@ -1,5 +1,6 @@
 // $File: //depot/WMS/WMS Overview/Wms.Client/Server.cs $ $Revision: #1 $ $Change: 20 $ $DateTime: 2004/05/23 23:42:06 $
 
+using DynamicDataDisplay.Common.Auxiliary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -75,7 +76,7 @@ namespace Wms.Client
 			UriBuilder uriBuilder = new UriBuilder(url);
 			CapabilitiesRequestBuilder capsRequest = new CapabilitiesRequestBuilder(uriBuilder.Uri);
 
-			string fileName = Path.Combine(localCachePath, string.Format("{0}-{1}.xml", capsRequest.Uri.Host, uriBuilder.Uri.AbsolutePath.GetHashCode()));
+			string fileName = Path.Combine(localCachePath, string.Format("{0}-{1}.xml", capsRequest.Uri.Host, uriBuilder.Uri.AbsolutePath.GetDeterministicHashCode()));
 
 			if (!File.Exists(fileName))
 			{
