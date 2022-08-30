@@ -255,7 +255,10 @@ namespace DynamicDataDisplay.Charts
 			{
 				while (parent != window)
 				{
-					parent = (FrameworkElement)VisualTreeHelper.GetParent(child);
+					parent = VisualTreeHelper.GetParent(child) as FrameworkElement;
+					if (parent == null)
+						break;
+
 					child = parent;
 					var nameScope = NameScope.GetNameScope(parent);
 					if (nameScope != null)
