@@ -21,18 +21,9 @@
     <Compile Include="..\..\PropertySheets\BuildAssemblyInfo.cs">
       <Link>Properties\BuildAssemblyInfo.cs</Link>
     </Compile>
-    <Content Include="Samples\Sample1.cs" />
-    <Content Include="Samples\Dictionary1.xaml.cs">
-      <DependentUpon>Dictionary1.xaml</DependentUpon>
-    </Content>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DynamicDataDisplay\DynamicDataDisplay.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Samples\Dictionary1.xaml.cs" />
-    <Compile Remove="Samples\Sample1.cs" />
-    <Page Remove="Samples\Dictionary1.xaml" />
   </ItemGroup>
 </Project>

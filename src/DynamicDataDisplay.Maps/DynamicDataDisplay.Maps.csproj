@@ -38,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Coastline.txt" />
-    <Content Include="Wms.Client\DefaultServerDescriptors.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Map.DebugMenu.cs" />

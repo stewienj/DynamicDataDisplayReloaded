@@ -32,9 +32,6 @@
     <Compile Include="WmsException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DefaultServerDescriptors.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="WmsServerDescriptors.xsd">
       <SubType>Designer</SubType>
     </None>
