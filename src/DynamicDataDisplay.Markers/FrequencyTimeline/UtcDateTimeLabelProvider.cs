@@ -12,7 +12,7 @@ namespace DynamicDataDisplay.FrequencyTimeline
 {
     public class UtcDateTimeLabelProvider : LabelProviderBase<double>
     {
-        private DateTime _startDateTime = new DateTime();
+        private DateTime _zeroDateTime = new DateTime();
 
         public UtcDateTimeLabelProvider()
         {
@@ -32,11 +32,17 @@ namespace DynamicDataDisplay.FrequencyTimeline
 
                 string labelText = "";
 
-                if (tickInfo.Tick > 0)
+                // Check we are adding minutes (not subtracting), we are not adding more than 9999 years
+                if (tickInfo.Tick > 0 && tickInfo.Tick < 5_000_000_000)
                 {
                     // We add the base scenario time and start hour and minutes to generate scenario time of day for the X-axis.                
-                    labelText = _startDateTime.AddMinutes(tickInfo.Tick).ToUniversalTime().ToString("dd/MM/yyyy HH:mm UTC");
+                    labelText = _zeroDateTime.AddMinutes(tickInfo.Tick).ToUniversalTime().ToString("dd/MM/yyyy HH:mm UTC");
                 }
+                else
+                { 
+                    labelText = "?";
+                }
+
                 TextBlock label = (TextBlock)GetResourceFromPool();
                 if (label == null)
                 {
