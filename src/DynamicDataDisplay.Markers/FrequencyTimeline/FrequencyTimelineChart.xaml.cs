@@ -118,5 +118,34 @@ namespace DynamicDataDisplay.FrequencyTimeline
                     chart._labelsMarkers.ItemsSource = e.NewValue;
                 }
             }));
+
+        public IEnumerable<IFrequencyTimelineChartData> SelectedItems
+        {
+            get { return (IEnumerable<IFrequencyTimelineChartData>)GetValue(SelectedItemsProperty); }
+            set { SetValue(SelectedItemsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedItemsProperty =
+            DependencyProperty.Register("SelectedItems", typeof(IEnumerable<IFrequencyTimelineChartData>), typeof(FrequencyTimelineChart), 
+                new FrameworkPropertyMetadata(Enumerable.Empty<IFrequencyTimelineChartData>(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public bool ShowLabels
+        {
+            get { return (bool)GetValue(ShowLabelsProperty); }
+            set { SetValue(ShowLabelsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowLabels.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowLabelsProperty =
+            DependencyProperty.Register("ShowLabels", typeof(bool), typeof(FrequencyTimelineChart), new PropertyMetadata(true, (s, e) => 
+            {
+                if (s is FrequencyTimelineChart chart && e.NewValue is bool showLabels)
+                {
+                    chart._labelsMarkers.Visibility = showLabels ? Visibility.Visible : Visibility.Collapsed;
+                }
+            }));
+
+
     }
 }

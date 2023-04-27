@@ -7,7 +7,16 @@
              xmlns:local="clr-namespace:DynamicDataDisplay.Samples.Demos.Custom"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <d3:FrequencyTimelineChart ItemsSource="{Binding Timelines}" Margin="24"/>
-    </Grid>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <GroupBox Header="Settings" Grid.Row="0">
+      <StackPanel Orientation="Horizontal">
+        <CheckBox x:Name="_showLabels" IsChecked="True">Show Labels</CheckBox>
+      </StackPanel>
+    </GroupBox>
+    <d3:FrequencyTimelineChart Grid.Row="1" ItemsSource="{Binding Timelines}" Margin="24" ShowLabels="{Binding ElementName=_showLabels, Path=IsChecked}"/>
+  </Grid>
 </Page>
