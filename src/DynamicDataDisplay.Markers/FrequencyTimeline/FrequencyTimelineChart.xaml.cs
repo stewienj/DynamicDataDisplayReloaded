@@ -1,19 +1,10 @@
 ﻿using DynamicDataDisplay.Charts;
 using DynamicDataDisplay.Charts.Axes.Numeric;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DynamicDataDisplay.FrequencyTimeline
 {
@@ -118,17 +109,6 @@ namespace DynamicDataDisplay.FrequencyTimeline
                     chart._labelsMarkers.ItemsSource = e.NewValue;
                 }
             }));
-
-        public IEnumerable<IFrequencyTimelineChartData> SelectedItems
-        {
-            get { return (IEnumerable<IFrequencyTimelineChartData>)GetValue(SelectedItemsProperty); }
-            set { SetValue(SelectedItemsProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedItemsProperty =
-            DependencyProperty.Register("SelectedItems", typeof(IEnumerable<IFrequencyTimelineChartData>), typeof(FrequencyTimelineChart), 
-                new FrameworkPropertyMetadata(Enumerable.Empty<IFrequencyTimelineChartData>(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public bool ShowLabels
         {
