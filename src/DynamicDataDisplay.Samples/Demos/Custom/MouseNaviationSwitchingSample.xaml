@@ -33,6 +33,11 @@
             <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectedInstructions}"/>
           </StackPanel>
         </Border>
+        <Border BorderBrush="Gray" BorderThickness="1" Margin="8" CornerRadius="8" Background="White">
+          <StackPanel Margin="8">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding SelectionStatus}"/>
+          </StackPanel>
+        </Border>
       </StackPanel>
     </GroupBox>
 
@@ -70,20 +75,26 @@
 
         <d3:MouseNavigationFreehandSelectArea
           SelectedAreaPath="{Binding SelectionArea}"
+          SelectionStarted="{Binding SelectionStartedCommand}"
+          SelectionStopped="{Binding SelectionStoppedCommand}"
           d3:MouseNavigationSelector.Key="Freehand Select Area"/>
 
         <d3:MouseNavigationRectangleSelectArea
           SelectedAreaPath="{Binding SelectionArea}"
+          SelectionStarted="{Binding SelectionStartedCommand}"
+          SelectionStopped="{Binding SelectionStoppedCommand}"
           d3:MouseNavigationSelector.Key="Rectangle Select Area"/>
 
         <d3:MouseNavigationPolygonSelectArea
           SelectedAreaPath="{Binding SelectionArea}"
+          SelectionStarted="{Binding SelectionStartedCommand}"
+          SelectionStopped="{Binding SelectionStoppedCommand}"
           d3:MouseNavigationSelector.Key="Polygon Select Area"/>
 
         <d3:MouseNavigationMoveSelectedArea
           SelectedAreaPath="{Binding SelectionArea}"
-          StartedMoving="{Binding MoveStartedCommand}"
-          StoppedMoving="{Binding MoveStoppedCommand}"
+          SelectionStarted="{Binding SelectionStartedCommand}"
+          SelectionStopped="{Binding SelectionStoppedCommand}"
           d3:MouseNavigationSelector.Key="Move Selected Area"/>
 
       </d3:MouseNavigationSelector>

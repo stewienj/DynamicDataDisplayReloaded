@@ -108,12 +108,7 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
                 var index = _keys.IndexOf(SelectedMouseMode);
                 if (index < 0 || index >= _instructionSet.Length)
                 {
-                    return "Unknown Selection";
-                }
-                else if (SelectedMouseMode == "Move Selected Area")
-                {
-                    return _instructionSet[index] + MoveStatus;
-
+                    return "Unknown Selection Mode";
                 }
                 else
                 {
@@ -125,14 +120,13 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
         /// <summary>
         /// When is move area mode, indicates whether the user is moving or not moving the selection area
         /// </summary>
-        private string _moveStatus = "\nMove Status = Not Moving";
-        public string MoveStatus
+        private string _selectionStatus = "Selection Status = Not Selecting";
+        public string SelectionStatus
         {
-            get => _moveStatus;
+            get => _selectionStatus;
             set
             {
-                SetProperty(ref _moveStatus, value);
-                RaisePropertyChanged(nameof(SelectedInstructions));
+                SetProperty(ref _selectionStatus, value);
             }
         }
 
@@ -157,18 +151,18 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
         /// Command that gets called when the user starts moving the selection
         /// </summary>
         private RelayCommandFactoryD3 _moveStartedCommand = new RelayCommandFactoryD3();
-        public ICommand MoveStartedCommand => _moveStartedCommand.GetCommand(() =>
+        public ICommand SelectionStartedCommand => _moveStartedCommand.GetCommand(() =>
         {
-            MoveStatus = "\nMove Status = Moving";
+            SelectionStatus = "Selection Status = Selection In Progress";
         });
 
         /// <summary>
         /// Command that gets called when the user stops moving the selection
         /// </summary>
         private RelayCommandFactoryD3 _moveStoppedCommand = new RelayCommandFactoryD3();
-        public ICommand MoveStoppedCommand => _moveStoppedCommand.GetCommand(() =>
+        public ICommand SelectionStoppedCommand => _moveStoppedCommand.GetCommand(() =>
         {
-            MoveStatus = "\nMove Status = Not Moving";
+            SelectionStatus = "Selection Status = Not Selecting";
         });
 
         #endregion Commands
