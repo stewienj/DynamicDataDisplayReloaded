@@ -20,11 +20,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       
     - name: Checkout DynamicDataDisplayReloaded
-      uses: actions/checkout@v2.1.0
+      uses: actions/checkout@v3.5.2
 
     - name: Setup msbuild
-      uses: microsoft/setup-msbuild@v1
-  
+      uses: microsoft/setup-msbuild@v1.3.1
+
     - name: Build Debug DLL
       run: msbuild -restore DynamicDataDisplay.sln -p:Configuration=Debug -p:Platform="Any CPU" -m
 
