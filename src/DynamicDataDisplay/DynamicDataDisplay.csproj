@@ -62,22 +62,4 @@
       <Version>4.5.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Charts\Axes\DateTimeTicksProvider.cs" />
-    <Compile Remove="Charts\Axes\DateTimeTicksProviderBase.cs" />
-    <Compile Remove="Charts\Axes\DefaultNumericTicksProvider.cs" />
-    <Compile Remove="Charts\MarkerPointGraph.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\ChartCommands.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\DefaultContextMenu.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\InertialMouseNavigation.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\KeyboardNavigation.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\MessagesHelper.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\MouseNavigation.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\NavigationBase.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\RectangleSelectionAdorner.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\TouchPadScroll.cs" />
-    <Compile Remove="Charts\Navigation\Navigation\WindowsMessages.cs" />
-    <Compile Remove="Common\ObservableUIElementCollection.cs" />
-    <Compile Remove="Common\Plotter.xaml.cs" />
-  </ItemGroup>
 </Project>
