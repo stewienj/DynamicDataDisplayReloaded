@@ -17,7 +17,6 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
         {
             DataContext = new MouseNaviationSwitchingViewModel();
             InitializeComponent();
-            _chartPlotter.Children.Remove(_chartPlotter.MouseNavigation);
             // Grabs the focus so when the user clicks the ListBox it works immediately
             Focus();
         }

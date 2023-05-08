@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 
@@ -22,16 +20,22 @@ namespace DynamicDataDisplay.Charts.Navigation
 
         public void OnPlotterAttached(Plotter plotter)
         {
+            var context = SynchronizationContext.Current;
             _plotter = (Plotter2D)plotter;
-            if (_plotter is ChartPlotter chartPlotter)
+
+            // Have to do this on the next pass of the UI thread else we get an invalid state exception
+            _plotter.Dispatcher.BeginInvoke(() =>
             {
-                _plotter.Children.Remove(chartPlotter.MouseNavigation);
-            }
-            DataContext = plotter.DataContext;
-            if (_lastSelectedElement != null)
-            {
-                plotter.Children.Add(_lastSelectedElement);
-            }
+                if (_plotter is ChartPlotter chartPlotter)
+                {
+                    _plotter.Children.Remove(chartPlotter.MouseNavigation);
+                }
+                DataContext = plotter.DataContext;
+                if (_lastSelectedElement != null)
+                {
+                    plotter.Children.Add(_lastSelectedElement);
+                }
+            });
         }
 
         public void OnPlotterDetaching(Plotter plotter)
@@ -73,10 +77,10 @@ namespace DynamicDataDisplay.Charts.Navigation
                         {
                             // Find the matching element
                             selectedElement = control
-                          .Children
-                          .OfType<DependencyObject>()
-                          .Where(child => GetKey(child)?.ToString() == e.NewValue.ToString())
-                          .FirstOrDefault() as IPlotterElement;
+                                .Children
+                                .OfType<DependencyObject>()
+                                .Where(child => GetKey(child)?.ToString() == e.NewValue.ToString())
+                                .FirstOrDefault() as IPlotterElement;
                         }
 
                         // Check that the selected element has actually changed, if so then
