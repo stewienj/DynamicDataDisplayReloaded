@@ -299,7 +299,7 @@ namespace DynamicDataDisplay.Common.Auxiliary
 			return bmp;
 		}
 
-		public static BitmapSource CreateElementScreenshot(UIElement uiElement)
+		public static BitmapSource CreateElementScreenshot(UIElement uiElement, double dpi = 96.0)
 		{
 			bool measureValid = uiElement.IsMeasureValid;
 
@@ -322,26 +322,48 @@ namespace DynamicDataDisplay.Common.Auxiliary
 				uiElement.Arrange(new Rect(size));
 			}
 
-			RenderTargetBitmap bmp = new RenderTargetBitmap(
-				(int)uiElement.RenderSize.Width, (int)uiElement.RenderSize.Height,
-				96, 96, PixelFormats.Default);
+            Size imgSize = new Size(
+			  Math.Min(uiElement.RenderSize.Width * dpi / 96.0, 20000),
+			  Math.Min(uiElement.RenderSize.Height * dpi / 96.0, 20000));
 
-			// this is waiting for dispatcher to perform measure, arrange and render passes
-			uiElement.Dispatcher.Invoke(((Action)(() => { })), DispatcherPriority.Background);
+            var relativeLocation = new Point(0, 0);
+            if (VisualTreeHelper.GetParent(uiElement) is UIElement container)
+            {
+                relativeLocation = uiElement.TranslatePoint(relativeLocation, container);
+                // Ignore negative offsets, we don't handle that
+                relativeLocation = new Point(Math.Max(relativeLocation.X * dpi / 96.0, 0), Math.Max(relativeLocation.Y * dpi / 96.0, 0));
+            }
+
+            RenderTargetBitmap bmp = new RenderTargetBitmap(
+                (int)(imgSize.Width + relativeLocation.X),
+                (int)(imgSize.Height + relativeLocation.Y),
+                dpi, dpi, PixelFormats.Default);
+
+            // this is waiting for dispatcher to perform measure, arrange and render passes
+            uiElement.Dispatcher.Invoke(((Action)(() => { })), DispatcherPriority.Background);
 
 			Size elementSize = uiElement.DesiredSize;
 			// white background
-			Rectangle whiteRect = new Rectangle { Width = elementSize.Width, Height = elementSize.Height, Fill = Brushes.White };
-			whiteRect.Measure(elementSize);
-			whiteRect.Arrange(new Rect(elementSize));
+			Rectangle whiteRect = new Rectangle { Width = imgSize.Width, Height = imgSize.Height, Fill = Brushes.White };
+			whiteRect.Measure(imgSize);
+			whiteRect.Arrange(new Rect(relativeLocation, imgSize));
 			bmp.Render(whiteRect);
-
 			bmp.Render(uiElement);
+            bmp.Freeze();
 
-			return bmp;
-		}
+            if (relativeLocation.X > 0 || relativeLocation.Y > 0)
+            {
+                var cropped = new CroppedBitmap(bmp, new Int32Rect((int)relativeLocation.X, (int)relativeLocation.Y, (int)imgSize.Width, (int)imgSize.Height));
+                cropped.Freeze();
+                return cropped;
+            }
+            else
+            {
+                return bmp;
+            }
+        }
 
-		private static Dictionary<BitmapSource, string> pendingBitmaps = new Dictionary<BitmapSource, string>();
+        private static Dictionary<BitmapSource, string> pendingBitmaps = new Dictionary<BitmapSource, string>();
 
 		public static void SaveBitmapToStream(BitmapSource bitmap, Stream stream, string fileExtension, int dpi)
 		{
