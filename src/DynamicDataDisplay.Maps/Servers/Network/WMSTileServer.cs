@@ -22,7 +22,9 @@ namespace DynamicDataDisplay.Maps.Servers.Network
 				{
 					try
 					{
-						if (value != null && !Directory.Exists(value))
+						var hasPath = !string.IsNullOrEmpty(value);
+
+                        if (hasPath && !Directory.Exists(value))
 						{
 							Directory.CreateDirectory(value);
 						}
