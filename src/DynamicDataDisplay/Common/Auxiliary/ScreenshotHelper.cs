@@ -326,6 +326,8 @@ namespace DynamicDataDisplay.Common.Auxiliary
 			  Math.Min(uiElement.RenderSize.Width * dpi / 96.0, 20000),
 			  Math.Min(uiElement.RenderSize.Height * dpi / 96.0, 20000));
 
+			// Get the relation location of the element within its parent,
+			// else it will be rendered with an offset in the resultant image
             var relativeLocation = new Point(0, 0);
             if (VisualTreeHelper.GetParent(uiElement) is UIElement container)
             {

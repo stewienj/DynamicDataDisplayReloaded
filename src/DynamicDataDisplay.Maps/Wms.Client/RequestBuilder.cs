@@ -34,9 +34,9 @@ namespace Wms.Client
 		private void initializeParams()
 		{
 			this.queryParameters = new System.Collections.Hashtable();
-			this.queryParameters["VERSION"] = "1.1.1";
-			this.queryParameters["SERVICE"] = "WMS";
-			this.queryParameters["EXCEPTIONS"] = "application/vnd.ogc.se_xml";
+			this.queryParameters["version"] = "1.1.1";
+			this.queryParameters["service"] = "WMS";
+			//this.queryParameters["EXCEPTIONS"] = "application/vnd.ogc.se_xml";
 		}
 
 		public System.Collections.Hashtable ClientInfo
@@ -132,7 +132,7 @@ namespace Wms.Client
 
 		private void initializeParams()
 		{
-			this.queryParameters["REQUEST"] = "GetCapabilities";
+			this.queryParameters["request"] = "GetCapabilities";
 		}
 	}
 
