@@ -2,7 +2,10 @@
 using DynamicDataDisplay.Charts.Maps;
 using DynamicDataDisplay.Common.Auxiliary;
 using System;
+using System.Collections;
+using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace DynamicDataDisplay.Samples.Demos.Custom
 {
@@ -52,11 +55,19 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 						var heatmap = new HeatmapChartView();
 						_heatmapControl = new WeakReference(heatmap);
 						heatmap.CreateRandomMapData();
+						Binding binding = new Binding
+						{
+							Source = this,
+							Path = new System.Windows.PropertyPath(nameof(SelectedPoints))
+						};
+						heatmap.SetBinding(HeatmapChartView.SelectedPointsProperty, binding);
 						Heatmap = heatmap;
 						_chartPlotter.Children.Add(heatmap);
 					}
 					else
 					{
+						// Had a memory leak, was using this code to check where the problem was
+
 						_chartPlotter.Children.Remove(Heatmap);
 						Heatmap = null;
 						GC.Collect();
@@ -66,27 +77,14 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 					}
 				}
 			}
-		
-				/*
-				if (SetProperty(ref _heatmapVisible, value))
-				{
-					if (_heatmapVisible && _heatmap==null)
-					{
-						_heatmap = new HeatmapChartView();
-						_heatmap.CreateRandomMapData();
-						_chartPlotter.Children.Add(_heatmap);
-					}
-					else
-					{
-						var heatmap = _heatmap;
-						Heatmap = null;
-						_chartPlotter.Children.Remove(heatmap);
-						heatmap.DataContext = null;
-						GC.Collect();
-						GC.WaitForPendingFinalizers();
-					}
-				}
-				*/
+
+		}
+
+		private IEnumerable _selectedPoints = Enumerable.Empty<object>();
+		public IEnumerable SelectedPoints
+		{
+			get => _selectedPoints;
+			set => SetProperty(ref _selectedPoints, value);
 		}
 	}
 }

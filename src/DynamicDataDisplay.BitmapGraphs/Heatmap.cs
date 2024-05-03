@@ -20,7 +20,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 		public static EventHandler<HeatmapCalculationProgressArgs> HeatmapCalculationProgress;
 
-		public static BitmapSource DrawImage(int imageWidth, int imageHeight, int spread, IEnumerable<(System.Windows.Point Point, int Count)> points, uint[] colorMap, RenderRequest renderRequest)
+		public static ArrayBitmapSource<uint> DrawImage(int imageWidth, int imageHeight, int spread, IEnumerable<(System.Windows.Point Point, int Count)> points, uint[] colorMap, RenderRequest renderRequest)
 		{
 			Stopwatch sw = new Stopwatch();
 			try

@@ -11,7 +11,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 		private double _spread = DefaultSpread;
 		private HeatmapColors _colors = new HeatmapColors();
 
-		public HeatmapChartView() : base(3, 3)
+		public HeatmapChartView() : base(5, 5)
 		{
 		}
 

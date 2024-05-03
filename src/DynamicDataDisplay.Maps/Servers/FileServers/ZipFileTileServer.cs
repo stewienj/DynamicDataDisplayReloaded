@@ -8,7 +8,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace DynamicDataDisplay.Charts.Maps
 {
-	public class ZipFileTileServer : ReadonlyTileServer, IDisposable, ISupportInitialize
+#if !NET8_0_OR_GREATER
+
+    public class ZipFileTileServer : ReadonlyTileServer, IDisposable, ISupportInitialize
 	{
 		public void CreatePackage(string sourceDirectory, string packagePath)
 		{
@@ -60,7 +62,10 @@ namespace DynamicDataDisplay.Charts.Maps
 			BinaryFormatter formatter = new BinaryFormatter();
 			using (Stream stream = part.GetStream())
 			{
-				formatter.Serialize(stream, Cache);
+				using (var writer = new BinaryWriter(stream))
+				{
+					formatter.Serialize(stream, Cache);
+				}
 			}
 
 			package.CreateRelationship(cacheUri, TargetMode.Internal, D3AssemblyConstants.DefaultXmlNamespace);
@@ -163,4 +168,5 @@ namespace DynamicDataDisplay.Charts.Maps
 
 		#endregion
 	}
+#endif
 }
