@@ -15,7 +15,7 @@
             </d3:ChartPlotter.DataTransform>
 
             <d3:Map x:Name="leftmap">
-				<d3:OpenStreetMapServer/>
+        <d3:OpenStreetMapServer/>
             </d3:Map>
 
             <!--<d3:MercatorShaderMap Name="map" Visibility="Collapsed">
@@ -33,14 +33,14 @@
             <d3:Map x:Name="rightMap">
                 <!--<d3:VERoadMixedServer/>-->
                 <d3:EmptyTileServer/>
-
-                <d3:Map.FileTileServer>
+                
+                <!--<d3:Map.FileTileServer>
                     <d3:ZipFileTileServer PackagePath="C:\tiles.zip">
                         <d3:ZipFileTileServer.PathProvider>
                             <d3:VEPathProvider/>
                         </d3:ZipFileTileServer.PathProvider>
                     </d3:ZipFileTileServer>
-                </d3:Map.FileTileServer>
+                </d3:Map.FileTileServer>-->
             </d3:Map>
 
             <d3:CursorCoordinateGraph VerticalLineStroke="Blue" HorizontalLineStroke="Blue" Name="rightCursor" AutoHide="False"/>

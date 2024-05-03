@@ -82,6 +82,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 				}
 			}));
 
+		protected IEnumerable _selectedPoints = Enumerable.Empty<object>();
 		public IEnumerable SelectedPoints
 		{
 			get { return (IEnumerable)GetValue(SelectedPointsProperty); }
@@ -90,7 +91,17 @@ namespace DynamicDataDisplay.BitmapGraphs
 
 		// Using a DependencyProperty as the backing store for SelectedPointsDeg.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty SelectedPointsProperty =
-			DependencyProperty.Register("SelectedPoints", typeof(IEnumerable), typeof(PointsBitmapGraphBase), new FrameworkPropertyMetadata { BindsTwoWayByDefault = true });
+			DependencyProperty.Register("SelectedPoints", typeof(IEnumerable), typeof(PointsBitmapGraphBase), new FrameworkPropertyMetadata
+			{
+				BindsTwoWayByDefault = true,
+				PropertyChangedCallback = (s, e) =>
+				{
+					if (s is PointsBitmapGraphBase control)
+					{
+						control._selectedPoints = (e.NewValue as IEnumerable) ?? Enumerable.Empty<object>();
+					}
+				}
+			});
 
 		public Point SelectedPointsLocation
 		{

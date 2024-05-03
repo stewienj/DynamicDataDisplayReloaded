@@ -8,29 +8,38 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Heat Map On Map Sample">
 
-    <Grid x:Name="theGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <d3:ChartPlotter Visible="-180,-90,360,180" x:Name="chartPlotter">
-            <d3:ChartPlotter.DataTransform>
-                <d3:MercatorTransform/>
-            </d3:ChartPlotter.DataTransform>
+  <Grid x:Name="theGrid">
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+    <d3:ChartPlotter Visible="-180,-90,360,180" x:Name="chartPlotter">
+      <d3:ChartPlotter.DataTransform>
+        <d3:MercatorTransform/>
+      </d3:ChartPlotter.DataTransform>
 
-            <d3:Map Name="map">
-                <d3:OpenStreetMapServer/>
-            </d3:Map>
+      <d3:Map Name="map">
+        <d3:OpenStreetMapServer/>
+      </d3:Map>
 
-            <d3:CursorCoordinateGraph/>
-            <d3:AxisCursorGraph/>
-        </d3:ChartPlotter>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <CheckBox IsChecked="{Binding HeatmapVisible}">Show Heatmap</CheckBox>
-            <CheckBox IsChecked="{Binding Heatmap.DebugModeOn}">Debug Mode</CheckBox>
-            <ComboBox ItemsSource="{Binding Heatmap.ColorScalesAvailable}" SelectedItem="{Binding Heatmap.SelectedColorScale}"/>
-            <TextBlock>Spread:</TextBlock>
-            <Slider Minimum="3" Maximum="64" Value="{Binding Heatmap.DotSpread}" Width="255"/>
-        </StackPanel>
-    </Grid>
+      <d3:CursorCoordinateGraph/>
+      <d3:AxisCursorGraph/>
+    </d3:ChartPlotter>
+    <StackPanel Orientation="Horizontal" Grid.Row="1">
+      <CheckBox IsChecked="{Binding HeatmapVisible}">Show Heatmap</CheckBox>
+      <CheckBox IsChecked="{Binding Heatmap.DebugModeOn}">Debug Mode</CheckBox>
+      <ComboBox ItemsSource="{Binding Heatmap.ColorScalesAvailable}" SelectedItem="{Binding Heatmap.SelectedColorScale}"/>
+      <TextBlock>Spread:</TextBlock>
+      <Slider Minimum="3" Maximum="64" Value="{Binding Heatmap.DotSpread}" Width="255"/>
+    </StackPanel>
+
+    <GroupBox Grid.Column="1" Grid.RowSpan="2" Header="Selected Items">
+      <ListView ItemsSource="{Binding SelectedPoints}"/>
+    </GroupBox>
+
+  </Grid>
 </Page>

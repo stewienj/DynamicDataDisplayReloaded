@@ -169,18 +169,20 @@ namespace DynamicDataDisplay.BitmapGraphs
 				{
 					try
 					{
-						// Transforms points to Binned Buckets
-						Func<Point, (int, int)> ToBucket = CalculateToBinnedBucket(transform);
+						// Create a selection rectangle
+						var offset = new Vector(5, 5);
+						var minClickPoint = clickPoint - offset;
+						var maxClickPoint = clickPoint + offset;
+						var minViewportClickLocation = transform.ScreenToViewport(minClickPoint);
+						var maxViewportClickLocation = transform.ScreenToViewport(maxClickPoint);
+						var clickRect = new Rect(minViewportClickLocation, maxViewportClickLocation);
 
-						var viewportClickLocation = transform.ScreenToViewport(clickPoint);
-						var mousePointBucket = ToBucket(viewportClickLocation);
-
-						// Convert the points, but need to also retain the original objects
+						// Find all the points in the above rectangle
 						var points =
 							pointsLatLonDeg
 							.Cast<object>()
 							.AsParallel()
-							.Where(ll => ToBucket(dataTransform.DataToViewport(_pointObjectToPointConverter(ll))).Equals(mousePointBucket))
+							.Where(ll => clickRect.Contains(dataTransform.DataToViewport(_pointObjectToPointConverter(ll))))
 							.ToList();
 
 						_mouseClickLock.EnterWriteLock();
