@@ -48,6 +48,7 @@
                 <m:Demonstration Description="Graphics Font Test" Uri="/Demos/Custom/GraphicsFontTest.xaml"/>
                 <m:Demonstration Description="Marker Samples Log" Uri="/Demos/v04/Markers/DifferentBuildInMarkersPageLog.xaml"/>
                 <m:Demonstration Description="Frequency Timeline Chart" Uri="/Demos/Custom/FrequencyTimelineChartTest.xaml"/>
+                <m:Demonstration Description="Infinite Timeline Chart" Uri="/Demos/Custom/InfiniteTimelineChartTest.xaml"/>
                 <m:Demonstration Description="Mouse Navigation Switching" Uri="/Demos/Custom/MouseNaviationSwitchingSample.xaml"/>
                 <m:Demonstration Description="WMS Maps" Uri="/Demos/Custom/WmsMaps.xaml"/>
       </m:ReleaseInfo>

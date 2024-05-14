@@ -11,21 +11,21 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
     /// <summary>
     /// Interaction logic for TimelineChartTest.xaml
     /// </summary>
-    public partial class FrequencyTimelineChartTest : Page
+    public partial class InfiniteTimelineChartTest : Page
     {
-        public FrequencyTimelineChartTest()
+        public InfiniteTimelineChartTest()
         {
-            this.DataContext = new TimelineChartTestViewModel();
+            this.DataContext = new InfiniteTimelineChartTestViewModel();
             InitializeComponent();
         }
     }
 
-    public class TimelineChartTestViewModel : D3NotifyPropertyChanged
+    public class InfiniteTimelineChartTestViewModel : D3NotifyPropertyChanged
     {
         private ThreadLocal<Random> _random = new ThreadLocal<Random>(() => new Random(1));
 
 
-        public TimelineChartTestViewModel()
+        public InfiniteTimelineChartTestViewModel()
         {
             var baseTime = DateTime.Now;
             var timelines = new List<IFrequencyTimelineChartData>();
@@ -41,8 +41,8 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
                     Id = $"Object No {i}",
                     LowerFrequency = Math.Pow(10.0, i * 0.5 - 0.05),
                     UpperFrequency = Math.Pow(10.0, i * 0.5 + 0.05),
-                    StartTime = baseTime + TimeSpan.FromHours(i - 1),
-                    EndTime = baseTime + TimeSpan.FromHours(i - 1 + 12),
+                    StartTime = DateTime.MinValue,
+                    EndTime = DateTime.MaxValue,
                     ColorARGB = Color.FromArgb(255, R, G, B).ToArgb()
                 });
             }

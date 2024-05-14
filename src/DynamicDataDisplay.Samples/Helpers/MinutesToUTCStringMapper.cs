@@ -26,12 +26,24 @@ namespace DynamicDataDisplay.Samples.Helpers
             Func<double, string> mapper = d =>
             {
                 var dateTime = new DateTime();
-                if (d > 0.0)
-                {
-                    dateTime = dateTime.AddMinutes(d);
-                }
 
-                dateTime = dateTime.ToUniversalTime();
+                try
+                {
+                    if (d > 0.0)
+                    {
+                        if (d < (DateTime.MaxValue - dateTime).TotalMinutes)
+                        {
+                            dateTime = dateTime.AddMinutes(d);
+                        }
+                        else
+                        {
+                            return DateTime.MaxValue.ToString("dd MMM yyyy HH:mm");
+                        }
+                    }
+
+                    dateTime = dateTime.ToUniversalTime();
+                }
+                catch { }
 
                 return dateTime.ToString("dd MMM yyyy HH:mm");
             };

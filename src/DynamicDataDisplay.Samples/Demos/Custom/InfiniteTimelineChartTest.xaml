@@ -1,0 +1,27 @@
+﻿<Page x:Class="DynamicDataDisplay.Samples.Demos.Custom.InfiniteTimelineChartTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             xmlns:local="clr-namespace:DynamicDataDisplay.Samples.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <GroupBox Header="Settings" Grid.Row="0">
+      <StackPanel Orientation="Horizontal">
+        <CheckBox x:Name="_showLabels" IsChecked="True">Show Labels</CheckBox>
+      </StackPanel>
+    </GroupBox>
+    <d3:FrequencyTimelineChart Grid.Row="1" ItemsSource="{Binding Timelines}" Margin="24" ShowLabels="{Binding ElementName=_showLabels, Path=IsChecked}">
+      <d3:CursorCoordinateGraph 
+        XTextMapping="{local:MinutesToUTCStringMapper}" 
+        YTextMapping="{local:DoubleToEngineeringNotationMapper}"
+        />
+    </d3:FrequencyTimelineChart>
+  </Grid>
+</Page>
