@@ -30,7 +30,7 @@ namespace DynamicDataDisplay.SharpDX9
         {
             Assembly a = this.GetType().Assembly;
             var resourceNames = a.GetManifestResourceNames();
-            var matching = resourceNames.First(n => n.EndsWith(name));
+            var matching = resourceNames.First(n => n.EndsWith(name, StringComparison.Ordinal));
             using (var stream = a.GetManifestResourceStream(matching))
             {
                 using (var reader = new StreamReader(stream))

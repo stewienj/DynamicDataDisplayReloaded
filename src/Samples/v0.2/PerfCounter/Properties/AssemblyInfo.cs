@@ -51,3 +51,8 @@ using System.Windows;
 // [assembly: AssemblyVersion("0.3.4703.0")]
 [assembly: AssemblyVersion("0.3.4703.0")]
 [assembly: AssemblyFileVersion("0.3.4703.0")]
+#if NET5_0_OR_GREATER
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
+#endif
+

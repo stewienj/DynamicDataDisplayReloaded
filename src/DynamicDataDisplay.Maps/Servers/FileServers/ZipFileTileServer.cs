@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace DynamicDataDisplay.Charts.Maps
 {
-#if !NET8_0_OR_GREATER
+#if !NET5_0_OR_GREATER
 
     public class ZipFileTileServer : ReadonlyTileServer, IDisposable, ISupportInitialize
 	{

@@ -79,11 +79,11 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 		{
 			if (obj is Group group)
 			{
-				return Name.CompareTo(group.Name);
+				return string.Compare(Name, group.Name, StringComparison.Ordinal);
 			}
 			else
 			{
-				return Name.CompareTo(obj?.ToString());
+				return string.Compare(Name, obj?.ToString(), StringComparison.Ordinal);
 			}
 		}
 

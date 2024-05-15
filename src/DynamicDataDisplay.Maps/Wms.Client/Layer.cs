@@ -1,5 +1,7 @@
 // $File: //depot/WMS/WMS Overview/Wms.Client/Layer.cs $ $Revision: #1 $ $Change: 20 $ $DateTime: 2004/05/23 23:42:06 $
 
+using System;
+
 namespace Wms.Client
 {
 	/// <summary>
@@ -88,7 +90,7 @@ namespace Wms.Client
 					return false;
 
 				UriAndFormatType t = (UriAndFormatType)obj;
-				return this.Uri.Equals(t.Uri) && this.Format.Equals(t.Format);
+				return this.Uri.Equals(t.Uri, StringComparison.Ordinal) && this.Format.Equals(t.Format, StringComparison.Ordinal);
 			}
 
 			public override int GetHashCode()
@@ -98,7 +100,7 @@ namespace Wms.Client
 
 			public bool IsEmpty
 			{
-				get { return this.Uri.Equals(string.Empty); }
+				get { return this.Uri.Equals(string.Empty, StringComparison.Ordinal); }
 			}
 		}
 
@@ -245,7 +247,7 @@ namespace Wms.Client
 			public override string ToString()
 			{
 				string retVal = this.MinY + " to " + this.MaxY + " Latitude, " + this.MinX + " to " + this.MaxX + " Longitude";
-				if (this.Srs != null && !this.Srs.Equals(string.Empty))
+				if (this.Srs != null && !this.Srs.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal += ", SRS: " + this.Srs;
 				}
@@ -345,22 +347,22 @@ namespace Wms.Client
 			{
 				get
 				{
-					return this.Name.Equals(string.Empty) && this.Default.Equals(string.Empty) && this.Extent.Equals(string.Empty);
+					return this.Name.Equals(string.Empty, StringComparison.Ordinal) && this.Default.Equals(string.Empty, StringComparison.Ordinal) && this.Extent.Equals(string.Empty, StringComparison.Ordinal);
 				}
 			}
 
 			public override string ToString()
 			{
 				string retVal = "";
-				if (!this.Name.Equals(string.Empty))
+				if (!this.Name.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal += this.Name;
 				}
-				if (!this.Extent.Equals(string.Empty))
+				if (!this.Extent.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal += ", " + this.Extent;
 				}
-				if (!this.Default.Equals(string.Empty))
+				if (!this.Default.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal += ", Default = " + this.Default;
 				}
@@ -416,7 +418,7 @@ namespace Wms.Client
 			{
 				get
 				{
-					return this.Min.Equals(string.Empty) && this.Max.Equals(string.Empty);
+					return this.Min.Equals(string.Empty, StringComparison.Ordinal) && this.Max.Equals(string.Empty, StringComparison.Ordinal);
 				}
 			}
 		}
@@ -494,8 +496,8 @@ namespace Wms.Client
 			{
 				get
 				{
-					return this.Title.Equals(string.Empty)
-						&& this.Uri.Equals(string.Empty)
+					return this.Title.Equals(string.Empty, StringComparison.Ordinal)
+						&& this.Uri.Equals(string.Empty, StringComparison.Ordinal)
 						&& this.LogoUri.IsEmpty;
 				}
 			}
@@ -532,9 +534,9 @@ namespace Wms.Client
 			{
 				bool retVal = false;
 				string q = Capabilities.GetStringInstance(this.nav, @"./@Queryable").Trim();
-				if (!q.Equals(string.Empty))
+				if (!q.Equals(string.Empty, StringComparison.Ordinal))
 				{
-					retVal = q.Equals("1");
+					retVal = q.Equals("1", StringComparison.Ordinal);
 				}
 				else
 				{
@@ -555,9 +557,9 @@ namespace Wms.Client
 			{
 				bool retVal = false;
 				string q = Capabilities.GetStringInstance(this.nav, @"./@Opaque").Trim();
-				if (!q.Equals(string.Empty))
+				if (!q.Equals(string.Empty, StringComparison.Ordinal))
 				{
-					retVal = q.Equals("1");
+					retVal = q.Equals("1", StringComparison.Ordinal);
 				}
 				else
 				{
@@ -578,9 +580,9 @@ namespace Wms.Client
 			{
 				bool retVal = false;
 				string q = Capabilities.GetStringInstance(this.nav, @"./@NoSubsets|./@noSubsets").Trim();
-				if (!q.Equals(string.Empty))
+				if (!q.Equals(string.Empty, StringComparison.Ordinal))
 				{
-					retVal = q.Equals("1");
+					retVal = q.Equals("1", StringComparison.Ordinal);
 				}
 				else
 				{
@@ -601,7 +603,7 @@ namespace Wms.Client
 			{
 				int retVal = 0;
 				string q = Capabilities.GetStringInstance(this.nav, @"./@Cascaded");
-				if (!q.Equals(string.Empty))
+				if (!q.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal = int.Parse(q);
 				}
@@ -624,7 +626,7 @@ namespace Wms.Client
 			{
 				int retVal = 0;
 				string q = Capabilities.GetStringInstance(this.nav, @"./@FixedWidth|./@fixedWidth");
-				if (!q.Equals(string.Empty))
+				if (!q.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal = int.Parse(q);
 				}
@@ -647,7 +649,7 @@ namespace Wms.Client
 			{
 				int retVal = 0;
 				string q = Capabilities.GetStringInstance(this.nav, @"./@FixedHeight|./@fixedHeight");
-				if (!q.Equals(string.Empty))
+				if (!q.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal = int.Parse(q);
 				}
@@ -693,9 +695,9 @@ namespace Wms.Client
 					return false;
 
 				DimensionType d = (DimensionType)obj;
-				return this.Name.Equals(d.Name)
-					&& this.Units.Equals(d.Units)
-					&& this.UnitSymbol.Equals(d.UnitSymbol);
+				return this.Name.Equals(d.Name, StringComparison.Ordinal)
+					&& this.Units.Equals(d.Units, StringComparison.Ordinal)
+					&& this.UnitSymbol.Equals(d.UnitSymbol, StringComparison.Ordinal);
 			}
 
 			public override int GetHashCode()
@@ -706,7 +708,7 @@ namespace Wms.Client
 			public override string ToString()
 			{
 				string retVal = this.Name + ", " + this.Units;
-				if (!this.UnitSymbol.Equals(string.Empty))
+				if (!this.UnitSymbol.Equals(string.Empty, StringComparison.Ordinal))
 				{
 					retVal += " (" + this.UnitSymbol + ")";
 				}
@@ -798,8 +800,8 @@ namespace Wms.Client
 				if (obj.GetType() != this.GetType())
 					return false;
 
-				return this.Name.Equals(((AuthorityUriType)obj).Name)
-					&& this.Uri.Equals(((AuthorityUriType)obj).Uri);
+				return this.Name.Equals(((AuthorityUriType)obj).Name, StringComparison.Ordinal)
+					&& this.Uri.Equals(((AuthorityUriType)obj).Uri, StringComparison.Ordinal);
 			}
 
 			public override int GetHashCode()
@@ -872,9 +874,9 @@ namespace Wms.Client
 					return false;
 
 				StyleType s = (StyleType)obj;
-				return this.Name.Equals(s.Name)
-					&& this.Title.Equals(s.Title)
-					&& this.Abstract.Equals(s.Abstract)
+				return this.Name.Equals(s.Name, StringComparison.Ordinal)
+					&& this.Title.Equals(s.Title, StringComparison.Ordinal)
+					&& this.Abstract.Equals(s.Abstract, StringComparison.Ordinal)
 					&& this.StyleUri.Equals(s.StyleUri)
 					&& this.StyleSheetUri.Equals(s.StyleSheetUri)
 					&& this.LegendUri.Equals(s.LegendUri);

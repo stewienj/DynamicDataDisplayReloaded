@@ -1,5 +1,7 @@
 // $File: //depot/WMS/WMS Overview/Wms.Client/RequestBuilder.cs $ $Revision: #1 $ $Change: 20 $ $DateTime: 2004/05/23 23:42:06 $
 
+using System;
+
 namespace Wms.Client
 {
 	/// <summary>
@@ -46,7 +48,7 @@ namespace Wms.Client
 
 		public void SetParam(string name, string param)
 		{
-			if (name != null && !name.Equals(string.Empty))
+			if (name != null && !name.Equals(string.Empty, StringComparison.Ordinal))
 			{
 				this.queryParameters[name] = param;
 			}
@@ -204,7 +206,7 @@ namespace Wms.Client
 		public bool Transparent
 		{
 			set { this.SetParam("TRANSPARENT", value ? "TRUE" : "FALSE"); }
-			get { return this.GetParam("TRANSPARENT").Equals("TRUE") ? true : false; }
+			get { return this.GetParam("TRANSPARENT").Equals("TRUE", StringComparison.Ordinal) ? true : false; }
 		}
 
 		public string BackgroundColor
@@ -247,13 +249,13 @@ namespace Wms.Client
 		{
 			foreach (Layer.ExtentType extent in layer.Extents)
 			{
-				if (extent.Default != null && !extent.Default.Equals(string.Empty))
+				if (extent.Default != null && !extent.Default.Equals(string.Empty, StringComparison.Ordinal))
 				{
-					if (extent.Name.Equals("elevation") || extent.Name.Equals("Elevation") || extent.Name.Equals("ELEVATION"))
+					if (extent.Name.Equals("elevation", StringComparison.Ordinal) || extent.Name.Equals("Elevation", StringComparison.Ordinal) || extent.Name.Equals("ELEVATION", StringComparison.Ordinal))
 					{
 						this.Elevation = extent.Default;
 					}
-					else if (extent.Name.Equals("time") || extent.Name.Equals("Time") || extent.Name.Equals("TIME"))
+					else if (extent.Name.Equals("time", StringComparison.Ordinal) || extent.Name.Equals("Time", StringComparison.Ordinal) || extent.Name.Equals("TIME", StringComparison.Ordinal))
 					{
 						this.Time = extent.Default;
 					}

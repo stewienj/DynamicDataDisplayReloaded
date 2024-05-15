@@ -87,24 +87,24 @@ namespace DynamicDataDisplay.Charts
 				{
 					if (labelsWithDecimal.Contains("E"))
 					{
-						decimalPlaces = Math.Max(decimalPlaces, labelWithDecimal.IndexOf("E") - labelWithDecimal.IndexOf(".") - 1);
+						decimalPlaces = Math.Max(decimalPlaces, labelWithDecimal.IndexOf("E", StringComparison.Ordinal) - labelWithDecimal.IndexOf(".", StringComparison.Ordinal) - 1);
 					}
 					else
 					{
-						decimalPlaces = Math.Max(decimalPlaces, labelWithDecimal.Length - labelWithDecimal.IndexOf(".") - 1);
+						decimalPlaces = Math.Max(decimalPlaces, labelWithDecimal.Length - labelWithDecimal.IndexOf(".", StringComparison.Ordinal) - 1);
 					}
 				}
 
 				foreach (TextBlock tb in res)
 				{
 					string text = tb.Text;
-					int insertionPoint = text.Contains("E") ? text.IndexOf("E") : text.Length;
+					int insertionPoint = text.Contains("E") ? text.IndexOf("E", StringComparison.Ordinal) : text.Length;
 					if (!text.Contains("."))
 					{
 						text = text.Insert(insertionPoint, ".");
 						insertionPoint++;
 					}
-					int currentPlaces = insertionPoint - text.IndexOf(".") - 1;
+					int currentPlaces = insertionPoint - text.IndexOf(".", StringComparison.Ordinal) - 1;
 					for (int i = currentPlaces; i < decimalPlaces; ++i)
 					{
 						text = text.Insert(insertionPoint, "0");

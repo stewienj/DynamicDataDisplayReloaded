@@ -1,5 +1,7 @@
 // $File: //depot/WMS/WMS Overview/Wms.Client/Capabilities.cs $ $Revision: #1 $ $Change: 20 $ $DateTime: 2004/05/23 23:42:06 $
 
+using System;
+
 namespace Wms.Client
 {
 	///
@@ -32,7 +34,7 @@ namespace Wms.Client
 		{
 			// The 'Url' vs. 'URL' case is so prevalent that we account for it here rather
 			// than in all the invoking instances.
-			if ((!pattern.Equals(string.Empty)) && (pattern.IndexOf("Url") >= 0))
+			if ((!pattern.Equals(string.Empty, StringComparison.Ordinal)) && (pattern.IndexOf("Url", StringComparison.Ordinal) >= 0))
 			{
 				pattern = pattern + "|" + pattern.Replace("Url", "URL");
 			}
@@ -90,7 +92,7 @@ namespace Wms.Client
 		internal static bool GetBooleanInstance(System.Xml.XPath.XPathNavigator node, string selectPattern)
 		{
 			string q = Capabilities.GetStringInstance(node, selectPattern);
-			return q.Trim().Equals("1");
+			return q.Trim().Equals("1", StringComparison.Ordinal);
 		}
 
 		// These following functions use an XPath string to identify the elements of
