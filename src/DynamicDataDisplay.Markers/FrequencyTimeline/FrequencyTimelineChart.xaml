@@ -18,27 +18,27 @@
         <local2:DevMarkerChart.MarkerBuilder>
             <local1:TemplateMarkerGenerator>
                 <DataTemplate>
-                    <Grid d3:ViewportPanel.X="{Binding StartTime, Converter={x:Static local:DateTimeToMinutesConverter.Instance}}"
-                          d3:ViewportPanel.Y="{Binding LowerFrequency, Converter={x:Static local:DoubleToLog10Converter.Instance}}"
+                    <Grid d3:ViewportPanel.X="{Binding StartTime, Converter={local:DateTimeToMinutesConverter}}"
+                          d3:ViewportPanel.Y="{Binding LowerFrequency, Converter={local:DoubleToLog10Converter}}"
                           d3:ViewportPanel.MinScreenWidth="3"
                           d3:ViewportPanel.MinScreenHeight="3"
                           d3:ViewportPanel.ViewportHorizontalAlignment="Left"
                           d3:ViewportPanel.ViewportVerticalAlignment="Bottom">
                         <d3:ViewportPanel.ViewportWidth>
-                            <MultiBinding Converter="{x:Static local:DateTimesToTimeSpanMinutesConverter.Instance}">
+                            <MultiBinding Converter="{local:DateTimesToTimeSpanMinutesConverter}">
                                 <Binding Path="StartTime"/>
                                 <Binding Path="EndTime"/>
                             </MultiBinding>
                         </d3:ViewportPanel.ViewportWidth>
                         <d3:ViewportPanel.ViewportHeight>
-                            <MultiBinding Converter="{x:Static local:DoubleDifferenceToLog10Converter.Instance}">
+                            <MultiBinding Converter="{local:DoubleDifferenceToLog10Converter}">
                                 <Binding Path="LowerFrequency"/>
                                 <Binding Path="UpperFrequency"/>
                             </MultiBinding>
                         </d3:ViewportPanel.ViewportHeight>
 
-                        <Path Stroke="{Binding ColorARGB, Converter={x:Static local:IntToBrushConverter.Instance}}" 
-                              Fill="{Binding ColorARGB, Converter={x:Static local:IntToTransparentBrushConverter.Instance}}" 
+                        <Path Stroke="{Binding ColorARGB, Converter={local:IntToBrushConverter}}" 
+                              Fill="{Binding ColorARGB, Converter={local:IntToTransparentBrushConverter}}" 
                               StrokeThickness="1" 
                               Stretch="Fill">
                             <Path.Data>
@@ -59,20 +59,26 @@
         <local2:DevMarkerChart.MarkerBuilder>
             <local1:TemplateMarkerGenerator>
                 <DataTemplate>
-                    <Grid d3:ViewportPanel.X="{Binding StartTime, Converter={x:Static local:DateTimeToMinutesConverter.Instance}}"
-                          d3:ViewportPanel.Y="{Binding LowerFrequency, Converter={x:Static local:DoubleToLog10Converter.Instance}}"
+                    <Grid d3:ViewportPanel.Y="{Binding LowerFrequency, Converter={local:DoubleToLog10Converter}}"
                           d3:ViewportPanel.MinScreenWidth="3"
                           d3:ViewportPanel.MinScreenHeight="24"
                           d3:ViewportPanel.ViewportHorizontalAlignment="Left"
                           d3:ViewportPanel.ViewportVerticalAlignment="Bottom">
+                        <d3:ViewportPanel.X>
+                            <MultiBinding Converter="{local:DateTimeToMinutesConverterRestricted}" ConverterParameter="StartTime">
+                                <Binding Path="StartTime"/>
+                                <Binding RelativeSource="{RelativeSource AncestorType=d3:ChartPlotter}" Path="Viewport.Visible"/>
+                            </MultiBinding>
+                        </d3:ViewportPanel.X>
                         <d3:ViewportPanel.ViewportWidth>
-                            <MultiBinding Converter="{x:Static local:DateTimesToTimeSpanMinutesConverter.Instance}">
+                            <MultiBinding Converter="{local:DateTimesToTimeSpanMinutesConverterRestricted}">
                                 <Binding Path="StartTime"/>
                                 <Binding Path="EndTime"/>
+                                <Binding RelativeSource="{RelativeSource AncestorType=d3:ChartPlotter}" Path="Viewport.Visible"/>
                             </MultiBinding>
                         </d3:ViewportPanel.ViewportWidth>
                         <d3:ViewportPanel.ViewportHeight>
-                            <MultiBinding Converter="{x:Static local:DoubleDifferenceToLog10Converter.Instance}">
+                            <MultiBinding Converter="{local:DoubleDifferenceToLog10Converter}">
                                 <Binding Path="LowerFrequency"/>
                                 <Binding Path="UpperFrequency"/>
                             </MultiBinding>
@@ -94,4 +100,3 @@
         </local2:DevMarkerChart.MarkerBuilder>
     </local2:DevMarkerChart>
 </d3:ChartPlotter>
- 

@@ -8,21 +8,17 @@ namespace DynamicDataDisplay.FrequencyTimeline
     /// <summary>
     /// Converts 2 DateTimes to a range in minutew
     /// </summary>
-    internal class DateTimesToTimeSpanMinutesConverter : MarkupExtension, IMultiValueConverter
+    internal class DateTimesToTimeSpanMinutesConverterRestricted : MarkupExtension, IMultiValueConverter
     {
+        private DateTimeToMinutesConverterRestricted _pointConverter = new DateTimeToMinutesConverterRestricted();
+
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values.Length == 2)
+            if (values.Length == 3)
             {
-                if (values[0] is not DateTime start)
-                {
-                    start = DateTime.MinValue;
-                }
-                if (values[1] is not DateTime end)
-                {
-                    end = DateTime.MaxValue;
-                }
-                return (end - start).TotalMinutes;
+                var scopedStart = (double)_pointConverter.Convert([values[0], values[2]], targetType, "StartTime", culture);
+                var scopedEnd = (double)_pointConverter.Convert([values[1], values[2]], targetType, "EndTime", culture);
+                return scopedEnd - scopedStart;
             }
             else
             {
@@ -37,4 +33,5 @@ namespace DynamicDataDisplay.FrequencyTimeline
 
         public override object ProvideValue(IServiceProvider serviceProvider) => this;
     }
+
 }

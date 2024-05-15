@@ -1,5 +1,6 @@
 ﻿using DynamicDataDisplay.Charts;
 using DynamicDataDisplay.Charts.Axes.Numeric;
+using DynamicDataDisplay.ViewportRestrictions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -126,6 +127,27 @@ namespace DynamicDataDisplay.FrequencyTimeline
                 }
             }));
 
+        public ViewportRestriction ViewportRestriction
+        {
+            get { return (ViewportRestriction)GetValue(ViewportRestrictionProperty); }
+            set { SetValue(ViewportRestrictionProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for MaxRectRestriction.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewportRestrictionProperty =
+            DependencyProperty.Register("ViewportRestriction", typeof(ViewportRestriction), typeof(FrequencyTimelineChart), new PropertyMetadata(null, (s,e) =>
+            {
+                if (s is FrequencyTimelineChart chart)
+                {
+                    if (e.OldValue is ViewportRestriction oldRestriction)
+                    {
+                        chart.Viewport.Restrictions.Remove(oldRestriction);
+                    }
+                    if (e.NewValue is ViewportRestriction newRestriction)
+                    {
+                        chart.Viewport.Restrictions.Add(newRestriction);
+                    }
+                }
+            }));
     }
 }

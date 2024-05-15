@@ -5,24 +5,29 @@ using System.Windows.Markup;
 
 namespace DynamicDataDisplay.FrequencyTimeline
 {
-    /// <summary>
-    /// Converts 2 DateTimes to a range in minutew
-    /// </summary>
-    internal class DateTimesToTimeSpanMinutesConverter : MarkupExtension, IMultiValueConverter
+    internal class DateTimeToMinutesConverterRestricted : MarkupExtension, IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length == 2)
             {
-                if (values[0] is not DateTime start)
+                if (values[0] is not DateTime dateTime)
                 {
-                    start = DateTime.MinValue;
+                    dateTime = parameter switch
+                    {
+                        "StartTime" => DateTime.MinValue,
+                        "EndTime" => DateTime.MaxValue,
+                        _ => throw new ArgumentException()
+                    };
                 }
-                if (values[1] is not DateTime end)
+
+                var totalMinutes = (dateTime - DateTime.MinValue).TotalMinutes;
+                if (values[1] is DataRect dataRect)
                 {
-                    end = DateTime.MaxValue;
+                    totalMinutes = Math.Max(totalMinutes, dataRect.XMin);
+                    totalMinutes = Math.Min(totalMinutes, dataRect.XMax);
                 }
-                return (end - start).TotalMinutes;
+                return totalMinutes;
             }
             else
             {
