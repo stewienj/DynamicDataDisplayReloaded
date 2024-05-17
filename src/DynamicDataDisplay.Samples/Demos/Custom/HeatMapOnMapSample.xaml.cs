@@ -18,7 +18,7 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 		{
 			InitializeComponent();
 			HeatMapOnMapSampleViewModel heatMapOnMapSampleViewModel = new HeatMapOnMapSampleViewModel(chartPlotter, theGrid);
-			this.DataContext = heatMapOnMapSampleViewModel;
+			DataContext = heatMapOnMapSampleViewModel;
 			heatMapOnMapSampleViewModel.HeatmapVisible = true;
 		}
 	}
@@ -32,9 +32,13 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 		{
 			_chartPlotter = chartPlotter;
 			_grid = grid;
-		}
+            BitmapGraphs.Heatmap.Instance.HeatmapCalculationProgress += (s, e) =>
+            {
+                CalculationTimeElapsed = e.CalculationTime;
+            };
+        }
 
-		private HeatmapChartView _heatmap = null;
+        private HeatmapChartView _heatmap = null;
 		public HeatmapChartView Heatmap
 		{
 			get => _heatmap;
@@ -86,5 +90,12 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
 			get => _selectedPoints;
 			set => SetProperty(ref _selectedPoints, value);
 		}
-	}
+
+        private TimeSpan _calculationTimeElapsed = TimeSpan.Zero;
+        public TimeSpan CalculationTimeElapsed
+        {
+            get => _calculationTimeElapsed;
+            private set => SetProperty(ref _calculationTimeElapsed, value);
+        }
+    }
 }

@@ -14,7 +14,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 		{
 			InitializeComponent();
 
-			Heatmap.HeatmapCalculationProgress += (s, e) =>
+			Heatmap.Instance.HeatmapCalculationProgress += (s, e) =>
 			{
 				var progress = e?.Progress;
 				if (progress.HasValue)
