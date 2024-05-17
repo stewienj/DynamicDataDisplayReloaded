@@ -29,3 +29,7 @@ using System.Windows;
 											  //(used if a resource is not found in the page,
 											  // app, or any theme specific resource dictionaries)
 )]
+#if NET5_0_OR_GREATER
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
+#endif

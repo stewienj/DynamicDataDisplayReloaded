@@ -1,5 +1,7 @@
 // $File: //depot/WMS/WMS Overview/Wms.Client/ExtensionMap.cs $ $Revision: #1 $ $Change: 20 $ $DateTime: 2004/05/23 23:42:06 $
 
+using System;
+
 namespace Wms.Client
 {
 	/// <summary>
@@ -44,7 +46,7 @@ namespace Wms.Client
 
 			foreach (ExtensionType em in extensionMappings)
 			{
-				if (contentType.Equals(em.Format))
+				if (contentType.Equals(em.Format, StringComparison.Ordinal))
 				{
 					return path + em.Extension;
 				}

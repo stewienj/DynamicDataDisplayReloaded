@@ -1,0 +1,82 @@
+# EditorConfig file for DynamicDataDisplayReloaded solution: 
+# http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# options for every file
+[*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+# options for source files
+[*.{cs,xaml,cpp,h}]
+indent_style = space
+indent_size = 4
+
+# options for project files
+[*.*proj]
+indent_style = space
+indent_size = 4
+
+[*.js]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+csharp_space_after_keywords_in_control_flow_statements = false
+
+#options for C++ files
+[*.{cpp,h,c}]
+#cpp_space_after_keywords_in_control_flow_statements = true
+cpp_new_line_before_open_brace_namespace = new_line
+cpp_new_line_before_open_brace_type = new_line
+cpp_new_line_before_open_brace_function = new_line
+cpp_new_line_before_open_brace_block = new_line
+cpp_new_line_scope_braces_on_separate_lines = true
+cpp_new_line_before_catch = true
+cpp_new_line_before_else = true
+
+#options for C# files
+[*.cs]
+csharp_space_after_keywords_in_control_flow_statements = true
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_qualification_for_event = false:warning
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+csharp_style_namespace_declarations=file_scoped:suggestion
+
+dotnet_naming_style.non_public_field.required_prefix = _
+dotnet_naming_style.non_public_field.capitalization = camel_case
+dotnet_naming_symbols.fields.applicable_kinds = field
+dotnet_naming_symbols.fields.applicable_accessibilities = private,protected
+dotnet_naming_rule.non_public_fields_must_have_underscore_prefix.severity = suggestion
+dotnet_naming_rule.non_public_fields_must_have_underscore_prefix.symbols = fields
+dotnet_naming_rule.non_public_fields_must_have_underscore_prefix.style = non_public_field
+
+#Customising compiler warnings
+
+#CA1307: Specify StringComparison for clarity
+dotnet_diagnostic.CA1307.severity = suggestion
+
+#CA1309: Use ordinal StringComparison
+dotnet_diagnostic.CA1309.severity = warning
+
+#CA1310: Specify StringComparison for correctness
+dotnet_diagnostic.CA1310.severity = warning
+
+#CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
+
+#CA1805: Do not initialize unnecessarily
+dotnet_diagnostic.CA1805.severity = none
+
+#CA1822: Mark members as static - A member that does not access instance data is not marked as static
+dotnet_diagnostic.CA1822.severity = none
+
+#CA2251: Use String.Equals over String.Compare
+dotnet_diagnostic.CA2251.severity = warning

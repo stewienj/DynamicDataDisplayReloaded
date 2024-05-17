@@ -1,5 +1,7 @@
 // $File: //depot/WMS/WMS Overview/Wms.Client/DownloadCache.cs $ $Revision: #1 $ $Change: 20 $ $DateTime: 2004/05/23 23:42:06 $
 
+using System;
+
 namespace Wms.Client
 {
 	///
@@ -58,7 +60,7 @@ namespace Wms.Client
 		public bool Contains(string key)
 		{
 			// Return true if the key -- a WMS URI -- is in the cache.
-			if (key == null || key.Equals(string.Empty))
+			if (key == null || key.Equals(string.Empty, StringComparison.Ordinal))
 				return false;
 			else
 				return this.fileList.Contains(key);
@@ -69,7 +71,7 @@ namespace Wms.Client
 		// when the file was cached, if it was cached.
 		public string GetFileName(string key)
 		{
-			if (key == null || key.Equals(string.Empty))
+			if (key == null || key.Equals(string.Empty, StringComparison.Ordinal))
 				return null;
 			else
 				return this.fileList[key] as string;
@@ -118,7 +120,7 @@ namespace Wms.Client
 		// of the program.
 		public void Add(string key, string path, bool persist)
 		{
-			if (key == null || key.Equals(string.Empty))
+			if (key == null || key.Equals(string.Empty, StringComparison.Ordinal))
 				return;
 
 			string oldPath = this.fileList[key] as string;
@@ -164,7 +166,7 @@ namespace Wms.Client
 				System.IO.FileInfo[] cacheFiles = dirInfo.GetFiles(template + ".*");
 				foreach (System.IO.FileInfo cacheFile in cacheFiles)
 				{
-					if (!cacheFile.Extension.Equals(".wmsuri"))
+					if (!cacheFile.Extension.Equals(".wmsuri", StringComparison.Ordinal))
 					{
 						try
 						{
@@ -196,7 +198,7 @@ namespace Wms.Client
 		// Deletes files from the persistent cache.
 		private void deleteFile(string path)
 		{
-			if (path == null || path.Equals(string.Empty))
+			if (path == null || path.Equals(string.Empty, StringComparison.Ordinal))
 				return;
 
 			System.IO.FileInfo fi = new System.IO.FileInfo(path);
@@ -255,7 +257,7 @@ namespace Wms.Client
 				System.IO.FileInfo[] cacheFiles = dirInfo.GetFiles(template + ".*");
 				foreach (System.IO.FileInfo cacheFile in cacheFiles)
 				{
-					if (!cacheFile.Extension.Equals(".wmsuri"))
+					if (!cacheFile.Extension.Equals(".wmsuri", StringComparison.Ordinal))
 					{
 						try
 						{

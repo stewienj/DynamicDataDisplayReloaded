@@ -13,6 +13,7 @@ namespace DynamicDataDisplay.Samples.Demos.v03
 	/// </summary>
 	public partial class SimulationSample : Page
 	{
+        private volatile bool _stop = false;
 
 		// Three observable data sources. Observable data source contains
 		// inside ObservableCollection. Modification of collection instantly modify
@@ -36,7 +37,7 @@ namespace DynamicDataDisplay.Samples.Demos.v03
 				using (StreamReader r = new StreamReader(spimStream))
 				{
 					string line = r.ReadLine();
-					while (!r.EndOfStream)
+					while (!r.EndOfStream && !_stop)
 					{
 						line = r.ReadLine();
 						string[] values = line.Split(',');
@@ -91,7 +92,10 @@ namespace DynamicDataDisplay.Samples.Demos.v03
 
 		private void Page_Unloaded(object sender, RoutedEventArgs e)
 		{
-			simThread.Abort();
+            _stop = true;
+#if !NET5_0_OR_GREATER
+            simThread.Abort();
+#endif
 		}
 	}
 }

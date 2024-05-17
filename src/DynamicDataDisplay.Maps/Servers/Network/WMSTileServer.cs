@@ -374,7 +374,7 @@ namespace DynamicDataDisplay.Maps.Servers.Network
 			var other = obj as WMSTileServer;
 			if (other != null)
 			{
-				return other.ServerName.Equals(ServerName)
+				return other.ServerName.Equals(ServerName, StringComparison.Ordinal)
 				  && other.Service.Uri.Equals(Service.Uri);
 			}
 

@@ -1,10 +1,6 @@
 ﻿using DynamicDataDisplay.Charts;
 using DynamicDataDisplay.Charts.Axes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,8 +8,6 @@ namespace DynamicDataDisplay.FrequencyTimeline
 {
     public class UtcDateTimeLabelProvider : LabelProviderBase<double>
     {
-        private DateTime _zeroDateTime = new DateTime();
-
         public UtcDateTimeLabelProvider()
         {
         }
@@ -36,7 +30,7 @@ namespace DynamicDataDisplay.FrequencyTimeline
                 if (tickInfo.Tick > 0 && tickInfo.Tick < 5_000_000_000)
                 {
                     // We add the base scenario time and start hour and minutes to generate scenario time of day for the X-axis.                
-                    labelText = _zeroDateTime.AddMinutes(tickInfo.Tick).ToUniversalTime().ToString("dd/MM/yyyy HH:mm UTC");
+                    labelText = DateTime.MinValue.AddMinutes(tickInfo.Tick).ToUniversalTime().ToString("dd/MM/yyyy HH:mm UTC");
                 }
                 else
                 { 

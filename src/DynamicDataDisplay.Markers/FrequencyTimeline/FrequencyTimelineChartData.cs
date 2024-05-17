@@ -34,15 +34,15 @@ namespace DynamicDataDisplay.FrequencyTimeline
             set => SetProperty(ref _upperFrequency, value);
         }
 
-        private DateTime _startTime;
-        public DateTime StartTime
+        private DateTime? _startTime;
+        public DateTime? StartTime
         {
             get => _startTime;
             set => SetProperty(ref _startTime, value);
         }
 
-        private DateTime _endTime;
-        public DateTime EndTime
+        private DateTime? _endTime;
+        public DateTime? EndTime
         {
             get => _endTime;
             set => SetProperty(ref _endTime, value);

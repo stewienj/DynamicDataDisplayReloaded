@@ -82,8 +82,11 @@ namespace DynamicDataDisplay.Visualization3D.Isosurfaces
 				}
 				if (_computeThread != null)
 				{
-					_computeThread.Abort();
-				}
+#if !NET5_0_OR_GREATER
+                    // Not supported on NET 5.0 or greater
+                    _computeThread.Abort();
+#endif
+                }
 			}
 		}
 

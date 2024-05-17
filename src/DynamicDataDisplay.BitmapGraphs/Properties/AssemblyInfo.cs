@@ -34,4 +34,8 @@ using System.Windows.Markup;
 )]
 
 [assembly: XmlnsDefinition(D3AssemblyConstants.DefaultXmlNamespace, "DynamicDataDisplay.BitmapGraphs")]
+#if NET5_0_OR_GREATER
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
+#endif
 

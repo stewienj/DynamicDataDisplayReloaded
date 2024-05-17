@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace DynamicDataDisplay.FrequencyTimeline
 {
-    internal class IntToTransparentBrushConverter : IValueConverter
+    internal class IntToTransparentBrushConverter : MarkupExtension, IValueConverter
     {
-        private static Lazy<IntToTransparentBrushConverter> _instance = new Lazy<IntToTransparentBrushConverter>(true);
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is int colorARGB)
@@ -40,6 +35,6 @@ namespace DynamicDataDisplay.FrequencyTimeline
             return Color.FromArgb(a, r, g, b);
         }
 
-        public static IntToTransparentBrushConverter Instance => _instance.Value;
+        public override object ProvideValue(IServiceProvider serviceProvider) => this;
     }
 }

@@ -115,7 +115,7 @@ namespace DynamicDataDisplay.Maps.Charts.TiledRendering
 				var thread = new Thread(new ThreadStart(RenderTask));
 				thread.IsBackground = true;
 				thread.Priority = ThreadPriority.BelowNormal;
-				thread.SetApartmentState(ApartmentState.STA);
+				thread.TrySetApartmentState(ApartmentState.STA);
 				thread.Start();
 
 				renderingThreads[i] = thread;
