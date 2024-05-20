@@ -35,6 +35,8 @@
       <ComboBox ItemsSource="{Binding Heatmap.ColorScalesAvailable}" SelectedItem="{Binding Heatmap.SelectedColorScale}"/>
       <TextBlock>Spread:</TextBlock>
       <Slider Minimum="3" Maximum="64" Value="{Binding Heatmap.DotSpread}" Width="255"/>
+      <TextBlock>Time to calculate:</TextBlock>
+      <TextBlock Text="{Binding CalculationTimeElapsed}"/>
     </StackPanel>
 
     <GroupBox Grid.Column="1" Grid.RowSpan="2" Header="Selected Items">

@@ -62,7 +62,7 @@ namespace DynamicDataDisplay.BitmapGraphs
 			}
 			else
 			{
-				return Heatmap.DrawImage((int)output.Width, (int)output.Height, (int)Math.Round(_spread), points.Select(p => (p.Point, p.Count)), _colors.ColorMap, renderRequest);
+                return Heatmap.Instance.DrawImage((int)output.Width, (int)output.Height, (int)Math.Round(_spread), points.Select(p => (p.Point, p.Count)), _colors.ColorMap, renderRequest);
 			}
 		}
 	}

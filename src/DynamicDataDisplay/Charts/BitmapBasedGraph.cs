@@ -41,8 +41,8 @@ namespace DynamicDataDisplay
 		/// <summary>Shows tooltips.</summary>
 		private PopupTip _popup;
 
-		// Throttle to 60 requests per second
-		private ThrottledAction _renderAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000.0 / 60.0));
+		// Throttle to 30 requests per second
+		private ThrottledAction _renderAction = new ThrottledAction(TimeSpan.FromMilliseconds(1000.0 / 30.0));
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MarkerPointsGraph"/> class.
