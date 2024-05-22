@@ -30,7 +30,7 @@ namespace DynamicDataDisplay.FrequencyTimeline
                 if (tickInfo.Tick > 0 && tickInfo.Tick < 5_000_000_000)
                 {
                     // We add the base scenario time and start hour and minutes to generate scenario time of day for the X-axis.                
-                    labelText = DateTime.MinValue.AddMinutes(tickInfo.Tick).ToUniversalTime().ToString("dd/MM/yyyy HH:mm UTC");
+                    labelText = DateTime.SpecifyKind(DateTime.MinValue.AddMinutes(tickInfo.Tick), DateTimeKind.Utc).ToString("dd/MM/yyyy HH:mm UTC");
                 }
                 else
                 { 
