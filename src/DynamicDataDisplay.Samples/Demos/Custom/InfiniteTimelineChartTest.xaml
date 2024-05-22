@@ -12,16 +12,42 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Settings" Grid.Row="0">
-            <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal"  Grid.Row="0">
+            <GroupBox Header="Settings">
                 <CheckBox x:Name="_showLabels" IsChecked="True">Show Labels</CheckBox>
-            </StackPanel>
-        </GroupBox>
-        <d3:FrequencyTimelineChart Grid.Row="1" ItemsSource="{Binding Timelines}" Margin="24" ShowLabels="{Binding ElementName=_showLabels, Path=IsChecked}" ViewportRestriction="{Binding MaxRect}">
+            </GroupBox>
+
+
+            <GroupBox Header="Start Date">
+                <DatePicker SelectedDate="{Binding StartTime}" VerticalAlignment="Center" VerticalContentAlignment="Center" >
+                    <DatePicker.Resources>
+                        <!-- Center the text inside the DatePicker control-->
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="2,0" />
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+            </GroupBox>
+
+            <GroupBox Header="End Date">
+                <DatePicker SelectedDate="{Binding EndTime}" VerticalAlignment="Center" VerticalContentAlignment="Center" >
+                    <DatePicker.Resources>
+                        <!-- Center the text inside the DatePicker control-->
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="2,0" />
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+            </GroupBox>
+
+        </StackPanel>
+        <d3:FrequencyTimelineChart Grid.Row="1" ItemsSource="{Binding Timelines}" Margin="24" ShowLabels="{Binding ElementName=_showLabels, Path=IsChecked}" ContentBoundsOverride="{Binding MaxRect}">
             <d3:CursorCoordinateGraph 
-        XTextMapping="{local:MinutesToUTCStringMapper}" 
-        YTextMapping="{local:DoubleToEngineeringNotationMapper}"
-        />
+                XTextMapping="{local:MinutesToUTCStringMapper}" 
+                YTextMapping="{local:DoubleToEngineeringNotationMapper}"
+                />
         </d3:FrequencyTimelineChart>
     </Grid>
 </Page>

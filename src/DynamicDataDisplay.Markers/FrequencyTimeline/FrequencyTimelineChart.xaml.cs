@@ -149,5 +149,36 @@ namespace DynamicDataDisplay.FrequencyTimeline
                     }
                 }
             }));
+
+        public DataRect? ContentBoundsOverride
+        {
+            get { return (DataRect?)GetValue(ContentBoundsOverrideProperty); }
+            set { SetValue(ContentBoundsOverrideProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ContentBoundsOverride.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContentBoundsOverrideProperty =
+            DependencyProperty.Register("ContentBoundsOverride", typeof(DataRect?), typeof(FrequencyTimelineChart), new PropertyMetadata(null, (s, e) =>
+            {
+                if (s is FrequencyTimelineChart chart)
+                {
+                    chart.Viewport.Visible = new DataRect(0, 0, 1, 1);
+                    chart.Viewport.FitToView();
+                }
+            }));
+
+        private void Markers_OverrideContentBoundsEvent(object sender, Markers.OverrideContentBoundsArgs e)
+        {
+            if (ContentBoundsOverride is DataRect dataRect)
+            {
+                e.ContentBounds = new DataRect
+                (
+                    dataRect.XMin.IsNaN() ? e.ContentBounds.XMin : dataRect.XMin,
+                    dataRect.YMin.IsNaN() ? e.ContentBounds.YMin : dataRect.YMin,
+                    dataRect.Width.IsNaN() ? e.ContentBounds.Width : dataRect.Width,
+                    dataRect.Height.IsNaN() ? e.ContentBounds.Height : dataRect.Height
+                );
+            }
+        }
     }
 }

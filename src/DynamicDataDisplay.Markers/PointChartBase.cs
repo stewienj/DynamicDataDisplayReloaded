@@ -1,7 +1,8 @@
-﻿using DynamicDataDisplay.Markers.DataSources;
-using DynamicDataDisplay.Markers.DataSources.DataSourceFactories;
-using DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay.Common;
 using DynamicDataDisplay.Common.Auxiliary;
+using DynamicDataDisplay.Markers;
+using DynamicDataDisplay.Markers.DataSources;
+using DynamicDataDisplay.Markers.DataSources.DataSourceFactories;
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -69,6 +70,9 @@ namespace DynamicDataDisplay.Charts.NewLine
 
 			if (plottedItems.Any())
 			{
+				OverrideContentBoundsArgs args = new OverrideContentBoundsArgs { ContentBounds = contentBounds };
+				OverrideContentBounds?.Invoke(this, args);
+				contentBounds = args.ContentBounds;
 				Viewport2D.SetContentBounds(this, contentBounds);
 			}
 			else
@@ -489,5 +493,15 @@ namespace DynamicDataDisplay.Charts.NewLine
 		}
 
 		#endregion // end of Legend
+
+		#region Events
+
+		/// <summary>
+		/// Allows for overriding the bounds of the content for when the plot is auto
+		/// sized to view the content.
+		/// </summary>
+		public event EventHandler<OverrideContentBoundsArgs> OverrideContentBounds;
+
+		#endregion Events
 	}
 }

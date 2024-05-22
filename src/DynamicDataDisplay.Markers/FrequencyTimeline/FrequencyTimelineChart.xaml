@@ -14,7 +14,7 @@
     <!-- Marker chart for the Horizontal Bars -->
 
     <!-- Using ElementName for binding because RelativeSource randomly fails for some reason -->
-    <local2:DevMarkerChart x:Name="_horizontalBarsMarkers">
+    <local2:DevMarkerChart x:Name="_horizontalBarsMarkers" OverrideContentBounds="Markers_OverrideContentBoundsEvent">
         <local2:DevMarkerChart.MarkerBuilder>
             <local1:TemplateMarkerGenerator>
                 <DataTemplate>
@@ -55,7 +55,7 @@
     <!-- Marker chart for the labels -->
 
     <!-- Using ElementName for binding because RelativeSource randomly fails for some reason -->
-    <local2:DevMarkerChart x:Name="_labelsMarkers">
+    <local2:DevMarkerChart x:Name="_labelsMarkers" OverrideContentBounds="Markers_OverrideContentBoundsEvent">
         <local2:DevMarkerChart.MarkerBuilder>
             <local1:TemplateMarkerGenerator>
                 <DataTemplate>

@@ -16,7 +16,7 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
     {
         public InfiniteTimelineChartTest()
         {
-            this.DataContext = new InfiniteTimelineChartTestViewModel();
+            DataContext = new InfiniteTimelineChartTestViewModel();
             InitializeComponent();
         }
     }
@@ -48,17 +48,71 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
             Timelines = timelines;
         }
 
+        /// <summary>
+        /// Mimics the adjustment the chart does to get the visible rectangle
+        /// </summary>
+        private static void AdjustMinMax(ref double min, ref double max)
+        {
+            var midPoint = (min + max) * 0.5;
+            var diff = max - min;
+            min = midPoint - diff * 0.5 * 1.05;
+            max = midPoint + diff * 0.5 * 1.05;
+        }
+
         public IEnumerable<IFrequencyTimelineChartData> Timelines
         {
             get;
         }
 
-        public ViewportRestriction MaxRect => new DateTimeRestriction();
+        private DateTime _startTime = DateTime.Now.Subtract(TimeSpan.FromDays(1));
+        public DateTime StartTime
+        {
+            get => _startTime;
+            set
+            {
+                if (SetProperty(ref _startTime, value))
+                {
+                    RaisePropertyChanged(nameof(MaxRect));
+                }
+            }
+        }
+
+        private DateTime _endTime = DateTime.Now.Add(TimeSpan.FromDays(1));
+        public DateTime EndTime
+        {
+            get => _endTime;
+            set
+            {
+                if (SetProperty(ref _endTime, value))
+                {
+                    RaisePropertyChanged(nameof(MaxRect));
+                }
+            }
+        }
+
+        public DataRect MaxRect
+        {
+            get
+            {
+                double minMinutes = (StartTime - DateTime.MinValue).TotalMinutes;
+                double maxMinutes = (EndTime - DateTime.MinValue).TotalMinutes;
+
+                return new DataRect(Math.Min(minMinutes, maxMinutes), double.NaN, Math.Abs(maxMinutes - minMinutes), double.NaN);
+            }
+        }
+
+        public ViewportRestriction MaxRectRestriction => new DateTimeRestriction();
 
         public class DateTimeRestriction : ViewportRestriction
         {
-            private readonly double minMinutes = (DateTime.Now - DateTime.MinValue.AddDays(1)).TotalMinutes;
-            private readonly double maxMinutes = (DateTime.Now.AddDays(1) - DateTime.MinValue).TotalMinutes;
+            private readonly double minMinutes = 0;
+            private readonly double maxMinutes = (DateTime.MaxValue - DateTime.MinValue).TotalMinutes;
+
+            public DateTimeRestriction()
+            {
+                minMinutes -= maxMinutes * 0.025;
+                maxMinutes *= 1.025;
+            }
 
             public override DataRect Apply(DataRect previousDataRect, DataRect proposedDataRect, Viewport2D viewport)
             {
