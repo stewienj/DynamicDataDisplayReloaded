@@ -1,5 +1,4 @@
 ﻿using DynamicDataDisplay.Charts;
-using DynamicDataDisplay.Charts.Navigation;
 using DynamicDataDisplay.Common.Auxiliary;
 using DynamicDataDisplay.RadioBand.ConfigLoader;
 using DynamicDataDisplay.ViewportRestrictions;
@@ -16,7 +15,7 @@ using System.Windows.Input;
 
 namespace DynamicDataDisplay.RadioBand
 {
-    public class RadioBandChartPlotter : ChartPlotter
+	public class RadioBandChartPlotter : ChartPlotter
 	{
 		private Dictionary<IComparable, List<RadioBandLine>> _groupToRadioBandLines = new Dictionary<IComparable, List<RadioBandLine>>();
 		private List<RadioBandLine> _ungroupedRadioBandLines = new List<RadioBandLine>();
@@ -56,17 +55,6 @@ namespace DynamicDataDisplay.RadioBand
 			else
 			{
 				return null;
-			}
-		}
-
-		protected override void OnChildAdded(IPlotterElement child)
-		{
-			base.OnChildAdded(child);
-
-			if (child is CursorCoordinateGraph graph)
-			{
-				graph.YTextMapping = (y) => "";
-				graph.XTextMapping = (x) => x.ToEngineeringNotation() + "Hz";
 			}
 		}
 
@@ -151,6 +139,18 @@ namespace DynamicDataDisplay.RadioBand
 				control.SetItemsSource((IEnumerable)e.NewValue);
 			}));
 
+
+
+		public int CursorSignificantFigures
+		{
+			get { return (int)GetValue(CursorSignificantFiguresProperty); }
+			set { SetValue(CursorSignificantFiguresProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for CursorSignificantFigures.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty CursorSignificantFiguresProperty =
+			DependencyProperty.Register("CursorSignificantFigures", typeof(int), typeof(RadioBandChartPlotter), new PropertyMetadata(3));
+
 		#endregion Dependency Properties
 
 		public ConcurrentStack<(Point start, Point end, string label)> LineLabelsSource { get; } = new ConcurrentStack<(Point start, Point end, string label)>();
@@ -210,9 +210,9 @@ namespace DynamicDataDisplay.RadioBand
 					group.Add(radioBandLine);
 				}
 				else
-                {
+				{
 					_ungroupedRadioBandLines.Add(radioBandLine);
-                }
+				}
 
 				// NOTE: If the RadioBandChartPlotter is created but not rendered (i.e. brought into view),
 				// the depedency properties on the RadioBandLines are not set. Which means the code after this
@@ -254,7 +254,7 @@ namespace DynamicDataDisplay.RadioBand
 		}
 
 		private void ResetChartFromGroups()
-        {
+		{
 			int indexMax = _groupToRadioBandLines.Count;
 			if (DataTransform is RadioBandTransform rbt)
 			{
@@ -312,7 +312,7 @@ namespace DynamicDataDisplay.RadioBand
 				}
 			}
 			foreach(var lines in _ungroupedRadioBandLines)
-            {
+			{
 				lines.GroupAxisCoord = 0;
 			}
 		}

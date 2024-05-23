@@ -70,11 +70,11 @@
                 </d3:SpectrumBandOverlay.GradientStops>
             </d3:SpectrumBandOverlay>
 
-            <d3:CursorCoordinateGraph/>
+            <d3:CursorCoordinateGraph
+                XTextMapping="{d3:RadioBandXMapper SignificantFigures=4}"
+                YTextMapping="{d3:RadioBandYMapper}"/>
             <!-- This doesn't seem to work very well yet-->
-            <!--
-            <d3:CursorNearestRadioBandLine/>
-            -->
+            <d3:CursorNearestRadioBandLine SignificantFigures="4"/>
         </d3:RadioBandChartPlotter>
 
         <DockPanel Grid.Column="0" LastChildFill="True" Background="Yellow">

@@ -1,5 +1,4 @@
-﻿using DynamicDataDisplay;
-using DynamicDataDisplay.Charts;
+﻿using DynamicDataDisplay.Charts;
 using DynamicDataDisplay.Common.Auxiliary.DataSearch;
 using System;
 using System.Windows;
@@ -162,7 +161,7 @@ namespace DynamicDataDisplay.RadioBand
 			var xText = ((Func<string>)(() =>
 			{
 				double xValue = mousePosInData.X;
-				return xValue.ToEngineeringNotation() + "Hz";
+				return xValue.ToEngineeringNotation(SignificantFigures) + "Hz";
 			})).Invoke();
 
 			var yText = ((Func<string>)(() =>
@@ -186,6 +185,7 @@ namespace DynamicDataDisplay.RadioBand
 			}
 		}
 
+		public int SignificantFigures { get; set; } = 3;
 
 		/// <summary>
 		/// Gets or sets the mouse position in screen coordinates.
