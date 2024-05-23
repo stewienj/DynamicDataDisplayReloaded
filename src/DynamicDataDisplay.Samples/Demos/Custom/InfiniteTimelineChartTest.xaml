@@ -43,7 +43,14 @@
             </GroupBox>
 
         </StackPanel>
-        <d3:FrequencyTimelineChart Grid.Row="1" ItemsSource="{Binding Timelines}" Margin="24" ShowLabels="{Binding ElementName=_showLabels, Path=IsChecked}" ContentBoundsOverride="{Binding MaxRect}">
+        <d3:FrequencyTimelineChart
+            Grid.Row="1"
+            ItemsSource="{Binding Timelines}"
+            Margin="24"
+            ShowLabels="{Binding ElementName=_showLabels, Path=IsChecked}"
+            ContentBoundsOverride="{Binding MaxRect}"
+            ViewportRestriction="{Binding MaxRectRestriction}">
+            
             <d3:CursorCoordinateGraph 
                 XTextMapping="{local:MinutesToUTCStringMapper}" 
                 YTextMapping="{local:DoubleToEngineeringNotationMapper}"

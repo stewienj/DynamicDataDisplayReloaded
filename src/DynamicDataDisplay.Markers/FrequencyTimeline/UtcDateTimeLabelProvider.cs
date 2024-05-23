@@ -27,7 +27,7 @@ namespace DynamicDataDisplay.FrequencyTimeline
                 string labelText = "";
 
                 // Check we are adding minutes (not subtracting), we are not adding more than 9999 years
-                if (tickInfo.Tick > 0 && tickInfo.Tick < 5_000_000_000)
+                if (tickInfo.Tick >= 0 && tickInfo.Tick < 5_000_000_000)
                 {
                     // We add the base scenario time and start hour and minutes to generate scenario time of day for the X-axis.                
                     labelText = DateTime.SpecifyKind(DateTime.MinValue.AddMinutes(tickInfo.Tick), DateTimeKind.Utc).ToString("dd/MM/yyyy HH:mm UTC");

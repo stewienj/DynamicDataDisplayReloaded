@@ -71,8 +71,16 @@ namespace DynamicDataDisplay.FrequencyTimeline
                     return (freqHz / 1e6).ToString("0 MHz");
                 else if (freqHz >= 1e3)
                     return (freqHz / 1e3).ToString("0 KHz");
-                else
+                else if (freqHz >= 1)
                     return freqHz.ToString("0 Hz");
+                else if (freqHz >= 0.1)
+                    return freqHz.ToString("0.0 Hz");
+                else if (freqHz >= 0.01)
+                    return freqHz.ToString("0.00 Hz");
+                else if (freqHz >= 0.001)
+                    return freqHz.ToString("0.000 Hz");
+                else
+                    return "?";
             });
             verticalAxis.LabelProvider.SetCustomView((info, ui) =>
             {

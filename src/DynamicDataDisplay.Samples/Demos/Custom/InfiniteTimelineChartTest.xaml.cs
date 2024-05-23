@@ -48,17 +48,6 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
             Timelines = timelines;
         }
 
-        /// <summary>
-        /// Mimics the adjustment the chart does to get the visible rectangle
-        /// </summary>
-        private static void AdjustMinMax(ref double min, ref double max)
-        {
-            var midPoint = (min + max) * 0.5;
-            var diff = max - min;
-            min = midPoint - diff * 0.5 * 1.05;
-            max = midPoint + diff * 0.5 * 1.05;
-        }
-
         public IEnumerable<IFrequencyTimelineChartData> Timelines
         {
             get;
@@ -108,25 +97,30 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
             private readonly double minMinutes = 0;
             private readonly double maxMinutes = (DateTime.MaxValue - DateTime.MinValue).TotalMinutes;
 
+            private readonly double minLogFrequency = -2;
+            private readonly double maxLogFrequency = 12;
+
+
             public DateTimeRestriction()
             {
-                minMinutes -= maxMinutes * 0.025;
-                maxMinutes *= 1.025;
+                AdjustMinMax(ref minMinutes, ref maxMinutes);
+                AdjustMinMax(ref minLogFrequency, ref maxLogFrequency);
+            }
+
+            /// <summary>
+            /// Mimics the adjustment the chart does to get the visible rectangle
+            /// </summary>
+            private void AdjustMinMax(ref double min, ref double max)
+            {
+                var midPoint = (min + max) * 0.5;
+                var diff = max - min;
+                min = midPoint - diff * 0.5 * 1.05;
+                max = midPoint + diff * 0.5 * 1.05;
             }
 
             public override DataRect Apply(DataRect previousDataRect, DataRect proposedDataRect, Viewport2D viewport)
             {
-                // Min Max data
-                var minY = 1.0 * 0.5 - 0.05;
-                var maxY = 19.0 * 0.5 + 0.05;
-
-                // Now do the adjustment the chart does to get the visible rectangle
-                var midPoint = (minY + maxY) * 0.5;
-                var diff = maxY - minY;
-                minY = midPoint - diff * 0.5 * 1.05;
-                maxY = midPoint + diff * 0.5 * 1.05;
-
-                DataRect borderRect = DataRect.Create(minMinutes, minY, maxMinutes, maxY);
+                DataRect borderRect = DataRect.Create(minMinutes, minLogFrequency, maxMinutes, maxLogFrequency);
                 if (proposedDataRect.IntersectsWith(borderRect))
                 {
                     DataRect croppedRect = DataRect.Intersect(proposedDataRect, borderRect);
