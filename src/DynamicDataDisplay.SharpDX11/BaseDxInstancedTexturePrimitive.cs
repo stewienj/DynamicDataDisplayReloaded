@@ -1,7 +1,7 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
-using DynamicDataDisplay.SharpDX9.Helpers;
+﻿using DynamicDataDisplay.SharpDX11.DataTypes;
+using DynamicDataDisplay.SharpDX11.Helpers;
 using SharpDX;
-using SharpDX.Direct3D9;
+using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX11
 {
 	public abstract class BaseDxInstancedTexturePrimitive<DxVertex, TDxInstance> : BaseDxTexturePrimitive<DxVertex> where DxVertex : struct, IDxPoint where TDxInstance : struct, IDxPoint
 	{

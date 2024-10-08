@@ -1,11 +1,11 @@
-﻿using SharpDX.Direct3D9;
+﻿using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicDataDisplay.SharpDX9.DataTypes
+namespace DynamicDataDisplay.SharpDX11.DataTypes
 {
 	public interface IDxPoint
 	{

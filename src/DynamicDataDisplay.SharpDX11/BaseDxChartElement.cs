@@ -1,11 +1,11 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.SharpDX11.DataTypes;
 using SharpDX;
-using SharpDX.Direct3D9;
+using SharpDX.Direct3D11;
 using System;
 using System.Linq;
 using System.Windows;
 
-namespace DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX11
 {
 	public abstract class BaseDxChartElement : FrameworkElement, IPlotterElement
 	{
@@ -19,11 +19,6 @@ namespace DynamicDataDisplay.SharpDX9
 		protected Device Device
 		{
 			get { return dxHost != null ? dxHost.Device : null; }
-		}
-
-		protected Direct3D Direct3D
-		{
-			get { return dxHost.Direct3D; }
 		}
 
 		private void OnDirectXRender(object sender, RenderEventArgs e)

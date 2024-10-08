@@ -1,8 +1,8 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.SharpDX11.DataTypes;
 using SharpDX;
-using SharpDX.Direct3D9;
+using SharpDX.Direct3D11;
 
-namespace DynamicDataDisplay.SharpDX9.Shaders
+namespace DynamicDataDisplay.SharpDX11.Shaders
 {
 	public class DxMarkerColoredByInstanceShader : BaseDxTransformShader
 	{

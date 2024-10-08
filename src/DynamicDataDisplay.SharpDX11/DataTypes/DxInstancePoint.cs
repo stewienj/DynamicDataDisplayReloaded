@@ -1,5 +1,5 @@
 ﻿using SharpDX;
-using SharpDX.Direct3D9;
+using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicDataDisplay.SharpDX9.DataTypes
+namespace DynamicDataDisplay.SharpDX11.DataTypes
 {
     /// <summary>
 	/// This is same as DxPoint, except it specifies stream 1, and has position usage index 1, vs 0 in DxPoint for each of those

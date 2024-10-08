@@ -1,9 +1,9 @@
-﻿using SharpDX.Direct3D9;
+﻿using SharpDX.Direct3D11;
 using System;
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace DynamicDataDisplay.SharpDX9.Helpers
+namespace DynamicDataDisplay.SharpDX11.Helpers
 {
     // Using managed pool may cause textures not to appear.
     public static class TextureHelper
@@ -59,7 +59,7 @@ namespace DynamicDataDisplay.SharpDX9.Helpers
         public static Texture GetDVDImageTexture(Device device)
         {
             // Load the PNG file.
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\src\DynamicDataDisplay.SharpDX9\Textures\dvdreduced.png");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\src\DynamicDataDisplay.SharpDX11\Textures\dvdreduced.png");
             if (File.Exists(path))
             {
                 // Get the image to find its dimensions.

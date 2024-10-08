@@ -1,6 +1,6 @@
-﻿using DynamicDataDisplay.SharpDX9.DataTypes;
+﻿using DynamicDataDisplay.SharpDX11.DataTypes;
 using SharpDX;
-using SharpDX.Direct3D9;
+using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicDataDisplay.SharpDX9
+namespace DynamicDataDisplay.SharpDX11
 {
 	public class BaseDxTransformShader
 	{
