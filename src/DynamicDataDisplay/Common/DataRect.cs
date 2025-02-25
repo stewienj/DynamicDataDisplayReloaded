@@ -105,7 +105,13 @@ namespace DynamicDataDisplay
 		public DataRect(double xMin, double yMin, double width, double height)
 		{
 			if ((width < 0) || (height < 0))
-				throw new ArgumentException(Strings.Exceptions.WidthAndHeightCannotBeNegative);
+			{
+				// This was getting hit during transient states,
+				// so just zero out width and height instead
+				//throw new ArgumentException(Strings.Exceptions.WidthAndHeightCannotBeNegative);
+				width = Math.Max(0, width);
+				height = Math.Max(0, height);
+			}
 
 			this.xMin = xMin;
 			this.yMin = yMin;

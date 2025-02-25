@@ -24,12 +24,12 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
     {
         private ThreadLocal<Random> _random = new ThreadLocal<Random>(() => new Random(1));
 
-
         public TimelineChartTestViewModel()
         {
+            int lineCount = 20;
             var baseTime = DateTime.Now;
             var timelines = new List<IFrequencyTimelineChartData>();
-            for (int i = 1; i < 20; ++i)
+            for (int i = 1; i < lineCount; ++i)
             {
                 byte R = (byte)(_random.Value.NextDouble() * 255);
                 byte G = (byte)(_random.Value.NextDouble() * 255);
@@ -39,10 +39,10 @@ namespace DynamicDataDisplay.Samples.Demos.Custom
                 timelines.Add(new FrequencyTimelineChartData
                 {
                     Id = $"Object No {i}",
-                    LowerFrequency = Math.Pow(10.0, i * 0.5 - 0.05),
-                    UpperFrequency = Math.Pow(10.0, i * 0.5 + 0.05),
-                    StartTime = baseTime + TimeSpan.FromHours(i - 1),
-                    EndTime = baseTime + TimeSpan.FromHours(i - 1 + 12),
+                    LowerFrequency = Math.Pow(10.0, i * 10.0 / lineCount - 1.0 / lineCount),
+                    UpperFrequency = Math.Pow(10.0, i * 10.0 / lineCount + 1.0 / lineCount),
+                    StartTime = baseTime + TimeSpan.FromHours(i * 20.0 / lineCount - 1),
+                    EndTime = baseTime + TimeSpan.FromHours(i * 20.0 / lineCount - 1 + 12),
                     ColorARGB = Color.FromArgb(255, R, G, B).ToArgb()
                 });
             }
