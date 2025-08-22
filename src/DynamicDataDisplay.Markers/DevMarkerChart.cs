@@ -34,27 +34,22 @@ namespace DynamicDataDisplay.Charts.Markers
 			DrawAllMarkers(false);
 		}
 
-		#region DataSource
+        #region DataSource
 
-		protected override void OnDataSourceChanged(PointDataSourceBase prevSource, PointDataSourceBase currSource)
-		{
-			base.OnDataSourceChanged(prevSource, currSource);
+        protected override void OnDataSourceChanged(PointDataSourceBase prevSource, PointDataSourceBase currSource)
+        {
+            // Clear any existing children before redrawing collection
+            CurrentItemsPanel?.Children.Clear();
+            if (currSource != null)
+            {
+                MakeStandartPredictions(currSource);
+                DrawAllMarkers(true);
+            }
 
-			if (currSource != null)
-			{
-				MakeStandartPredictions(currSource);
-				DrawAllMarkers(true);
-			}
-			else
-			{
-				// todo clear
-			}
+            base.OnDataSourceChanged(prevSource, currSource);
+        }
 
-			// this is for PieChart in legend.
-			RaiseDataSourceChanged(prevSource, currSource);
-		}
-
-		private void MakeStandartPredictions(PointDataSourceBase currSource)
+        private void MakeStandartPredictions(PointDataSourceBase currSource)
 		{
 			Type dataType = currSource.GetDataType() as Type;
 			if (dataType != null)
