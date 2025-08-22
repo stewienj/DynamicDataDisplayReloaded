@@ -13,12 +13,33 @@ namespace DynamicDataDisplay.Samples.Demos.UserTest
     /// </summary>
     public partial class TestSwitchingMarkersDataSource : Page
     {
+        /// <summary>
+        /// Maximum number of markers to display in a line
+        /// </summary>
         private const int _maxCount = 50;
+        /// <summary>
+        /// Minimum number of markers to display in a line
+        /// </summary>
         private const int _minCount = 2;
+        /// <summary>
+        /// Current number of markers to display in a line
+        /// </summary>
         private int _count = 1;
+        /// <summary>
+        /// Used to increase or decrease the number of markers
+        /// </summary>
         private int _countDirection = 1;
+        /// <summary>
+        /// Time we started in CPU ticks, used for getting a relative time
+        /// </summary>
         private int _startTime;
+        /// <summary>
+        /// Timer used to update the markers
+        /// </summary>
         private DispatcherTimer _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(10) };
+        /// <summary>
+        /// A list of chart controls that we are updating
+        /// </summary>
         private List<DevMarkerChart> _charts = new List<DevMarkerChart>();
 
         public TestSwitchingMarkersDataSource()
@@ -28,13 +49,13 @@ namespace DynamicDataDisplay.Samples.Demos.UserTest
             Unloaded += OnUnloaded;
         }
 
-
+        /// <summary>
+        /// Called when the control is loaded
+        /// </summary>
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             _startTime = Environment.TickCount;
-
-            _charts.AddMany
-            ([
+            _charts.AddMany([
                 chart1,
                 chart2,
                 chart3,
@@ -42,20 +63,22 @@ namespace DynamicDataDisplay.Samples.Demos.UserTest
                 chart5,
                 chart6,
                 chart7,
-                chart8,
-            ]);
+                chart8]);
 
-            _timer.Tick += timer_Tick;
+            _timer.Tick += Timer_Tick;
             _timer.Start();
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            _timer.Tick -= timer_Tick;
+            _timer.Tick -= Timer_Tick;
             _timer.Stop();
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Periodic chart updater
+        /// </summary>
+        private void Timer_Tick(object sender, EventArgs e)
         {
             if (_count >= _maxCount)
             {
@@ -73,6 +96,9 @@ namespace DynamicDataDisplay.Samples.Demos.UserTest
             }
         }
 
+        /// <summary>
+        /// Creates an immutable collection of points from the current time, and data source number
+        /// </summary>
         private ImmutableList<Point> CreateCollection(int dataSourceNumber)
         {
             int time = Environment.TickCount;
