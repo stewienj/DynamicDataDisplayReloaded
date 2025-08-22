@@ -16,7 +16,7 @@ namespace DynamicDataDisplay.Samples.Demos.UserTest
         /// <summary>
         /// Maximum number of markers to display in a line
         /// </summary>
-        private const int _maxCount = 50;
+        private const int _maxCount = 60;
         /// <summary>
         /// Minimum number of markers to display in a line
         /// </summary>
@@ -36,7 +36,7 @@ namespace DynamicDataDisplay.Samples.Demos.UserTest
         /// <summary>
         /// Timer used to update the markers
         /// </summary>
-        private DispatcherTimer _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(10) };
+        private DispatcherTimer _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1) };
         /// <summary>
         /// A list of chart controls that we are updating
         /// </summary>
@@ -54,6 +54,7 @@ namespace DynamicDataDisplay.Samples.Demos.UserTest
         /// </summary>
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            plotter.Viewport.Visible = new DataRect(-0.01, 0, 1.02, 0.9);
             _startTime = Environment.TickCount;
             _charts.AddMany([
                 chart1,

@@ -1,4 +1,5 @@
-﻿using DynamicDataDisplay.Common;
+﻿using DynamicDataDisplay;
+using DynamicDataDisplay.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,7 +28,9 @@ namespace NewMarkersSample.Pages
 
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
-			startTime = Environment.TickCount;
+            plotter.Viewport.Visible = new DataRect(-0.01, -0.09, 1.02, 0.9);
+
+            startTime = Environment.TickCount;
 
 			chart1.ItemsSource = BuildData(1);
 			chart2.ItemsSource = BuildData(2);
