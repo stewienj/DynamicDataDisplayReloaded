@@ -51,7 +51,10 @@
                 <m:Demonstration Description="Infinite Timeline Chart" Uri="/Demos/Custom/InfiniteTimelineChartTest.xaml"/>
                 <m:Demonstration Description="Mouse Navigation Switching" Uri="/Demos/Custom/MouseNaviationSwitchingSample.xaml"/>
                 <m:Demonstration Description="WMS Maps" Uri="/Demos/Custom/WmsMaps.xaml"/>
-      </m:ReleaseInfo>
+            </m:ReleaseInfo>
+            <m:ReleaseInfo Version="Developer Testing">
+                <m:Demonstration Description="Changing the ItemsSource" Uri="/Demos/UserTests/TestSwitchingMarkersDataSource.xaml"/>
+            </m:ReleaseInfo>
         </m:SamplesCollection>
 
         <local:VersionToBrushConverter x:Key="versionConverter"/>
