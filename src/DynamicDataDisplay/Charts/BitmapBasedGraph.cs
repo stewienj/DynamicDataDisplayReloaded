@@ -203,7 +203,7 @@ namespace DynamicDataDisplay
 				if (_activeRequest != null)
 					_activeRequest.Cancel();
 				_pendingRequest = new RenderRequest(_nextRequestId++, visible, output);
-				_renderAction.InvokeAction(RenderThreadFunc);
+				_renderAction.InvokeActionSync(RenderThreadFunc);
 			}
 		}
 
