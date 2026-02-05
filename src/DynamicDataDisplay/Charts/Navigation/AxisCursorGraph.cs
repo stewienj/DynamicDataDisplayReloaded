@@ -14,13 +14,14 @@ namespace DynamicDataDisplay.Charts.Navigation
 	{
 		static AxisCursorGraph()
 		{
-			Line.StrokeProperty.AddOwner(typeof(AxisCursorGraph), new FrameworkPropertyMetadata(Brushes.Red));
-		}
+            Line.StrokeProperty.AddOwner(typeof(AxisCursorGraph), new FrameworkPropertyMetadata(Brushes.Red));
+            Line.StrokeThicknessProperty.AddOwner(typeof(AxisCursorGraph), new FrameworkPropertyMetadata(1.0));
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="AxisCursorGraph"/> class.
-		/// </summary>
-		public AxisCursorGraph() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AxisCursorGraph"/> class.
+        /// </summary>
+        public AxisCursorGraph() { }
 
 		#region ShowVerticalLine property
 
@@ -69,11 +70,11 @@ namespace DynamicDataDisplay.Charts.Navigation
 		  typeof(AxisCursorGraph),
 		  new FrameworkPropertyMetadata(true, OnShowLinePropertyChanged));
 
-		#endregion
+        #endregion
 
-		#region IPlotterElement Members
+        #region IPlotterElement Members
 
-		private Line leftLine;
+        private Line leftLine;
 		private Line bottomLine;
 		private Canvas leftCanvas;
 		private Canvas bottomCanvas;
