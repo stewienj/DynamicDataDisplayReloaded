@@ -8,12 +8,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-  <Grid>
-    <d3:ChartPlotter Visible="-180,-90,360,180">
-      <d3:Coastline Name="coastline" />
-      <d3:CursorCoordinateGraph/>
-      <d3:AxisCursorGraph/>
-      <d3:StatusByLatLonChartView x:Name="latLonStatus"/>
-    </d3:ChartPlotter>
-  </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Column="0">
+            <RadioButton IsChecked="{Binding Size90x45}">90 x 45</RadioButton>
+            <RadioButton IsChecked="{Binding Size180x90}">180 x 90</RadioButton>
+            <RadioButton IsChecked="{Binding Size360x180}">360 x 180</RadioButton>
+            <RadioButton IsChecked="{Binding Size720x360}">720 x 360</RadioButton>
+            <RadioButton IsChecked="{Binding Size1024x512}">1024 x 512</RadioButton>
+            <RadioButton IsChecked="{Binding Size2048x1024}">2048 x 1024</RadioButton>
+            <RadioButton IsChecked="{Binding Size4096x2048}">4096 x 2048</RadioButton>
+        </StackPanel>
+        <d3:ChartPlotter Visible="-180,-90,360,180" Grid.Column="1">
+            <d3:Coastline Name="coastline" />
+            <d3:CursorCoordinateGraph/>
+            <d3:AxisCursorGraph/>
+            <d3:StatusByLatLonChartView x:Name="latLonStatus" SourceSize="{Binding PixelsSize}"  PixelSource="{Binding Pixels}"/>
+        </d3:ChartPlotter>
+    </Grid>
 </Page>
