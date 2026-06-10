@@ -136,7 +136,7 @@ namespace DynamicDataDisplay.Charts
 
 		public int IncreaseTickCount(int ticksCount)
 		{
-			int newTickCount = tickCounts.Reverse().FirstOrDefault(tick => tick > ticksCount);
+			int newTickCount = ((IEnumerable<int>)tickCounts).Reverse().FirstOrDefault(tick => tick > ticksCount);
 			if (newTickCount == 0)
 				newTickCount = tickCounts[0];
 
